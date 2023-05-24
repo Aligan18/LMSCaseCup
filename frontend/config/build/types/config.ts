@@ -10,8 +10,14 @@ export interface IBuildPath {
     html: string
 }
 
+export interface IBuildEnv {
+    mode: IBuildMode,
+    port: number
+}
+
 export interface IBuildOptions {
     mode: IBuildMode
     paths: IBuildPath
     isDev : boolean
+    port: number
 }
