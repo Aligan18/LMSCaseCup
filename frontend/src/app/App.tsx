@@ -1,11 +1,13 @@
-import React, { Suspense, useContext, useState } from 'react'
-import { Link, Route, Router, Routes } from 'react-router-dom'
-import { ETheme, ThemeContext } from './context/ThemeContext'
-import { classnames } from './helpers/classnames'
-import { useTheme } from './hooks/useTheme'
-import { AboutPageAsync } from './pages/AboutPage/AboutPage.async'
-import { HomePageAsync } from './pages/HomePage/HomePage.async'
+
+import  { Suspense } from 'react'
+import { Link, Route,  Routes } from 'react-router-dom'
+import { AboutPage } from 'pages/AboutPage'
+import { HomePage } from 'pages/HomePage'
+import { classnames } from 'shared/lib'
+import { useTheme } from './providers/ThemeProvider'
 import './styles/index.scss'
+
+
 
 
 const App = () => {
@@ -18,8 +20,8 @@ const App = () => {
           <Link to={'/about'}>About page </Link>
           <Suspense fallback={<div>Loading...</div>}>
             <Routes>
-                <Route path="/" element={<HomePageAsync/>}/>
-                <Route path="/about" element={<AboutPageAsync/>}/>
+                <Route path="/" element={<AboutPage/>}/>
+                <Route path="/about" element={<HomePage/>}/>
             </Routes>
           </Suspense>
     </div>
