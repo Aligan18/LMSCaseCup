@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { ETheme, LOCAL_STORAGE_THEME_KEY, ThemeContext } from "../context/ThemeContext"
+import { ETheme, LOCAL_STORAGE_THEME_KEY, ThemeContext } from "./ThemeContext"
 
 // Hook для изменения глобальной темы , тема записыватся в Local storage 
 

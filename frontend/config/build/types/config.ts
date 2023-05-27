@@ -8,6 +8,7 @@ export interface IBuildPath {
     entry: string
     build: string
     html: string
+    src: string
 }
 
 export interface IBuildEnv {
