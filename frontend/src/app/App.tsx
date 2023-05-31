@@ -2,6 +2,7 @@
 
 import { Link} from 'react-router-dom'
 import { classnames } from 'shared/lib'
+import { Navbar } from 'widgets/ui'
 import { AppRouters } from './providers/AppRouters'
 import { useTheme } from './providers/ThemeProvider'
 import './styles/index.scss'
@@ -10,13 +11,10 @@ import './styles/index.scss'
 
 
 const App = () => {
-  const  {changeTheme ,theme} = useTheme() 
-  console.log(classnames("wrapper", {hovered : true, checked : true, red: false}, ['pdg','hello']))
+  const  {theme} = useTheme() 
   return (
     <div className={`app ${theme}`}>  
-          <button onClick={changeTheme}>Theme</button>
-          <Link to={'/'}>Home page </Link>
-          <Link to={'/about'}>About page </Link>
+          <Navbar/>
           <AppRouters/>
     </div>
   )

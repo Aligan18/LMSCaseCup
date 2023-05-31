@@ -6,20 +6,20 @@ import { RouteProps } from "react-router-dom"
 
 
 
-export const RoutePath  =  {
-     about : '/about',
-     home : '/'
+export enum RoutePath    {
+     ABOUT = '/about',
+     HOME = '/'
 
 } 
 
 export const RouteConfig : Array<RouteProps> = [
     {
-        path: RoutePath.about,
-         element: <AboutPage/>
+        path: RoutePath.ABOUT,
+        element: <AboutPage/>
      
     },
     {
-        path: RoutePath.home ,
+        path: RoutePath.HOME ,
         element: <HomePage/>
             
     } 
