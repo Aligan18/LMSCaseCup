@@ -14,3 +14,5 @@ declare module '*.scss' {
 declare module "*.png" 
 declare module "*.jpag" 
 declare module "*.gif" 
+
+declare const __IS_DEV__ :boolean
