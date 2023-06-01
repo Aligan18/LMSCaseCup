@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+      "outDir": "./dict/",
+      "noImplicitAny": true,
+      "module": "ESNext",
+      "target": "es5",
+      "jsx": "react-jsx",
+      "allowJs": true,
+      "moduleResolution": "node",
+      "baseUrl": ".",
+      "paths": {
+        "*" : ["./src/*"]
+      },
+      "esModuleInterop" : true,
+      "allowSyntheticDefaultImports": true,
+      "types": [ "node" ]
+    },
+    "ts-node": {
+        "compilerOptions": {
+          "module": "CommonJS"
+        }
+      },
+
+}
