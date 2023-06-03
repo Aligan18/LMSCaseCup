@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="87f8575e-76be-4f1b-90b6-2fb57d162cc5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lmssite/admins/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/backend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/.eslintrc.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/.prettierrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/.prettierrc.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/config/build/BuildLoaders.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/config/build/BuildLoaders.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/config/build/BuildPlugins.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/config/build/BuildPlugins.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/config/build/BuildResolves.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/config/build/BuildResolves.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/config/build/BuildWebpackConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/config/build/BuildWebpackConfig.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/locales/en/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/public/locales/en/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/locales/ru/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/public/locales/ru/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/providers/AppRouters/ui/AppRouters.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/providers/AppRouters/ui/AppRouters.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/widgets/ui/Navbar/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/widgets/ui/Navbar/Navbar.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="87f8575e-76be-4f1b-90b6-2fb57d162cc5" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,5 +58,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/backend$ttt.coverage" NAME="ttt Coverage Results" MODIFIED="1684168323197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
