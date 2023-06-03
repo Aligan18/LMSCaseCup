@@ -7,6 +7,7 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
+        "plugin:i18next/recommended",
         "prettier"
     ],
     "parser": "@typescript-eslint/parser",
@@ -17,24 +18,13 @@
     "plugins": [
         "@typescript-eslint",
         "react",
+        "i18next",
         "prettier"
     ],
     "rules": {
-        "prettier/prettier": "error",
-        
+        "i18next/no-literal-string": ["error", {"markupOnly": true}],
+        "prettier/prettier": 2,
         "react/react-in-jsx-scope": "off",
-        "indent": [
-            "error",
-            "tab"
-        ],
-        "linebreak-style": "off",
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "never"
-        ]
+        "react/jsx-max-props-per-line": [1, {"maximum":1, "when": "multiline" }]
     }
 }

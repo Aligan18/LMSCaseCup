@@ -1,11 +1,14 @@
 {
+	"trailingComma": "all",
+  	"bracketSpacing": true,
+  	"jsxBracketSameLine": true,
 	"singleQuote": true,
-	"jsxSingleQuote": true,
+	"jsxSingleQuote": false,
 	"arrowParens": "always",
-	"max-len": ["error", 140, 2],
 	"tabWidth": 4,
 	"useTabs": true,
 	"semi": false,
+	"printWidth": 120,
 	"endOfLine": "auto",
 	"importOrder": [
 		"^[./]",
