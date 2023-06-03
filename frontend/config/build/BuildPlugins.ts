@@ -5,10 +5,7 @@ import webpack from 'webpack'
 
 import { IBuildOptions, IBuildPath } from './types/config'
 
-export function buildPlugins({
-	paths,
-	isDev,
-}: IBuildOptions): webpack.WebpackPluginInstance[] {
+export function buildPlugins({ paths, isDev }: IBuildOptions): webpack.WebpackPluginInstance[] {
 	return [
 		new HtmlWebpackPlugin({
 			template: paths.html,
