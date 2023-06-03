@@ -5,7 +5,7 @@ export const classnames = (cls: string, addition: string[] = [], modes: TMods = 
 		cls,
 		...addition.filter(Boolean),
 		...Object.entries(modes)
-			.filter(([key, value]) => Boolean(value))
-			.map(([key, value]) => key),
+			.filter(([_, value]) => Boolean(value))
+			.map(([key, _]) => key),
 	].join(' ')
 }

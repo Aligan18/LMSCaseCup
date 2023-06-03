@@ -23,7 +23,7 @@
     ],
     "rules": {
         "i18next/no-literal-string": ["error", {"markupOnly": true}],
-        "prettier/prettier": 2,
+        "prettier/prettier": ["error"],
         "react/react-in-jsx-scope": "off",
         "react/jsx-max-props-per-line": [1, {"maximum":1, "when": "multiline" }]
     }
