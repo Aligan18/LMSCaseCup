@@ -1,8 +1,11 @@
-import { useTheme } from 'app/providers/ThemeProvider'
 import { Link } from 'react-router-dom'
+
 import classes from './Navbar.module.scss'
-import { classnames as cn } from 'shared/lib'
+
+import { useTheme } from 'app/providers/ThemeProvider'
+
 import DarkIcon from 'shared/assets/svg/DarkMode.svg'
+import { classnames as cn } from 'shared/lib'
 
 export const Navbar = ({ style }: INavbarProps) => {
 	const { changeTheme } = useTheme()

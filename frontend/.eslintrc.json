@@ -20,13 +20,8 @@
         "prettier"
     ],
     "rules": {
-        "prettier/prettier": [
-            "error",
-            {
-                "endOfLine": "auto"
-            }
-        ],
-        // Обязательно!! Подсвечивает ошибки из Prettier.
+        "prettier/prettier": "error",
+        
         "react/react-in-jsx-scope": "off",
         "indent": [
             "error",

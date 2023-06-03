@@ -1,6 +1,8 @@
-import { HomePage } from 'pages/HomePage'
 import { Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
+
+import { HomePage } from 'pages/HomePage'
+
 import { RouteConfig } from 'shared/config'
 
 export const AppRouters = () => {

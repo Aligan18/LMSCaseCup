@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cdb41f85-a6a2-410c-a727-5c91c94d33f4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/.eslintrc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/.prettierrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/.prettierrc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/config/build/BuildLoaders.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/config/build/BuildLoaders.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/config/build/BuildPlugins.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/config/build/BuildPlugins.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/config/build/BuildResolves.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/config/build/BuildResolves.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/config/build/BuildWebpackConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/config/build/BuildWebpackConfig.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/public/locales/en/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/public/locales/en/translation.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/public/locales/ru/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/public/locales/ru/translation.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/app/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/app/providers/AppRouters/ui/AppRouters.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/app/providers/AppRouters/ui/AppRouters.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/widgets/ui/Navbar/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/widgets/ui/Navbar/Navbar.tsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="2QgjGMX2xnhLL6pSBw62QpiQp9D" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cdb41f85-a6a2-410c-a727-5c91c94d33f4" name="Default Changelist" comment="" />
+      <created>1685782024251</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1685782024251</updated>
+    </task>
+    <servers />
+  </component>
+</project>
