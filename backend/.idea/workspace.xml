@@ -5,7 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87f8575e-76be-4f1b-90b6-2fb57d162cc5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/backend.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/admins/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/admins/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/categories/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/categories/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/categories/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/categories/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/categories/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/categories/serializers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/categories/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/categories/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/certificates/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/certificates/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/comments/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/comments/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/file_tasks/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/file_tasks/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/lectures/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/lectures/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/list_modules/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/list_modules/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/students/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/students/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/teachers/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/teachers/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/test_tasks/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/test_tasks/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +41,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2Qgkl1HffdN2eLWvwrgE6DmPdpz" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -30,7 +52,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "node.js.selected.package.tslint": "(autodetect)"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -50,8 +77,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1685782758614</updated>
+      <workItem from="1685855857420" duration="1712000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
