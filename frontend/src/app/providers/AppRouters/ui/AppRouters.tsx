@@ -1,18 +1,21 @@
 import { Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-import { HomePage } from 'pages/HomePage'
+import { LoadingPage } from 'features/LoaderForPage'
 
 import { RouteConfig } from 'shared/config'
 
 export const AppRouters = () => {
 	return (
-		<Suspense fallback={<div>Loading...</div>}>
+		<Suspense fallback={<LoadingPage />}>
 			<Routes>
 				{RouteConfig.map((route) => (
-					<Route key={route.path} path={route.path} element={route.element} />
+					<Route
+						key={route.path}
+						path={route.path}
+						element={route.element}
+					/>
 				))}
-				{/* <Route path={"/about"} element={<HomePage/>}/> */}
 			</Routes>
 		</Suspense>
 	)
