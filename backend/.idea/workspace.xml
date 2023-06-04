@@ -8,23 +8,16 @@
       <change beforePath="$PROJECT_DIR$/.idea/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/backend.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/admins/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/admins/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/categories/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/categories/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/categories/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/categories/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/categories/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/categories/serializers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/categories/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/categories/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/certificates/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/certificates/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/comments/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/comments/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/file_tasks/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/file_tasks/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/lectures/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/lectures/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/list_modules/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/list_modules/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/students/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/students/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/teachers/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/teachers/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/test_tasks/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/test_tasks/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/admins/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/admins/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/certificates/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/certificates/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/comments/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/comments/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/file_tasks/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/file_tasks/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/lectures/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/lectures/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/list_modules/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/list_modules/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/lmssite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/lmssite/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/students/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/students/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/teachers/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/teachers/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/test_tasks/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/test_tasks/serializers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,16 +43,10 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\learn.javascript.ru\javaScript\fullstac\LMS\LMSCaseCup\backend\lmssite\test_tasks" />
@@ -89,13 +76,23 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="frontend" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/backend$ttt.coverage" NAME="ttt Coverage Results" MODIFIED="1684168323197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
