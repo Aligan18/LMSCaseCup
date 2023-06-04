@@ -5,19 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87f8575e-76be-4f1b-90b6-2fb57d162cc5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/backend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/admins/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/admins/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/certificates/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/certificates/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/comments/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/comments/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/file_tasks/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/file_tasks/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/lectures/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/lectures/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/list_modules/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/list_modules/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/lmssite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/lmssite/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/students/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/students/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/teachers/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/teachers/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmssite/test_tasks/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/test_tasks/serializers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
