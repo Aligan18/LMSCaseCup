@@ -1,3 +1,17 @@
 from django.db import models
 
-# Create your models here.
+class FileTasks(models.Model):
+
+    def __str__(self):
+        return self.title
+
+
+class FileTasksAnswer(models.Model):
+
+    def __str__(self):
+        return self.title
+
+class FileTasksGrade(models.Model):
+
+    def __str__(self):
+        return self.title

@@ -1,3 +1,17 @@
 from django.db import models
 
-# Create your models here.
+class TestTasks(models.Model):
+
+    def __str__(self):
+        return self.title
+
+
+class TestQuestionAnswer(models.Model):
+
+    def __str__(self):
+        return self.title
+
+class TestGrade(models.Model):
+
+    def __str__(self):
+        return self.title

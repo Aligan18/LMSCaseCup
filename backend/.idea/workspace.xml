@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="87f8575e-76be-4f1b-90b6-2fb57d162cc5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lmssite/admins/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/backend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/.eslintrc.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/.prettierrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/.prettierrc.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/config/build/BuildLoaders.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/config/build/BuildLoaders.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/config/build/BuildPlugins.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/config/build/BuildPlugins.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/config/build/BuildResolves.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/config/build/BuildResolves.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/config/build/BuildWebpackConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/config/build/BuildWebpackConfig.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/locales/en/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/public/locales/en/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/locales/ru/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/public/locales/ru/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/providers/AppRouters/ui/AppRouters.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/providers/AppRouters/ui/AppRouters.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/widgets/ui/Navbar/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/widgets/ui/Navbar/Navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/admins/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/admins/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/categories/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/categories/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/categories/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/categories/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/categories/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/categories/serializers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/categories/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/categories/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/certificates/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/certificates/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/comments/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/comments/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/file_tasks/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/file_tasks/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/lectures/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/lectures/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/list_modules/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/list_modules/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/students/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/students/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/teachers/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/teachers/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmssite/test_tasks/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmssite/test_tasks/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,17 +41,25 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2Qgkl1HffdN2eLWvwrgE6DmPdpz" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lmssite/test_tasks" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\learn.javascript.ru\javaScript\fullstac\LMS\LMSCaseCup\backend\lmssite\test_tasks" />
@@ -65,8 +77,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1685782758614</updated>
+      <workItem from="1685855857420" duration="1712000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -78,5 +94,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/backend$ttt.coverage" NAME="ttt Coverage Results" MODIFIED="1684168323197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
