@@ -3,6 +3,8 @@
   "russkii-teks": "Russian tex",
   "privet-mir": "Hello World",
   "theme": "Theme",
-  "about-page": "",
-  "home-page": "Main page"
+  "about-page": "About us",
+  "home-page": "Main page",
+  "stranica-ne-naidena": "Page not found",
+  "loading": "Loading"
 }

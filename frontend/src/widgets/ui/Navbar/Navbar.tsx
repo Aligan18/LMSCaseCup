@@ -14,7 +14,10 @@ export const Navbar = ({ style }: INavbarProps) => {
 
 	return (
 		<div className={cn(classes.Navbar, [style])}>
-			<DarkIcon width={50} height={50} />
+			<DarkIcon
+				width={50}
+				height={50}
+			/>
 			<button onClick={changeTheme}>{t('theme')}</button>
 			<Link to={'/'}>{t('home-page')} </Link>
 			<Link to={'/about'}>{t('about-page')} </Link>
