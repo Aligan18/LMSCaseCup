@@ -10,6 +10,7 @@ const HomePage = () => {
 		<div>
 			<TranslateButton />
 			<Loader />
+
 			{t('glavnaya-stranica')}
 		</div>
 	)
