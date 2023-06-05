@@ -1,4 +1,4 @@
-import { classnames } from './classnames'
+import { classnames } from 'shared/lib/classnames/classnames'
 
 describe('classnames', () => {
 	test('with only first params', () => {
@@ -6,7 +6,9 @@ describe('classnames', () => {
 	})
 
 	test('with additional class', () => {
-		expect(classnames('someClass', ['additional1', 'additional2'])).toBe('someClass additional1 additional2')
+		expect(classnames('someClass', ['additional1', 'additional2'])).toBe(
+			'someClass additional1 additional2',
+		)
 	})
 
 	test('with mods', () => {

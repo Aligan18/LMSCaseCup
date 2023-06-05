@@ -9,7 +9,7 @@
 	"tabWidth": 4,
 	"useTabs": true,
 	"semi": false,
-	"printWidth": 80,
+	"printWidth": 100,
 	"endOfLine": "auto",
 	"importOrder": [
 		"^[./]",
