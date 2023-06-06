@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from lmssite.test_tasks.models import TestTasks, TestQuestionAnswer, TestGrade, TestAnswerOptions
+from test_tasks.models import TestTasks, TestQuestionAnswer, TestGrade, TestAnswerOptions
 
 
 class CreateTestTasksSerializers(serializers.ModelSerializer):

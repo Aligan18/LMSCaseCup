@@ -7,16 +7,16 @@ from teachers.models import Teachers
 from teachers.serializers import CreateTeachersSerializers, TeachersSerializers, AboutTeachersSerializers
 
 
-class TeachersView(generics.RetrieveUpdateDestroyAPIView):
+class TeachersViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Teachers.objects.all()
     serializer_class = TeachersSerializers
 
 
-class CreateStudentsView(generics.CreateAPIView):
+class TeachersViewCreate(generics.CreateAPIView):
     queryset = Teachers.objects.all()
     serializer_class = CreateTeachersSerializers
 
 
-class AllStudentsView(generics.ListAPIView):
+class TeachersViewAll(generics.ListAPIView):
     queryset = Teachers.objects.all()
     serializer_class = AboutTeachersSerializers

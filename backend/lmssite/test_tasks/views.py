@@ -9,24 +9,24 @@ from test_tasks.serializers import TestTasksSerializers, CreateTestTasksSerializ
     TestGradeSerializers, CreateTestGradeSerializers
 
 
-class TestTasksView(generics.RetrieveUpdateDestroyAPIView):
+class TestTasksViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = TestTasks.objects.all()
     serializer_class = TestTasksSerializers
 
 
-class AllCreateTestTasksView(generics.ListCreateAPIView):
+class TestTasksViewAllCreate(generics.ListCreateAPIView):
     queryset = TestTasks.objects.all()
     serializer_class = CreateTestTasksSerializers
 
 
 #################################################################
 
-class TestQuestionAnswerView(generics.RetrieveUpdateDestroyAPIView):
+class TestQuestionAnswerViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = TestQuestionAnswer.objects.all()
     serializer_class = TestQuestionAnswerSerializers
 
 
-class AllCreateTestQuestionAnswerView(generics.ListCreateAPIView):
+class TestQuestionAnswerViewAllCreate(generics.ListCreateAPIView):
     queryset = TestQuestionAnswer.objects.all()
     serializer_class = CreateTestQuestionAnswerSerializers
 
@@ -38,12 +38,12 @@ class AllCreateTestQuestionAnswerView(generics.ListCreateAPIView):
 #################################################################
 
 
-class TestAnswerOptionsView(generics.RetrieveUpdateDestroyAPIView):
+class TestAnswerOptionsViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = TestAnswerOptions.objects.all()
     serializer_class = TestAnswerOptionsSerializers
 
 
-class AllCreateTestAnswerOptionsView(generics.ListCreateAPIView):
+class TestAnswerOptionsViewAllCreate(generics.ListCreateAPIView):
     queryset = TestAnswerOptions.objects.all()
     serializer_class = CreateTestAnswerOptionsSerializers
 
@@ -55,12 +55,12 @@ class AllCreateTestAnswerOptionsView(generics.ListCreateAPIView):
 #################################################################
 
 
-class TestGradeView(generics.RetrieveUpdateDestroyAPIView):
+class TestGradeViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = TestGrade.objects.all()
     serializer_class = TestGradeSerializers
 
 
-class AllCreateTestGradeView(generics.ListCreateAPIView):
+class TestGradeViewAllCreate(generics.ListCreateAPIView):
     queryset = TestGrade.objects.all()
     serializer_class = CreateTestGradeSerializers
 

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from lmssite.list_modules.models import ListModules
+from list_modules.models import ListModules
 
 
 class CreateListModulesSerializers(serializers.ModelSerializer):

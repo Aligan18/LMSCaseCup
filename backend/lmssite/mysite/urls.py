@@ -26,31 +26,58 @@ from file_tasks.views import FileTasksViewCreate, FileTasksGradeViewCreate, File
     FileTasksViewRetrieveUpdateDestroy, FileTasksAnswerViewRetrieveUpdateDestroy, \
     FileTasksGradeViewRetrieveUpdateDestroy
 from lectures.views import LecturesViewCreate, LecturesViewRetrieveUpdateDestroy
+from list_modules.views import AllCreateListModulesView, ListModulesRetrieveUpdateDestroyView
+from students.views import StudentsViewRetrieveUpdateDestroy, StudentsViewCreate, StudentsViewAll
+from teachers.views import TeachersViewRetrieveUpdateDestroy, TeachersViewCreate, TeachersViewAll
+from test_tasks.views import TestTasksViewAllCreate, TestTasksViewRetrieveUpdateDestroy, \
+    TestQuestionAnswerViewAllCreate, TestQuestionAnswerViewRetrieveUpdateDestroy, \
+    TestAnswerOptionsViewRetrieveUpdateDestroy, TestAnswerOptionsViewAllCreate, TestGradeViewRetrieveUpdateDestroy, \
+    TestGradeViewAllCreate
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('api/v1/adminscreate/', AdminsViewCreate.as_view()),
-    path('api/v1/adminsrud/<int:pk>', AdminsViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/admins/create/', AdminsViewCreate.as_view()),
+    path('api/v1/admins/rud/<int:pk>', AdminsViewRetrieveUpdateDestroy.as_view()),
 
-    path('api/v1/certificatescreate/', CertificatesViewCreate.as_view()),
-    path('api/v1/certificateslist/<int:pk>', CertificatesViewList.as_view()),
+    path('api/v1/certificates/create/', CertificatesViewCreate.as_view()),
+    path('api/v1/certificates/list/<int:pk>', CertificatesViewList.as_view()),
 
-    path('api/v1/commentscreate/', CommentsViewCreate.as_view()),
-    path('api/v1/commentslist/<int:pk>', CommentsViewList.as_view()),
+    path('api/v1/comments/create/', CommentsViewCreate.as_view()),
+    path('api/v1/comments/list/<int:pk>', CommentsViewList.as_view()),
 
-    path('api/v1/coursecreate/', CourseViewCreate.as_view()),
-    path('api/v1/courserud/<int:pk>', CourseViewRetrieveUpdateDestroy.as_view()),
-    path('api/v1/courselist/<int:pk>', CourseViewList.as_view()),
-    path('api/v1/categoryrud/<int:pk>', CategoryViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/course/create/', CourseViewCreate.as_view()),
+    path('api/v1/courser/rud/<int:pk>', CourseViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/course/list/<int:pk>', CourseViewList.as_view()),
+    path('api/v1/category/rud/<int:pk>', CategoryViewRetrieveUpdateDestroy.as_view()),
 
-    path('api/v1/ftcreate/', FileTasksViewCreate.as_view()),
-    path('api/v1/ftgradecreate/', FileTasksGradeViewCreate.as_view()),
-    path('api/v1/ftanswercreate/', FileTasksAnswerViewCreate.as_view()),
-    path('api/v1/ftrud/<int:pk>', FileTasksViewRetrieveUpdateDestroy.as_view()),
-    path('api/v1/ftanswerrud/<int:pk>', FileTasksAnswerViewRetrieveUpdateDestroy.as_view()),
-    path('api/v1/ftgraderud/<int:pk>', FileTasksGradeViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/file_tasks/create/', FileTasksViewCreate.as_view()),
+    path('api/v1/file_tasks_grade/create/', FileTasksGradeViewCreate.as_view()),
+    path('api/v1/file_tasks_answer/create/', FileTasksAnswerViewCreate.as_view()),
+    path('api/v1/file_tasks/rud/<int:pk>', FileTasksViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/file_tasks_answer/rud/<int:pk>', FileTasksAnswerViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/file_tasks_grader/rud/<int:pk>', FileTasksGradeViewRetrieveUpdateDestroy.as_view()),
 
-    path('api/v1/lecturescreate/', LecturesViewCreate.as_view()),
-    path('api/v1/lecturesrud/<int:pk>', LecturesViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/lectures/create/', LecturesViewCreate.as_view()),
+    path('api/v1/lectures/rud/<int:pk>', LecturesViewRetrieveUpdateDestroy.as_view()),
+
+    path('api/v1/list_modules/', AllCreateListModulesView.as_view()),
+    path('api/v1/list_modules/<int:pk>', ListModulesRetrieveUpdateDestroyView.as_view()),
+
+    path('api/v1/students/<int:pk>', StudentsViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/students/create', StudentsViewCreate.as_view()),
+    path('api/v1/students/list', StudentsViewAll.as_view()),
+
+    path('api/v1/students/<int:pk>', TeachersViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/students/create', TeachersViewCreate.as_view()),
+    path('api/v1/students/list', TeachersViewAll.as_view()),
+
+    path('api/v1/test_tasks/', TestTasksViewAllCreate.as_view()),
+    path('api/v1/test_tasks_grade/create/', TestGradeViewAllCreate.as_view()),
+    path('api/v1/test_question_answer/create/', TestQuestionAnswerViewAllCreate.as_view()),
+    path('api/v1/test_question_answer/rud/<int:pk>', TestQuestionAnswerViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/test_tasks/rud/<int:pk>', TestTasksViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/test_answer_options/rud/<int:pk>', TestAnswerOptionsViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/test_answer_options', TestAnswerOptionsViewAllCreate.as_view()),
+    path('api/v1/test_tasks_grader/rud/<int:pk>', TestGradeViewRetrieveUpdateDestroy.as_view()),
 ]
