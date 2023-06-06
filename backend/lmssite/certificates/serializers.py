@@ -5,7 +5,6 @@ from students.serializers import AboutStudentSerializers
 from .models import Certificates
 
 
-
 class CreateCertificatesSerializers(serializers.ModelSerializer):
     class Meta:
         model = Certificates

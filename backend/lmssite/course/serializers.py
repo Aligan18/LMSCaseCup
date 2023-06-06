@@ -1,6 +1,7 @@
 from rest_framework import serializers
+
+from teachers.serializers import AboutTeachersSerializers
 from .models import Course, Category
-#from lmssite.teachers.serializers import AboutTeachersSerializers
 
 
 class CreateCourseSerializers(serializers.ModelSerializer):
@@ -24,7 +25,7 @@ class AboutCourseSerializers(serializers.ModelSerializer):
 
 
 class CourseSerializers(serializers.ModelSerializer):
-    #teacher = AboutTeachersSerializers()
+    teacher = AboutTeachersSerializers()
     category = CategorySerializers()
 
     class Meta:
