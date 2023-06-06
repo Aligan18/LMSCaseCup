@@ -1,16 +1,32 @@
 from rest_framework import serializers
-from .models import Course
+from .models import Course, Category
+from lmssite.teachers.serializers import AboutTeachersSerializers
 
 
-# class CourseSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Course
-#         fields = ('title', 'cat_id')
+class CreateCourseSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = '__all__'
 
-class CourseSerializer(serializers.Serializer):
-    title = serializers.CharField(max_length=255)
-    content = serializers.CharField()
-    time_create = serializers.DateTimeField(read_only=True)
-    time_update = serializers.DateTimeField(read_only=True)
-    is_published = serializers.BooleanField(default=True)
-    cat_id = serializers.IntegerField()
+
+class CategorySerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+
+class AboutCourseSerializers(serializers.ModelSerializer):
+    category = CategorySerializers()
+
+    class Meta:
+        model = Course
+        fields = ('id', 'title', 'category_id', 'image',)
+
+
+class CourseSerializers(serializers.ModelSerializer):
+    teacher = AboutTeachersSerializers()
+    category = CategorySerializers()
+
+    class Meta:
+        model = Course
+        fields = '__all__'

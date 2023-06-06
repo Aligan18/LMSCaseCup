@@ -8,3 +8,8 @@ class LecturesSerializers(serializers.ModelSerializer):
         model = Lectures
         fields = '__all__'
 
+
+class CreateLecturesSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Lectures
+        fields = '__all__'
