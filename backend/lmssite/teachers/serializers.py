@@ -1,10 +1,24 @@
-
+from lmssite.course.serializers import CategorySerializers
 from lmssite.teachers.models import Teachers
 
 from rest_framework import serializers
 
 
-class TeachersSerializers(serializers.ModelSerializer):
+class CreateTeachersSerializers(serializers.ModelSerializer):
     class Meta:
         model = Teachers
         fields = '__all__'
+
+
+class TeachersSerializers(serializers.ModelSerializer):
+    category = CategorySerializers()
+
+    class Meta:
+        model = Teachers
+        fields = '__all__'
+
+
+class AboutTeachersSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Teachers
+        fields = ('name', 'surname', 'patronymic')

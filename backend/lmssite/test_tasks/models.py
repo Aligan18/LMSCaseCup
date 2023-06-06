@@ -15,7 +15,7 @@ class TestQuestionAnswer(models.Model):
     test_task = models.ForeignKey("TestTasks", on_delete=models.CASCADE)
     question = models.TextField()
     correct_answer = models.TextField()
-    models.ManyToManyField("TestAnswerOptions")
+    options = models.ManyToManyField("TestAnswerOptions")
 
     def __str__(self):
         return self.title

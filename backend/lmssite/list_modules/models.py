@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class ListModules(models.Model):
     MODULE_TYPES = [
         ("1", "lecture"),
