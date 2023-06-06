@@ -1,8 +1,9 @@
 from rest_framework import serializers
 
-from lmssite.certificates.models import Certificates
-from lmssite.course.serializers import AboutCourseSerializers
-from lmssite.students.serializers import AboutStudentSerializers
+from course.serializers import AboutCourseSerializers
+from students.serializers import AboutStudentSerializers
+from .models import Certificates
+
 
 
 class CreateCertificatesSerializers(serializers.ModelSerializer):
