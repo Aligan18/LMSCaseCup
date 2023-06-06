@@ -5,7 +5,7 @@ class Students(models.Model):
     name = models.CharField(max_length=40, null=True)
     surname = models.CharField(max_length=40, null=True)
     patronymic = models.CharField(max_length=40, null=True)
-    email = models.EmailField(max_length=40, null=True)
+    email = models.EmailField(max_length=60, null=True)
     about = models.TextField(blank=True, null=True)
 
 
