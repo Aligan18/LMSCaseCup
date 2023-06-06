@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from lmssite.course.serializers import AboutCourseSerializers
-from lmssite.students.models import Students
+from course.serializers import AboutCourseSerializers
+from students.models import Students
 
 
 class CreateStudentsSerializers(serializers.ModelSerializer):

@@ -3,7 +3,7 @@ from django.db import models
 
 
 class TestTasks(models.Model):
-    deadline_minute = models.IntegerField()
+    deadline_minute = models.IntegerField(null=True)
     title = models.CharField(max_length=150)
     description = models.TextField(blank=True)
 

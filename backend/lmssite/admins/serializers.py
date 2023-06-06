@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from lmssite.admins.models import Admins
+from .models import Admins
 
 
 class CreateAdminsSerializers(serializers.ModelSerializer):
