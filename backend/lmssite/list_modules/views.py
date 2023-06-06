@@ -7,7 +7,7 @@ from list_modules.models import ListModules
 from list_modules.serializers import ListModulesSerializers, CreateListModulesSerializers
 
 
-class ListModulesView(generics.RetrieveUpdateDestroyAPIView):
+class ListModulesRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = ListModules.objects.all()
     serializer_class = ListModulesSerializers
 
