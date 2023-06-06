@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'students.apps.StudentsConfig',
     'teachers.apps.TeachersConfig',
     'test_tasks.apps.TestTasksConfig',
+    'categories.apps.CategoriesConfig',
 
     'rest_framework',
 ]

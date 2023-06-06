@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from lmssite.file_tasks.models import FileTasks, FileTasksAnswer, FileTasksGrade
-from lmssite.students.serializers import AboutStudentSerializers
+from file_tasks.models import FileTasks, FileTasksAnswer, FileTasksGrade
+from students.serializers import AboutStudentsSerializers
 
 
 class CreateFileTasksSerializers(serializers.ModelSerializer):
@@ -28,7 +28,7 @@ class FileTasksSerializers(serializers.ModelSerializer):
 
 
 class FileTasksAnswerSerializers(serializers.ModelSerializer):
-    student = AboutStudentSerializers()
+    student = AboutStudentsSerializers()
 
     class Meta:
         model = FileTasksAnswer
@@ -36,7 +36,7 @@ class FileTasksAnswerSerializers(serializers.ModelSerializer):
 
 
 class FileTasksGradeSerializers(serializers.ModelSerializer):
-    student = AboutStudentSerializers()
+    student = AboutStudentsSerializers()
 
     class Meta:
         model = FileTasksGrade

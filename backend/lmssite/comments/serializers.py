@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from lmssite.comments.models import Comments
-from lmssite.students.serializers import AboutStudentSerializers
+from comments.models import Comments
+from students.serializers import AboutStudentsSerializers
 
 
 class CreateCommentsSerializers(serializers.ModelSerializer):
@@ -11,7 +11,7 @@ class CreateCommentsSerializers(serializers.ModelSerializer):
 
 
 class CommentsSerializers(serializers.ModelSerializer):
-    student = AboutStudentSerializers()
+    student = AboutStudentsSerializers()
 
     class Meta:
         model = Comments

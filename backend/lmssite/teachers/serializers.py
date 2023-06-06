@@ -1,5 +1,5 @@
-from lmssite.course.serializers import CategorySerializers
-from lmssite.teachers.models import Teachers
+from categories.serializers import CategorySerializers
+from teachers.models import Teachers
 
 from rest_framework import serializers
 
