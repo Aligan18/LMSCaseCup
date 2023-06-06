@@ -9,7 +9,7 @@ class Admins(models.Model):
     name = models.CharField(max_length=40)
     surname = models.CharField(max_length=40)
     patronymic = models.CharField(max_length=40)
-    email = models.EmailField(max_length=40)
+    email = models.EmailField(max_length=60)
 
     def __str__(self):
         return self.admin_type
