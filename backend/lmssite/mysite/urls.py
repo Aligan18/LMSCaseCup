@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from admins.views import AdminsCreateView, AdminsRetrieveUpdateDestroyView,  ActivateUser
+from admins.views import AdminsCreateView, AdminsRetrieveUpdateDestroyView, ActivateUser
 from categories.views import CategoriesRetrieveUpdateDestroyView
 from certificates.views import CertificatesCreateView, CertificatesListView
 from comments.views import CommentsCreateView, CommentsListView
