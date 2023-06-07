@@ -9,8 +9,9 @@ class CharFilterInFilter(filters.BaseInFilter, filters.CharFilter):
 
 
 class CategoryFilter(filters.FilterSet):
-    genres = CharFilterInFilter(field_name='category__name', lookup_expr='in')
-
+    category = CharFilterInFilter(field_name='category__name')
+    publish = filters.BooleanFilter(field_name='is_published')
+    teacher = CharFilterInFilter(field_name='teacher')
     class Meta:
         model = Course
-        fields = ['category']
+        fields = ['category', 'publish', 'teacher']
