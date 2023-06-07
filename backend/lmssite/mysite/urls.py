@@ -37,6 +37,8 @@ from test_tasks.views import TestTasksViewAllCreate, TestTasksViewRetrieveUpdate
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
 
     path('api/v1/admins/create/', AdminsCreateView.as_view()),
     path('api/v1/admins/rud/<int:pk>', AdminsRetrieveUpdateDestroyView.as_view()),
