@@ -5,10 +5,10 @@ from .models import Admins
 from .serializers import AdminsSerializers, CreateAdminsSerializers
 
 
-class AdminsViewCreate(generics.CreateAPIView):
+class AdminsCreateView(generics.CreateAPIView):
     queryset = Admins.objects.all()
     serializer_class = CreateAdminsSerializers
 
-class AdminsViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+class AdminsRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Admins.objects.all()
     serializer_class = AdminsSerializers
