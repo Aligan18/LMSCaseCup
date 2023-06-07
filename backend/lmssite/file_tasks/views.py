@@ -6,26 +6,26 @@ from file_tasks.serializers import CreateFileTasksSerializers, CreateFileTasksGr
     CreateFileTasksAnswerSerializers, FileTasksSerializers, FileTasksAnswerSerializers, FileTasksGradeSerializers
 
 
-class FileTasksViewCreate(generics.CreateAPIView):
+class FileTasksCreateView(generics.CreateAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = CreateFileTasksSerializers
 
-class FileTasksGradeViewCreate(generics.CreateAPIView):
+class FileTasksGradeCreateView(generics.CreateAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = CreateFileTasksGradeSerializers
 
-class FileTasksAnswerViewCreate(generics.CreateAPIView):
+class FileTasksAnswerCreateView(generics.CreateAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = CreateFileTasksAnswerSerializers
 
-class FileTasksViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+class FileTasksRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = FileTasksSerializers
 
-class FileTasksAnswerViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+class FileTasksAnswerRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = FileTasksAnswerSerializers
 
-class FileTasksGradeViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+class FileTasksGradeRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = FileTasksGradeSerializers

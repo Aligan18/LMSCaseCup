@@ -5,10 +5,10 @@ from .models import Certificates
 from .serializers import CertificatesSerializers, CreateCertificatesSerializers
 
 
-class CertificatesViewCreate(generics.CreateAPIView):
+class CertificatesCreateView(generics.CreateAPIView):
     queryset = Certificates.objects.all()
     serializer_class = CreateCertificatesSerializers
 
-class CertificatesViewList(generics.ListAPIView):
+class CertificatesListView(generics.ListAPIView):
     queryset = Certificates.objects.all()
     serializer_class = CertificatesSerializers
