@@ -58,7 +58,7 @@ urlpatterns = [
     path('api/v1/file_tasks_answer/create/', FileTasksAnswerCreateView.as_view()),
     path('api/v1/file_tasks/rud/<int:pk>', FileTasksRetrieveUpdateDestroyView.as_view()),
     path('api/v1/file_tasks_answer/rud/<int:pk>', FileTasksAnswerRetrieveUpdateDestroyView.as_view()),
-    path('api/v1/file_tasks_grader/rud/<int:pk>', FileTasksGradeRetrieveUpdateDestroyView.as_view()),
+    path('api/v1/file_tasks_grade/rud/<int:pk>', FileTasksGradeRetrieveUpdateDestroyView.as_view()),
 
     path('api/v1/lectures/create/', LecturesCreateView.as_view()),
     path('api/v1/lectures/rud/<int:pk>', LecturesRetrieveUpdateDestroyView.as_view()),
@@ -81,5 +81,5 @@ urlpatterns = [
     path('api/v1/test_tasks/rud/<int:pk>', TestTasksViewRetrieveUpdateDestroy.as_view()),
     path('api/v1/test_answer_options/rud/<int:pk>', TestAnswerOptionsViewRetrieveUpdateDestroy.as_view()),
     path('api/v1/test_answer_options', TestAnswerOptionsViewAllCreate.as_view()),
-    path('api/v1/test_tasks_grader/rud/<int:pk>', TestGradeViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/test_tasks_grade/rud/<int:pk>', TestGradeViewRetrieveUpdateDestroy.as_view()),
 ]
