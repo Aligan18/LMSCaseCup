@@ -154,7 +154,7 @@ DJOSER = {
     'SEND_ACTIVATION_EMAIL': True,
     'SET_PASSWORD_RETYPE': True,
     'TOKEN_MODEL': None,  # We use only JWT
-    'ACTIVATION_URL': 'auth/activate/{uid}/{token}',
+    'ACTIVATION_URL':  'accounts/activate/{uid}/{token}',
 }
 
 # EMAIL
