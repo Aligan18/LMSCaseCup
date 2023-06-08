@@ -21,8 +21,8 @@ from admins.views import AdminsCreateView, AdminsRetrieveUpdateDestroyView, Acti
 from categories.views import CategoriesRetrieveUpdateDestroyView
 from certificates.views import CertificatesCreateView, CertificatesListView
 from comments.views import CommentsCreateView, CommentsListView
-from course.views import CourseCreateView, CourseRetrieveUpdateDestroyView, CourseListView, \
-    CategoryRetrieveUpdateDestroyView
+from course.views import CourseCreateView, CourseListView, \
+     CourseDeleteView, CourseUpdateView
 from file_tasks.views import FileTasksCreateView, FileTasksGradeCreateView, FileTasksAnswerCreateView, \
     FileTasksRetrieveUpdateDestroyView, FileTasksAnswerRetrieveUpdateDestroyView, \
     FileTasksGradeRetrieveUpdateDestroyView
@@ -51,7 +51,8 @@ urlpatterns = [
     path('api/v1/comments/list/', CommentsListView.as_view()),
 
     path('api/v1/course/create/', CourseCreateView.as_view()),
-    path('api/v1/course/rud/<int:pk>', CourseRetrieveUpdateDestroyView.as_view()),
+    path('api/v1/course/delete/<int:pk>', CourseDeleteView.as_view()),
+    path('api/v1/course/update/<int:pk>', CourseUpdateView.as_view()),
     path('api/v1/course/list/', CourseListView.as_view()),
 
     path('api/v1/category/rud/<int:pk>', CategoriesRetrieveUpdateDestroyView.as_view()),
