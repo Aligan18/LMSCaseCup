@@ -12,6 +12,7 @@ class Admins(models.Model):
         ("1", "Admin"),
         ("2", "Super Admin")
     ]
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     admin_type = models.CharField(choices=ADMIN_TYPES, default="1", max_length=1)
     name = models.CharField(max_length=40)
     surname = models.CharField(max_length=40)
@@ -21,21 +22,24 @@ class Admins(models.Model):
         return self.admin_type
 
 
-@receiver(user_registered,  dispatch_uid="create_profile")
+@receiver(user_registered, dispatch_uid="create_profile")
 def create_profile(sender, user, request, **kwargs):
     """Создаём профиль пользователя при регистрации"""
     print(user.id)
     data = request.data
-    if user.is_staff and user.is_superuser and data.get("type") == "super":
+    User.objects.filter(pk=user.id).update(is_staff=data.get("is_staff"))
+    User.objects.filter(pk=user.id).update(is_superuser=data.get("is_superuser"))
+
+    if data.get("is_staff") and data.get("is_superuser") and data.get("type") == "super":
         Admins.objects.create(
-            user=user.id,
+            user=user,
             name=data.get("name", ""),
             surname=data.get("surname", ""),
             patronymic=data.get("patronymic", ""),
             admin_type=2,
         )
 
-    elif user.is_staff == data.get("type") == "admin":
+    elif data.get("is_staff") and data.get("type") == "admin":
         Admins.objects.create(
             user=user,
             name=data.get("name", ""),
@@ -57,4 +61,3 @@ def create_profile(sender, user, request, **kwargs):
             surname=data.get("surname", ""),
             patronymic=data.get("patronymic", ""),
         )
-
