@@ -13,14 +13,12 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 from dotenv import load_dotenv
-import os
 
 load_dotenv()
-
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -54,10 +52,11 @@ INSTALLED_APPS = [
     'teachers.apps.TeachersConfig',
     'test_tasks.apps.TestTasksConfig',
     'categories.apps.CategoriesConfig',
+    'custom_user.apps.CustomUserConfig',
 
     'rest_framework',
     'django_filters',
-     'djoser',
+    'djoser',
 ]
 
 REST_FRAMEWORK = {
@@ -105,7 +104,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+AUTH_USER_MODEL = 'custom_user.User'
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -154,7 +153,8 @@ DJOSER = {
     'SEND_ACTIVATION_EMAIL': True,
     'SET_PASSWORD_RETYPE': True,
     'TOKEN_MODEL': None,  # We use only JWT
-    'ACTIVATION_URL':  'accounts/activate/{uid}/{token}',
+    'ACTIVATION_URL': 'accounts/activate/{uid}/{token}',
+    ##'SERIALIZERS': {'user_create': 'custom_user.serializers.CreateCustomUserSerializer'},
 }
 
 # EMAIL

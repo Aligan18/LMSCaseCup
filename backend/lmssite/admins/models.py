@@ -1,8 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+
 from django.dispatch import receiver
 from djoser.signals import user_registered
 
+from custom_user.models import User
 from students.models import Students
 from teachers.models import Teachers
 
@@ -25,21 +26,10 @@ class Admins(models.Model):
 @receiver(user_registered, dispatch_uid="create_profile")
 def create_profile(sender, user, request, **kwargs):
     """Создаём профиль пользователя при регистрации"""
-    print(user.id)
+
     data = request.data
-    User.objects.filter(pk=user.id).update(is_staff=data.get("is_staff"))
-    User.objects.filter(pk=user.id).update(is_superuser=data.get("is_superuser"))
 
-    if data.get("is_staff") and data.get("is_superuser") and data.get("type") == "super":
-        Admins.objects.create(
-            user=user,
-            name=data.get("name", ""),
-            surname=data.get("surname", ""),
-            patronymic=data.get("patronymic", ""),
-            admin_type=2,
-        )
-
-    elif data.get("is_staff") and data.get("type") == "admin":
+    if data.get("type") == "2" and request.user.is_superuser:
         Admins.objects.create(
             user=user,
             name=data.get("name", ""),
@@ -47,17 +37,19 @@ def create_profile(sender, user, request, **kwargs):
             patronymic=data.get("patronymic", ""),
             admin_type=1,
         )
-    elif data.get("type") == "teacher":
+    elif data.get("type") == "3":
         Teachers.objects.create(
             user=user,
             name=data.get("name", ""),
             surname=data.get("surname", ""),
             patronymic=data.get("patronymic", ""),
         )
-    elif data.get("type") == "student":
+    elif data.get("type") == "4":
         Students.objects.create(
             user=user,
             name=data.get("name", ""),
             surname=data.get("surname", ""),
             patronymic=data.get("patronymic", ""),
         )
+    else : User.objects.filter(pk=user.id).delete()
+
