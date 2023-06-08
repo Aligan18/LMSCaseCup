@@ -2,22 +2,25 @@ import requests
 from django.shortcuts import render
 from djoser.views import UserViewSet
 from rest_framework import generics, status
+from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Admins
+from .permissions import IsSuperAdmin
 from .serializers import AdminsSerializers, CreateAdminsSerializers
 
 
 class AdminsCreateView(generics.CreateAPIView):
     queryset = Admins.objects.all()
     serializer_class = CreateAdminsSerializers
+    permission_classes = (IsSuperAdmin,)
 
 
 class AdminsRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Admins.objects.all()
     serializer_class = AdminsSerializers
-
+    permission_classes = (IsSuperAdmin,)
 
 # Djoser activations view
 class ActivateUser(UserViewSet):
