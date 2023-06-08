@@ -11,4 +11,4 @@ class Students(models.Model):
     about = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return self.title
+        return self.name

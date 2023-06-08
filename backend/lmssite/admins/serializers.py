@@ -7,12 +7,12 @@ class CreateAdminsSerializers(serializers.ModelSerializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     class Meta:
         model = Admins
-        fields = '__all__'
+        exclude = ['admin_type']
 
 
 class AdminsSerializers(serializers.ModelSerializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     class Meta:
         model = Admins
-        fields = '__all__'
+        fields = ['admin_type']
 
