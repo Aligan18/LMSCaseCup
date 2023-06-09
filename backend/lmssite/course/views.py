@@ -24,7 +24,7 @@ class CourseDeleteView(generics.DestroyAPIView):
 class CourseUpdateView(generics.UpdateAPIView):
     queryset = Course.objects.all()
     serializer_class = UpdateCourseSerializers
-    permission_classes = (permissions.IsAdminTeacher,)
+    permission_classes = (permissions.IsAdminTeacher1,)
 
 class CourseListView(generics.ListAPIView):
     queryset = Course.objects.all()
