@@ -26,7 +26,7 @@ from course.views import CourseCreateView, CourseListView, \
 from file_tasks.views import FileTasksCreateView, FileTasksGradeCreateView, FileTasksAnswerCreateView, \
     FileTasksRetrieveUpdateDestroyView, FileTasksAnswerRetrieveUpdateDestroyView, \
     FileTasksGradeRetrieveUpdateDestroyView
-from lectures.views import LecturesCreateView, LecturesRetrieveUpdateDestroyView
+from lectures.views import LecturesCreateView, LecturesRetrieveUpdateDestroyView, LecturesWatchView
 from list_modules.views import AllCreateListModulesView, ListModulesRetrieveUpdateDestroyView
 from students.views import StudentsViewRetrieveUpdateDestroy, StudentsViewCreate, StudentsViewAll
 from teachers.views import TeachersViewRetrieveUpdateDestroy, TeachersViewCreate, TeachersViewAll
@@ -65,18 +65,19 @@ urlpatterns = [
     path('api/v1/file_tasks_grade/rud/<int:pk>', FileTasksGradeRetrieveUpdateDestroyView.as_view()),
 
     path('api/v1/lectures/create/', LecturesCreateView.as_view()),
+    path('api/v1/lectures/watch/<int:pk>', LecturesWatchView.as_view()),
     path('api/v1/lectures/rud/<int:pk>', LecturesRetrieveUpdateDestroyView.as_view()),
 
     path('api/v1/list_modules/', AllCreateListModulesView.as_view()),
     path('api/v1/list_modules/<int:pk>', ListModulesRetrieveUpdateDestroyView.as_view()),
 
-    path('api/v1/students/<int:pk>', StudentsViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/students/rud/<int:pk>', StudentsViewRetrieveUpdateDestroy.as_view()),
     path('api/v1/students/create', StudentsViewCreate.as_view()),
     path('api/v1/students/list', StudentsViewAll.as_view()),
 
-    path('api/v1/students/<int:pk>', TeachersViewRetrieveUpdateDestroy.as_view()),
-    path('api/v1/students/create', TeachersViewCreate.as_view()),
-    path('api/v1/students/list', TeachersViewAll.as_view()),
+    path('api/v1/teachers/create', TeachersViewCreate.as_view()),
+    path('api/v1/teachers/rud/<int:pk>', TeachersViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/teachers/list', TeachersViewAll.as_view()),
 
     path('api/v1/test_tasks/', TestTasksViewAllCreate.as_view()),
     path('api/v1/test_tasks_grade/create/', TestGradeViewAllCreate.as_view()),
