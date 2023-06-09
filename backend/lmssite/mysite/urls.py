@@ -21,6 +21,16 @@ from admins.views import AdminsCreateView, AdminsRetrieveUpdateDestroyView, Acti
 from categories.views import CategoriesRetrieveUpdateDestroyView
 from certificates.views import CertificatesCreateView, CertificatesListView
 from comments.views import CommentsCreateView, CommentsListView
+<<<<<<< HEAD
+from course.views import CourseCreateView, CourseRetrieveUpdateDestroyView, CourseListView, \
+    CategoryRetrieveUpdateDestroyView
+from custom_user.views import TESTView, CreateTESTView
+from file_tasks.views import FileTasksCreateView, FileTasksGradeCreateView, FileTasksAnswerCreateView, \
+    FileTasksRetrieveUpdateDestroyView, FileTasksAnswerRetrieveUpdateDestroyView, \
+    FileTasksGradeRetrieveUpdateDestroyView
+from lectures.views import LecturesCreateView, LecturesRetrieveUpdateDestroyView
+from list_modules.views import ListModulesViewUpdateDestroy, ListModulesViewAllCreate, ListModulesViewRetrieve
+=======
 from course.views import CourseCreateView, CourseListView, \
      CourseDeleteView, CourseUpdateView
 from file_tasks.views import FileTasksCreateView, FileTasksGradeCreateView, FileTasksAnswerCreateView, \
@@ -28,6 +38,7 @@ from file_tasks.views import FileTasksCreateView, FileTasksGradeCreateView, File
     FileTasksGradeRetrieveUpdateDestroyView
 from lectures.views import LecturesCreateView, LecturesRetrieveUpdateDestroyView, LecturesWatchView
 from list_modules.views import AllCreateListModulesView, ListModulesRetrieveUpdateDestroyView
+>>>>>>> 62245e01de1c050429bab49faf9995b95f4bd042
 from students.views import StudentsViewRetrieveUpdateDestroy, StudentsViewCreate, StudentsViewAll
 from teachers.views import TeachersViewRetrieveUpdateDestroy, TeachersViewCreate, TeachersViewAll
 from test_tasks.views import TestTasksViewAllCreate, TestTasksViewRetrieveUpdateDestroy, \
@@ -41,6 +52,9 @@ urlpatterns = [
     path('auth/', include('djoser.urls.jwt')),
     path('accounts/activate/<uid>/<token>', ActivateUser.as_view({'get': 'activation'}), name='activation'),
 
+    path('api/v1/test/create/', CreateTESTView.as_view()),
+    path('api/v1/test/<int:pk>', TESTView.as_view()),
+
     path('api/v1/admins/create/', AdminsCreateView.as_view()),
     path('api/v1/admins/rud/<int:pk>', AdminsRetrieveUpdateDestroyView.as_view()),
 
@@ -50,9 +64,14 @@ urlpatterns = [
     path('api/v1/comments/create/', CommentsCreateView.as_view()),
     path('api/v1/comments/list/', CommentsListView.as_view()),
 
+<<<<<<< HEAD
+    path('api/v1/course/create/', CourseCreateView.as_view() , name="course-create"),
+    path('api/v1/course/rud/<int:pk>', CourseRetrieveUpdateDestroyView.as_view() , name="course-rud"),
+=======
     path('api/v1/course/create/', CourseCreateView.as_view()),
     path('api/v1/course/delete/<int:pk>', CourseDeleteView.as_view()),
     path('api/v1/course/update/<int:pk>', CourseUpdateView.as_view()),
+>>>>>>> 62245e01de1c050429bab49faf9995b95f4bd042
     path('api/v1/course/list/', CourseListView.as_view()),
 
     path('api/v1/category/rud/<int:pk>', CategoriesRetrieveUpdateDestroyView.as_view()),
@@ -64,12 +83,18 @@ urlpatterns = [
     path('api/v1/file_tasks_answer/rud/<int:pk>', FileTasksAnswerRetrieveUpdateDestroyView.as_view()),
     path('api/v1/file_tasks_grade/rud/<int:pk>', FileTasksGradeRetrieveUpdateDestroyView.as_view()),
 
+<<<<<<< HEAD
+    path('api/v1/lectures/create/', LecturesCreateView.as_view(), name="lectures-create"),
+    path('api/v1/lectures/rud/<int:pk>', LecturesRetrieveUpdateDestroyView.as_view(), name="lectures-rud"),
+=======
     path('api/v1/lectures/create/', LecturesCreateView.as_view()),
     path('api/v1/lectures/watch/<int:pk>', LecturesWatchView.as_view()),
     path('api/v1/lectures/rud/<int:pk>', LecturesRetrieveUpdateDestroyView.as_view()),
+>>>>>>> 62245e01de1c050429bab49faf9995b95f4bd042
 
-    path('api/v1/list_modules/', AllCreateListModulesView.as_view()),
-    path('api/v1/list_modules/<int:pk>', ListModulesRetrieveUpdateDestroyView.as_view()),
+    path('api/v1/list_modules/', ListModulesViewAllCreate.as_view()),
+    path('api/v1/list_modules/ud/<int:pk>', ListModulesViewUpdateDestroy.as_view()),
+    path('api/v1/list_modules/<int:pk>', ListModulesViewRetrieve.as_view()),
 
     path('api/v1/students/rud/<int:pk>', StudentsViewRetrieveUpdateDestroy.as_view()),
     path('api/v1/students/create', StudentsViewCreate.as_view()),

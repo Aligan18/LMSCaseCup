@@ -11,7 +11,6 @@ class CreateCourseSerializers(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
 class AboutCourseSerializers(serializers.ModelSerializer):
     category = CategorySerializers()
 
@@ -21,9 +20,6 @@ class AboutCourseSerializers(serializers.ModelSerializer):
 
 
 class UpdateCourseSerializers(serializers.ModelSerializer):
-    teacher = AboutTeachersSerializers()
-    category = CategorySerializers()
-
     class Meta:
         model = Course
         fields = '__all__'
