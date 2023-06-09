@@ -21,17 +21,22 @@ class FileTasksGradeCreateView(generics.CreateAPIView):
 class FileTasksAnswerCreateView(generics.CreateAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = CreateFileTasksAnswerSerializers
-    permission_classes = (permissions.IsAdminTeacher,)
+    permission_classes = (permissions.IsAdminStudent,)
 
 
 class FileTasksRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = FileTasksSerializers
+    permission_classes = (permissions.IsAdminTeacher,)
+
 
 class FileTasksAnswerRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = FileTasksAnswerSerializers
+    permission_classes = (permissions.IsAdminStudent,)
+
 
 class FileTasksGradeRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = FileTasksGradeSerializers
+    permission_classes = (permissions.IsAdminTeacher,)
