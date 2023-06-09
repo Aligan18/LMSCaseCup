@@ -11,6 +11,7 @@ class Course(models.Model):
     rating = models.IntegerField(default=0)
     image = models.ImageField(upload_to='uploads/', null=True)
     teacher = models.ForeignKey("teachers.Teachers", on_delete=models.CASCADE, null=True)
+    list_module = models.OneToOneField("list_modules.ListModules", on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.title
