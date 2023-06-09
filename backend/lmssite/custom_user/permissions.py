@@ -1,15 +1,27 @@
 from rest_framework import permissions
 
+from students.models import Students
 
-class IsSuperAdmin(permissions.BasePermission):
+
+#
+def course_author(self, request, view):
+    if Students.objects.filter(request.user) == request.user:
+        return True
+
+
+# def course_student(request, obj, ):
+#      data = Students.objects.filter('user' == request.user).courses
+#      if
+#         return True
+
+
+class TestPermissions(permissions.BasePermission):
     """
     Object-level permission to only allow owners of an object to edit it.
     Assumes the model instance has an `owner` attribute.
     """
 
-    def has_object_permission(self, request, view, obj):
-        # Read permissions are allowed to any request,
-        # so we'll always allow GET, HEAD or OPTIONS requests.
-        # Instance must have an attribute named `owner`.
-        request.data
-        return request.user.is_superuser == True
+    def has_permission(self, request, view):
+
+        course_author(self, request,  view)
+        return True

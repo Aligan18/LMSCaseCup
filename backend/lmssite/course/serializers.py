@@ -11,7 +11,6 @@ class CreateCourseSerializers(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
 class AboutCourseSerializers(serializers.ModelSerializer):
     category = CategorySerializers()
 
