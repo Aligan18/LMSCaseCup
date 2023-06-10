@@ -16,10 +16,7 @@ export const Button: FC<IButtonProps> = ({ styles, children, ...props }) => {
 }
 
 interface IButtonProps
-	extends DetailedHTMLProps<
-		ButtonHTMLAttributes<HTMLButtonElement>,
-		HTMLButtonElement
-	> {
+	extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
 	styles?: string
 	children: string
 }
