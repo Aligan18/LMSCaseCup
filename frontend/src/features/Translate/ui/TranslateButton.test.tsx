@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react'
 
 import { TranslateButton } from 'features/Translate'
 
-import { renderWithTranslations } from 'shared/lib'
+import { renderWithTranslations } from 'shared/lib/renderWithTranslations/renderWithTranslations'
 
 describe('TranslateButton.test.tsx', () => {
 	test('', () => {
