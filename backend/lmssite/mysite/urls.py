@@ -22,7 +22,10 @@ from categories.views import CategoriesRetrieveUpdateDestroyView
 from certificates.views import CertificatesCreateView, CertificatesListView
 from comments.views import CommentsCreateView, CommentsListView
 
+<<<<<<< HEAD
+=======
 from course.views import CourseCreateView,  CourseListView
+>>>>>>> bab3291083e609a331d6dcd4087d272b28e6df72
 from custom_user.views import TESTView, CreateTESTView
 from file_tasks.views import FileTasksCreateView, FileTasksGradeCreateView, FileTasksAnswerCreateView, \
     FileTasksRetrieveUpdateDestroyView, FileTasksAnswerRetrieveUpdateDestroyView, \
@@ -31,7 +34,7 @@ from lectures.views import LecturesCreateView, LecturesRetrieveUpdateDestroyView
 from list_modules.views import ListModulesViewUpdateDestroy, ListModulesViewAllCreate, ListModulesViewRetrieve
 
 from course.views import CourseCreateView, CourseListView, \
-     CourseDeleteView, CourseUpdateView
+    CourseDeleteView, CourseUpdateView, CourseListViewRetrieve
 from file_tasks.views import FileTasksCreateView, FileTasksGradeCreateView, FileTasksAnswerCreateView, \
     FileTasksRetrieveUpdateDestroyView, FileTasksAnswerRetrieveUpdateDestroyView, \
     FileTasksGradeRetrieveUpdateDestroyView
@@ -44,6 +47,8 @@ from test_tasks.views import TestTasksViewAllCreate, TestTasksViewRetrieveUpdate
     TestQuestionAnswerViewAllCreate, TestQuestionAnswerViewRetrieveUpdateDestroy, \
     TestAnswerOptionsViewRetrieveUpdateDestroy, TestAnswerOptionsViewAllCreate, TestGradeViewRetrieveUpdateDestroy, \
     TestGradeViewAllCreate
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -65,11 +70,10 @@ urlpatterns = [
 
 
     path('api/v1/course/create/', CourseCreateView.as_view() , name="course-create"),
-
-    path('api/v1/course/delete/<int:pk>', CourseDeleteView.as_view()),
-    path('api/v1/course/update/<int:pk>', CourseUpdateView.as_view()),
-
-    path('api/v1/course/list/', CourseListView.as_view()),
+    path('api/v1/course/delete/<int:pk>', CourseDeleteView.as_view(), name="course-delete"),
+    path('api/v1/course/update/<int:pk>', CourseUpdateView.as_view(), name="course-update"),
+    path('api/v1/course/list/', CourseListView.as_view() , name="course-list"),
+    path('api/v1/course/ret/<int:pk>', CourseListViewRetrieve.as_view(), name="course-ret"),
 
     path('api/v1/category/rud/<int:pk>', CategoriesRetrieveUpdateDestroyView.as_view()),
 

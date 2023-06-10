@@ -7,43 +7,53 @@ from custom_user.models import User
 from lectures.models import Lectures
 
 
-class LecturesTestsStudent(APITestCase):
+class CourseTestsTeacher(APITestCase):
     def setUp(self):
-        self.props = {'title': 'title', 'rating': 1, }
-
-    def test_lectures_create(self):
-        user = User.objects.create_user(
+        self.props = {'title': 'newTitle',
+                      'content': 'newContent',
+                      }
+        teacher = User.objects.create_user(
+            login='teacher',
             email='teacher@gmail.com',
             password='qwer1234',
             is_staff=0,
             type='3'
         )
-
-        self.client.force_authenticate(user=user)
+        self.client.force_authenticate(user=teacher)
 
         url = reverse('course-create')
+
         response = self.client.post(url, self.props, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        # self.assertEqual(response.user.type, '3')
         self.assertEqual(Course.objects.count(), 1)
-        self.assertEqual(Course.objects.get().title, 'title')
+        self.assertEqual(Course.objects.get().title, 'newTitle')
 
-        url = reverse('course-rud', kwargs={'pk': 1})
+        self.client.logout()
+
+    def test_lectures_create(self):
+        teacher = User.objects.create_user(
+            login='teacher',
+            email='teacher@gmail.com',
+            password='qwer1234',
+            is_staff=0,
+            type='3'
+        )
+        self.client.force_authenticate(user=teacher)
+
+        url = reverse('course-ret', kwargs={'pk': 1})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        data = response.data
         self.assertEqual(Course.objects.count(), 1)
-        self.assertEqual(Course.objects.get().title, 'title')
+        self.assertEqual(Course.objects.get().title, 'newTitle')
 
-        url = reverse('course-rud', kwargs={'pk': 1})
+        url = reverse('course-update', kwargs={'pk': 1})
         update_data = {'title': 'updated'}
         response = self.client.put(url, update_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(Course.objects.count(), 1)
         self.assertEqual(Course.objects.get().title, 'updated')
 
-        url = reverse('course-rud', kwargs={'pk': 1})
-
+        url = reverse('course-delete', kwargs={'pk': 1})
         response = self.client.delete(url, format='json')
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertEqual(Course.objects.count(), 0)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(Course.objects.count(), 1)

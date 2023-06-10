@@ -19,7 +19,11 @@ class CourseCreateView(generics.CreateAPIView):
     queryset = Course.objects.all()
     serializer_class = CreateCourseSerializers
 
+<<<<<<< HEAD
+
+=======
     permission_classes = (IsTeacherAdmin,)
+>>>>>>> bab3291083e609a331d6dcd4087d272b28e6df72
 
     def perform_create(self, serializer):
         serializer.validated_data['teacher'] = self.request.user
@@ -29,14 +33,17 @@ class CourseCreateView(generics.CreateAPIView):
 class CourseDeleteView(generics.DestroyAPIView):
     queryset = Course.objects.all()
     serializer_class = DeleteCourseSerializers
-    permission_classes = (IsAdminUser,)
 
 
 class CourseUpdateView(generics.UpdateAPIView):
     queryset = Course.objects.all()
+<<<<<<< HEAD
+    serializer_class = CreateCourseSerializers
+=======
 
     serializer_class = UpdateCourseSerializers
     permission_classes = (IsOwnerTeacherAdmin,)
+>>>>>>> bab3291083e609a331d6dcd4087d272b28e6df72
 
 
 class CourseListView(generics.ListAPIView):
@@ -44,4 +51,12 @@ class CourseListView(generics.ListAPIView):
     serializer_class = AboutCourseSerializers
     filter_backends = (DjangoFilterBackend,)
     filterset_class = CategoryFilter
+<<<<<<< HEAD
+
+
+class CourseListViewRetrieve(generics.RetrieveAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CategorySerializers
+=======
     permission_classes = (AllowAny,)
+>>>>>>> bab3291083e609a331d6dcd4087d272b28e6df72
