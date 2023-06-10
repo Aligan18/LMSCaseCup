@@ -22,6 +22,10 @@ from categories.views import CategoriesRetrieveUpdateDestroyView
 from certificates.views import CertificatesCreateView, CertificatesListView
 from comments.views import CommentsCreateView, CommentsListView
 
+<<<<<<< HEAD
+=======
+from course.views import CourseCreateView,  CourseListView
+>>>>>>> bab3291083e609a331d6dcd4087d272b28e6df72
 from custom_user.views import TESTView, CreateTESTView
 from file_tasks.views import FileTasksCreateView, FileTasksGradeCreateView, FileTasksAnswerCreateView, \
     FileTasksRetrieveUpdateDestroyView, FileTasksAnswerRetrieveUpdateDestroyView, \
