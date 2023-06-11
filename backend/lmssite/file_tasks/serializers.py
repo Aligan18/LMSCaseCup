@@ -21,6 +21,7 @@ class CreateFileTasksAnswerSerializers(serializers.ModelSerializer):
         fields = '__all__'
 
 
+#########################################################################################
 class FileTasksSerializers(serializers.ModelSerializer):
     class Meta:
         model = FileTasks
@@ -36,6 +37,29 @@ class FileTasksAnswerSerializers(serializers.ModelSerializer):
 
 
 class FileTasksGradeSerializers(serializers.ModelSerializer):
+    student = AboutStudentsSerializers()
+
+    class Meta:
+        model = FileTasksGrade
+        fields = '__all__'
+
+
+#########################################################################################
+class AboutFileTasksSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = FileTasks
+        fields = '__all__'
+
+
+class AboutFileTasksAnswerSerializers(serializers.ModelSerializer):
+    student = AboutStudentsSerializers()
+
+    class Meta:
+        model = FileTasksAnswer
+        fields = '__all__'
+
+
+class AboutFileTasksGradeSerializers(serializers.ModelSerializer):
     student = AboutStudentsSerializers()
 
     class Meta:
