@@ -9,12 +9,8 @@ from teachers.models import Teachers
 
 
 class Admins(models.Model):
-    ADMIN_TYPES = [
-        ("1", "Admin"),
-        ("2", "Super Admin")
-    ]
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    admin_type = models.CharField(choices=ADMIN_TYPES, default="1", max_length=1)
     name = models.CharField(max_length=40)
     surname = models.CharField(max_length=40)
     patronymic = models.CharField(max_length=40)
@@ -31,6 +27,7 @@ def create_profile(sender, user, request, **kwargs):
 
     print(request.user)
     if data.get("type") == "2" and request.user.is_superuser:
+        User.objects.filter(id=user.id).update(is_active=True)
         Admins.objects.create(
             user=user,
             name=data.get("name", ""),
@@ -52,5 +49,5 @@ def create_profile(sender, user, request, **kwargs):
             surname=data.get("surname", ""),
             patronymic=data.get("patronymic", ""),
         )
-    else : User.objects.filter(pk=user.id).delete()
+    else : User.objects.filter(id=user.id).delete()
 

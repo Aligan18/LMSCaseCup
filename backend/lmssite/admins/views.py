@@ -22,6 +22,7 @@ class AdminsRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AdminsSerializers
     permission_classes = (IsSuperAdmin,)
 
+
 # Djoser activations view
 class ActivateUser(UserViewSet):
     def get_serializer(self, *args, **kwargs):

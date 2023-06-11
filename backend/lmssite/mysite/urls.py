@@ -53,7 +53,7 @@ urlpatterns = [
     path('api/v1/test/create/', CreateTESTView.as_view()),
     path('api/v1/test/<int:pk>', TESTView.as_view()),
 
-    path('api/v1/admins/create/', AdminsCreateView.as_view()),
+    # path('api/v1/admins/create/', AdminsCreateView.as_view()),
     path('api/v1/admins/rud/<int:pk>', AdminsRetrieveUpdateDestroyView.as_view()),
 
     path('api/v1/certificates/create/', CertificatesCreateView.as_view()),
@@ -92,10 +92,10 @@ urlpatterns = [
     path('api/v1/list_modules/<int:pk>', ListModulesViewRetrieve.as_view()),
 
     path('api/v1/students/rud/<int:pk>', StudentsViewRetrieveUpdateDestroy.as_view()),
-    path('api/v1/students/create', StudentsViewCreate.as_view()),
+    # path('api/v1/students/create', StudentsViewCreate.as_view()),
     path('api/v1/students/list', StudentsViewAll.as_view()),
 
-    path('api/v1/teachers/create', TeachersViewCreate.as_view()),
+    # path('api/v1/teachers/create', TeachersViewCreate.as_view()),
     path('api/v1/teachers/rud/<int:pk>', TeachersViewRetrieveUpdateDestroy.as_view()),
     path('api/v1/teachers/list', TeachersViewAll.as_view()),
 
