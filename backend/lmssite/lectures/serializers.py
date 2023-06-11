@@ -14,7 +14,9 @@ class CreateLecturesSerializers(serializers.ModelSerializer):
         model = Lectures
         fields = '__all__'
 
-class WatchLecturesSerializers(serializers.ModelSerializer):
+
+class AboutLecturesSerializers(serializers.ModelSerializer):
     class Meta:
         model = Lectures
         fields = '__all__'
+

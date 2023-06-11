@@ -4,30 +4,44 @@ from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
 from lectures.models import Lectures
 
-
-from lectures.serializers import LecturesSerializers, CreateLecturesSerializers, WatchLecturesSerializers
+from lectures.serializers import LecturesSerializers, CreateLecturesSerializers, AboutLecturesSerializers
 from mysite import permissions
 
 
-
-class LecturesCreateView(generics.CreateAPIView):
+# Admin , Teacher автор задания
+class LecturesViewCreate(generics.CreateAPIView):
     queryset = Lectures.objects.all()
     serializer_class = CreateLecturesSerializers
-
     permission_classes = (permissions.IsTeacherAdmin,)
+
     def perform_create(self, serializer):
         serializer.validated_data['teacher'] = self.request.user
         serializer.save()
 
-class LecturesRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Lectures.objects.all()
-    serializer_class = LecturesSerializers
 
+# Admin , Teacher автор задания, Student которые прооходят этот курс
+class LecturesViewList(generics.ListAPIView):
+    queryset = Lectures.objects.all()
+    serializer_class = AboutLecturesSerializers
     permission_classes = (permissions.IsOwnerTeacherAdmin,)
 
 
-class LecturesWatchView(generics.CreateAPIView):
+# Admin , Teacher автор задания, Student которые прооходят этот курс
+class LecturesViewRetrieve(generics.RetrieveAPIView):
     queryset = Lectures.objects.all()
-    serializer_class = WatchLecturesSerializers
-    permission_classes = (IsAuthenticated,)
+    serializer_class = LecturesSerializers
+    permission_classes = (permissions.IsOwnerTeacherAdmin,)
 
+
+# Admin , Teacher автор задания
+class LecturesViewUpdate(generics.UpdateAPIView):
+    queryset = Lectures.objects.all()
+    serializer_class = CreateLecturesSerializers
+    permission_classes = (permissions.IsOwnerTeacherAdmin,)
+
+
+# Admin , Teacher автор задания
+class LecturesViewDestroy(generics.DestroyAPIView):
+    queryset = Lectures.objects.all()
+    serializer_class = CreateLecturesSerializers
+    permission_classes = (IsAuthenticated,)

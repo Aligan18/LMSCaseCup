@@ -19,15 +19,5 @@ class AboutCourseSerializers(serializers.ModelSerializer):
         fields = ('id', 'title', 'category', 'image')
 
 
-class UpdateCourseSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = '__all__'
 
-class DeleteCourseSerializers(serializers.ModelSerializer):
-    teacher = AboutTeachersSerializers()
-    category = CategorySerializers()
 
-    class Meta:
-        model = Course
-        fields = '__all__'

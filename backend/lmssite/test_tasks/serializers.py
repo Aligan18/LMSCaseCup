@@ -27,6 +27,7 @@ class CreateTestAnswerOptionsSerializers(serializers.ModelSerializer):
         fields = '__all__'
 
 
+#############################################################################################
 class TestAnswerOptionsSerializers(serializers.ModelSerializer):
     class Meta:
         model = TestAnswerOptions
@@ -48,7 +49,34 @@ class TestQuestionAnswerSerializers(serializers.ModelSerializer):
 
 
 class TestGradeSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = TestGrade
+        fields = '__all__'
 
+
+#############################################################################################
+
+class AboutTestAnswerOptionsSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = TestAnswerOptions
+        fields = '__all__'
+
+
+class AboutTestTasksSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = TestTasks
+        fields = '__all__'
+
+
+class AboutTestQuestionAnswerSerializers(serializers.ModelSerializer):
+    options = TestAnswerOptionsSerializers()
+
+    class Meta:
+        model = TestQuestionAnswer
+        fields = '__all__'
+
+
+class AboutTestGradeSerializers(serializers.ModelSerializer):
     class Meta:
         model = TestGrade
         fields = '__all__'
