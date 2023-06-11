@@ -8,7 +8,6 @@ from course.serializers import CreateCourseSerializers, AboutCourseSerializers, 
     DeleteCourseSerializers, UpdateCourseSerializers
 from django_filters.rest_framework import DjangoFilterBackend
 
-
 from mysite.permissions import IsTeacherAdmin, IsOwnerTeacherAdmin
 
 from .service import CategoryFilter
@@ -18,7 +17,6 @@ class CourseCreateView(generics.CreateAPIView):
     queryset = Course.objects.all()
     serializer_class = CreateCourseSerializers
     permission_classes = (IsTeacherAdmin,)
-
 
     def perform_create(self, serializer):
         serializer.validated_data['teacher'] = self.request.user
@@ -30,11 +28,13 @@ class CourseDeleteView(generics.DestroyAPIView):
     serializer_class = DeleteCourseSerializers
     permission_classes = (IsAdminUser,)
 
+
 class CourseUpdateView(generics.UpdateAPIView):
     queryset = Course.objects.all()
 
     serializer_class = CreateCourseSerializers
     permission_classes = (IsOwnerTeacherAdmin,)
+
 
 class CourseListView(generics.ListAPIView):
     queryset = Course.objects.all()
@@ -44,9 +44,7 @@ class CourseListView(generics.ListAPIView):
     permission_classes = (AllowAny,)
 
 
-
 class CourseListViewRetrieve(generics.RetrieveAPIView):
     queryset = Course.objects.all()
     serializer_class = CategorySerializers
     permission_classes = (IsAuthenticated,)
-
