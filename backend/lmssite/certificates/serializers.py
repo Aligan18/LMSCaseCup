@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from course.serializers import AboutCourseSerializers
 from students.serializers import AboutStudentsSerializers
-from models import Certificates
+from certificates.models import Certificates
 
 
 class CreateCertificatesSerializers(serializers.ModelSerializer):

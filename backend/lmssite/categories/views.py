@@ -28,14 +28,14 @@ class CategoriesViewRetrieve(generics.RetrieveAPIView):
 
 
 # Admin
-class CategoriesViewUpdate(generics.UpdateAPIView):
+class CategoriesViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CreateCategorySerializers
     permission_classes = [IsAdminUser]
 
 
-# Admin
-class CategoriesViewDestroy(generics.DestroyAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CreateCategorySerializers
-    permission_classes = [IsAdminUser]
+# # Admin
+# class CategoriesViewDestroy(generics.DestroyAPIView):
+#     queryset = Category.objects.all()
+#     serializer_class = CreateCategorySerializers
+#     permission_classes = [IsAdminUser]

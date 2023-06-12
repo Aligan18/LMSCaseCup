@@ -14,21 +14,21 @@ class AdminsViewList(generics.ListAPIView):
 
 
 # Super
-class AdminsViewRetrieve(generics.RetrieveAPIView):
+class AdminsRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Admins.objects.all()
     serializer_class = AdminsSerializers
     permission_classes = [IsSuperAdmin]
 
 
-# Super
-class AdminsViewUpdate(generics.UpdateAPIView):
-    queryset = Admins.objects.all()
-    serializer_class = CreateAdminsSerializers
-    permission_classes = [IsSuperAdmin]
-
-
-# Super
-class AdminsViewDestroy(generics.DestroyAPIView):
-    queryset = Admins.objects.all()
-    serializer_class = CreateAdminsSerializers
-    permission_classes = [IsSuperAdmin]
+# # Super
+# class AdminsViewUpdate(generics.UpdateAPIView):
+#     queryset = Admins.objects.all()
+#     serializer_class = AdminsSerializers
+#     permission_classes = [IsSuperAdmin]
+#
+#
+# # Super
+# class AdminsViewDestroy(generics.DestroyAPIView):
+#     queryset = Admins.objects.all()
+#     serializer_class = AdminsSerializers
+#     permission_classes = [IsSuperAdmin]

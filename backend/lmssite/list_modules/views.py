@@ -32,14 +32,14 @@ class ListModulesViewRetrieve(generics.RetrieveAPIView):
 
 
 # Admin , Teacher с доступом к курсу
-class ListModulesViewUpdate(generics.UpdateAPIView):
+class ListModulesViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = ListModules.objects.all()
     serializer_class = CreateListModulesSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess]
 
 
 # Admin , Teacher с доступом к курсу
-class ListModulesViewDestroy(generics.DestroyAPIView):
-    queryset = ListModules.objects.all()
-    serializer_class = CreateListModulesSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccess]
+# class ListModulesViewDestroy(generics.DestroyAPIView):
+#     queryset = ListModules.objects.all()
+#     serializer_class = CreateListModulesSerializers
+#     permission_classes = [IsAdminUser | IsTeacherHasAccess]
