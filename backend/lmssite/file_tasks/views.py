@@ -1,79 +1,76 @@
 from django.shortcuts import render
 from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
 
+from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsStudentOwner
 from file_tasks.models import FileTasks
 from file_tasks.serializers import CreateFileTasksSerializers, CreateFileTasksGradeSerializers, \
     CreateFileTasksAnswerSerializers, FileTasksSerializers, FileTasksAnswerSerializers, FileTasksGradeSerializers, \
     AboutFileTasksSerializers, AboutFileTasksGradeSerializers, AboutFileTasksAnswerSerializers
-from mysite import permissions
 
 
 ######################################################################################################
 
-# Admin , Teacher
+# Admin , Teacher с доступом к курсу
 class FileTasksViewCreate(generics.CreateAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = CreateFileTasksSerializers
-    permission_classes = (permissions.IsTeacherAdmin,)
-
-    def perform_create(self, serializer):
-        serializer.validated_data['teacher'] = self.request.user
-        serializer.save()
+    permission_classes = [IsAdminUser | IsTeacherHasAccess]
 
 
 # Admin
 class FileTasksViewList(generics.ListAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = AboutFileTasksSerializers
-    permission_classes = (permissions.IsOwnerTeacherAdmin,)
+    permission_classes = [IsAdminUser]
 
 
-# Admin , Teacher автор курса  , Student ученик курса
+# Admin , Teacher с доступом к курсу  , Student ученик курса
 class FileTasksViewRetrieve(generics.RetrieveAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = FileTasksSerializers
-    permission_classes = (permissions.IsOwnerTeacherAdmin,)
+    permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]
 
 
-# Admin , Teacher автор курса
+# Admin , Teacher с доступом к курсу
 class FileTasksViewUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = CreateFileTasksSerializers
-    permission_classes = (permissions.IsOwnerTeacherAdmin,)
+    permission_classes = [IsAdminUser | IsTeacherHasAccess]
 
 
 ######################################################################################################
 
-# Admin , Teacher автор задания
+# Admin , Teacher с доступом к курсу
 class FileTasksGradeViewCreate(generics.CreateAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = CreateFileTasksGradeSerializers
-    permission_classes = (permissions.IsTeacherAdmin,)
+    permission_classes = [IsAdminUser | IsTeacherHasAccess]
 
     def perform_create(self, serializer):
         serializer.validated_data['teacher'] = self.request.user
         serializer.save()
 
 
-# Admin , Teacher автор задания
+# Admin , Teacher с доступом к курсу
 class FileTasksGradeViewList(generics.ListAPIView):  # оценки всех учеников
     queryset = FileTasks.objects.all()
     serializer_class = AboutFileTasksGradeSerializers
-    permission_classes = (permissions.IsOwnerTeacherAdmin,)
+    permission_classes = [IsAdminUser | IsTeacherHasAccess]
 
 
-# Admin , Teacher автор задания , student выполневший задания
+# Admin , Teacher с доступом к курсу , student выполневший задания
 class FileTasksGradeViewRetrieve(generics.RetrieveAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = FileTasksGradeSerializers
-    permission_classes = (permissions.IsOwnerTeacherAdmin,)
+    permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentOwner]
 
 
-# Admin , Teacher автор задания
+# Admin , Teacher с доступом к курсу
 class FileTasksGradeViewUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = CreateFileTasksGradeSerializers
-    permission_classes = (permissions.IsOwnerTeacherAdmin,)
+    permission_classes = [IsAdminUser | IsTeacherHasAccess]
 
 
 ######################################################################################################
@@ -82,30 +79,31 @@ class FileTasksGradeViewUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 class FileTasksAnswerViewCreate(generics.CreateAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = CreateFileTasksAnswerSerializers
-    permission_classes = (permissions.IsStudentAdmin,)
+    permission_classes = [IsStudentHasAccess]
 
     def perform_create(self, serializer):
         serializer.validated_data['student'] = self.request.user
         serializer.save()
 
 
-# Admin , Teacher автор задания
+# Admin , Teacher с доступом к курсу
 class FileTasksAnswerViewList(generics.ListAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = AboutFileTasksAnswerSerializers
-    permission_classes = (permissions.IsOwnerStudentAdmin,)
+    permission_classes = [IsAdminUser | IsTeacherHasAccess]
 
 
-# Admin , Teacher автор задания ,Student автор ответа
+# Admin , Teacher с доступом к курсу  ,Student автор ответа
 class FileTasksAnswerViewRetrieve(generics.RetrieveAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = FileTasksAnswerSerializers
-    permission_classes = (permissions.IsOwnerStudentAdmin,)
+    permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentOwner]
+
 
 # Student автор ответа
 class FileTasksAnswerViewUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = CreateFileTasksAnswerSerializers
-    permission_classes = (permissions.IsOwnerStudentAdmin,)
+    permission_classes = [IsStudentOwner]
 
 ######################################################################################################

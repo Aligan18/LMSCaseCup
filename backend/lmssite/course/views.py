@@ -12,15 +12,11 @@ from mysite.permissions import IsTeacherAdmin, IsOwnerTeacherAdmin
 from .service import CategoryFilter
 
 
-# Admin , Teacher
+# Admin
 class CourseViewCreate(generics.CreateAPIView):
     queryset = Course.objects.all()
     serializer_class = CreateCourseSerializers
-    permission_classes = (IsTeacherAdmin,)
-
-    def perform_create(self, serializer):
-        serializer.validated_data['teacher'] = self.request.user
-        serializer.save()
+    permission_classes = [IsAdminUser]
 
 
 # All
@@ -29,25 +25,25 @@ class CourseViewList(generics.ListAPIView):
     serializer_class = AboutCourseSerializers
     filter_backends = (DjangoFilterBackend,)
     filterset_class = CategoryFilter
-    permission_classes = (AllowAny,)
+    permission_classes = [AllowAny]
 
 
 # All
 class CourseViewRetrieve(generics.RetrieveAPIView):
     queryset = Course.objects.all()
     serializer_class = CategorySerializers
-    permission_classes = (IsAuthenticated,)
+    permission_classes = [AllowAny]
 
 
-# Admin , Teacher автор курса
+# Admin
 class CourseViewUpdate(generics.UpdateAPIView):
     queryset = Course.objects.all()
     serializer_class = CreateCourseSerializers
-    permission_classes = (IsOwnerTeacherAdmin,)
+    permission_classes = [IsAdminUser]
 
 
 # Admin
 class CourseViewDelete(generics.DestroyAPIView):
     queryset = Course.objects.all()
     serializer_class = CreateCourseSerializers
-    permission_classes = (IsAdminUser,)
+    permission_classes = [IsAdminUser]

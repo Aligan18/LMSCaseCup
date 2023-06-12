@@ -14,6 +14,7 @@ class ListModules(models.Model):
     module_type = models.CharField(choices=MODULE_TYPES, default="1", max_length=1)
     number = models.CharField(max_length=6, null=True)
     status = models.BooleanField(default=True)
+    course = models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.title

@@ -1,6 +1,7 @@
 from django.db import models
 
 from custom_user.models import User
+from list_modules.models import ListModules
 
 
 class Course(models.Model):
@@ -11,14 +12,9 @@ class Course(models.Model):
     is_published = models.BooleanField(default=True, blank=True)
     category = models.ForeignKey("categories.Category", on_delete=models.PROTECT, null=True, blank=True)
     rating = models.IntegerField(default=0)
-
-    teacher = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     image = models.ImageField(upload_to='uploads/', null=True, blank=True)
-    list_module = models.OneToOneField("list_modules.ListModules", on_delete=models.CASCADE, null=True, blank=True)
-
-
-
-
+    student = models.ManyToManyField("students.Students", through="students.CourseStudent")
+    teacher = models.ManyToManyField("teachers.Teachers", through="teachers.CourseTeacher")
 
     def __str__(self):
         return self.title

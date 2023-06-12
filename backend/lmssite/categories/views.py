@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, AllowAny
 
 from categories.models import Category
 from categories.serializers import CategorySerializers, CreateCategorySerializers, AboutCategorySerializers
@@ -10,32 +10,32 @@ from categories.serializers import CategorySerializers, CreateCategorySerializer
 class CategoriesViewCreate(generics.CreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CreateCategorySerializers
-    permission_classes = (IsAdminUser,)
+    permission_classes = [IsAdminUser]
 
 
 # All
 class CategoriesViewList(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = AboutCategorySerializers
-    permission_classes = (IsAdminUser,)
+    permission_classes = [AllowAny]
 
 
 # All
 class CategoriesViewRetrieve(generics.RetrieveAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializers
-    permission_classes = (IsAdminUser,)
+    permission_classes = [AllowAny]
 
 
 # Admin
 class CategoriesViewUpdate(generics.UpdateAPIView):
     queryset = Category.objects.all()
     serializer_class = CreateCategorySerializers
-    permission_classes = (IsAdminUser,)
+    permission_classes = [IsAdminUser]
 
 
 # Admin
 class CategoriesViewDestroy(generics.DestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CreateCategorySerializers
-    permission_classes = (IsAdminUser,)
+    permission_classes = [IsAdminUser]
