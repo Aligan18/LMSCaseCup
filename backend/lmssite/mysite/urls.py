@@ -121,5 +121,5 @@ urlpatterns = [
     path('api/v1/test_tasks_grade/list/', TestGradeViewList.as_view()),
     path('api/v1/test_tasks_grade/id/<int:pk>', TestGradeViewRetrieve.as_view()),
     path('api/v1/test_tasks_grade/rud/<int:pk>', TestGradeViewRetrieveUpdateDestroy.as_view()),
-
+##
 ]
