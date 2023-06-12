@@ -3,9 +3,9 @@ from rest_framework import generics
 from rest_framework.permissions import IsAdminUser , AllowAny
 
 from custom_user.permissions import IsStudent
-from models import Certificates
+from certificates.models import Certificates
 
-from serializers import CertificatesSerializers, CreateCertificatesSerializers, AboutCertificatesSerializers
+from certificates.serializers import CertificatesSerializers, CreateCertificatesSerializers, AboutCertificatesSerializers
 
 
 # Student and Admin

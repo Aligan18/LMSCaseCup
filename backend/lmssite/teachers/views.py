@@ -25,14 +25,14 @@ class TeachersViewRetrieve(generics.RetrieveAPIView):  # Вся инфа про 
 
 
 # Admin  Teacher свой профиль
-class TeachersViewUpdate(generics.UpdateAPIView):
+class TeachersViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Teachers.objects.all()
     serializer_class = CreateTeachersSerializers
     permission_classes = [IsAdminUser | IsTeacherOwner]
 
 
-# Admin Teacher свой профиль
-class TeachersViewDestroy(generics.DestroyAPIView):
-    queryset = Teachers.objects.all()
-    serializer_class = CreateTeachersSerializers
-    permission_classes = [IsAdminUser | IsTeacherOwner]
+# # Admin Teacher свой профиль
+# class TeachersViewDestroy(generics.DestroyAPIView):
+#     queryset = Teachers.objects.all()
+#     serializer_class = CreateTeachersSerializers
+#     permission_classes = [IsAdminUser | IsTeacherOwner]

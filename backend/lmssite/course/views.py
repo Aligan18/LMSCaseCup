@@ -36,14 +36,14 @@ class CourseViewRetrieve(generics.RetrieveAPIView):
 
 
 # Admin
-class CourseViewUpdate(generics.UpdateAPIView):
+class CourseViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Course.objects.all()
     serializer_class = CreateCourseSerializers
     permission_classes = [IsAdminUser]
 
 
-# Admin
-class CourseViewDelete(generics.DestroyAPIView):
-    queryset = Course.objects.all()
-    serializer_class = CreateCourseSerializers
-    permission_classes = [IsAdminUser]
+# # Admin
+# class CourseViewDelete(generics.DestroyAPIView):
+#     queryset = Course.objects.all()
+#     serializer_class = CreateCourseSerializers
+#     permission_classes = [IsAdminUser]

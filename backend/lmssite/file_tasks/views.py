@@ -33,7 +33,7 @@ class FileTasksViewRetrieve(generics.RetrieveAPIView):
 
 
 # Admin , Teacher с доступом к курсу
-class FileTasksViewUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+class FileTasksViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = CreateFileTasksSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess]
@@ -67,7 +67,7 @@ class FileTasksGradeViewRetrieve(generics.RetrieveAPIView):
 
 
 # Admin , Teacher с доступом к курсу
-class FileTasksGradeViewUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+class FileTasksGradeViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = CreateFileTasksGradeSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess]
@@ -101,7 +101,7 @@ class FileTasksAnswerViewRetrieve(generics.RetrieveAPIView):
 
 
 # Student автор ответа
-class FileTasksAnswerViewUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+class FileTasksAnswerViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = CreateFileTasksAnswerSerializers
     permission_classes = [IsStudentOwner]

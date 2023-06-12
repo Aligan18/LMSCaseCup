@@ -19,7 +19,7 @@ class StudentsViewAll(generics.ListAPIView):  # Вообще все студен
 
 #############################################################################################
 # Admin, Teacher с доступом к курсу
-class StudentsViewAll(generics.ListAPIView):  # Студенты определенного курса
+class StudentsCourseViewAll(generics.ListAPIView):  # Студенты определенного курса
     queryset = Students.objects.all()
     serializer_class = AboutStudentsSerializers
     permission_classes = []
@@ -35,14 +35,14 @@ class StudentsViewRetrieve(generics.RetrieveAPIView):
 
 
 # Student свой профиль
-class StudentsViewUpdate(generics.UpdateAPIView):
-    queryset = Students.objects.all()
-    serializer_class = CreateStudentsSerializers
-    permission_classes = [IsStudentOwner]
-
-
-# Admin,  Student свой профиль
-class StudentsViewDestroy(generics.DestroyAPIView):
+class StudentsViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Students.objects.all()
     serializer_class = CreateStudentsSerializers
     permission_classes = [IsAdminUser | IsStudentOwner]
+
+
+# # Admin,  Student свой профиль
+# class StudentsViewDestroy(generics.DestroyAPIView):
+#     queryset = Students.objects.all()
+#     serializer_class = CreateStudentsSerializers
+#     permission_classes = [IsAdminUser | IsStudentOwner]

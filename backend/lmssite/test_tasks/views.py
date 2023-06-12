@@ -137,7 +137,7 @@ class TestGradeViewRetrieve(generics.RetrieveAPIView):
 
 
 # Admin , Teacher с доступом к курсу
-class TestGradeViewUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+class TestGradeViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = TestGrade.objects.all()
     serializer_class = CreateTestGradeSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess]

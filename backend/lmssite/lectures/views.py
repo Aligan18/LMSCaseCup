@@ -31,14 +31,14 @@ class LecturesViewRetrieve(generics.RetrieveAPIView):
 
 
 # Admin , Teacher с доступом к курсу
-class LecturesViewUpdate(generics.UpdateAPIView):
+class LecturesViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Lectures.objects.all()
     serializer_class = CreateLecturesSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess]
 
 
-# Admin , Teacher с доступом к курсу
-class LecturesViewDestroy(generics.DestroyAPIView):
-    queryset = Lectures.objects.all()
-    serializer_class = CreateLecturesSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccess]
+# # Admin , Teacher с доступом к курсу
+# class LecturesViewDestroy(generics.DestroyAPIView):
+#     queryset = Lectures.objects.all()
+#     serializer_class = CreateLecturesSerializers
+#     permission_classes = [IsAdminUser | IsTeacherHasAccess]
