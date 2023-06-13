@@ -15,6 +15,7 @@ class Course(models.Model):
     image = models.ImageField(upload_to='images/', null=True, blank=True)
     student = models.ManyToManyField("students.Students", through="students.CourseStudent")
     teacher = models.ManyToManyField("teachers.Teachers", through="teachers.CourseTeacher")
+    syllabus = models.FileField(upload_to='files/', null=True, blank=True)
 
     def __str__(self):
         return self.title

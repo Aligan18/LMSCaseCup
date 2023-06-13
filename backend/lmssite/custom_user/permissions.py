@@ -24,7 +24,7 @@ class IsTeacherHasAccessCreate(permissions.BasePermission):
                     return True
 
 
-class IsTeacherHasAccess(permissions.BasePermission):
+class IsTeacherHasAccess(permissions.BasePermission):  # Проверен тестами
     def has_object_permission(self, request, view, obj):
         if bool(request.user and request.user.is_authenticated):
             if hasattr(obj, 'course'):
@@ -32,7 +32,7 @@ class IsTeacherHasAccess(permissions.BasePermission):
             else:
                 course = obj
             if bool(request.user.type == "3"):
-                teachers_has_access= course.teacher.all().filter(teacher=request.user).exists()
+                teachers_has_access = course.teacher.all().filter(teacher=request.user).exists()
                 if teachers_has_access:
                     return True
 
