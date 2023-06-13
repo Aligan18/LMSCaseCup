@@ -12,7 +12,7 @@ class Course(models.Model):
     is_published = models.BooleanField(default=True, blank=True)
     category = models.ForeignKey("categories.Category", on_delete=models.PROTECT, null=True, blank=True)
     rating = models.IntegerField(default=0)
-    image = models.ImageField(upload_to='uploads/', null=True, blank=True)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
     student = models.ManyToManyField("students.Students", through="students.CourseStudent")
     teacher = models.ManyToManyField("teachers.Teachers", through="teachers.CourseTeacher")
 
