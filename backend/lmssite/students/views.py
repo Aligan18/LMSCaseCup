@@ -5,7 +5,7 @@ from rest_framework import generics
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
 from custom_user.permissions import IsTeacherHasAccess, IsStudentOwner
-from mysite.permissions import IsStudentAdmin
+
 from students.models import Students
 from students.serializers import StudentsSerializers, CreateStudentsSerializers, AboutStudentsSerializers
 

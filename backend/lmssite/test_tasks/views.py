@@ -4,8 +4,8 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
 
-from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess
-from mysite import permissions
+from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsTeacherHasAccessCreate
+
 from test_tasks.models import TestTasks, TestQuestionAnswer, TestAnswerOptions, TestGrade
 from test_tasks.serializers import TestTasksSerializers, CreateTestTasksSerializers, TestQuestionAnswerSerializers, \
     CreateTestQuestionAnswerSerializers, TestAnswerOptionsSerializers, CreateTestAnswerOptionsSerializers, \
@@ -17,7 +17,7 @@ from test_tasks.serializers import TestTasksSerializers, CreateTestTasksSerializ
 class TestTasksViewCreate(generics.ListCreateAPIView):
     queryset = TestTasks.objects.all()
     serializer_class = CreateTestTasksSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
 
 
 # Admin ,  Teacher с доступом к курсу , Student проходит курс
@@ -47,7 +47,7 @@ class TestTasksViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 class TestQuestionAnswerViewCreate(generics.ListCreateAPIView):
     queryset = TestQuestionAnswer.objects.all()
     serializer_class = CreateTestQuestionAnswerSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
 
     def perform_create(self, serializer):
         serializer.validated_data['student'] = self.request.user
@@ -85,7 +85,7 @@ class TestQuestionAnswerViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroy
 class TestAnswerOptionsViewAllCreate(generics.ListCreateAPIView):
     queryset = TestAnswerOptions.objects.all()
     serializer_class = CreateTestAnswerOptionsSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
 
 
 # Admin ,  Teacher с доступом к курсу , Student проходит курс
@@ -119,7 +119,7 @@ class TestAnswerOptionsViewUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 class TestGradeViewAllCreate(generics.ListCreateAPIView):
     queryset = TestGrade.objects.all()
     serializer_class = CreateTestGradeSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccess]
 
 
 # Admin ,  TTeacher с доступом к курсу

@@ -1,19 +1,3 @@
-# """
-# URL configuration for lmssite project.
-#
-# The `urlpatterns` list routes URLs to views. For more information please see:
-#     https://docs.djangoproject.com/en/4.2/topics/http/urls/
-# Examples:
-# Function views
-#     1. Add an import:  from my_app import views
-#     2. Add a URL to urlpatterns:  path('', views.home, name='home')
-# Class-based views
-#     1. Add an import:  from other_app.views import Home
-#     2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-# Including another URLconf
-#     1. Import the include() function: from django.urls import include, path
-#     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-# """
 from django.contrib import admin
 from django.urls import path, include
 
@@ -21,11 +5,13 @@ from django.conf import  settings
 from django.conf.urls.static import static
 
 from admins.views import AdminsViewList, AdminsRetrieveUpdateDestroyView
-from categories.views import CategoriesViewCreate, CategoriesViewList, CategoriesViewRetrieve, CategoriesViewRetrieveUpdateDestroy
+from categories.views import CategoriesViewCreate, CategoriesViewList, CategoriesViewRetrieve, \
+    CategoriesViewRetrieveUpdateDestroy
 from certificates.views import CertificatesViewCreate, CertificatesViewList, CertificatesView, CertificatesViewDestroy
-from comments.views import CommentsViewCreate, CommentsViewList,  \
+from comments.views import CommentsViewCreate, CommentsViewList, \
     CommentsViewRetrieveUpdateDestroy
-from course.views import CourseViewCreate, CourseViewList, CourseViewRetrieve, CourseViewRetrieveUpdateDestroy
+from course.views import CourseViewCreate, CourseViewList, CourseViewRetrieve,  \
+    CourseViewDestroy, CourseViewUpdate
 from custom_user.views import ActivateUser
 from file_tasks.views import FileTasksViewCreate, FileTasksViewList, FileTasksViewRetrieve, \
     FileTasksViewRetrieveUpdateDestroy, FileTasksGradeViewCreate, FileTasksGradeViewList, FileTasksGradeViewRetrieve, \
@@ -35,7 +21,7 @@ from lectures.views import LecturesViewCreate, LecturesViewList, LecturesViewRet
 from list_modules.views import ListModulesViewCreate, ListModulesViewList, ListModulesViewRetrieve, \
     ListModulesViewRetrieveUpdateDestroy
 from students.views import StudentsViewAll, StudentsCourseViewAll, StudentsViewRetrieve, \
-     StudentsViewRetrieveUpdateDestroy
+    StudentsViewRetrieveUpdateDestroy
 from teachers.views import TeachersViewList, TeachersViewRetrieve, TeachersViewRetrieveUpdateDestroy
 from test_tasks.views import TestTasksViewCreate, TestTasksViewList, TestTasksViewRetrieve, \
     TestTasksViewRetrieveUpdateDestroy, TestQuestionAnswerViewCreate, TestQuestionAnswerViewList, \
@@ -49,9 +35,6 @@ urlpatterns = [
     path('auth/', include('djoser.urls.jwt')),
     path('accounts/activate/<uid>/<token>', ActivateUser.as_view({'get': 'activation'}), name='activation'),
 
-#     path('api/v1/test/create/', CreateTESTView.as_view()),
-#     path('api/v1/test/<int:pk>', TESTView.as_view()),
-#
     path('api/v1/admins/list/', AdminsViewList.as_view()),
     path('api/v1/admins/rud/<int:pk>', AdminsRetrieveUpdateDestroyView.as_view()),
 
@@ -69,10 +52,11 @@ urlpatterns = [
     path('api/v1/comments/list/', CommentsViewList.as_view()),
     path('api/v1/comments/rud/<int:pk>', CommentsViewRetrieveUpdateDestroy.as_view()),
 
-    path('api/v1/course/create/', CourseViewCreate.as_view() , name="course-create"),
+    path('api/v1/course/create/', CourseViewCreate.as_view(), name="course-create"),
     path('api/v1/course/list/', CourseViewList.as_view(), name="course-list"),
     path('api/v1/course/id/<int:pk>', CourseViewRetrieve.as_view(), name="course-id"),
-    path('api/v1/course/rud/<int:pk>', CourseViewRetrieveUpdateDestroy.as_view(), name="course-rud"),
+    path('api/v1/course/update/<int:pk>', CourseViewUpdate.as_view(), name="course-update"),
+    path('api/v1/course/delete/<int:pk>', CourseViewDestroy.as_view(), name="course-delete"),
 
     path('api/v1/file_tasks/create/', FileTasksViewCreate.as_view()),
     path('api/v1/file_tasks/list/', FileTasksViewList.as_view()),
