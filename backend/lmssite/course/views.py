@@ -4,10 +4,11 @@ from rest_framework.permissions import IsAdminUser, AllowAny, IsAuthenticated
 
 import mysite
 from course.models import Course
-from course.serializers import CreateCourseSerializers, AboutCourseSerializers, CategorySerializers, CourseSerializers
+from course.serializers import CreateCourseSerializers, AboutCourseSerializers, CategorySerializers, CourseSerializers, \
+    OnlyStudentsCourseSerializers
 from django_filters.rest_framework import DjangoFilterBackend
 
-from custom_user.permissions import IsTeacherHasAccess
+from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess
 from .service import CategoryFilter
 
 
@@ -35,10 +36,17 @@ class CourseViewList(generics.ListAPIView):  # все  курсы
 
 
 # All
-class CourseViewRetrieve(generics.RetrieveAPIView):
+class CourseViewRetrieve(generics.RetrieveAPIView): # Описание курса
     queryset = Course.objects.all()
     serializer_class = CourseSerializers
     permission_classes = [AllowAny]
+
+
+# Admin , Teacher имеющий доступ , Student имеющий доступ
+class CourseViewRetrieve(generics.RetrieveAPIView): # Список студентов
+    queryset = Course.objects.all()
+    serializer_class = OnlyStudentsCourseSerializers
+    permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]
 
 
 # Admin , Teacher имеющий доступ

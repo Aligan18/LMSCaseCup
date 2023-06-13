@@ -48,7 +48,7 @@ class CoursesTestsGuest(APITestCase):
                       'content': 'newContent',
                       'teacher': [1],
                       'student': [1],
-                      # 'category': '1',
+                      'category': '1',
                       }
 
         self.client.force_authenticate(user=admin)

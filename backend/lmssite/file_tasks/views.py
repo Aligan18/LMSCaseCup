@@ -87,7 +87,7 @@ class FileTasksAnswerViewCreate(generics.CreateAPIView):
 
 
 # Admin , Teacher с доступом к курсу
-class FileTasksAnswerViewList(generics.ListAPIView):
+class FileTasksAnswerViewList(generics.ListAPIView):  # фильтрация по курсу и по заданию
     queryset = FileTasks.objects.all()
     serializer_class = AboutFileTasksAnswerSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess]

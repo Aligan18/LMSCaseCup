@@ -15,6 +15,7 @@ class ListModules(models.Model):
     number = models.CharField(max_length=6, null=True)
     status = models.BooleanField(default=True)
     course = models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
+    deadline = models.DateTimeField(null=True)
 
     def __str__(self):
         return self.title
