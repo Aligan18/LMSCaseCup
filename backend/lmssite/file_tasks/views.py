@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
 
-from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsStudentOwner
+from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsStudentOwner, IsTeacherHasAccessCreate
 from file_tasks.models import FileTasks
 from file_tasks.serializers import CreateFileTasksSerializers, CreateFileTasksGradeSerializers, \
     CreateFileTasksAnswerSerializers, FileTasksSerializers, FileTasksAnswerSerializers, FileTasksGradeSerializers, \
@@ -15,7 +15,7 @@ from file_tasks.serializers import CreateFileTasksSerializers, CreateFileTasksGr
 class FileTasksViewCreate(generics.CreateAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = CreateFileTasksSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
 
 
 # Admin
@@ -45,7 +45,7 @@ class FileTasksViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 class FileTasksGradeViewCreate(generics.CreateAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = CreateFileTasksGradeSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
 
     def perform_create(self, serializer):
         serializer.validated_data['teacher'] = self.request.user

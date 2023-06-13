@@ -14,7 +14,7 @@ class Teachers(models.Model):
     courses = models.ManyToManyField("course.Course", through="CourseTeacher")
 
     def __str__(self):
-        return self.name
+        return str(self.teacher)
 
 
 class CourseTeacher(models.Model):

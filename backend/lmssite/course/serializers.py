@@ -11,13 +11,18 @@ class CreateCourseSerializers(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class CourseSerializers(serializers.ModelSerializer):
+    category = CategorySerializers(read_only=True)
+    teacher = AboutTeachersSerializers(many=True, read_only=True)
+
+    class Meta:
+        model = Course
+        fields = '__all__'
+
+
 class AboutCourseSerializers(serializers.ModelSerializer):
-    category = CategorySerializers()
+    category = CategorySerializers(read_only=True)
 
     class Meta:
         model = Course
         fields = ('id', 'title', 'category', 'image')
-
-
-
-
