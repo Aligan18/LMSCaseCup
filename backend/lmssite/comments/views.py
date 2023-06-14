@@ -19,7 +19,7 @@ class CommentsViewCreate(generics.CreateAPIView):
 
 
 # All
-class CommentsViewList(generics.ListAPIView):
+class CommentsViewList(generics.ListAPIView): # Фильтрация по курсу
     queryset = Comments.objects.all()
     serializer_class = AboutCommentsSerializers
     permission_classes = [AllowAny]

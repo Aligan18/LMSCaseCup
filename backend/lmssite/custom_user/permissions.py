@@ -4,7 +4,7 @@ from course.models import Course
 from students.models import Students
 
 
-class IsStudentHasAccess(permissions.BasePermission):
+class IsStudentHasAccess(permissions.BasePermission):  # Проверен тестами
     def has_object_permission(self, request, view, obj):
         if bool(request.user and request.user.is_authenticated):
             if bool(request.user.type == "4"):
@@ -15,7 +15,7 @@ class IsStudentHasAccess(permissions.BasePermission):
                     return True
 
 
-class IsTeacherHasAccessCreate(permissions.BasePermission):
+class IsTeacherHasAccessCreate(permissions.BasePermission):  # Проверен тестами
     def has_permission(self, request, view):
         if bool(request.user and request.user.is_authenticated):
             if bool(request.user.type == "3"):
@@ -46,7 +46,7 @@ class IsTeacherOwner(permissions.BasePermission):
                 return True
 
 
-class IsStudentOwner(permissions.BasePermission):
+class IsStudentOwner(permissions.BasePermission):  # Проверен тестами
     def has_object_permission(self, request, view, obj):
         if bool(request.user and request.user.is_authenticated):
             if bool(obj.student == request.user):
@@ -59,7 +59,7 @@ class IsSuperAdmin(permissions.BasePermission):
             return bool(request.user.is_superuser)
 
 
-class IsStudent(permissions.BasePermission):
+class IsStudent(permissions.BasePermission):  # Проверен тестами
     def has_permission(self, request, view):
         if bool(request.user and request.user.is_authenticated):
             if bool(request.user.type == "4"):
