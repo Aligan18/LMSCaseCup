@@ -8,9 +8,10 @@ class IsStudentHasAccess(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         if bool(request.user and request.user.is_authenticated):
             if bool(request.user.type == "4"):
-                student = Students.objects.filter(user=request.user)
+                student = Students.objects.filter(student=request.user)
                 course = obj.course
-                if course in student.courses:
+                student_has_access = student[0].courses.all().filter(id=course.id).exists()
+                if student_has_access:
                     return True
 
 
@@ -18,8 +19,9 @@ class IsTeacherHasAccessCreate(permissions.BasePermission):
     def has_permission(self, request, view):
         if bool(request.user and request.user.is_authenticated):
             if bool(request.user.type == "3"):
-                course = Course.objects.filter(id=request.data.course)
-                teachers_has_access = course.teacher.all().filter(teacher=request.user).exists()
+                data = request.data
+                course = Course.objects.filter(id=data.get('course'))
+                teachers_has_access = course[0].teacher.all().filter(teacher=request.user).exists()
                 if teachers_has_access:
                     return True
 
@@ -28,11 +30,11 @@ class IsTeacherHasAccess(permissions.BasePermission):  # Проверен тес
     def has_object_permission(self, request, view, obj):
         if bool(request.user and request.user.is_authenticated):
             if hasattr(obj, 'course'):
-                course = Course.objects.filter(id=obj.course)
+                course = Course.objects.filter(id=obj.course.id)
             else:
                 course = obj
             if bool(request.user.type == "3"):
-                teachers_has_access = course.teacher.all().filter(teacher=request.user).exists()
+                teachers_has_access = course[0].teacher.all().filter(teacher=request.user).exists()
                 if teachers_has_access:
                     return True
 

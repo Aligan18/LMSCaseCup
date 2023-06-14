@@ -4,11 +4,12 @@ from rest_framework.permissions import IsAdminUser, AllowAny, IsAuthenticated
 
 import mysite
 from course.models import Course
-from course.serializers import CreateCourseSerializers, AboutCourseSerializers, CategorySerializers, CourseSerializers, \
+from course.serializers import CreateCourseSerializers, CategorySerializers, CourseSerializers, \
     OnlyStudentsCourseSerializers
 from django_filters.rest_framework import DjangoFilterBackend
 
 from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess
+from .about_serializers import AboutCourseSerializers
 from .service import CategoryFilter
 
 

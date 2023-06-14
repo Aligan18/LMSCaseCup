@@ -17,18 +17,17 @@ class ListModulesViewCreate(generics.CreateAPIView):
 
 
 # Admin , Teacher с доступом к курсу, Student которые прооходят этот курс
-class ListModulesViewList(generics.ListAPIView): # сделать сортировка  по number  и фильтрация по курсу
+class ListModulesViewList(generics.ListAPIView):  # все модули курса #  сделать сортировка  по number  и фильтрация по курсу
     queryset = ListModules.objects.all()
     serializer_class = AboutListModulesSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]
 
 
 # Admin , Teacher с доступом к курсу, Student которые прооходят этот курс
-class ListModulesViewList(generics.ListAPIView): # сделать сортировка  по number  и фильтрация по курсу и module_type только задания
+class OnlyTasksListModulesViewList(generics.ListAPIView): #только задания   # сделать сортировка  по number  и фильтрация по курсу и  module_type только задания
     queryset = ListModules.objects.all()
     serializer_class = AboutListModulesSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]
-
 
 
 # Admin , Teacher с доступом к курсу, Student которые прооходят этот курс
