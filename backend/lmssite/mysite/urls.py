@@ -48,9 +48,9 @@ urlpatterns = [
     path('api/v1/certificates/id/<int:pk>', CertificatesView.as_view()),
     path('api/v1/certificates/delete/<int:pk>', CertificatesViewDestroy.as_view()),
 
-    path('api/v1/comments/create/', CommentsViewCreate.as_view()),
-    path('api/v1/comments/list/', CommentsViewList.as_view()),
-    path('api/v1/comments/rud/<int:pk>', CommentsViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/comments/create/', CommentsViewCreate.as_view(), name="comments-create"),
+    path('api/v1/comments/list/', CommentsViewList.as_view(), name="comments-list"),
+    path('api/v1/comments/rud/<int:pk>', CommentsViewRetrieveUpdateDestroy.as_view(), name="comments-rud"),
 
     path('api/v1/course/create/', CourseViewCreate.as_view(), name="course-create"),
     path('api/v1/course/list/', CourseViewList.as_view(), name="course-list"),
