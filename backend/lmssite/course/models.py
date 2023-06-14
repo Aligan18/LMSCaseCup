@@ -18,4 +18,4 @@ class Course(models.Model):
     syllabus = models.FileField(upload_to='files/', null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return str(self.id)

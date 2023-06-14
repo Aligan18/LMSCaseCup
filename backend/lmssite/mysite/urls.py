@@ -77,10 +77,10 @@ urlpatterns = [
     path('api/v1/lectures/id/<int:pk>', LecturesViewRetrieve.as_view()),
     path('api/v1/lectures/rud/<int:pk>', LecturesViewRetrieveUpdateDestroy.as_view()),
 
-    path('api/v1/list_modules/create/', ListModulesViewCreate.as_view()),
-    path('api/v1/list_modules/list/', ListModulesViewList.as_view()),
-    path('api/v1/list_modules/id/<int:pk>', ListModulesViewRetrieve.as_view()),
-    path('api/v1/list_modules/rud/<int:pk>', ListModulesViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/list_modules/create/', ListModulesViewCreate.as_view(), name="listmodules-create"),
+    path('api/v1/list_modules/list/', ListModulesViewList.as_view(), name="listmodules-list"),
+    path('api/v1/list_modules/id/<int:pk>', ListModulesViewRetrieve.as_view(), name="listmodules-id"),
+    path('api/v1/list_modules/rud/<int:pk>', ListModulesViewRetrieveUpdateDestroy.as_view(), name="listmodules-rud"),
 
     path('api/v1/students/list/', StudentsViewAll.as_view()),
     path('api/v1/students_course/list/', StudentsCourseViewAll.as_view()),

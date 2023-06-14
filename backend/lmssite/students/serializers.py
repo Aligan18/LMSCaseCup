@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from course.serializers import AboutCourseSerializers
+from course.about_serializers import AboutCourseSerializers
 from students.models import Students
 
 
