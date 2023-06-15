@@ -8,7 +8,7 @@ class CharFilterInFilter(filters.BaseInFilter, filters.CharFilter):
     pass
 
 
-class CategoryFilter(filters.FilterSet):
+class Filter(filters.FilterSet):
     course = CharFilterInFilter(field_name='course')
     class Meta:
         model = Comments

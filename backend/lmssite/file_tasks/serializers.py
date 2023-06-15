@@ -29,7 +29,7 @@ class FileTasksSerializers(serializers.ModelSerializer):
 
 
 class FileTasksAnswerSerializers(serializers.ModelSerializer):
-    student = AboutStudentsSerializers()
+    student = AboutStudentsSerializers(read_only=True)
 
     class Meta:
         model = FileTasksAnswer
@@ -52,7 +52,7 @@ class AboutFileTasksSerializers(serializers.ModelSerializer):
 
 
 class AboutFileTasksAnswerSerializers(serializers.ModelSerializer):
-    student = AboutStudentsSerializers()
+    student = AboutStudentsSerializers(read_only=True)
 
     class Meta:
         model = FileTasksAnswer

@@ -25,7 +25,7 @@ class TestQuestionAnswer(models.Model):
 
 
 class TestAnswerOptions(models.Model):
-    option = models.TextField()
+    option = models.TextField(null=True)
     course = models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
     correct_answer = models.BooleanField(default=False)
 

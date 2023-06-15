@@ -19,7 +19,7 @@ from file_tasks.views import FileTasksViewCreate, FileTasksViewList, FileTasksVi
     FileTasksAnswerViewRetrieve, FileTasksAnswerViewRetrieveUpdateDestroy
 from lectures.views import LecturesViewCreate, LecturesViewList, LecturesViewRetrieve, LecturesViewRetrieveUpdateDestroy
 from list_modules.views import ListModulesViewCreate, ListModulesViewList, ListModulesViewRetrieve, \
-    ListModulesViewRetrieveUpdateDestroy
+    ListModulesViewRetrieveUpdateDestroy, OnlyTasksListModulesViewList
 from students.views import StudentsViewAll, StudentsCourseViewAll, StudentsViewRetrieve, \
     StudentsViewRetrieveUpdateDestroy
 from teachers.views import TeachersViewList, TeachersViewRetrieve, TeachersViewRetrieveUpdateDestroy
@@ -81,6 +81,7 @@ urlpatterns = [
 
     path('api/v1/list_modules/create/', ListModulesViewCreate.as_view(), name="listmodules-create"),
     path('api/v1/list_modules/list/', ListModulesViewList.as_view(), name="listmodules-list"),
+    path('api/v1/list_modules/tasks/list/', OnlyTasksListModulesViewList.as_view()),
     path('api/v1/list_modules/id/<int:pk>', ListModulesViewRetrieve.as_view(), name="listmodules-id"),
     path('api/v1/list_modules/rud/<int:pk>', ListModulesViewRetrieveUpdateDestroy.as_view(), name="listmodules-rud"),
 

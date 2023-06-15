@@ -14,7 +14,7 @@ class FileTasks(models.Model):
 
 
 class FileTasksAnswer(models.Model):
-    student = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    student = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     data = models.DateTimeField(auto_now=True)
     file = models.FileField(upload_to='files/', null=True)
     file_task = models.OneToOneField("FileTasks", on_delete=models.CASCADE, null=True)

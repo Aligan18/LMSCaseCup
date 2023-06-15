@@ -10,7 +10,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess
 from .about_serializers import AboutCourseSerializers
-from .service import CategoryFilter
+from .service import Filter
 
 
 # Admin
@@ -25,7 +25,7 @@ class CourseViewList(generics.ListAPIView):  # все  курсы
     queryset = Course.objects.all()
     serializer_class = AboutCourseSerializers
     filter_backends = (DjangoFilterBackend,)
-    filterset_class = CategoryFilter
+    filterset_class = Filter
     permission_classes = [AllowAny]
 
 
