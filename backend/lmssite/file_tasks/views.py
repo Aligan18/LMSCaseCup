@@ -12,6 +12,7 @@ from file_tasks.serializers import CreateFileTasksSerializers, CreateFileTasksGr
 ######################################################################################################
 
 # Admin , Teacher с доступом к курсу
+
 class FileTasksViewCreate(generics.CreateAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = CreateFileTasksSerializers
