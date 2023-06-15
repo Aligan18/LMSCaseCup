@@ -4,11 +4,11 @@ from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
 
 from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsStudentOwner, IsTeacherHasAccessCreate
-from file_tasks.models import FileTasks
+from file_tasks.models import FileTasks, FileTasksAnswer, FileTasksGrade
 from file_tasks.serializers import CreateFileTasksSerializers, CreateFileTasksGradeSerializers, \
     CreateFileTasksAnswerSerializers, FileTasksSerializers, FileTasksAnswerSerializers, FileTasksGradeSerializers, \
     AboutFileTasksSerializers, AboutFileTasksGradeSerializers, AboutFileTasksAnswerSerializers
-from file_tasks.service import CategoryFilter
+from file_tasks.service import Filter
 
 
 ######################################################################################################
@@ -46,7 +46,7 @@ class FileTasksViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 
 # Admin , Teacher с доступом к курсу
 class FileTasksGradeViewCreate(generics.CreateAPIView):
-    queryset = FileTasks.objects.all()
+    queryset = FileTasksGrade.objects.all()
     serializer_class = CreateFileTasksGradeSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
 
@@ -57,21 +57,21 @@ class FileTasksGradeViewCreate(generics.CreateAPIView):
 
 # Admin , Teacher с доступом к курсу
 class FileTasksGradeViewList(generics.ListAPIView):  # оценки всех учеников
-    queryset = FileTasks.objects.all()
+    queryset = FileTasksGrade.objects.all()
     serializer_class = AboutFileTasksGradeSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess]
 
 
 # Admin , Teacher с доступом к курсу , student выполневший задания
 class FileTasksGradeViewRetrieve(generics.RetrieveAPIView):
-    queryset = FileTasks.objects.all()
+    queryset = FileTasksGrade.objects.all()
     serializer_class = FileTasksGradeSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentOwner]
 
 
 # Admin , Teacher с доступом к курсу
 class FileTasksGradeViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
-    queryset = FileTasks.objects.all()
+    queryset = FileTasksGrade.objects.all()
     serializer_class = CreateFileTasksGradeSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess]
 
@@ -80,7 +80,7 @@ class FileTasksGradeViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIV
 
 # Student который проходит курс
 class FileTasksAnswerViewCreate(generics.CreateAPIView):
-    queryset = FileTasks.objects.all()
+    queryset = FileTasksAnswer.objects.all()
     serializer_class = CreateFileTasksAnswerSerializers
     permission_classes = [IsStudentHasAccess]
 
@@ -91,23 +91,23 @@ class FileTasksAnswerViewCreate(generics.CreateAPIView):
 
 # Admin , Teacher с доступом к курсу
 class FileTasksAnswerViewList(generics.ListAPIView):  # фильтрация по курсу и по заданию
-    queryset = FileTasks.objects.all()
+    queryset = FileTasksAnswer.objects.all()
     serializer_class = AboutFileTasksAnswerSerializers
     filter_backends = (DjangoFilterBackend,)
-    filterset_class = CategoryFilter
+    filterset_class = Filter
     permission_classes = [IsAdminUser | IsTeacherHasAccess]
 
 
 # Admin , Teacher с доступом к курсу  ,Student автор ответа
 class FileTasksAnswerViewRetrieve(generics.RetrieveAPIView):
-    queryset = FileTasks.objects.all()
+    queryset = FileTasksAnswer.objects.all()
     serializer_class = FileTasksAnswerSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentOwner]
 
 
 # Student автор ответа
 class FileTasksAnswerViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
-    queryset = FileTasks.objects.all()
+    queryset = FileTasksAnswer.objects.all()
     serializer_class = CreateFileTasksAnswerSerializers
     permission_classes = [IsStudentOwner]
 

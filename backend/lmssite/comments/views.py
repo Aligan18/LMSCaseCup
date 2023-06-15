@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 
 from comments.models import Comments
 from comments.serializers import CreateCommentsSerializers, CommentsSerializers, AboutCommentsSerializers
-from comments.service import CategoryFilter
+from comments.service import Filter
 from custom_user.permissions import IsStudent, IsStudentOwner
 
 
@@ -25,7 +25,7 @@ class CommentsViewList(generics.ListAPIView): # Фильтрация по кур
     queryset = Comments.objects.all()
     serializer_class = AboutCommentsSerializers
     filter_backends = (DjangoFilterBackend,)
-    filterset_class = CategoryFilter
+    filterset_class = Filter
     permission_classes = [AllowAny]
 
 

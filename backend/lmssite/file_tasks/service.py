@@ -1,16 +1,15 @@
 from django_filters import rest_framework as filters
 
-from categories.models import Category
-from comments.models import Comments
+from file_tasks.models import FileTasks, FileTasksAnswer
 
 
 class CharFilterInFilter(filters.BaseInFilter, filters.CharFilter):
     pass
 
 
-class CategoryFilter(filters.FilterSet):
+class Filter(filters.FilterSet):
     course = CharFilterInFilter(field_name='course')
-    task = CharFilterInFilter(field_name='course')
+    task = CharFilterInFilter(field_name='file_task')
     class Meta:
-        model = Comments
-        fields = ['course']
+        model = FileTasksAnswer
+        fields = ['course', 'task']
