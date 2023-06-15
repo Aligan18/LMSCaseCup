@@ -9,7 +9,7 @@ class CharFilterInFilter(filters.BaseInFilter, filters.CharFilter):
 
 
 class CategoryFilter(filters.FilterSet):
-    category = CharFilterInFilter(field_name='category__name')
+    category = CharFilterInFilter(field_name='category__title')
     publish = filters.BooleanFilter(field_name='is_published')
     teacher = CharFilterInFilter(field_name='teacher')
     class Meta:
