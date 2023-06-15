@@ -10,8 +10,8 @@ from categories.views import CategoriesViewCreate, CategoriesViewList, Categorie
 from certificates.views import CertificatesViewCreate, CertificatesViewList, CertificatesView, CertificatesViewDestroy
 from comments.views import CommentsViewCreate, CommentsViewList, \
     CommentsViewRetrieveUpdateDestroy
-from course.views import CourseViewCreate, CourseViewList, CourseViewRetrieve,  \
-    CourseViewDestroy, CourseViewUpdate
+from course.views import CourseViewCreate, CourseViewList, CourseViewRetrieve, \
+    CourseViewDestroy, CourseViewUpdate, CourseStudentsListViewRetrieve
 from custom_user.views import ActivateUser
 from file_tasks.views import FileTasksViewCreate, FileTasksViewList, FileTasksViewRetrieve, \
     FileTasksViewRetrieveUpdateDestroy, FileTasksGradeViewCreate, FileTasksGradeViewList, FileTasksGradeViewRetrieve, \
@@ -58,6 +58,7 @@ urlpatterns = [
     path('api/v1/course/id/<int:pk>', CourseViewRetrieve.as_view(), name="course-id"),
     path('api/v1/course/update/<int:pk>', CourseViewUpdate.as_view(), name="course-update"),
     path('api/v1/course/delete/<int:pk>', CourseViewDestroy.as_view(), name="course-delete"),
+    path('api/v1/course/students/list/', CourseStudentsListViewRetrieve.as_view()),
 
     path('api/v1/file_tasks/create/', FileTasksViewCreate.as_view()),
     path('api/v1/file_tasks/list/', FileTasksViewList.as_view()),

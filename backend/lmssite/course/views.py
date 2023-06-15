@@ -21,18 +21,11 @@ class CourseViewCreate(generics.CreateAPIView):
 
 
 # All
-class CourseViewListByCategory(generics.ListAPIView):  # фильтрация по категориям
+class CourseViewList(generics.ListAPIView):  # все  курсы
     queryset = Course.objects.all()
     serializer_class = AboutCourseSerializers
     filter_backends = (DjangoFilterBackend,)
     filterset_class = CategoryFilter
-    permission_classes = [AllowAny]
-
-
-# All
-class CourseViewList(generics.ListAPIView):  # все  курсы
-    queryset = Course.objects.all()
-    serializer_class = AboutCourseSerializers
     permission_classes = [AllowAny]
 
 
@@ -44,7 +37,7 @@ class CourseViewRetrieve(generics.RetrieveAPIView): # Описание курс�
 
 
 # Admin , Teacher имеющий доступ , Student имеющий доступ
-class CourseViewRetrieve(generics.RetrieveAPIView): # Список студентов
+class CourseStudentsListViewRetrieve(generics.RetrieveAPIView): # Список студентов
     queryset = Course.objects.all()
     serializer_class = OnlyStudentsCourseSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]

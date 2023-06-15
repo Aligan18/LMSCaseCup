@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 
 from comments.models import Comments
 from comments.serializers import CreateCommentsSerializers, CommentsSerializers, AboutCommentsSerializers
+from comments.service import CategoryFilter
 from custom_user.permissions import IsStudent, IsStudentOwner
 
 
@@ -22,6 +24,8 @@ class CommentsViewCreate(generics.CreateAPIView):
 class CommentsViewList(generics.ListAPIView): # Фильтрация по курсу
     queryset = Comments.objects.all()
     serializer_class = AboutCommentsSerializers
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = CategoryFilter
     permission_classes = [AllowAny]
 
 
