@@ -35,6 +35,7 @@ urlpatterns = [
     path('auth/', include('djoser.urls.jwt')),
     path('accounts/activate/<uid>/<token>', ActivateUser.as_view({'get': 'activation'}), name='activation'),
 
+
     path('api/v1/admins/list/', AdminsViewList.as_view()),
     path('api/v1/admins/rud/<int:pk>', AdminsRetrieveUpdateDestroyView.as_view()),
 
