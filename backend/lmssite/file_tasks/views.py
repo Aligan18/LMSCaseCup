@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
 
@@ -7,6 +8,7 @@ from file_tasks.models import FileTasks
 from file_tasks.serializers import CreateFileTasksSerializers, CreateFileTasksGradeSerializers, \
     CreateFileTasksAnswerSerializers, FileTasksSerializers, FileTasksAnswerSerializers, FileTasksGradeSerializers, \
     AboutFileTasksSerializers, AboutFileTasksGradeSerializers, AboutFileTasksAnswerSerializers
+from file_tasks.service import CategoryFilter
 
 
 ######################################################################################################
@@ -91,6 +93,8 @@ class FileTasksAnswerViewCreate(generics.CreateAPIView):
 class FileTasksAnswerViewList(generics.ListAPIView):  # фильтрация по курсу и по заданию
     queryset = FileTasks.objects.all()
     serializer_class = AboutFileTasksAnswerSerializers
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = CategoryFilter
     permission_classes = [IsAdminUser | IsTeacherHasAccess]
 
 
