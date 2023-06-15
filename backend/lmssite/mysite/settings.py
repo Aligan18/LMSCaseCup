@@ -166,6 +166,7 @@ DJOSER = {
     'SET_PASSWORD_RETYPE': True,
     'TOKEN_MODEL': None,  # We use only JWT
     'ACTIVATION_URL': 'accounts/activate/{uid}/{token}',
+    'PASSWORD_RESET_CONFIRM_URL': 'lmscasecup/reset_password/{uid}/{token}'
     ##'SERIALIZERS': {'user_create': 'custom_user.serializers.CreateCustomUserSerializer'},
 }
 

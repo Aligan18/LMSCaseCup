@@ -35,14 +35,14 @@ def create_profile(sender, user, request, **kwargs):
         )
     elif data.get("type") == "3" and request.user.is_staff:
         Teachers.objects.create(
-            user=user,
+            teacher=user,
             name=data.get("name", ""),
             surname=data.get("surname", ""),
             patronymic=data.get("patronymic", ""),
         )
     elif data.get("type") == "4":
         Students.objects.create(
-            user=user,
+            student=user,
             name=data.get("name", ""),
             surname=data.get("surname", ""),
             patronymic=data.get("patronymic", ""),

@@ -4,7 +4,7 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
 
-from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsTeacherHasAccessCreate
+from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsTeacherHasAccessCreate, IsStudent
 
 from test_tasks.models import TestTasks, TestQuestionAnswer, TestAnswerOptions, TestGrade
 from test_tasks.serializers import TestTasksSerializers, CreateTestTasksSerializers, TestQuestionAnswerSerializers, \
@@ -43,22 +43,18 @@ class TestTasksViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 
 #################################################################
 
-# Admin ,  Teacher с доступом к курсу
+# Students
 class TestQuestionAnswerViewCreate(generics.ListCreateAPIView):
     queryset = TestQuestionAnswer.objects.all()
     serializer_class = CreateTestQuestionAnswerSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
-
-    def perform_create(self, serializer):
-        serializer.validated_data['student'] = self.request.user
-        serializer.save()
+    permission_classes = [IsStudent]
 
 
-# Admin ,  Teacher с доступом к курсу , Student проходит курс
+# Admin ,  Teacher с доступом к курсу
 class TestQuestionAnswerViewList(generics.ListAPIView):
     queryset = TestQuestionAnswer.objects.all()
     serializer_class = AboutTestQuestionAnswerSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccess ]
 
 
 # Admin ,  Teacher с доступом к курсу , Student проходит курс
@@ -122,7 +118,7 @@ class TestGradeViewAllCreate(generics.ListCreateAPIView):
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccess]
 
 
-# Admin ,  TTeacher с доступом к курсу
+# Admin ,  Teacher с доступом к курсу
 class TestGradeViewList(generics.ListAPIView): # Оценки всех студентов проходивших этот тест
     queryset = TestGrade.objects.all()
     serializer_class = AboutTestGradeSerializers
