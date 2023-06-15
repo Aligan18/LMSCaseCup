@@ -21,3 +21,5 @@ class ActivateUser(UserViewSet):
     def activation(self, request, uid, token, *args, **kwargs):
         super().activation(request, *args, **kwargs)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+

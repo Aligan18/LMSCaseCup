@@ -9,7 +9,6 @@ from teachers.models import Teachers
 
 
 class Admins(models.Model):
-
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=40)
     surname = models.CharField(max_length=40)
@@ -35,17 +34,17 @@ def create_profile(sender, user, request, **kwargs):
         )
     elif data.get("type") == "3" and request.user.is_staff:
         Teachers.objects.create(
-            user=user,
+            teacher=user,
             name=data.get("name", ""),
             surname=data.get("surname", ""),
             patronymic=data.get("patronymic", ""),
         )
     elif data.get("type") == "4":
         Students.objects.create(
-            user=user,
+            student=user,
             name=data.get("name", ""),
             surname=data.get("surname", ""),
             patronymic=data.get("patronymic", ""),
         )
-    else : User.objects.filter(pk=user.id).delete()
-
+    else:
+        User.objects.filter(pk=user.id).delete()

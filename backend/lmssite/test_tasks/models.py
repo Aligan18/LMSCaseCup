@@ -1,21 +1,22 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
+from students.models import Students
+
 
 class TestTasks(models.Model):
     deadline_minute = models.IntegerField(null=True)
     title = models.CharField(max_length=150)
     description = models.TextField(blank=True)
     course = models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
+    questions = models.ManyToManyField("TestQuestionAnswer")
 
     def __str__(self):
         return self.title
 
 
 class TestQuestionAnswer(models.Model):
-    test_task = models.ForeignKey("TestTasks", on_delete=models.CASCADE)
     question = models.TextField()
-    correct_answer = models.TextField()
     options = models.ManyToManyField("TestAnswerOptions")
     course = models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
 
@@ -24,8 +25,9 @@ class TestQuestionAnswer(models.Model):
 
 
 class TestAnswerOptions(models.Model):
-    option: models.TextField()
+    option = models.TextField()
     course = models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
+    correct_answer = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
