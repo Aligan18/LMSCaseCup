@@ -5,6 +5,7 @@ from students.serializers import AboutStudentsSerializers
 
 
 class CreateCommentsSerializers(serializers.ModelSerializer):
+    student = serializers.HiddenField(default=serializers.CurrentUserDefault())
     class Meta:
         model = Comments
         fields = '__all__'
