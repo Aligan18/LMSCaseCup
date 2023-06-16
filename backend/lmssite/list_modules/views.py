@@ -24,7 +24,7 @@ class ListModulesViewList(generics.ListAPIView):  # все модули курс
     serializer_class = AboutListModulesSerializers
     filter_backends = (DjangoFilterBackend,)
     filterset_class = Filter
-    permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccess]
 
 
 # Admin , Teacher с доступом к курсу, Student которые прооходят этот курс
@@ -33,7 +33,7 @@ class OnlyTasksListModulesViewList(generics.ListAPIView): #только зада
     serializer_class = AboutListModulesSerializers
     filter_backends = (DjangoFilterBackend,)
     filterset_class = FilterForTasks
-    permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccess]
 
 
 # Admin , Teacher с доступом к курсу, Student которые прооходят этот курс
@@ -49,8 +49,3 @@ class ListModulesViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView
     serializer_class = CreateListModulesSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess]
 
-# Admin , Teacher с доступом к курсу
-# class ListModulesViewDestroy(generics.DestroyAPIView):
-#     queryset = ListModules.objects.all()
-#     serializer_class = CreateListModulesSerializers
-#     permission_classes = [IsAdminUser | IsTeacherHasAccess]

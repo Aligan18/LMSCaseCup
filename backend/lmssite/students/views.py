@@ -4,7 +4,7 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
-from custom_user.permissions import IsTeacherHasAccess, IsStudentOwner
+from custom_user.permissions import IsTeacherHasAccess, IsStudentOwner, IsTeacherHasAccessCreate
 
 from students.models import Students
 from students.serializers import StudentsSerializers, CreateStudentsSerializers, AboutStudentsSerializers
@@ -22,7 +22,7 @@ class StudentsViewAll(generics.ListAPIView):  # Вообще все студен
 class StudentsCourseViewAll(generics.ListAPIView):  # Студенты определенного курса
     queryset = Students.objects.all()
     serializer_class = AboutStudentsSerializers
-    permission_classes = []
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
 
 
 #############################################################################################
@@ -41,8 +41,3 @@ class StudentsViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAdminUser | IsStudentOwner]
 
 
-# # Admin,  Student свой профиль
-# class StudentsViewDestroy(generics.DestroyAPIView):
-#     queryset = Students.objects.all()
-#     serializer_class = CreateStudentsSerializers
-#     permission_classes = [IsAdminUser | IsStudentOwner]

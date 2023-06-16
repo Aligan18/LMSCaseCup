@@ -35,9 +35,3 @@ class CommentsViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CreateCommentsSerializers
     permission_classes = [IsAdminUser | IsStudentOwner]
 
-
-# # Student автор коменнтария , Admin
-# class CommentsViewDestroy(generics.DestroyAPIView):
-#     queryset = Comments.objects.all()
-#     serializer_class = CreateCommentsSerializers
-#     permission_classes = [IsAdminUser | IsStudentOwner]

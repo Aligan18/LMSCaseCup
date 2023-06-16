@@ -93,7 +93,7 @@ class CoursesTestsTeacher(APITestCase):
         # self.assertEqual(Lectures.objects.get().title, 'newTitle')
 
         # GET All
-        url = reverse('course-list')
+        url = reverse('course-list') + "?course=1"
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         data = response.data

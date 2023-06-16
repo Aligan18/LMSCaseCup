@@ -1,8 +1,10 @@
 from rest_framework import permissions
+from rest_framework.request import Request
 
 from course.models import Course
 from students.models import Students
 
+Request
 
 class IsStudentHasAccess(permissions.BasePermission):  # Проверен тестами
     def has_object_permission(self, request, view, obj):
@@ -15,11 +17,15 @@ class IsStudentHasAccess(permissions.BasePermission):  # Проверен тес
                     return True
 
 
-class IsTeacherHasAccessCreate(permissions.BasePermission):  # Проверен тестами
+class IsTeacherHasAccessCreate(permissions.BasePermission):  # не работает для листа
     def has_permission(self, request, view):
         if bool(request.user and request.user.is_authenticated):
             if bool(request.user.type == "3"):
-                data = request.data
+                if bool(request.method in permissions.SAFE_METHODS):
+                    print("GET", request)
+                    data = request.query_params
+                else:
+                    data = request.data
                 course = Course.objects.filter(id=data.get('course'))
                 teachers_has_access = course[0].teacher.all().filter(teacher=request.user).exists()
                 if teachers_has_access:
@@ -29,14 +35,17 @@ class IsTeacherHasAccessCreate(permissions.BasePermission):  # Проверен 
 class IsTeacherHasAccess(permissions.BasePermission):  # Проверен тестами
     def has_object_permission(self, request, view, obj):
         if bool(request.user and request.user.is_authenticated):
-            if hasattr(obj, 'course'):
-                course = Course.objects.filter(id=obj.course.id)
-            else:
-                course = obj
             if bool(request.user.type == "3"):
-                teachers_has_access = course[0].teacher.all().filter(teacher=request.user).exists()
-                if teachers_has_access:
-                    return True
+                if hasattr(obj, 'course'):
+                    course = Course.objects.filter(id=obj.course.id)
+                    teachers_has_access = course[0].teacher.all().filter(teacher=request.user).exists()
+                    if teachers_has_access:
+                        return True
+                else:
+                    course = obj
+                    teachers_has_access = course.teacher.all().filter(teacher=request.user).exists()
+                    if teachers_has_access:
+                        return True
 
 
 class IsTeacherOwner(permissions.BasePermission):

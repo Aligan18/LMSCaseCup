@@ -14,6 +14,7 @@ from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import grades.apps
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
     'test_tasks.apps.TestTasksConfig',
     'categories.apps.CategoriesConfig',
     'custom_user.apps.CustomUserConfig',
+    'grades.apps.GradesConfig',
 
     'rest_framework',
     'django_filters',
