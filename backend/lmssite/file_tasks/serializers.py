@@ -16,6 +16,7 @@ class CreateFileTasksGradeSerializers(serializers.ModelSerializer):
 
 
 class CreateFileTasksAnswerSerializers(serializers.ModelSerializer):
+    student = serializers.HiddenField(default=serializers.CurrentUserDefault())
     class Meta:
         model = FileTasksAnswer
         fields = '__all__'
