@@ -19,6 +19,7 @@ class FileTasksAnswer(models.Model):
     file = models.FileField(upload_to='files/', null=True)
     file_task = models.OneToOneField("FileTasks", on_delete=models.CASCADE, null=True)
     course = models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
+    list_modules = models.ForeignKey("list_modules.ListModules", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.file

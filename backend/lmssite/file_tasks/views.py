@@ -59,7 +59,7 @@ class FileTasksGradeViewCreate(generics.CreateAPIView):
 class FileTasksGradeViewList(generics.ListAPIView):  # оценки всех учеников
     queryset = FileTasksGrade.objects.all()
     serializer_class = AboutFileTasksGradeSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
 
 
 # Admin , Teacher с доступом к курсу , student выполневший задания
@@ -95,7 +95,7 @@ class FileTasksAnswerViewList(generics.ListAPIView):  # фильтрация п�
     serializer_class = AboutFileTasksAnswerSerializers
     filter_backends = (DjangoFilterBackend,)
     filterset_class = Filter
-    permission_classes = [IsAdminUser | IsTeacherHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
 
 
 # Admin , Teacher с доступом к курсу  ,Student автор ответа

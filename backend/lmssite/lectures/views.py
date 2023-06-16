@@ -19,7 +19,7 @@ class LecturesViewCreate(generics.CreateAPIView):
 class LecturesViewList(generics.ListAPIView):
     queryset = Lectures.objects.all()
     serializer_class = AboutLecturesSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccess]
 
 
 # Admin , Teacher с доступом к курсу, Student которые прооходят этот курс
@@ -35,8 +35,3 @@ class LecturesViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CreateLecturesSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess]
 
-# # Admin , Teacher с доступом к курсу
-# class LecturesViewDestroy(generics.DestroyAPIView):
-#     queryset = Lectures.objects.all()
-#     serializer_class = CreateLecturesSerializers
-#     permission_classes = [IsAdminUser | IsTeacherHasAccess]

@@ -24,7 +24,7 @@ class TestTasksViewCreate(generics.ListCreateAPIView):
 class TestTasksViewList(generics.ListAPIView):
     queryset = TestTasks.objects.all()
     serializer_class = AboutTestTasksSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccess]
 
 
 # Admin ,  Teacher с доступом к курсу , Student проходит курс
@@ -54,7 +54,7 @@ class TestQuestionAnswerViewCreate(generics.ListCreateAPIView):
 class TestQuestionAnswerViewList(generics.ListAPIView):
     queryset = TestQuestionAnswer.objects.all()
     serializer_class = AboutTestQuestionAnswerSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccess ]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate ]
 
 
 # Admin ,  Teacher с доступом к курсу , Student проходит курс
@@ -88,7 +88,7 @@ class TestAnswerOptionsViewAllCreate(generics.ListCreateAPIView):
 class TestAnswerOptionsViewList(generics.ListAPIView):
     queryset = TestAnswerOptions.objects.all()
     serializer_class = AboutTestAnswerOptionsSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccess]
 
 
 # Admin ,  Teacher с доступом к курсу , Student проходит курс

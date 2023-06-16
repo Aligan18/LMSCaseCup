@@ -8,7 +8,7 @@ from course.serializers import CreateCourseSerializers, CategorySerializers, Cou
     OnlyStudentsCourseSerializers
 from django_filters.rest_framework import DjangoFilterBackend
 
-from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess
+from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsTeacherHasAccessCreate
 from .about_serializers import AboutCourseSerializers
 from .service import Filter
 
