@@ -31,7 +31,7 @@ class FileTasksGrade(models.Model):
     grade = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)], default=0)
     data = models.DateTimeField(auto_now=True)
     course = models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
-    comment = models.TextField()
+    comment = models.TextField(null=True)
 
     def __str__(self):
         return self.grade

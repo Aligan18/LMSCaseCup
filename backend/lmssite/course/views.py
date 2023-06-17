@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics
+from rest_framework.filters import OrderingFilter
 from rest_framework.permissions import IsAdminUser, AllowAny, IsAuthenticated
 
 import mysite
@@ -24,8 +25,9 @@ class CourseViewCreate(generics.CreateAPIView):
 class CourseViewList(generics.ListAPIView):  # все  курсы
     queryset = Course.objects.all()
     serializer_class = AboutCourseSerializers
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend, OrderingFilter)
     filterset_class = Filter
+    ordering_fields = ["rating"]
     permission_classes = [AllowAny]
 
 
