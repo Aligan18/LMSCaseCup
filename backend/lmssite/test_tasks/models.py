@@ -1,3 +1,5 @@
+import datetime
+
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.db.models.signals import post_save
@@ -57,9 +59,10 @@ def update_date_complete(sender, instance, created, **kwargs):
     if created:
         deadline = TestTasks.objects.filter(id=instance.test_task.id)[0].deadline
 
-        current_date = date.today()
+        current_date = datetime.datetime.now()
 
-        if current_date > deadline:
+        if not (current_date.timestamp() > deadline.timestamp()):
             TestGrade.objects.filter(id=instance.id).update(
                 is_late=True
             )
+
