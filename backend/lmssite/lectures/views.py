@@ -2,7 +2,8 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
-from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsTeacherHasAccessCreate
+from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsTeacherHasAccessCreate, \
+    IsStudentHasAccessCreate
 from lectures.models import Lectures
 
 from lectures.serializers import LecturesSerializers, CreateLecturesSerializers, AboutLecturesSerializers
@@ -19,7 +20,7 @@ class LecturesViewCreate(generics.CreateAPIView):
 class LecturesViewList(generics.ListAPIView):
     queryset = Lectures.objects.all()
     serializer_class = AboutLecturesSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccessCreate]
 
 
 # Admin , Teacher с доступом к курсу, Student которые прооходят этот курс

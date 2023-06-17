@@ -4,7 +4,8 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
 
-from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsTeacherHasAccessCreate, IsStudent
+from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsTeacherHasAccessCreate, IsStudent, \
+    IsStudentHasAccessCreate
 
 from test_tasks.models import TestTasks, TestQuestionAnswer, TestAnswerOptions, TestGrade
 from test_tasks.serializers import TestTasksSerializers, CreateTestTasksSerializers, TestQuestionAnswerSerializers, \
@@ -24,7 +25,7 @@ class TestTasksViewCreate(generics.ListCreateAPIView):
 class TestTasksViewList(generics.ListAPIView):
     queryset = TestTasks.objects.all()
     serializer_class = AboutTestTasksSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccessCreate]
 
 
 # Admin ,  Teacher с доступом к курсу , Student проходит курс
@@ -88,7 +89,7 @@ class TestAnswerOptionsViewAllCreate(generics.ListCreateAPIView):
 class TestAnswerOptionsViewList(generics.ListAPIView):
     queryset = TestAnswerOptions.objects.all()
     serializer_class = AboutTestAnswerOptionsSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccessCreate]
 
 
 # Admin ,  Teacher с доступом к курсу , Student проходит курс

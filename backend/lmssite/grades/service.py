@@ -10,12 +10,15 @@ class CharFilterInFilter(filters.BaseInFilter, filters.CharFilter):
 class Filter(filters.FilterSet):
     course = CharFilterInFilter(field_name='course')
     student = CharFilterInFilter(field_name='student')
+
     class Meta:
         model = Grades
         fields = ['course', 'student']
 
+
 class FilterOnlyCourse(filters.FilterSet):
     course = CharFilterInFilter(field_name='course')
+
     class Meta:
         model = Grades
         fields = ['course']

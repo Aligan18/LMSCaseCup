@@ -19,3 +19,9 @@ class AboutGradesSerializers(serializers.ModelSerializer):
     class Meta:
         model = Grades
         fields = '__all__'
+
+
+class ChangeGradesForTask(serializers.ModelSerializer):
+    class Meta:
+        model = Grades
+        fields = 'grade'
