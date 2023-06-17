@@ -1,28 +1,29 @@
 from django.db import models
+from rest_framework import serializers
 
 from custom_user.models import User
 from support_chat.models import AdminTickets, UnauthorizedTickets, TeacherTickets, StudentTickets
 
 
-class StudentTicketsSerializers(models.Model):
+class StudentTicketsSerializers(serializers.ModelSerializer):
     class Meta:
         model = StudentTickets
         fields = '__all__'
 
 
-class TeacherTicketsSerializers(models.Model):
+class TeacherTicketsSerializers(serializers.ModelSerializer):
     class Meta:
         model = TeacherTickets
         fields = '__all__'
 
 
-class AdminTicketsSerializers(models.Model):
+class AdminTicketsSerializers(serializers.ModelSerializer):
     class Meta:
         model = AdminTickets
         fields = '__all__'
 
 
-class UnauthorizedTicketsSerializers(models.Model):
+class UnauthorizedTicketsSerializers(serializers.ModelSerializer):
     class Meta:
         model = UnauthorizedTickets
         fields = '__all__'
@@ -30,25 +31,25 @@ class UnauthorizedTicketsSerializers(models.Model):
 
 #################################################################################################
 
-class AboutStudentTicketsSerializers(models.Model):
+class AboutStudentTicketsSerializers(serializers.ModelSerializer):
     class Meta:
         model = StudentTickets
         fields = '__all__'
 
 
-class AboutTeacherTicketsSerializers(models.Model):
+class AboutTeacherTicketsSerializers(serializers.ModelSerializer):
     class Meta:
         model = TeacherTickets
         fields = '__all__'
 
 
-class AboutAdminTicketsSerializers(models.Model):
+class AboutAdminTicketsSerializers(serializers.ModelSerializer):
     class Meta:
         model = AdminTickets
         fields = '__all__'
 
 
-class AboutUnauthorizedTicketsSerializers(models.Model):
+class AboutUnauthorizedTicketsSerializers(serializers.ModelSerializer):
     class Meta:
         model = UnauthorizedTickets
         fields = '__all__'
@@ -56,25 +57,25 @@ class AboutUnauthorizedTicketsSerializers(models.Model):
 
 #################################################################################################
 
-class CreateStudentTicketsSerializers(models.Model):
+class CreateStudentTicketsSerializers(serializers.ModelSerializer):
     class Meta:
         model = StudentTickets
         fields = '__all__'
 
 
-class CreateTeacherTicketsSerializers(models.Model):
+class CreateTeacherTicketsSerializers(serializers.ModelSerializer):
     class Meta:
         model = TeacherTickets
         fields = '__all__'
 
 
-class CreateAdminTicketsSerializers(models.Model):
+class CreateAdminTicketsSerializers(serializers.ModelSerializer):
     class Meta:
         model = AdminTickets
         fields = '__all__'
 
 
-class CreateUnauthorizedTicketsSerializers(models.Model):
+class CreateUnauthorizedTicketsSerializers(serializers.ModelSerializer):
     class Meta:
         model = UnauthorizedTickets
         fields = '__all__'

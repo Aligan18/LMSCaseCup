@@ -118,6 +118,10 @@ class TestGradeViewAllCreate(generics.ListCreateAPIView):
     serializer_class = CreateTestGradeSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccess]
 
+    def perform_create(self, serializer):
+        serializer.validated_data['student'] = self.request.user
+        serializer.save()
+
 
 # Admin ,  Teacher с доступом к курсу
 class TestGradeViewList(generics.ListAPIView): # Оценки всех студентов проходивших этот тест

@@ -16,6 +16,8 @@ class CreateTestQuestionAnswerSerializers(serializers.ModelSerializer):
 
 
 class CreateTestGradeSerializers(serializers.ModelSerializer):
+    student = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = TestGrade
         fields = '__all__'

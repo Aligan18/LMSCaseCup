@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'djoser',
+    'support_chat'
 ]
 
 REST_FRAMEWORK = {
