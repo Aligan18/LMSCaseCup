@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
+from rest_framework.filters import OrderingFilter
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 
 from comments.models import Comments
@@ -24,8 +25,9 @@ class CommentsViewCreate(generics.CreateAPIView):
 class CommentsViewList(generics.ListAPIView): # Фильтрация по курсу
     queryset = Comments.objects.all()
     serializer_class = AboutCommentsSerializers
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend, OrderingFilter)
     filterset_class = Filter
+    ordering_fields = ["rating"]
     permission_classes = [AllowAny]
 
 

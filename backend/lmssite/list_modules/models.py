@@ -12,7 +12,7 @@ class ListModules(models.Model):
     file_task_id = models.OneToOneField("file_tasks.FileTasks", on_delete=models.CASCADE, null=True)
     test_task_id = models.OneToOneField("test_tasks.TestTasks", on_delete=models.CASCADE, null=True)
     module_type = models.CharField(choices=MODULE_TYPES, default="1", max_length=1)
-    number = models.CharField(max_length=6, null=True)
+    number = models.IntegerField(default=1)
     status = models.BooleanField(default=True)
     course = models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
     deadline = models.DateTimeField(null=True)
