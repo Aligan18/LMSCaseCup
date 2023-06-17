@@ -5,9 +5,9 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from custom_user.models import User
+f
 from file_tasks.models import FileTasksAnswer
-from list_modules.models import ListModules
+
 from test_tasks.models import TestAnswerOptions, TestGrade
 
 

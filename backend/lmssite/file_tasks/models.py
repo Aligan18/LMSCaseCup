@@ -51,6 +51,6 @@ def create_date_complete(sender, instance, created, **kwargs):
             return
 
         FileTasksAnswer.objects.create(student=instance.student,
-                              is_late=True,
-                              file_tasks=instance.file_tasks
-                              )
+                                       is_late=True,
+                                       file_tasks=instance.file_tasks
+                                       )
