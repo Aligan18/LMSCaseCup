@@ -6,6 +6,7 @@ from students.models import Students
 
 Request
 
+
 class IsStudentHasAccess(permissions.BasePermission):  # Проверен тестами
     def has_object_permission(self, request, view, obj):
         if bool(request.user and request.user.is_authenticated):
@@ -17,12 +18,24 @@ class IsStudentHasAccess(permissions.BasePermission):  # Проверен тес
                     return True
 
 
-class IsTeacherHasAccessCreate(permissions.BasePermission):  # не работает для листа
+class IsStudentHasAccessCreate(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if bool(request.user and request.user.is_authenticated):
+            if bool(request.method in permissions.SAFE_METHODS):
+                if bool(request.user.type == "4"):
+                    student_id = request.query_params.get('student')
+                    student = Students.objects.filter(student=student_id)
+                    course_id = request.query_params.get('course')
+                    student_has_access = student.courses.all().filter(id=course_id).exists()
+                    if student_has_access:
+                        return True
+
+
+class IsTeacherHasAccessCreate(permissions.BasePermission):  # Проверен тестами для List требует /?course=<id>
     def has_permission(self, request, view):
         if bool(request.user and request.user.is_authenticated):
             if bool(request.user.type == "3"):
                 if bool(request.method in permissions.SAFE_METHODS):
-                    print("GET", request)
                     data = request.query_params
                 else:
                     data = request.data
@@ -59,6 +72,14 @@ class IsStudentOwner(permissions.BasePermission):  # Проверен теста
     def has_object_permission(self, request, view, obj):
         if bool(request.user and request.user.is_authenticated):
             if bool(obj.student == request.user):
+                return True
+
+
+class IsStudentOwnerForList(permissions.BasePermission):  # для List требует /?course=<id>
+    def has_permission(self, request, view):
+        if bool(request.user and request.user.is_authenticated):
+            student = request.query_params.get('student')
+            if student == request.user.id:
                 return True
 
 

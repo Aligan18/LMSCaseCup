@@ -5,7 +5,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
-from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsTeacherHasAccessCreate
+from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsTeacherHasAccessCreate, \
+    IsStudentHasAccessCreate
 from list_modules.models import ListModules
 from list_modules.serializers import ListModulesSerializers, CreateListModulesSerializers, AboutListModulesSerializers
 from list_modules.service import Filter, FilterForTasks
@@ -24,7 +25,7 @@ class ListModulesViewList(generics.ListAPIView):  # все модули курс
     serializer_class = AboutListModulesSerializers
     filter_backends = (DjangoFilterBackend,)
     filterset_class = Filter
-    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccessCreate]
 
 
 # Admin , Teacher с доступом к курсу, Student которые прооходят этот курс
@@ -33,7 +34,7 @@ class OnlyTasksListModulesViewList(generics.ListAPIView): #только зада
     serializer_class = AboutListModulesSerializers
     filter_backends = (DjangoFilterBackend,)
     filterset_class = FilterForTasks
-    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccessCreate]
 
 
 # Admin , Teacher с доступом к курсу, Student которые прооходят этот курс

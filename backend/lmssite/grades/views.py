@@ -6,17 +6,18 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
 
-from custom_user.permissions import IsStudent, IsTeacherHasAccessCreate, IsTeacherHasAccess, IsStudentOwner
+from custom_user.permissions import IsStudent, IsTeacherHasAccessCreate, IsTeacherHasAccess, IsStudentOwner, \
+    IsStudentOwnerForList, IsStudentHasAccessCreate
 from grades.models import Grades
-from grades.serializers import GradesSerializers, CreateGradesSerializers, AboutGradesSerializers
+from grades.serializers import GradesSerializers, CreateGradesSerializers, AboutGradesSerializers, ChangeGradesForTask
 from grades.service import Filter, FilterOnlyCourse
 
 
 # Student and Admin
-class AttendanceForLecturesViewCreate(generics.CreateAPIView): #?????????
+class AttendanceForLecturesViewCreate(generics.CreateAPIView):
     queryset = Grades.objects.all()
     serializer_class = CreateGradesSerializers
-    permission_classes = [IsAdminUser | IsStudent]
+    permission_classes = [IsAdminUser | IsStudentHasAccessCreate]
 
 
 # нужно передавать /?course=<id>
@@ -26,7 +27,7 @@ class GradesOneStudentViewList(generics.ListAPIView): # grades с фильтра
     serializer_class = AboutGradesSerializers
     filter_backends = (DjangoFilterBackend,)
     filterset_class = Filter
-    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentOwnerForList]
 
 
 # нужно передавать /?course=<id>
@@ -47,9 +48,9 @@ class GradesViewRetrieve(generics.RetrieveAPIView):
 
 
 # Admin , Teacher имеющий доступ
-class GradesViewUpdate(generics.UpdateAPIView):
+class ChangeGradesForTaskViewUpdate(generics.UpdateAPIView):
     queryset = Grades.objects.all()
-    serializer_class = CreateGradesSerializers
+    serializer_class = ChangeGradesForTask
     permission_classes = [IsAdminUser | IsTeacherHasAccess]
 
 

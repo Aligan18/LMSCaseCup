@@ -12,7 +12,6 @@ from teachers.models import Teachers
 
 class CoursesTestsTeacher(APITestCase):
     def setUp(self):
-
         Category.objects.create(title="Course")
 
         admin = User.objects.create_user(
@@ -61,8 +60,8 @@ class CoursesTestsTeacher(APITestCase):
 
         self.props = {'title': 'newTitle',
                       'content': 'newContent',
-                      'teacher': [1,2],
-                      'student': [1],
+                      'teacher': [1, 2],
+                      'student': [1, 2],
                       # 'category': '1',
                       }
 
