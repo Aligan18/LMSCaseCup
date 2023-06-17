@@ -14,7 +14,7 @@ class FileTasks(models.Model):
     deadline = models.DateTimeField(null=True)
 
     def __str__(self):
-        return self.title
+        return str(self.id)
 
 
 class FileTasksAnswer(models.Model):
@@ -27,7 +27,7 @@ class FileTasksAnswer(models.Model):
     is_late = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.file
+        return str(self.id)
 
 
 class FileTasksGrade(models.Model):
@@ -43,14 +43,13 @@ class FileTasksGrade(models.Model):
 
 
 @receiver(post_save, sender=FileTasksAnswer)
-def create_date_complete(sender, instance, created, **kwargs):
+def update_date_complete(sender, instance, created, **kwargs):
     if created:
-        deadline = instance.file_tasks.deadline
-        current_date = date.today()
-        if current_date > deadline:
-            return
+        deadline = FileTasks.objects.filter(id=instance.file_task.id)[0].deadline
 
-        FileTasksAnswer.objects.create(student=instance.student,
-                                       is_late=True,
-                                       file_tasks=instance.file_tasks
-                                       )
+        current_date = date.today()
+
+        if current_date > deadline:
+            FileTasksAnswer.objects.filter(id=instance.id).update(
+                is_late=True
+            )
