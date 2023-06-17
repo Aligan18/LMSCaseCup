@@ -13,7 +13,6 @@ class FileTasks(models.Model):
     title = models.CharField(max_length=200, null=True)
     description = models.TextField(blank=True)
     course = models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
-    deadline = models.DateTimeField(null=True)
 
     def __str__(self):
         return str(self.id)
@@ -42,16 +41,3 @@ class FileTasksGrade(models.Model):
 
     def __str__(self):
         return self.grade
-
-
-@receiver(post_save, sender=FileTasksAnswer)
-def update_date_complete(sender, instance, created, **kwargs):
-    if created:
-        deadline = FileTasks.objects.filter(id=instance.file_task.id)[0].deadline
-
-        current_date = datetime.datetime.now()
-
-        if not (current_date.timestamp() > deadline.timestamp()):
-            FileTasksAnswer.objects.filter(id=instance.id).update(
-                is_late=True
-            )
