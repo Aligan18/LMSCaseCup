@@ -68,6 +68,14 @@ class IsTeacherOwner(permissions.BasePermission):
                 return True
 
 
+class IsTeacherOwnerForList(permissions.BasePermission):  # для List требует /?teacher=<id>
+    def has_permission(self, request, view):
+        if bool(request.user and request.user.is_authenticated):
+            teacher = request.query_params.get('teacher')
+            if teacher == request.user.id:
+                return True
+
+
 class IsStudentOwner(permissions.BasePermission):  # Проверен тестами
     def has_object_permission(self, request, view, obj):
         if bool(request.user and request.user.is_authenticated):
@@ -75,11 +83,26 @@ class IsStudentOwner(permissions.BasePermission):  # Проверен теста
                 return True
 
 
-class IsStudentOwnerForList(permissions.BasePermission):  # для List требует /?course=<id>
+class IsStudentOwnerForList(permissions.BasePermission):  # для List требует /?student=<id>
     def has_permission(self, request, view):
         if bool(request.user and request.user.is_authenticated):
             student = request.query_params.get('student')
             if student == request.user.id:
+                return True
+
+
+class IsAdminOwner(permissions.BasePermission):  # Проверен тестами
+    def has_object_permission(self, request, view, obj):
+        if bool(request.user and request.user.is_authenticated):
+            if bool(obj.user == request.user):
+                return True
+
+
+class IsAdminOwnerForList(permissions.BasePermission):  # для List требует /?admin=<id>
+    def has_permission(self, request, view):
+        if bool(request.user and request.user.is_authenticated):
+            admin = request.query_params.get('admin')
+            if admin == request.user.id:
                 return True
 
 
@@ -93,6 +116,13 @@ class IsStudent(permissions.BasePermission):  # Проверен тестами
     def has_permission(self, request, view):
         if bool(request.user and request.user.is_authenticated):
             if bool(request.user.type == "4"):
+                return True
+
+
+class IsTeacher(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if bool(request.user and request.user.is_authenticated):
+            if bool(request.user.type == "3"):
                 return True
 
 # class IsStudentHaveCourse(permissions.BasePermission):
