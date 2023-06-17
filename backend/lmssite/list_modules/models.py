@@ -1,4 +1,11 @@
+import datetime
+
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+from file_tasks.models import FileTasksAnswer, FileTasks
+from test_tasks.models import TestGrade, TestTasks
 
 
 class ListModules(models.Model):
@@ -19,3 +26,30 @@ class ListModules(models.Model):
 
     def __str__(self):
         return self.title
+
+
+@receiver(post_save, sender=FileTasksAnswer)
+def update_date_complete(sender, instance, created, **kwargs):
+    if created:
+        deadline = ListModules.objects.filter(id=instance.list_modules.id)[0].deadline
+
+        current_date = datetime.datetime.now()
+
+        if not (current_date.timestamp() > deadline.timestamp()):
+            FileTasksAnswer.objects.filter(id=instance.id).update(
+                is_late=True
+            )
+
+
+@receiver(post_save, sender=TestGrade)
+def update_date_complete(sender, instance, created, **kwargs):
+    if created:
+        deadline = ListModules.objects.filter(id=instance.list_modules.id)[0].deadline
+
+        current_date = datetime.datetime.now()
+
+        if not (current_date.timestamp() > deadline.timestamp()):
+            TestGrade.objects.filter(id=instance.id).update(
+                is_late=True
+            )
+

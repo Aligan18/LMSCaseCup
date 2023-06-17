@@ -16,8 +16,6 @@ class TestTasks(models.Model):
     description = models.TextField(blank=True)
     course = models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
     questions = models.ManyToManyField("TestQuestionAnswer", blank=True)
-    deadline = models.DateTimeField(null=True)
-
 
     def __str__(self):
         return self.title
@@ -52,17 +50,3 @@ class TestGrade(models.Model):
 
     def __str__(self):
         return self.title
-
-
-@receiver(post_save, sender=TestGrade)
-def update_date_complete(sender, instance, created, **kwargs):
-    if created:
-        deadline = TestTasks.objects.filter(id=instance.test_task.id)[0].deadline
-
-        current_date = datetime.datetime.now()
-
-        if not (current_date.timestamp() > deadline.timestamp()):
-            TestGrade.objects.filter(id=instance.id).update(
-                is_late=True
-            )
-
