@@ -1,15 +1,18 @@
 from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser, IsAuthenticated, AllowAny
 
 from custom_user.permissions import IsStudent, IsStudentOwnerForList, IsStudentOwner, IsTeacher, IsTeacherOwnerForList, \
     IsTeacherOwner, IsSuperAdmin, IsAdminOwner, IsAdminOwnerForList
+from mysite.pagination import ListPagination
 from support_chat.models import StudentTickets, TeacherTickets, AdminTickets, UnauthorizedTickets
 from support_chat.serializers import CreateStudentTicketsSerializers, AboutStudentTicketsSerializers, \
     StudentTicketsSerializers, TeacherTicketsSerializers, CreateTeacherTicketsSerializers, \
     CreateAdminTicketsSerializers, AboutAdminTicketsSerializers, AdminTicketsSerializers, \
     AboutTeacherTicketsSerializers, CreateUnauthorizedTicketsSerializers, AboutUnauthorizedTicketsSerializers, \
     UnauthorizedTicketsSerializers
+from support_chat.service import FilterForStudents, FilterForTeachers, FilterForAdmins
 
 
 # Student
@@ -28,13 +31,17 @@ class StudentTicketsViewList(generics.ListAPIView):  # всех студенто
     queryset = StudentTickets.objects.all()
     serializer_class = AboutStudentTicketsSerializers
     permission_classes = [IsAdminUser]
+    pagination_class = ListPagination
 
 
 # Admin  , Student автор
 class OnlyOneStudentTicketsViewList(generics.ListAPIView):  # все тикеты одного студента
     queryset = StudentTickets.objects.all()
     serializer_class = AboutStudentTicketsSerializers
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = FilterForStudents
     permission_classes = [IsAdminUser | IsStudentOwnerForList]
+    pagination_class = ListPagination
 
 
 # Admin  , Student автор
@@ -70,13 +77,17 @@ class TeacherTicketsViewList(generics.ListAPIView):  # всех учителей
     queryset = TeacherTickets.objects.all()
     serializer_class = AboutTeacherTicketsSerializers
     permission_classes = [IsAdminUser]
+    pagination_class = ListPagination
 
 
 # Admin , Teacher автор
 class OnlyOneTeacherTicketsViewList(generics.ListAPIView):  # все тикеты одного учителя
     queryset = TeacherTickets.objects.all()
     serializer_class = AboutTeacherTicketsSerializers
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = FilterForTeachers
     permission_classes = [IsAdminUser | IsTeacherOwnerForList]
+    pagination_class = ListPagination
 
 
 # Admin , Teacher автор
@@ -111,13 +122,17 @@ class AdminTicketsViewList(generics.ListAPIView):  # всех Админов
     queryset = AdminTickets.objects.all()
     serializer_class = AboutAdminTicketsSerializers
     permission_classes = [IsSuperAdmin]
+    pagination_class = ListPagination
 
 
 # Super Admin , Admin автор
 class OnlyOneAdminTicketsViewList(generics.ListAPIView):  # все тикеты одного админа
     queryset = AdminTickets.objects.all()
     serializer_class = AboutAdminTicketsSerializers
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = FilterForAdmins
     permission_classes = [IsSuperAdmin | IsAdminOwnerForList]
+    pagination_class = ListPagination
 
 
 # Super Admin , Admin автор
@@ -147,6 +162,7 @@ class UnauthorizedTicketsViewList(generics.ListAPIView):
     queryset = UnauthorizedTickets.objects.all()
     serializer_class = AboutUnauthorizedTicketsSerializers
     permission_classes = [IsAdminUser]
+    pagination_class = ListPagination
 
 
 # Admin

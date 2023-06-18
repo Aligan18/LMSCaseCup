@@ -7,6 +7,7 @@ from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsTe
 from lectures.models import Lectures
 
 from lectures.serializers import LecturesSerializers, CreateLecturesSerializers, AboutLecturesSerializers
+from mysite.pagination import ListPagination
 
 
 # Admin , Teacher с доступом к курсу
@@ -21,6 +22,7 @@ class LecturesViewList(generics.ListAPIView):
     queryset = Lectures.objects.all()
     serializer_class = AboutLecturesSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccessCreate]
+    pagination_class = ListPagination
 
 
 # Admin , Teacher с доступом к курсу, Student которые прооходят этот курс

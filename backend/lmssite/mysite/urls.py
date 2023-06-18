@@ -65,7 +65,7 @@ urlpatterns = [
     path('api/v1/course/id/<int:pk>', CourseViewRetrieve.as_view(), name="course-id"),
     path('api/v1/course/update/<int:pk>', CourseViewUpdate.as_view(), name="course-update"),
     path('api/v1/course/delete/<int:pk>', CourseViewDestroy.as_view(), name="course-delete"),
-    path('api/v1/course/students/list/', CourseStudentsListViewRetrieve.as_view()),
+    path('api/v1/course_students/list/', CourseStudentsListViewRetrieve.as_view()), #????????
 
     path('api/v1/file_tasks/create/', FileTasksViewCreate.as_view(), name="file_tasks-create"),
     path('api/v1/file_tasks/list/', FileTasksViewList.as_view(), name="file_tasks-list"),

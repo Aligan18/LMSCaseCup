@@ -58,18 +58,24 @@ class AboutUnauthorizedTicketsSerializers(serializers.ModelSerializer):
 #################################################################################################
 
 class CreateStudentTicketsSerializers(serializers.ModelSerializer):
+    student = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = StudentTickets
         fields = '__all__'
 
 
 class CreateTeacherTicketsSerializers(serializers.ModelSerializer):
+    teacher = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = TeacherTickets
         fields = '__all__'
 
 
 class CreateAdminTicketsSerializers(serializers.ModelSerializer):
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = AdminTickets
         fields = '__all__'

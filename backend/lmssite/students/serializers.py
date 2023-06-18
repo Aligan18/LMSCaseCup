@@ -5,6 +5,8 @@ from students.models import Students
 
 
 class CreateStudentsSerializers(serializers.ModelSerializer):
+    student = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = Students
         fields = '__all__'

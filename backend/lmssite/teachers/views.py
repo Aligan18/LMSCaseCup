@@ -5,6 +5,7 @@ from rest_framework import generics
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
 from custom_user.permissions import IsTeacherOwner
+from mysite.pagination import ListPagination
 
 from teachers.models import Teachers
 from teachers.serializers import CreateTeachersSerializers, TeachersSerializers, AboutTeachersSerializers
@@ -15,6 +16,7 @@ class TeachersViewList(generics.ListAPIView):
     queryset = Teachers.objects.all()
     serializer_class = AboutTeachersSerializers
     permission_classes = [IsAdminUser]
+    pagination_class = ListPagination
 
 
 # Authorized
@@ -29,6 +31,9 @@ class TeachersViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Teachers.objects.all()
     serializer_class = CreateTeachersSerializers
     permission_classes = [IsAdminUser | IsTeacherOwner]
+    def perform_create(self, serializer):
+        serializer.validated_data['teacher'] = self.request.user
+        serializer.save()
 
 
 # # Admin Teacher свой профиль
