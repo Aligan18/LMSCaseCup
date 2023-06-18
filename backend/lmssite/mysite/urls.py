@@ -95,9 +95,9 @@ urlpatterns = [
     path('api/v1/grades/delete/<int:pk>', GradesViewDestroy.as_view(), name="grades-delete"),
 
     path('api/v1/lectures/create/', LecturesViewCreate.as_view(), name="lectures-create"),
-    path('api/v1/lectures/list/', LecturesViewList.as_view()),  # нужно передавать /?course=<id> и  /?student=<id>
-    path('api/v1/lectures/id/<int:pk>', LecturesViewRetrieve.as_view()),
-    path('api/v1/lectures/rud/<int:pk>', LecturesViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/lectures/list/', LecturesViewList.as_view(), name="lectures-list"),  # нужно передавать /?course=<id>
+    path('api/v1/lectures/id/<int:pk>', LecturesViewRetrieve.as_view(), name="lectures-id"),
+    path('api/v1/lectures/rud/<int:pk>', LecturesViewRetrieveUpdateDestroy.as_view(), name="lectures-rud"),
 
     path('api/v1/list_modules/create/', ListModulesViewCreate.as_view(), name="listmodules-create"),
     # нужно передавать /?course=<id> /?student=<id>
