@@ -6,6 +6,7 @@ from custom_user.permissions import IsStudent
 from certificates.models import Certificates
 
 from certificates.serializers import CertificatesSerializers, CreateCertificatesSerializers, AboutCertificatesSerializers
+from mysite.pagination import ListPagination
 
 
 # Student and Admin
@@ -23,6 +24,7 @@ class CertificatesViewList(generics.ListAPIView):
     queryset = Certificates.objects.all()
     serializer_class = AboutCertificatesSerializers
     permission_classes = [AllowAny]
+    pagination_class = ListPagination
 
 
 # All

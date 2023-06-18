@@ -10,6 +10,7 @@ from course.serializers import CreateCourseSerializers, CategorySerializers, Cou
 from django_filters.rest_framework import DjangoFilterBackend
 
 from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsTeacherHasAccessCreate
+from mysite.pagination import ListPagination
 from .about_serializers import AboutCourseSerializers
 from .service import Filter
 
@@ -29,6 +30,7 @@ class CourseViewList(generics.ListAPIView):  # все  курсы
     filterset_class = Filter
     ordering_fields = ["rating"]
     permission_classes = [AllowAny]
+    pagination_class = ListPagination
 
 
 # All

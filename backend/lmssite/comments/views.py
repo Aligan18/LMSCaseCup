@@ -8,6 +8,7 @@ from comments.models import Comments
 from comments.serializers import CreateCommentsSerializers, CommentsSerializers, AboutCommentsSerializers
 from comments.service import Filter
 from custom_user.permissions import IsStudent, IsStudentOwner
+from mysite.pagination import ListPagination
 
 
 # Student , Admin
@@ -29,6 +30,7 @@ class CommentsViewList(generics.ListAPIView): # Фильтрация по кур
     filterset_class = Filter
     ordering_fields = ["rating"]
     permission_classes = [AllowAny]
+    pagination_class = ListPagination
 
 
 # Student автор коменнтария , Admin

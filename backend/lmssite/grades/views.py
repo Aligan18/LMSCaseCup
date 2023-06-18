@@ -11,6 +11,7 @@ from custom_user.permissions import IsStudent, IsTeacherHasAccessCreate, IsTeach
 from grades.models import Grades
 from grades.serializers import GradesSerializers, CreateGradesSerializers, AboutGradesSerializers, ChangeGradesForTask
 from grades.service import Filter, FilterOnlyCourse
+from mysite.pagination import ListPagination
 
 
 # Student and Admin
@@ -32,6 +33,7 @@ class GradesOneStudentViewList(generics.ListAPIView): # grades с фильтра
     filter_backends = (DjangoFilterBackend,)
     filterset_class = Filter
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentOwnerForList]
+    pagination_class = ListPagination
 
 
 # нужно передавать /?course=<id>
@@ -42,6 +44,7 @@ class GradesViewList(generics.ListAPIView): # grades с фильтрацией �
     filter_backends = (DjangoFilterBackend,)
     filterset_class = FilterOnlyCourse
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
+    pagination_class = ListPagination
 
 
 # Admin , Teacher имеющий доступ , Student свои оценки

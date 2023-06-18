@@ -4,6 +4,7 @@ from rest_framework.permissions import IsAdminUser, AllowAny
 
 from categories.models import Category
 from categories.serializers import CategorySerializers, CreateCategorySerializers, AboutCategorySerializers
+from mysite.pagination import ListPagination
 
 
 # Admin
@@ -18,6 +19,7 @@ class CategoriesViewList(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = AboutCategorySerializers
     permission_classes = [AllowAny]
+    pagination_class = ListPagination
 
 
 # All
