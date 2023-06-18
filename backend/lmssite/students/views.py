@@ -5,6 +5,7 @@ from rest_framework import generics
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
 from custom_user.permissions import IsTeacherHasAccess, IsStudentOwner, IsTeacherHasAccessCreate
+from mysite.pagination import ListPagination
 
 from students.models import Students
 from students.serializers import StudentsSerializers, CreateStudentsSerializers, AboutStudentsSerializers
@@ -15,6 +16,7 @@ class StudentsViewAll(generics.ListAPIView):  # Вообще все студен
     queryset = Students.objects.all()
     serializer_class = AboutStudentsSerializers
     permission_classes = [IsAdminUser]
+    pagination_class = ListPagination
 
 
 #############################################################################################
@@ -23,6 +25,7 @@ class StudentsCourseViewAll(generics.ListAPIView):  # Студенты опре�
     queryset = Students.objects.all()
     serializer_class = AboutStudentsSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
+    pagination_class = ListPagination
 
 
 #############################################################################################

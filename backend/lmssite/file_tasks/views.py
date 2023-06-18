@@ -9,6 +9,7 @@ from file_tasks.serializers import CreateFileTasksSerializers, CreateFileTasksGr
     CreateFileTasksAnswerSerializers, FileTasksSerializers, FileTasksAnswerSerializers, FileTasksGradeSerializers, \
     AboutFileTasksSerializers, AboutFileTasksGradeSerializers, AboutFileTasksAnswerSerializers
 from file_tasks.service import Filter
+from mysite.pagination import ListPagination
 
 
 ######################################################################################################
@@ -26,6 +27,7 @@ class FileTasksViewList(generics.ListAPIView):
     queryset = FileTasks.objects.all()
     serializer_class = AboutFileTasksSerializers
     permission_classes = [IsAdminUser]
+    pagination_class = ListPagination
 
 
 # Admin , Teacher с доступом к курсу  , Student ученик курса
@@ -60,6 +62,7 @@ class FileTasksGradeViewList(generics.ListAPIView):  # оценки всех у�
     queryset = FileTasksGrade.objects.all()
     serializer_class = AboutFileTasksGradeSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
+    pagination_class = ListPagination
 
 
 # Admin , Teacher с доступом к курсу , student выполневший задания
@@ -96,6 +99,7 @@ class FileTasksAnswerViewList(generics.ListAPIView):  # фильтрация п�
     filter_backends = (DjangoFilterBackend,)
     filterset_class = Filter
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
+    pagination_class = ListPagination
 
 
 # Admin , Teacher с доступом к курсу  ,Student автор ответа

@@ -12,6 +12,7 @@ from list_modules.models import ListModules
 from list_modules.serializers import ListModulesSerializers, CreateListModulesSerializers, AboutListModulesSerializers
 
 from list_modules.service import Filter
+from mysite.pagination import ListPagination
 
 
 # Admin , Teacher с доступом к курсу
@@ -29,6 +30,7 @@ class ListModulesViewList(generics.ListAPIView):  # все модули курс
     filterset_class = Filter
     ordering_fields = ["number"]
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccessCreate]
+    pagination_class = ListPagination
 
 
 # Admin , Teacher с доступом к курсу, Student которые прооходят этот курс
@@ -45,6 +47,7 @@ class OnlyTasksListModulesViewList(generics.ListAPIView): #только зада
     filterset_class = Filter
     ordering_fields = ["number"]
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccessCreate]
+    pagination_class = ListPagination
 
 
 # Admin , Teacher с доступом к курсу, Student которые прооходят этот курс

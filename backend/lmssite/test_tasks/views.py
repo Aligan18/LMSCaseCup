@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAdminUser
 
 from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsTeacherHasAccessCreate, IsStudent, \
     IsStudentHasAccessCreate
+from mysite.pagination import ListPagination
 
 from test_tasks.models import TestTasks, TestQuestionAnswer, TestAnswerOptions, TestGrade
 from test_tasks.serializers import TestTasksSerializers, CreateTestTasksSerializers, TestQuestionAnswerSerializers, \
@@ -26,6 +27,7 @@ class TestTasksViewList(generics.ListAPIView):
     queryset = TestTasks.objects.all()
     serializer_class = AboutTestTasksSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccessCreate]
+    pagination_class = ListPagination
 
 
 # Admin ,  Teacher с доступом к курсу , Student проходит курс
@@ -56,6 +58,7 @@ class TestQuestionAnswerViewList(generics.ListAPIView):
     queryset = TestQuestionAnswer.objects.all()
     serializer_class = AboutTestQuestionAnswerSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate ]
+    pagination_class = ListPagination
 
 
 # Admin ,  Teacher с доступом к курсу , Student проходит курс
@@ -90,6 +93,7 @@ class TestAnswerOptionsViewList(generics.ListAPIView):
     queryset = TestAnswerOptions.objects.all()
     serializer_class = AboutTestAnswerOptionsSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccessCreate]
+    pagination_class = ListPagination
 
 
 # Admin ,  Teacher с доступом к курсу , Student проходит курс
@@ -128,6 +132,7 @@ class TestGradeViewList(generics.ListAPIView): # Оценки всех студ�
     queryset = TestGrade.objects.all()
     serializer_class = AboutTestGradeSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess]
+    pagination_class = ListPagination
 
 
 # Admin ,  TTeacher с доступом к курсу , Student прошедший  тест
