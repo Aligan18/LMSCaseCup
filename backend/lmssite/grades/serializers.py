@@ -24,4 +24,4 @@ class AboutGradesSerializers(serializers.ModelSerializer):
 class ChangeGradesForTask(serializers.ModelSerializer):
     class Meta:
         model = Grades
-        fields = 'grade'
+        fields = ['grade']

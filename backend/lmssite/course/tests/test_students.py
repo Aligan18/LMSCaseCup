@@ -2,60 +2,28 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from categories.models import Category
 from course.models import Course
-from custom_user.models import User
-from lectures.models import Lectures
-from students.models import Students
-from teachers.models import Teachers
+
+from mysite.global_test.create_user import create_admin, create_student, create_teacher, course_props
 
 
 class CoursesTestsStudent(APITestCase):
     def setUp(self):
+        self.admin, self.admin_profile = create_admin("admin")
+        self.student_user, self.student_profile = create_student("student")
+        self.teacher_user, self.teacher_profile = create_teacher("teacher")
 
-        Category.objects.create(title="Course")
+        teachers_id = [1]
+        students_id = [1]
 
-        admin = User.objects.create_user(
-            login='admin',
-            email='admin@gmail.com',
-            password='qwer1234',
-            is_staff=1,
-            type='2'
-        )
-        user_teacher = User.objects.create_user(
-            login='teacher',
-            email='teacher@gmail.com',
-            password='qwer1234',
-            is_staff=0,
-            type='3'
-        )
-        self.user_student = User.objects.create_user(
-            login='student',
-            email='student@gmail.com',
-            password='qwer1234',
-            is_staff=0,
-            type='4'
-        )
-        teacher = Teachers.objects.create(
-            teacher=user_teacher,
-            name='teacher',
-        )
-        student = Students.objects.create(
-            student=self.user_student,
-            name='student',
-        )
-        self.props = {'title': 'newTitle',
-                      'content': 'newContent',
-                      'teacher': [1],
-                      'student': [1],
-                      # 'category': '1',
-                      }
+        self.course_props = course_props("newTitle", teachers_id, students_id)
+        self.course_props2 = course_props("second", teachers_id, students_id)
 
-        self.client.force_authenticate(user=admin)
+        self.client.force_authenticate(user=self.admin)
 
         # POST create course
         url = reverse('course-create')
-        response = self.client.post(url, self.props, format='json')
+        response = self.client.post(url, self.course_props, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Course.objects.count(), 1)
         self.assertEqual(Course.objects.get().title, 'newTitle')
@@ -63,15 +31,15 @@ class CoursesTestsStudent(APITestCase):
         self.client.logout()
 
         course = Course.objects.filter(id=1)
-        teacher.courses.set(course)
-        student.courses.set(course)
+        self.teacher_profile.courses.set(course)
+        self.student_profile.courses.set(course)
 
     def test_course(self):
-        self.client.force_authenticate(user=self.user_student)
+        self.client.force_authenticate(user= self.student_user)
 
         # POST
         url = reverse('course-create')
-        response = self.client.post(url, self.props, format='json')
+        response = self.client.post(url, self.course_props , format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         self.assertEqual(Course.objects.count(), 1)
         # self.assertEqual(Lectures.objects.get().title, 'newTitle')

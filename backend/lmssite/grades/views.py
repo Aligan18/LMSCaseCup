@@ -44,7 +44,7 @@ class GradesViewList(generics.ListAPIView): # grades с фильтрацией �
 class GradesViewRetrieve(generics.RetrieveAPIView):
     queryset = Grades.objects.all()
     serializer_class = GradesSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentOwner]
 
 
 # Admin , Teacher имеющий доступ

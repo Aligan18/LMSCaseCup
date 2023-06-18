@@ -2,12 +2,9 @@ import datetime
 
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from django.utils.datetime_safe import date
+
 
 from custom_user.models import User
-from students.models import Students
 
 
 class TestTasks(models.Model):

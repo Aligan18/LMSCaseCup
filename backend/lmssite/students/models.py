@@ -13,15 +13,15 @@ class Students(models.Model):
     sex = models.CharField(choices=USER_SEX, max_length=1, null=True)
     age = models.IntegerField(validators=[MinValueValidator(10), MaxValueValidator(100)], null=True)
     country = models.CharField(max_length=80, null=True)
-    student = models.OneToOneField(User, on_delete=models.CASCADE ,related_name='user_student')
+    student = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_student')
     courses = models.ManyToManyField("course.Course", through="CourseStudent")
     name = models.CharField(max_length=40, null=True)
     surname = models.CharField(max_length=40, null=True)
     patronymic = models.CharField(max_length=40, null=True)
     about = models.TextField(blank=True, null=True)
-    resume = models.FileField(upload_to="files/" ,null=True)
-    university = models.CharField(max_length=80, null=True )
-    favorite = models.ManyToManyField(Course , related_name='student_favorite')
+    resume = models.FileField(upload_to="files/", null=True)
+    university = models.CharField(max_length=80, null=True)
+    favorite = models.ManyToManyField(Course, related_name='student_favorite')
 
     def __str__(self):
         return self.name

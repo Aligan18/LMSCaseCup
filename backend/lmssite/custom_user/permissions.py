@@ -1,10 +1,7 @@
 from rest_framework import permissions
-from rest_framework.request import Request
 
 from course.models import Course
 from students.models import Students
-
-Request
 
 
 class IsStudentHasAccess(permissions.BasePermission):  # Проверен тестами
@@ -21,12 +18,24 @@ class IsStudentHasAccess(permissions.BasePermission):  # Проверен тес
 class IsStudentHasAccessCreate(permissions.BasePermission):
     def has_permission(self, request, view):
         if bool(request.user and request.user.is_authenticated):
-            if bool(request.method in permissions.SAFE_METHODS):
-                if bool(request.user.type == "4"):
-                    student_id = request.query_params.get('student')
+            if bool(request.user.type == "4"):
+                student_id = request.user.id
+                if bool(request.method in permissions.SAFE_METHODS):
                     student = Students.objects.filter(student=student_id)
                     course_id = request.query_params.get('course')
-                    student_has_access = student.courses.all().filter(id=course_id).exists()
+                    if course_id is None:
+                        print("Требуется /?course=<id>")
+                        return False
+                    student_has_access = student[0].courses.all().filter(id=course_id).exists()
+                    if student_has_access:
+                        return True
+                else:
+                    student = Students.objects.filter(student=student_id)
+                    course_id = request.data.get('course')
+                    if course_id is None:
+                        print("Требуется /?course=<id>")
+                        return False
+                    student_has_access = student[0].courses.all().filter(id=course_id).exists()
                     if student_has_access:
                         return True
 
@@ -36,10 +45,13 @@ class IsTeacherHasAccessCreate(permissions.BasePermission):  # Проверен 
         if bool(request.user and request.user.is_authenticated):
             if bool(request.user.type == "3"):
                 if bool(request.method in permissions.SAFE_METHODS):
-                    data = request.query_params
+                    course_id = request.query_params.get('course')
+                    if course_id is None:
+                        print("Требуется /?course=<id>")
+                        return False
                 else:
-                    data = request.data
-                course = Course.objects.filter(id=data.get('course'))
+                    course_id = request.data.get('course')
+                course = Course.objects.filter(id=course_id)
                 teachers_has_access = course[0].teacher.all().filter(teacher=request.user).exists()
                 if teachers_has_access:
                     return True
@@ -72,7 +84,10 @@ class IsTeacherOwnerForList(permissions.BasePermission):  # для List треб
     def has_permission(self, request, view):
         if bool(request.user and request.user.is_authenticated):
             teacher = request.query_params.get('teacher')
-            if teacher == request.user.id:
+            if teacher is None:
+                print("Требуется /?teacher=<id>")
+                return False
+            if teacher == str(request.user.id):
                 return True
 
 
@@ -87,7 +102,10 @@ class IsStudentOwnerForList(permissions.BasePermission):  # для List треб
     def has_permission(self, request, view):
         if bool(request.user and request.user.is_authenticated):
             student = request.query_params.get('student')
-            if student == request.user.id:
+            if student is None:
+                print("Требуется /?student=<id>")
+                return False
+            if student == str(request.user.id):
                 return True
 
 
@@ -102,7 +120,10 @@ class IsAdminOwnerForList(permissions.BasePermission):  # для List требу
     def has_permission(self, request, view):
         if bool(request.user and request.user.is_authenticated):
             admin = request.query_params.get('admin')
-            if admin == request.user.id:
+            if admin is None:
+                print("Требуется /?admin=<id>")
+                return False
+            if admin == str(request.user.id):
                 return True
 
 

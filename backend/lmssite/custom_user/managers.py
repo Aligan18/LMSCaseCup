@@ -36,7 +36,6 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', False)
         if extra_fields.get('type') == "2":
             extra_fields.setdefault('is_staff', True)
-            print("IS ADMIN")
             return self._create_admin(email, password, **extra_fields)
         else:
             return self._create_user(email, password, **extra_fields)
