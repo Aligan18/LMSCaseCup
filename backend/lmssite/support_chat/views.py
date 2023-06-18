@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser, IsAuthenticated, AllowAny
 
@@ -10,6 +11,7 @@ from support_chat.serializers import CreateStudentTicketsSerializers, AboutStude
     CreateAdminTicketsSerializers, AboutAdminTicketsSerializers, AdminTicketsSerializers, \
     AboutTeacherTicketsSerializers, CreateUnauthorizedTicketsSerializers, AboutUnauthorizedTicketsSerializers, \
     UnauthorizedTicketsSerializers
+from support_chat.service import FilterForStudents, FilterForTeachers, FilterForAdmins
 
 
 # Student
@@ -34,6 +36,8 @@ class StudentTicketsViewList(generics.ListAPIView):  # всех студенто
 class OnlyOneStudentTicketsViewList(generics.ListAPIView):  # все тикеты одного студента
     queryset = StudentTickets.objects.all()
     serializer_class = AboutStudentTicketsSerializers
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = FilterForStudents
     permission_classes = [IsAdminUser | IsStudentOwnerForList]
 
 
@@ -76,6 +80,8 @@ class TeacherTicketsViewList(generics.ListAPIView):  # всех учителей
 class OnlyOneTeacherTicketsViewList(generics.ListAPIView):  # все тикеты одного учителя
     queryset = TeacherTickets.objects.all()
     serializer_class = AboutTeacherTicketsSerializers
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = FilterForTeachers
     permission_classes = [IsAdminUser | IsTeacherOwnerForList]
 
 
@@ -117,6 +123,8 @@ class AdminTicketsViewList(generics.ListAPIView):  # всех Админов
 class OnlyOneAdminTicketsViewList(generics.ListAPIView):  # все тикеты одного админа
     queryset = AdminTickets.objects.all()
     serializer_class = AboutAdminTicketsSerializers
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = FilterForAdmins
     permission_classes = [IsSuperAdmin | IsAdminOwnerForList]
 
 

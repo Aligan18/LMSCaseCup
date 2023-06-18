@@ -19,6 +19,10 @@ class AttendanceForLecturesViewCreate(generics.CreateAPIView):
     serializer_class = CreateGradesSerializers
     permission_classes = [IsAdminUser | IsStudentHasAccessCreate]
 
+    def perform_create(self, serializer):
+        serializer.validated_data['student'] = self.request.user
+        serializer.save()
+
 
 # нужно передавать /?course=<id>
 # Admin , Teacher имеющий доступ , Student свои оценки

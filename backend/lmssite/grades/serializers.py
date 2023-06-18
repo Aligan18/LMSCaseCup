@@ -4,6 +4,8 @@ from grades.models import Grades
 
 
 class CreateGradesSerializers(serializers.ModelSerializer):
+    student = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = Grades
         fields = '__all__'
