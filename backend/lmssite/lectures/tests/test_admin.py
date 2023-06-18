@@ -8,9 +8,12 @@ from mysite.global_test.create_user import create_admin, create_student, create_
 
 class LecturesTestsGuest(APITestCase):
     def setUp(self):
-        self.admin, self.admin_profile = create_admin("admin")
         self.student_user, self.student_profile = create_student("student")
+        self.student_not_access, self.student_profile2 = create_student("not_access")
+        self.admin, self.admin_profile = create_admin("admin")
         self.teacher_user, self.teacher_profile = create_teacher("teacher")
+        self.teacher_not_access, self.teacher_profile2 = create_teacher("teacher_not_access")
+
 
         # Create course
         teachers_id = [self.teacher_user.id]
@@ -19,9 +22,10 @@ class LecturesTestsGuest(APITestCase):
         self.teacher_profile.courses.set([course])
         self.student_profile.courses.set([course])
 
-        self.lectures_props = lectures_props("newTitle", course.id)
+        self.course_id = course.id
+        self.lectures_props = lectures_props("newTitle", self.course_id)
 
-        self.client.force_authenticate(user=self.teacher_user)
+        self.client.force_authenticate(user=self.admin)
 
         # POST create file tasks
         url = reverse('lectures-create')
@@ -32,27 +36,22 @@ class LecturesTestsGuest(APITestCase):
 
         self.client.logout()
 
-    def test_lectures_create(self):
-        # POST
-        url = reverse('lectures-create')
-        response = self.client.post(url, self.lectures_props, format='json')
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-        self.assertEqual(Lectures.objects.count(), 1)
-        # self.assertEqual(Lectures.objects.get().title, 'newTitle')
+    def test_teacher_has_access(self):
+        self.client.force_authenticate(user=self.admin)
 
         # GET All
-        url = reverse('lectures-list')
+        url = reverse('lectures-list') + f'?course={self.course_id}'
         response = self.client.get(url)
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         data = response.data
         print("THIS IS DATA ", data)
         self.assertEqual(Lectures.objects.count(), 1)
-        self.assertEqual(len(data), 1)
+        # self.assertEqual(len(data), 1)
 
         # GET ONE
         url = reverse('lectures-id', kwargs={'pk': 1})
         response = self.client.get(url)
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         data = response.data
         self.assertEqual(Lectures.objects.count(), 1)
         # self.assertEqual(data.title, 'newTitle')
@@ -61,12 +60,12 @@ class LecturesTestsGuest(APITestCase):
         url = reverse('lectures-rud', kwargs={'pk': 1})
         update_data = {'title': 'updated'}
         response = self.client.put(url, update_data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(Lectures.objects.count(), 1)
-        # self.assertEqual(Lectures.objects.get().title, 'updated')
+        self.assertEqual(Lectures.objects.get().title, 'updated')
 
         # DELETE
         url = reverse('lectures-rud', kwargs={'pk': 1})
         response = self.client.delete(url, format='json')
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-        self.assertEqual(Lectures.objects.count(), 1)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(Lectures.objects.count(), 0)

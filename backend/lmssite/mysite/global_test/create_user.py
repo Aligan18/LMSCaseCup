@@ -133,3 +133,11 @@ def file_tasks_grade_props(comment='newTitle', course_id=1, students_id=1):
         'comment': comment
     }
     return props
+
+
+def lectures_props(title='newTitle', course_id=1,):
+    props = {
+        'course': course_id,
+        'title': title
+    }
+    return props
