@@ -13,6 +13,9 @@ class CertificatesViewCreate(generics.CreateAPIView):
     queryset = Certificates.objects.all()
     serializer_class = CreateCertificatesSerializers
     permission_classes = [IsAdminUser | IsStudent]
+    def perform_create(self, serializer):
+        serializer.validated_data['student'] = self.request.user
+        serializer.save()
 
 
 # All

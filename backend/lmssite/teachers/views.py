@@ -29,6 +29,9 @@ class TeachersViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Teachers.objects.all()
     serializer_class = CreateTeachersSerializers
     permission_classes = [IsAdminUser | IsTeacherOwner]
+    def perform_create(self, serializer):
+        serializer.validated_data['teacher'] = self.request.user
+        serializer.save()
 
 
 # # Admin Teacher свой профиль

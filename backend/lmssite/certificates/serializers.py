@@ -6,6 +6,8 @@ from certificates.models import Certificates
 
 
 class CreateCertificatesSerializers(serializers.ModelSerializer):
+    student = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = Certificates
         fields = '__all__'

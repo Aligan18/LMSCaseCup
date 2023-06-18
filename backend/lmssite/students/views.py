@@ -40,4 +40,6 @@ class StudentsViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CreateStudentsSerializers
     permission_classes = [IsAdminUser | IsStudentOwner]
 
-
+    def perform_create(self, serializer):
+        serializer.validated_data['student'] = self.request.user
+        serializer.save()

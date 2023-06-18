@@ -5,6 +5,8 @@ from rest_framework import serializers
 
 
 class CreateTeachersSerializers(serializers.ModelSerializer):
+    teacher = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = Teachers
         fields = '__all__'
