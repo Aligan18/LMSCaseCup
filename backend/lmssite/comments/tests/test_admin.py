@@ -2,108 +2,72 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from categories.models import Category
+from certificates.models import Certificates
+from comments.models import Comments
 from course.models import Course
-from custom_user.models import User
-from list_modules.models import ListModules
-from students.models import Students
-from teachers.models import Teachers
+from mysite.global_test.create_user import create_admin, create_student, create_teacher, course_props, create_course, \
+    certificates_props, comment_props
 
 
-class ListModuleTestsAdmin(APITestCase):
+class CoursesTestsGuest(APITestCase):
     def setUp(self):
-        self.admin = User.objects.create_user(
-            login='admin',
-            email='admin@gmail.com',
-            password='qwer1234',
-            is_staff=1,
-            type='2'
-        )
+        self.admin, self.admin_profile = create_admin("admin")
+        self.student_owner, self.student_profile = create_student("owner")
+        self.student_user, self.student_profile = create_student("student")
+        self.teacher_user, self.teacher_profile = create_teacher("teacher")
 
-        self.user_student = User.objects.create_user(
-            login='student',
-            email='student@gmail.com',
-            password='qwer1234',
-            is_staff=0,
-            type='4'
-        )
-        student = Students.objects.create(
-            student=self.user_student,
-            name='student',
-        )
+        teachers_id = [self.teacher_user.id]
+        students_id = [self.student_owner.id]
+        course = create_course('newTitle', teachers_id, students_id)
+        self.teacher_profile.courses.set([course])
+        self.student_profile.courses.set([course])
 
-        self.user_teacher1 = User.objects.create_user(
-            login='teacher1',
-            email='teacher1@gmail.com',
-            password='qwer1234',
-            is_staff=0,
-            type='3'
-        )
-        teacher1 = Teachers.objects.create(
-            teacher=self.user_teacher1,
-            name='teacher1',
-        )
+        course_id = 1
+        students_id = 1
+        self.comment_props = comment_props("newTitle", course_id, students_id)
 
-        self.props = {'title': 'newTitle',
-                      'course': 1,
-                      }
-        course = Course.objects.create(title='newTitle',
-                                       content='newContent',
-                                       # 'category': '1',
-                                       )
-        self.client.force_authenticate(user=self.admin)
-
-        # POST create course
-        url = reverse('listmodules-create')
-        response = self.client.post(url, self.props, format='json')
+        self.client.force_authenticate(user=self.student_owner)
+        # POST
+        url = reverse('comments-create')
+        response = self.client.post(url, self.comment_props, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Course.objects.count(), 1)
-        self.assertEqual(Course.objects.get().title, 'newTitle')
+        self.assertEqual(Comments.objects.count(), 1)
+        self.assertEqual(Comments.objects.get().text, 'newTitle')
 
         self.client.logout()
 
-        course.teacher.set([teacher1])
-        course.student.set([student])
-        teacher1.courses.set([course])
-        student.courses.set([course])
+    def test_for_owner_student(self):
 
-    def test_course(self):
-        self.client.force_authenticate(user=self.admin),
-        # POST
-        url = reverse('listmodules-create')
-        response = self.client.post(url, self.props, format='json')
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(ListModules.objects.count(), 2)
-        self.assertEqual(ListModules.objects.get(id=1).title, 'newTitle')
+        self.client.force_authenticate(user=self.admin)
 
-        # # GET All
-        # url = reverse('listmodules-list')
-        # response = self.client.get(url)
-        # self.assertEqual(response.status_code, status.HTTP_200_OK)
-        # data = response.data
-        # print("THIS IS DATA ", data)
-        # self.assertEqual(ListModules.objects.count(), 2)
-        # self.assertEqual(len(data), 2)
+        # GET All
+        url = reverse('comments-list')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        data = response.data
+        print("THIS IS DATA ", data)
+        self.assertEqual(Comments.objects.count(), 1)
+        self.assertEqual(len(data), 1)
 
         # GET ONE
-        url = reverse('listmodules-id', kwargs={'pk': 1})
+        url = reverse('comments-rud', kwargs={'pk': 1})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         data = response.data
         print("THIS IS DATA2 ", data)
-        self.assertEqual(ListModules.objects.count(), 2)
-        # self.assertEqual(len(data), 0)
+        self.assertEqual(Comments.objects.count(), 1)
+        self.assertEqual(data.get("text", ""), "newTitle")
 
         # UPDATE
-        url = reverse('listmodules-rud', kwargs={'pk': 1})
+        url = reverse('comments-rud', kwargs={'pk': 1})
         update_data = {'title': 'updated'}
         response = self.client.put(url, update_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(ListModules.objects.count(), 2)
-        self.assertEqual(ListModules.objects.get(id=1).title, 'updated')
+        self.assertEqual(Comments.objects.count(), 1)
+        self.assertEqual(Comments.objects.get().text, 'newTitle')
 
         # DELETE
-        url = reverse('listmodules-rud', kwargs={'pk': 1})
+        url = reverse('comments-rud', kwargs={'pk': 1})
         response = self.client.delete(url, format='json')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertEqual(ListModules.objects.count(), 1)
+        self.assertEqual(Comments.objects.count(), 0)

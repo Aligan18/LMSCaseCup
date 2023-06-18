@@ -3,7 +3,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
 
-from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsStudentOwner, IsTeacherHasAccessCreate
+from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsStudentOwner, IsTeacherHasAccessCreate, \
+    IsStudentHasAccessCreate
 from file_tasks.models import FileTasks, FileTasksAnswer, FileTasksGrade
 from file_tasks.serializers import CreateFileTasksSerializers, CreateFileTasksGradeSerializers, \
     CreateFileTasksAnswerSerializers, FileTasksSerializers, FileTasksAnswerSerializers, FileTasksGradeSerializers, \
@@ -52,10 +53,6 @@ class FileTasksGradeViewCreate(generics.CreateAPIView):
     serializer_class = CreateFileTasksGradeSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
 
-    def perform_create(self, serializer):
-        serializer.validated_data['teacher'] = self.request.user
-        serializer.save()
-
 
 # Admin , Teacher с доступом к курсу
 class FileTasksGradeViewList(generics.ListAPIView):  # оценки всех учеников
@@ -85,11 +82,12 @@ class FileTasksGradeViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIV
 class FileTasksAnswerViewCreate(generics.CreateAPIView):
     queryset = FileTasksAnswer.objects.all()
     serializer_class = CreateFileTasksAnswerSerializers
-    permission_classes = [IsStudentHasAccess]
+    permission_classes = [IsStudentHasAccessCreate]
 
     def perform_create(self, serializer):
-        serializer.validated_data['student'] = self.request.user
-        serializer.save()
+        if bool(self.request.user and self.request.user.is_authenticated):
+            serializer.validated_data['student'] = self.request.user
+            serializer.save()
 
 
 # Admin , Teacher с доступом к курсу

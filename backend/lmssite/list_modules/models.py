@@ -15,14 +15,14 @@ class ListModules(models.Model):
         ("3", "file task")
     ]
     title = models.CharField(max_length=150, null=True)
-    lecture_id = models.OneToOneField("lectures.Lectures", on_delete=models.CASCADE, null=True)
-    file_task_id = models.OneToOneField("file_tasks.FileTasks", on_delete=models.CASCADE, null=True)
-    test_task_id = models.OneToOneField("test_tasks.TestTasks", on_delete=models.CASCADE, null=True)
+    lecture_id = models.OneToOneField("lectures.Lectures", on_delete=models.CASCADE, null=True, blank=True)
+    file_task_id = models.OneToOneField("file_tasks.FileTasks", on_delete=models.CASCADE, null=True, blank=True)
+    test_task_id = models.OneToOneField("test_tasks.TestTasks", on_delete=models.CASCADE, null=True, blank=True)
     module_type = models.CharField(choices=MODULE_TYPES, default="1", max_length=1)
-    number = models.IntegerField(default=1)
-    status = models.BooleanField(default=True)
+    number = models.IntegerField(default=1, blank=True)
+    status = models.BooleanField(default=True, blank=True)
     course = models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
-    deadline = models.DateTimeField(null=True)
+    deadline = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return self.title

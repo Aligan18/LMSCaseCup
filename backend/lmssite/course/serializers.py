@@ -26,4 +26,4 @@ class OnlyStudentsCourseSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = 'student'
+        fields = ['student']

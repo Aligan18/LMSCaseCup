@@ -4,6 +4,8 @@ from django.db import models
 
 from custom_user.models import User
 
+
+
 class TestTasks(models.Model):
     deadline_minute = models.IntegerField(null=True)
     title = models.CharField(max_length=150)

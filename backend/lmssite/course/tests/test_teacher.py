@@ -2,74 +2,29 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from categories.models import Category
 from course.models import Course
-from custom_user.models import User
-from lectures.models import Lectures
-from students.models import Students
-from teachers.models import Teachers
+
+from mysite.global_test.create_user import create_admin, create_student, create_teacher, course_props
 
 
 class CoursesTestsTeacher(APITestCase):
     def setUp(self):
-        Category.objects.create(title="Course")
+        self.admin, self.admin_profile = create_admin("admin")
+        self.student_user, self.student_profile = create_student("student")
+        self.teacher_user, self.teacher_profile = create_teacher("teacher")
+        self.teacher_user2, self.teacher_profile2 = create_teacher("teacher2")
 
-        admin = User.objects.create_user(
-            login='admin',
-            email='admin@gmail.com',
-            password='qwer1234',
-            is_staff=1,
-            type='2'
-        )
+        teachers_id = [1, 2]
+        students_id = [1]
 
-        self.user_student = User.objects.create_user(
-            login='student',
-            email='student@gmail.com',
-            password='qwer1234',
-            is_staff=0,
-            type='4'
-        )
-        student = Students.objects.create(
-            student=self.user_student,
-            name='student',
-        )
+        self.course_props = course_props("newTitle", teachers_id, students_id)
+        self.course_props2 = course_props("second", teachers_id, students_id)
 
-        self.user_teacher1 = User.objects.create_user(
-            login='teacher1',
-            email='teacher1@gmail.com',
-            password='qwer1234',
-            is_staff=0,
-            type='3'
-        )
-        teacher1 = Teachers.objects.create(
-            teacher=self.user_teacher1,
-            name='teacher1',
-        )
-
-        self.user_teacher2 = User.objects.create_user(
-            login='teacher2',
-            email='teacher2@gmail.com',
-            password='qwer1234',
-            is_staff=0,
-            type='3'
-        )
-        teacher2 = Teachers.objects.create(
-            teacher=self.user_teacher2,
-            name='teacher2',
-        )
-
-        self.props = {'title': 'newTitle',
-                      'content': 'newContent',
-                      'teacher': [1, 2],
-                      'student': [1, 2],
-                      # 'category': '1',
-                      }
-
-        self.client.force_authenticate(user=admin)
+        self.client.force_authenticate(user=self.admin)
 
         # POST create course
         url = reverse('course-create')
-        response = self.client.post(url, self.props, format='json')
+        response = self.client.post(url, self.course_props, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Course.objects.count(), 1)
         self.assertEqual(Course.objects.get().title, 'newTitle')
@@ -77,16 +32,16 @@ class CoursesTestsTeacher(APITestCase):
         self.client.logout()
 
         course = Course.objects.filter(id=1)
-        teacher1.courses.set(course)
-        teacher2.courses.set(course)
-        student.courses.set(course)
+        self.teacher_profile.courses.set(course)
+        self.teacher_profile2.courses.set(course)
+        self.student_profile.courses.set(course)
 
     def test_course(self):
-        self.client.force_authenticate(user=self.user_teacher2)
+        self.client.force_authenticate(user=self.teacher_user2)
 
         # POST
         url = reverse('course-create')
-        response = self.client.post(url, self.props, format='json')
+        response = self.client.post(url, self.course_props, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         self.assertEqual(Course.objects.count(), 1)
         # self.assertEqual(Lectures.objects.get().title, 'newTitle')

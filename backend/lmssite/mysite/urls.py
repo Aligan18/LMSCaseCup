@@ -43,18 +43,18 @@ urlpatterns = [
     path('auth/', include('djoser.urls.jwt')),
     path('accounts/activate/<uid>/<token>', ActivateUser.as_view({'get': 'activation'}), name='activation'),
 
-    path('api/v1/admins/list/', AdminsViewList.as_view()),
-    path('api/v1/admins/rud/<int:pk>', AdminsRetrieveUpdateDestroyView.as_view()),
+    path('api/v1/admins/list/', AdminsViewList.as_view(), name='admins-list'),
+    path('api/v1/admins/rud/<int:pk>', AdminsRetrieveUpdateDestroyView.as_view(), name='admins-rud'),
 
-    path('api/v1/categories/create/', CategoriesViewCreate.as_view()),
-    path('api/v1/categories/list/', CategoriesViewList.as_view()),
-    path('api/v1/categories/id/<int:pk>', CategoriesViewRetrieve.as_view()),
-    path('api/v1/categories/rud/<int:pk>', CategoriesViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/categories/create/', CategoriesViewCreate.as_view(), name='categories-create'),
+    path('api/v1/categories/list/', CategoriesViewList.as_view(), name='categories-list'),
+    path('api/v1/categories/id/<int:pk>', CategoriesViewRetrieve.as_view(), name='categories-id'),
+    path('api/v1/categories/rud/<int:pk>', CategoriesViewRetrieveUpdateDestroy.as_view(), name='categories-rud'),
 
-    path('api/v1/certificates/create/', CertificatesViewCreate.as_view()),
-    path('api/v1/certificates/list/', CertificatesViewList.as_view()),
-    path('api/v1/certificates/id/<int:pk>', CertificatesView.as_view()),
-    path('api/v1/certificates/delete/<int:pk>', CertificatesViewDestroy.as_view()),
+    path('api/v1/certificates/create/', CertificatesViewCreate.as_view(), name='certificates-create'),
+    path('api/v1/certificates/list/', CertificatesViewList.as_view(), name='certificates-list'),
+    path('api/v1/certificates/id/<int:pk>', CertificatesView.as_view(), name='certificates-id'),
+    path('api/v1/certificates/delete/<int:pk>', CertificatesViewDestroy.as_view(), name='certificates-delete'),
 
     path('api/v1/comments/create/', CommentsViewCreate.as_view(), name="comments-create"),
     path('api/v1/comments/list/', CommentsViewList.as_view(), name="comments-list"),
@@ -67,28 +67,32 @@ urlpatterns = [
     path('api/v1/course/delete/<int:pk>', CourseViewDestroy.as_view(), name="course-delete"),
     path('api/v1/course_students/list/', CourseStudentsListViewRetrieve.as_view()), #????????
 
-    path('api/v1/file_tasks/create/', FileTasksViewCreate.as_view()),
-    path('api/v1/file_tasks/list/', FileTasksViewList.as_view()),
-    path('api/v1/file_tasks/id/<int:pk>', FileTasksViewRetrieve.as_view()),
-    path('api/v1/file_tasks/rud/<int:pk>', FileTasksViewRetrieveUpdateDestroy.as_view()),
-    path('api/v1/file_tasks_grade/create/', FileTasksGradeViewCreate.as_view()),
-    path('api/v1/file_tasks_grade/list/', FileTasksGradeViewList.as_view()),  # нужно передавать /?course=<id>
-    path('api/v1/file_tasks_grade/id/<int:pk>', FileTasksGradeViewRetrieve.as_view()),
-    path('api/v1/file_tasks_grade/rud/<int:pk>', FileTasksGradeViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/file_tasks/create/', FileTasksViewCreate.as_view(), name="file_tasks-create"),
+    path('api/v1/file_tasks/list/', FileTasksViewList.as_view(), name="file_tasks-list"),
+    path('api/v1/file_tasks/id/<int:pk>', FileTasksViewRetrieve.as_view(), name="file_tasks-id"),
+    path('api/v1/file_tasks/rud/<int:pk>', FileTasksViewRetrieveUpdateDestroy.as_view(), name="file_tasks-rud"),
 
-    path('api/v1/file_tasks_answer/create/', FileTasksAnswerViewCreate.as_view()),
-    path('api/v1/file_tasks_answer/list/', FileTasksAnswerViewList.as_view()),  # нужно передавать /?course=<id>
-    path('api/v1/file_tasks_answer/id/<int:pk>', FileTasksAnswerViewRetrieve.as_view()),
-    path('api/v1/file_tasks_answer/rud/<int:pk>', FileTasksAnswerViewRetrieveUpdateDestroy.as_view()),
+    path('api/v1/file_tasks_grade/create/', FileTasksGradeViewCreate.as_view(), name="file_tasks_grade-create"),
+    # нужно передавать /?course=<id>
+    path('api/v1/file_tasks_grade/list/', FileTasksGradeViewList.as_view(), name="file_tasks_grade-list"),
+    path('api/v1/file_tasks_grade/id/<int:pk>', FileTasksGradeViewRetrieve.as_view(), name="file_tasks_grade-id"),
+    path('api/v1/file_tasks_grade/rud/<int:pk>', FileTasksGradeViewRetrieveUpdateDestroy.as_view(), name="file_tasks_grade-rud"),
 
+
+    path('api/v1/file_tasks_answer/create/', FileTasksAnswerViewCreate.as_view(), name="file_tasks_answer-create"),
+    # нужно передавать /?course=<id>
+    path('api/v1/file_tasks_answer/list/', FileTasksAnswerViewList.as_view(), name="file_tasks_answer-list"),
+    path('api/v1/file_tasks_answer/id/<int:pk>', FileTasksAnswerViewRetrieve.as_view(), name="file_tasks_answer-id"),
+    path('api/v1/file_tasks_answer/rud/<int:pk>', FileTasksAnswerViewRetrieveUpdateDestroy.as_view(), name="file_tasks_answer-rud"),
+
+    # нужно передавать /?course=<id> /?student=<id>
     path('api/v1/attendance/create/', AttendanceForLecturesViewCreate.as_view()),
     # нужно передавать /?course=<id> /?student=<id>
-    path('api/v1/grades_student/list/', GradesOneStudentViewList.as_view()),
-    # нужно передавать /?course=<id> /?student=<id>
-    path('api/v1/grades/list/', GradesViewList.as_view()),  # нужно передавать /?course=<id>
-    path('api/v1/grades/id/<int:pk>', GradesViewRetrieve.as_view()),
-    path('api/v1/grades/update/<int:pk>', ChangeGradesForTaskViewUpdate.as_view()),
-    path('api/v1/grades/delete/<int:pk>', GradesViewDestroy.as_view()),
+    path('api/v1/grades_student/list/', GradesOneStudentViewList.as_view(), name="grades_student-list"),
+    path('api/v1/grades/list/', GradesViewList.as_view(), name="grades-list"),  # нужно передавать /?course=<id>
+    path('api/v1/grades/id/<int:pk>', GradesViewRetrieve.as_view(), name="grades-id"),
+    path('api/v1/grades/update/<int:pk>', ChangeGradesForTaskViewUpdate.as_view(), name="grades-update"),
+    path('api/v1/grades/delete/<int:pk>', GradesViewDestroy.as_view(), name="grades-delete"),
 
     path('api/v1/lectures/create/', LecturesViewCreate.as_view(), name="lectures-create"),
     path('api/v1/lectures/list/', LecturesViewList.as_view()),  # нужно передавать /?course=<id> и  /?student=<id>
@@ -96,10 +100,10 @@ urlpatterns = [
     path('api/v1/lectures/rud/<int:pk>', LecturesViewRetrieveUpdateDestroy.as_view()),
 
     path('api/v1/list_modules/create/', ListModulesViewCreate.as_view(), name="listmodules-create"),
+    # нужно передавать /?course=<id> /?student=<id>
     path('api/v1/list_modules/list/', ListModulesViewList.as_view(), name="listmodules-list"),
     # нужно передавать /?course=<id> /?student=<id>
     path('api/v1/list_modules_tasks/list/', OnlyTasksListModulesViewList.as_view()),
-    # нужно передавать /?course=<id> /?student=<id>
     path('api/v1/list_modules/id/<int:pk>', ListModulesViewRetrieve.as_view(), name="listmodules-id"),
     path('api/v1/list_modules/rud/<int:pk>', ListModulesViewRetrieveUpdateDestroy.as_view(), name="listmodules-rud"),
 
@@ -123,8 +127,8 @@ urlpatterns = [
     path('api/v1/test_question_answer/rud/<int:pk>', TestQuestionAnswerViewRetrieveUpdateDestroy.as_view()),
 
     path('api/v1/test_answer_options/create/', TestAnswerOptionsViewAllCreate.as_view()),
-    path('api/v1/test_answer_options/list/', TestAnswerOptionsViewList.as_view()),
     # нужно передавать /?course=<id> /?student=<id>
+    path('api/v1/test_answer_options/list/', TestAnswerOptionsViewList.as_view()),
     path('api/v1/test_answer_options/id/<int:pk>', TestAnswerOptionsViewRetrieve.as_view()),
     path('api/v1/test_answer_options/rud/<int:pk>', TestAnswerOptionsViewUpdateDestroy.as_view()),
 
