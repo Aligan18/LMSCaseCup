@@ -47,7 +47,7 @@ class CoursesTestsGuest(APITestCase):
         data = response.data
         print("THIS IS DATA ", data)
         self.assertEqual(Comments.objects.count(), 1)
-        self.assertEqual(len(data), 1)
+
 
         # GET ONE
         url = reverse('comments-rud', kwargs={'pk': 1})

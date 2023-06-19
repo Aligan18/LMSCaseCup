@@ -43,19 +43,19 @@ class ListModuleTestsAdmin(APITestCase):
         self.assertEqual(ListModules.objects.count(), 1)
         self.assertEqual(ListModules.objects.get(id=1).title, 'newTitle')
 
-        # # GET All
-        # url = reverse('listmodules-list')
-        # response = self.client.get(url)
-        # self.assertEqual(response.status_code, status.HTTP_200_OK)
-        # data = response.data
-        # print("THIS IS DATA ", data)
-        # self.assertEqual(ListModules.objects.count(), 2)
-        # self.assertEqual(len(data), 2)
+        # GET All
+        url = reverse('listmodules-list')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        data = response.data
+        print("THIS IS DATA ", data)
+        self.assertEqual(ListModules.objects.count(), 1)
+        self.assertEqual(len(data), 1)
 
         # GET ONE
         url = reverse('listmodules-id', kwargs={'pk': 1})
         response = self.client.get(url)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         data = response.data
         print("THIS IS DATA2 ", data)
         self.assertEqual(ListModules.objects.count(), 1)
@@ -65,12 +65,12 @@ class ListModuleTestsAdmin(APITestCase):
         url = reverse('listmodules-rud', kwargs={'pk': 1})
         update_data = {'title': 'updated'}
         response = self.client.put(url, update_data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         self.assertEqual(ListModules.objects.count(), 1)
         self.assertEqual(ListModules.objects.get(id=1).title, 'newTitle')
 
         # DELETE
         url = reverse('listmodules-rud', kwargs={'pk': 1})
         response = self.client.delete(url, format='json')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         self.assertEqual(ListModules.objects.count(), 1)

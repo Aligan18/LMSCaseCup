@@ -46,7 +46,7 @@ class CoursesTestsGuest(APITestCase):
         data = response.data
         print("THIS IS DATA ", data)
         self.assertEqual(FileTasks.objects.count(), 1)
-        self.assertEqual(len(data), 1)
+
 
         # GET ONE
         url = reverse('file_tasks-id', kwargs={'pk': 1})

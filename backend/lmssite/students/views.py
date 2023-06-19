@@ -4,31 +4,20 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
-from custom_user.permissions import IsTeacherHasAccess, IsStudentOwner, IsTeacherHasAccessCreate
+from custom_user.permissions import IsTeacherHasAccess, IsStudentOwner, IsTeacherHasAccessCreate, IsTeacher
 from mysite.pagination import ListPagination
 
 from students.models import Students
 from students.serializers import StudentsSerializers, CreateStudentsSerializers, AboutStudentsSerializers
 
 
-# Admin
+# Admin  Teacher
 class StudentsViewAll(generics.ListAPIView):  # Вообще все студенты
     queryset = Students.objects.all()
     serializer_class = AboutStudentsSerializers
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAdminUser | IsTeacher]
     pagination_class = ListPagination
 
-
-#############################################################################################
-# Admin, Teacher с доступом к курсу
-class StudentsCourseViewAll(generics.ListAPIView):  # Студенты определенного курса
-    queryset = Students.objects.all()
-    serializer_class = AboutStudentsSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
-    pagination_class = ListPagination
-
-
-#############################################################################################
 
 # Authorized
 class StudentsViewRetrieve(generics.RetrieveAPIView):
@@ -37,12 +26,8 @@ class StudentsViewRetrieve(generics.RetrieveAPIView):
     permission_classes = [IsAuthenticated]
 
 
-# Student свой профиль
+# Admin ,  Student свой профиль
 class StudentsViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Students.objects.all()
     serializer_class = CreateStudentsSerializers
     permission_classes = [IsAdminUser | IsStudentOwner]
-
-    def perform_create(self, serializer):
-        serializer.validated_data['student'] = self.request.user
-        serializer.save()

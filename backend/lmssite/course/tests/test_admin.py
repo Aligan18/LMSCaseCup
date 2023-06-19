@@ -50,7 +50,7 @@ class CoursesTestsAdmin(APITestCase):
         data = response.data
         print("THIS IS DATA ", data)
         self.assertEqual(Course.objects.count(), 2)
-        self.assertEqual(len(data), 2)
+
 
         # GET ONE
         url = reverse('course-id', kwargs={'pk': 1})

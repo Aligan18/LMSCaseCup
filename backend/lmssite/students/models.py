@@ -21,7 +21,7 @@ class Students(models.Model):
     about = models.TextField(blank=True, null=True)
     resume = models.FileField(upload_to="files/", null=True)
     university = models.CharField(max_length=80, null=True)
-    favorite = models.ManyToManyField(Course, related_name='student_favorite')
+    favorite = models.ManyToManyField(Course, related_name='student_favorite',blank=True)
 
     def __str__(self):
         return self.name

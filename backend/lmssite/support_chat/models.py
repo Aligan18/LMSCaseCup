@@ -12,8 +12,8 @@ class StudentTickets(models.Model):
     theme = models.CharField(choices=Theme, default="3", max_length=1)
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=150, null=True)
-    message = models.TextField()
-    answer = models.TextField()
+    message = models.TextField( blank=True)
+    answer = models.TextField( blank=True)
     completed = models.BooleanField(default=False)
 
     def __str__(self):
@@ -30,7 +30,7 @@ class TeacherTickets(models.Model):
     teacher = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=150, null=True)
     message = models.TextField(blank=True)
-    answer = models.TextField()
+    answer = models.TextField(blank=True)
     completed = models.BooleanField(default=False)
 
     def __str__(self):
@@ -43,11 +43,11 @@ class AdminTickets(models.Model):
         ("2", "Смена курса "),
         ("3", "Не работает "),
     ]
-    theme = models.CharField(choices=Theme, default="3", max_length=1)
+    theme = models.CharField(choices=Theme, default="3", max_length=1, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=150, null=True)
     message = models.TextField(blank=True)
-    answer = models.TextField()
+    answer = models.TextField(blank=True)
     completed = models.BooleanField(default=False)
 
     def __str__(self):
@@ -60,11 +60,11 @@ class UnauthorizedTickets(models.Model):
         ("2", "Не могу войти "),
         ("3", "Не работает "),
     ]
-    theme = models.CharField(choices=Theme, default="3", max_length=1)
+    theme = models.CharField(choices=Theme, default="3", max_length=1, blank=True)
     title = models.CharField(max_length=150, null=True)
     message = models.TextField(blank=True)
     completed = models.BooleanField(default=False)
-    email = models.EmailField()
+    email = models.EmailField(blank=True)
 
     def __str__(self):
         return self.title
