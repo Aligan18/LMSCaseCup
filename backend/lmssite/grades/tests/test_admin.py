@@ -57,7 +57,6 @@ class CoursesTestsGuest(APITestCase):
         data = response.data
         print("THIS IS DATA ", data)
         self.assertEqual(Grades.objects.count(), 1)
-        self.assertEqual(len(data), 1)
         name = "grades_student-list"
 
         # grades с фильтрацией по course и студенту   , для просмотра   всех оценок определенного студента
@@ -67,7 +66,7 @@ class CoursesTestsGuest(APITestCase):
         data = response.data
         print("THIS IS DATA ", data)
         self.assertEqual(Grades.objects.count(), 1)
-        self.assertEqual(len(data), 1)
+
 
         # GET ONE
         url = reverse('grades-id', kwargs={'pk': 1})

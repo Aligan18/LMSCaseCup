@@ -116,11 +116,11 @@ class TestAnswerOptionsViewUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 
 #################################################################
 
-# Admin ,  Teacher с доступом к курсу , Student в конце теста
-class TestGradeViewAllCreate(generics.ListCreateAPIView):
+#  Student в конце теста
+class TestGradeViewCreate(generics.CreateAPIView):
     queryset = TestGrade.objects.all()
     serializer_class = CreateTestGradeSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccess]
+    permission_classes = [ IsStudentHasAccessCreate]
 
     def perform_create(self, serializer):
         serializer.validated_data['student'] = self.request.user
@@ -131,7 +131,7 @@ class TestGradeViewAllCreate(generics.ListCreateAPIView):
 class TestGradeViewList(generics.ListAPIView): # Оценки всех студентов проходивших этот тест
     queryset = TestGrade.objects.all()
     serializer_class = AboutTestGradeSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
     pagination_class = ListPagination
 
 

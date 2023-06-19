@@ -4,6 +4,7 @@ from custom_user.models import User
 from list_modules.models import ListModules
 from students.models import Students
 from teachers.models import Teachers
+from test_tasks.models import TestQuestionAnswer, TestAnswerOptions, TestTasks
 
 
 def create_super(login):
@@ -79,6 +80,28 @@ def create_list_modules(title='newTitle', deadline=''):
     )
 
 
+def create_test_tasks(title='', course_id=1):
+    return TestTasks.objects.create(
+        title=title,
+        course=course_id,
+    )
+
+
+def create_test_question_answer(question='', course_id=1, options_id=1):
+    return TestQuestionAnswer.objects.create(
+        question=question,
+        course=course_id,
+        options=options_id
+    )
+
+
+def create_test_options(options='', course_id=1, ):
+    return TestAnswerOptions.objects.create(
+        course=course_id,
+        option=options
+    )
+
+
 def category_props(title='newTitle', ):
     props = {'title': title, }
     return props
@@ -135,9 +158,34 @@ def file_tasks_grade_props(comment='newTitle', course_id=1, students_id=1):
     return props
 
 
-def lectures_props(title='newTitle', course_id=1,):
+def lectures_props(title='newTitle', course_id=1, ):
     props = {
         'course': course_id,
         'title': title
     }
+    return props
+
+
+def test_tasks_props(title='newTitle', course_id=1):
+    props = {'title': title,
+             'course': course_id,
+             }
+    return props
+
+
+def question_answer_props(question='newTitle', course_id=1, options_id=1):
+    props = {'question': question,
+             'course': course_id,
+             'options': options_id
+             }
+    return props
+
+
+def test_grade_props(grade=1, course_id=1, student_id=1, test_task_id=1, list_modules_id=1):
+    props = {'grade': grade,
+             'course': course_id,
+             'student': student_id,
+             'test_task': test_task_id,
+             'list_modules' : list_modules_id
+             }
     return props

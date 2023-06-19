@@ -16,7 +16,7 @@ class CreateTestQuestionAnswerSerializers(serializers.ModelSerializer):
 
 
 class CreateTestGradeSerializers(serializers.ModelSerializer):
-    student = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    # student = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = TestGrade

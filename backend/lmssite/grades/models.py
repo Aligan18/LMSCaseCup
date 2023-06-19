@@ -29,7 +29,7 @@ class Grades(models.Model):
 
 
 @receiver(post_save, sender=TestGrade)
-def create_grades(sender, instance, created, request, **kwargs):
+def create_grades(sender, instance, created, **kwargs):
     if created:
         Grades.objects.create(student=instance.student,
                               attendance=True,
