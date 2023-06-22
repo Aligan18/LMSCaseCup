@@ -3,10 +3,12 @@ on: [pull_request, push] # activates the workflow when there is a push or pull r
 jobs:
   test_project:
     runs-on: ubuntu-latest # operating system your code will run on
+    defaults:
+      run:
+        working-directory: ./backend
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
-         working-directory: ./backend/lmssite
-         run: pip install -r requirements.txt # install all our dependencies for the project
-         working-directory: ./backend/lmssite
-         run: python manage.py run test
+      - run: ls
+      - run: pip install -r requirements.txt # install all our dependencies for the project
+      - run: python manage.py run test
