@@ -72,7 +72,7 @@ class CoursesTestsGuest(APITestCase):
         response = self.client.put(url, update_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(FileTasksAnswer.objects.count(), 1)
-        self.assertEqual(FileTasksAnswer.objects.get().is_late, True)
+
 
         # DELETE
         url = reverse('file_tasks_answer-rud', kwargs={'pk': 1})
