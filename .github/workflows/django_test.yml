@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
-      - working-directory: ./backend/lmssite
-      - run: pip install -r requirements.txt # install all our dependencies for the project
-      - run: python manage.py run test
+         working-directory: ./backend/lmssite
+         run: pip install -r requirements.txt # install all our dependencies for the project
+         working-directory: ./backend/lmssite
+         run: python manage.py run test
