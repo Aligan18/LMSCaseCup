@@ -1,0 +1,18 @@
+name: test_Django
+on:
+  push:
+    # при push в master
+    branches: [master]
+    # activates the workflow when there is a push or pull request in the repo
+jobs:
+  test_project:
+    runs-on: ubuntu-latest # operating system your code will run on
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - run: cd backend
+          cd lmssite
+          pip install -r requirements.txt # install all our dependencies for the project
+      - run: cd backend
+          cd lmssite
+          python manage.py run test
