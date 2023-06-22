@@ -1,0 +1,47 @@
+version: "3.8"
+# Поднимаем два сервиса, django И node
+services:
+
+  backend:
+    build:
+      context: ./backend/lmssite/
+    command: gunicorn mysite.wsgi:application --bind 0.0.0.0:8000
+    ports:
+      - "8000:8000"  
+    restart: always
+    # Для статики мы подключаем два volume (чтобы при перезапуске наши данные не пропадали)), создадим их ниже.
+    # volumes:
+    #   - django_static_volume:/usr/src/app/static
+    #   - django_media_volume:/usr/src/app/media
+    #   - ./backend/lmssite/:/app/
+
+  frontend:
+    # Аналогично, build из ./frontend/dockerfile
+    build:
+      context: ./frontend
+    # рестарт
+    restart: always
+    volumes:
+     - react_build:/react/.build
+     - react_locales:/react/public/locales
+      
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:8080
+    volumes:
+      - ./nginx/nginx-setup.conf:/etc/nginx/conf.d/default.conf:ro
+      - react_build:/var/www/react
+      - react_locales:/var/www/react/locales
+    depends_on:
+      - backend
+      - frontend
+    restart: always
+
+# создаём два volume для статики
+volumes:
+  django_static_volume:
+  django_media_volume:
+  react_build:
+  react_locales:

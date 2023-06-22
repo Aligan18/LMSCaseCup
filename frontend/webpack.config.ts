@@ -6,7 +6,7 @@ import { IBuildEnv, IBuildPath } from './config/build/types/config'
 export default (env: IBuildEnv) => {
 	const mode = env.mode || 'development'
 	const PORT = env.port || 3000
-	const isDev = mode === 'development'
+	const isDev: boolean = mode === 'development'
 
 	const paths: IBuildPath = {
 		build: path.resolve(__dirname, '.build'),

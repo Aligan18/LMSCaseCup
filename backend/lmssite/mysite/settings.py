@@ -14,7 +14,6 @@ from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-import grades.apps
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,7 +30,15 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:3000",
+    "http://localhost:3000"
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
 
 # Application definition
 
@@ -57,6 +64,7 @@ INSTALLED_APPS = [
     'custom_user.apps.CustomUserConfig',
     'grades.apps.GradesConfig',
 
+    'corsheaders',
     'rest_framework',
     'django_filters',
     'djoser',

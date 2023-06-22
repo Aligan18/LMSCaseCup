@@ -10,6 +10,15 @@ export function buildPlugins({
 	paths,
 	isDev,
 }: IBuildOptions): webpack.WebpackPluginInstance[] {
+
+	const bundlePlugin = () =>{
+		if (isDev) {
+			return new BundleAnalyzerPlugin({
+				openAnalyzer: false,
+			})
+			}
+	}
+
 	return [
 		new HtmlWebpackPlugin({
 			template: paths.html,
@@ -24,8 +33,6 @@ export function buildPlugins({
 		}),
 		new ReactRefreshWebpackPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
-		new BundleAnalyzerPlugin({
-			openAnalyzer: false,
-		}),
+		bundlePlugin(),
 	]
 }
