@@ -7,8 +7,9 @@ from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from custom_user.permissions import IsTeacherHasAccess, IsStudentOwner, IsTeacherHasAccessCreate, IsTeacher
 from mysite.pagination import ListPagination
 
-from students.models import Students
-from students.serializers import StudentsSerializers, CreateStudentsSerializers, AboutStudentsSerializers
+from students.models import Students, CourseStudent
+from students.serializers import StudentsSerializers, CreateStudentsSerializers, AboutStudentsSerializers, \
+    CourseStudentSerializers
 
 
 # Admin  Teacher
@@ -31,3 +32,13 @@ class StudentsViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Students.objects.all()
     serializer_class = CreateStudentsSerializers
     permission_classes = [IsAdminUser | IsStudentOwner]
+
+
+class CourseStudentViewAll(generics.CreateAPIView):  # Вообще все студенты
+    queryset = CourseStudent.objects.all()
+    serializer_class = CourseStudentSerializers
+
+
+
+
+

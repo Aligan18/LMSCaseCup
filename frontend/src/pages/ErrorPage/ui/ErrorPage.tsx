@@ -13,9 +13,7 @@ export const ErrorPage = ({ style }: IErrorPageProps) => {
 	return (
 		<div className={cn(classes.ErrorPage, [style])}>
 			<h1>{t('proizoshla-nepredvidennaya-oshibka')}</h1>
-			<Button onClick={() => reloadPage()}>
-				{t('obnovit-stranicu')}
-			</Button>
+			<Button onClick={() => reloadPage()}>{t('obnovit-stranicu')}</Button>
 		</div>
 	)
 }

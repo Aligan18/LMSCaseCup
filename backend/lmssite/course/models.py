@@ -17,5 +17,6 @@ class Course(models.Model):
     teacher = models.ManyToManyField("teachers.Teachers", through="teachers.CourseTeacher")
     syllabus = models.FileField(upload_to='files/', null=True, blank=True)
 
+
     def __str__(self):
         return str(self.id)

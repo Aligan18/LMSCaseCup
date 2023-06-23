@@ -23,7 +23,7 @@ from lectures.views import LecturesViewCreate, LecturesViewList, LecturesViewRet
 from list_modules.views import ListModulesViewCreate, ListModulesViewList, ListModulesViewRetrieve, \
     ListModulesViewRetrieveUpdateDestroy, OnlyTasksListModulesViewList
 from students.views import StudentsViewAll, StudentsViewRetrieve, \
-    StudentsViewRetrieveUpdateDestroy
+    StudentsViewRetrieveUpdateDestroy, CourseStudentViewAll
 from support_chat.views import StudentTicketsViewCreate, StudentTicketsViewList, OnlyOneStudentTicketsViewList, \
     StudentTicketsViewRetrieve, StudentTicketsViewRetrieveUpdateDestroy, TeacherTicketsViewCreate, \
     TeacherTicketsViewList, OnlyOneTeacherTicketsViewList, TeacherTicketsViewRetrieve, \
@@ -67,6 +67,8 @@ urlpatterns = [
     path('api/v1/course/update/<int:pk>', CourseViewUpdate.as_view(), name="course-update"),
     path('api/v1/course/delete/<int:pk>', CourseViewDestroy.as_view(), name="course-delete"),
     path('api/v1/course_students/list/', CourseStudentsListViewRetrieve.as_view()), #????????
+
+    path('api/v1/course_student/create/', CourseStudentViewAll.as_view()),
 
     path('api/v1/file_tasks/create/', FileTasksViewCreate.as_view(), name="file_tasks-create"),
     path('api/v1/file_tasks/list/', FileTasksViewList.as_view(), name="file_tasks-list"),
@@ -159,6 +161,7 @@ urlpatterns = [
     path('api/v1/unauthorized_ticket/list/', UnauthorizedTicketsViewList.as_view(), name="unauthorized_ticket-list"),
     path('api/v1/unauthorized_ticket/id/<int:pk>', UnauthorizedTicketsViewRetrieve.as_view(), name="unauthorized_ticket-id"),
     path('api/v1/unauthorized_ticket/rud/<int:pk>', UnauthorizedTicketsViewRetrieveUpdateDestroy.as_view(), name="unauthorized_ticket-rud"),
+
 
 ]
 

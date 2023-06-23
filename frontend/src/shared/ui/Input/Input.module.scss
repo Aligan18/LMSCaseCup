@@ -1,0 +1,28 @@
+.Input {
+	padding: 6px 10px;
+	font: var(--font-m);
+	border: none;
+}
+
+.secondary {
+	background: var(--light-gray-color);
+	color: var(--gray-color);
+}
+.secondary::placeholder {
+	color: var(--gray-color);
+}
+
+.clear {
+	background: none;
+}
+.clear::placeholder {
+	color: var(--gray-color);
+}
+
+.small {
+	height: 32px;
+}
+
+.medium {
+	height: 40px;
+}
