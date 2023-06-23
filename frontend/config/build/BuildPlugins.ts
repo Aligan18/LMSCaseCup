@@ -6,20 +6,8 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
 import { IBuildOptions } from './types/config'
 
-export function buildPlugins({
-	paths,
-	isDev,
-}: IBuildOptions): webpack.WebpackPluginInstance[] {
-
-	const bundlePlugin = () =>{
-		if (isDev) {
-			return new BundleAnalyzerPlugin({
-				openAnalyzer: false,
-			})
-			}
-	}
-
-	return [
+export function buildPlugins({ paths, isDev }: IBuildOptions): webpack.WebpackPluginInstance[] {
+	const plugins = [
 		new HtmlWebpackPlugin({
 			template: paths.html,
 		}),
@@ -33,6 +21,14 @@ export function buildPlugins({
 		}),
 		new ReactRefreshWebpackPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
-		bundlePlugin(),
 	]
+
+	isDev &&
+		plugins.push(
+			new BundleAnalyzerPlugin({
+				openAnalyzer: false,
+			}),
+		)
+
+	return plugins
 }
