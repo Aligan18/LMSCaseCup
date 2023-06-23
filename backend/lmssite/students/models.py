@@ -21,7 +21,7 @@ class Students(models.Model):
     about = models.TextField(blank=True, null=True)
     resume = models.FileField(upload_to="files/", null=True)
     university = models.CharField(max_length=80, null=True)
-    favorite = models.ManyToManyField(Course, related_name='student_favorite',blank=True)
+    favorite = models.ManyToManyField(Course, related_name='student_favorite', blank=True)
 
     def __str__(self):
         return self.name
@@ -30,6 +30,8 @@ class Students(models.Model):
 class CourseStudent(models.Model):
     student = models.ForeignKey(Students, on_delete=models.CASCADE)
     course = models.ForeignKey("course.Course", on_delete=models.CASCADE)
+    group = models.CharField(max_length=10, blank=True, null=True)
+    is_completed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.student

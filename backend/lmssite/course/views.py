@@ -41,10 +41,11 @@ class CourseViewRetrieve(generics.RetrieveAPIView): # Описание курс�
 
 
 # Admin , Teacher имеющий доступ , Student имеющий доступ
-class CourseStudentsListViewRetrieve(generics.RetrieveAPIView): # Список студентов
+class CourseStudentsListViewRetrieve(generics.ListAPIView): # Список студентов
     queryset = Course.objects.all()
     serializer_class = OnlyStudentsCourseSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]
+    pagination_class = ListPagination
 
 
 # Admin , Teacher имеющий доступ
