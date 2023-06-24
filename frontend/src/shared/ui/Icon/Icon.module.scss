@@ -7,14 +7,18 @@
 	height: 24px;
 }
 
-.secondary g {
-	stroke: var(--black-color);
+.secondary path {
+	stroke: var(--secondary-color);
 }
 
-.primary g {
+.inverted_secondary path {
+	stroke: var(--inverted-secondary);
+}
+
+.primary path {
 	stroke: var(--primary-color);
 }
 
-.red g {
+.red path {
 	stroke: var(--red-color);
 }

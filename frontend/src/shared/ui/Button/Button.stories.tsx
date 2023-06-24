@@ -18,7 +18,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
-	args: { children: 'Сообщения', variation: 'primary', format: 'medium' },
+	args: { children: 'Записаться на курс', variation: 'primary', format: 'small' },
 	decorators: [ThemeDecorator(ETheme.LIGHT)],
 }
 

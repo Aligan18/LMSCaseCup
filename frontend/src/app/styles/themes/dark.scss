@@ -1,7 +1,10 @@
 .app.dark {
 	--background: rgb(0 0 0);
 	--inverted-background: rgb(188 188 225);
-	--primary-color: rgb(255 255 255);
+	--primary-color: rgb(80 209 119);
 	--primary-hover-color: rgb(80 193 114);
-	--secondary-color: rgb(2 181 2);
+	--secondary-color: black;
+	--inverted-secondary: white;
+	--gray-color: rgb(243, 243, 243);
+	--light-gray-color: rgba(79, 79, 79, 0.5);
 }

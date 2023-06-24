@@ -37,6 +37,7 @@ export const Icon = ({ styles, variation = 'secondary', icon }: IIconProps) => {
 		[classes.primary]: variation === 'primary',
 		[classes.secondary]: variation === 'secondary',
 		[classes.red]: variation === 'red',
+		[classes.inverted_secondary]: variation === 'inverted-secondary',
 	}
 
 	return (
@@ -89,7 +90,7 @@ export const Icon = ({ styles, variation = 'secondary', icon }: IIconProps) => {
 
 interface IIconProps {
 	styles?: string
-	variation?: 'primary' | 'secondary' | 'red'
+	variation?: 'primary' | 'secondary' | 'red' | 'inverted-secondary'
 	icon:
 		| 'home'
 		| 'book'

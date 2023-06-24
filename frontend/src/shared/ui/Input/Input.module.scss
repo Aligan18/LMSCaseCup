@@ -1,11 +1,11 @@
 .Input {
 	padding: 6px 10px;
-	font: var(--font-m);
+	font: var(--font-s);
 	border: none;
 }
 
 .secondary {
-	background: var(--light-gray-color);
+	background: var(--secondary-color);
 	color: var(--gray-color);
 }
 .secondary::placeholder {
@@ -13,7 +13,8 @@
 }
 
 .clear {
-	background: none;
+	background: var(--light-gray-color);
+	color: var(--gray-color);
 }
 .clear::placeholder {
 	color: var(--gray-color);
