@@ -42,6 +42,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
+    path('auth/', include('djoser.social.urls')), ####для гугл?
     path('accounts/activate/<uid>/<token>', ActivateUser.as_view({'get': 'activation'}), name='activation'),
 
     path('api/v1/admins/list/', AdminsViewList.as_view(), name='admins-list'),
