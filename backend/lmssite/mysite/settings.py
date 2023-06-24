@@ -68,7 +68,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'djoser',
-    'support_chat'
+    'support_chat',
+    'social_django',
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist'
 ]
 
 REST_FRAMEWORK = {
@@ -86,6 +89,7 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    'social_django.middleware.SocialAuthExceptionMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -108,6 +112,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -154,6 +160,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -167,10 +175,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 SIMPLE_JWT = {
     # Устанавливаем срок жизни токена
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_TOKEN_CLASSES': (
+        'rest_framework_simplejwt.tokens.AccessToken',
+    ),
 }
 
 DJOSER = {
@@ -181,6 +197,27 @@ DJOSER = {
     'ACTIVATION_URL': 'accounts/activate/{uid}/{token}',
     'PASSWORD_RESET_CONFIRM_URL': 'lmscasecup/reset_password/{uid}/{token}',
     ##'SERIALIZERS': {'user_create': 'custom_user.serializers.CreateCustomUserSerializer'},
+    'SOCIAL_AUTH_TOKEN_STRATEGY': 'djoser.social.token.jwt.TokenStrategy',
+    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['http://localhost:8000/google'],
+    # 'SERIALIZERS': {
+    #     'user_create': 'accounts.serializers.UserCreateSerializer',
+    #     'user': 'accounts.serializers.UserCreateSerializer',
+    #     'current_user': 'accounts.serializers.UserCreateSerializer',
+    #     'user_delete': 'djoser.serializers.UserDeleteSerializer',
+    # },
+}
+
+#Google
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv("DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv("DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile', 'openid']
+SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['name', 'surname']
+
+#Github
+SOCIAL_AUTH_GITHUB_SECRET = os.getenv("DJANGO_SOCIAL_AUTH_GITHUB_SECRET")
+SOCIAL_AUTH_GITHUB_SCOPE = ['email']
+SOCIAL_AUTH_GITHUB_PROFILE_EXTRA_PARAMS = {
+    'fields': 'email, name, surname'
 }
 
 # EMAIL
@@ -191,3 +228,5 @@ EMAIL_HOST_USER = os.getenv("DJANGO_EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("DJANGO_EMAIL_HOST_PASSWORD")
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = os.getenv("DJANGO_DEFAULT_FROM_EMAIL")
+
+
