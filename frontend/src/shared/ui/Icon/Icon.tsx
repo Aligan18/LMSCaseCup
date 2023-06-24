@@ -32,7 +32,7 @@ import UpIcon from 'shared/assets/svg/UpIcon.svg'
 import VideoIcon from 'shared/assets/svg/VideoIcon.svg'
 import { classnames as cn } from 'shared/lib'
 
-export const Icon = ({ styles, variation = 'secondary', icon }: IIconProps) => {
+export const Icon = ({ styles, variation, icon }: IIconProps) => {
 	const styleMod = {
 		[classes.primary]: variation === 'primary',
 		[classes.secondary]: variation === 'secondary',

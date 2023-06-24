@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import { TranslateButton } from 'features/Translate'
 
-import { Button, Loader } from 'shared/ui'
+import { Button, Icon, ListItem, Loader } from 'shared/ui'
 
 const HomePage = () => {
 	const { t } = useTranslation('home')
@@ -10,6 +10,16 @@ const HomePage = () => {
 		<div>
 			<TranslateButton />
 			<Loader />
+			<ListItem
+				left={
+					<Icon
+						icon="right"
+						variation="secondary"
+					/>
+				}
+			>
+				Мое обучение
+			</ListItem>
 			{t('glavnaya-stranica')}
 		</div>
 	)
