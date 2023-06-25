@@ -31,7 +31,7 @@ export const Button: FC<IButtonProps> = ({
 export interface IButtonProps
 	extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
 	styles?: string
-	children: string
+	children: string | React.ReactNode | React.ReactNode[]
 	variation?: 'primary' | 'secondary' | 'clear'
 	format?: 'large' | 'small' | 'medium'
 }
