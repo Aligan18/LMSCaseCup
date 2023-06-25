@@ -1,15 +1,18 @@
 from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
 
 # Create your views here.
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
-from custom_user.permissions import IsTeacherHasAccess, IsStudentOwner, IsTeacherHasAccessCreate, IsTeacher
+from custom_user.permissions import IsTeacherHasAccess, IsStudentOwner, IsTeacherHasAccessCreate, IsTeacher, \
+    IsTeacherOwnerForList, IsStudentOwnerForList
 from mysite.pagination import ListPagination
 
 from students.models import Students, CourseStudent
 from students.serializers import StudentsSerializers, CreateStudentsSerializers, AboutStudentsSerializers, \
     CourseStudentSerializers
+from students.service import Filter
 
 
 # Admin  Teacher
@@ -34,11 +37,21 @@ class StudentsViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAdminUser | IsStudentOwner]
 
 
-class CourseStudentViewAll(generics.CreateAPIView):  # Вообще все студенты
+# Admin
+class CourseStudentViewCreate(generics.CreateAPIView):  # Вообще все студенты
     queryset = CourseStudent.objects.all()
     serializer_class = CourseStudentSerializers
+    permission_classes = [IsAdminUser]
 
 
+# Admin , Teacher имеющий доступ , Student имеющий доступ
+class CourseStudentViewAll(generics.ListAPIView):  # Вообще все студенты
+    queryset = CourseStudent.objects.all()
+    serializer_class = CourseStudentSerializers
+    filter_backends = (DjangoFilterBackend)
+    filterset_class = Filter
+    permission_classes = [IsAdminUser | IsTeacherOwnerForList | IsStudentOwnerForList]
+    pagination_class = ListPagination
 
 
 
