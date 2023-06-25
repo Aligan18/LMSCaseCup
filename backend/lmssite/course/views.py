@@ -41,6 +41,7 @@ class CourseViewRetrieve(generics.RetrieveAPIView): # Описание курс�
 
 
 # Admin , Teacher имеющий доступ , Student имеющий доступ
+####Ненужный?
 class CourseStudentsListViewRetrieve(generics.ListAPIView): # Список студентов
     queryset = Course.objects.all()
     serializer_class = OnlyStudentsCourseSerializers

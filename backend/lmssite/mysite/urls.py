@@ -23,7 +23,7 @@ from lectures.views import LecturesViewCreate, LecturesViewList, LecturesViewRet
 from list_modules.views import ListModulesViewCreate, ListModulesViewList, ListModulesViewRetrieve, \
     ListModulesViewRetrieveUpdateDestroy, OnlyTasksListModulesViewList
 from students.views import StudentsViewAll, StudentsViewRetrieve, \
-    StudentsViewRetrieveUpdateDestroy, CourseStudentViewAll
+    StudentsViewRetrieveUpdateDestroy, CourseStudentViewAll, CourseStudentViewCreate
 from support_chat.views import StudentTicketsViewCreate, StudentTicketsViewList, OnlyOneStudentTicketsViewList, \
     StudentTicketsViewRetrieve, StudentTicketsViewRetrieveUpdateDestroy, TeacherTicketsViewCreate, \
     TeacherTicketsViewList, OnlyOneTeacherTicketsViewList, TeacherTicketsViewRetrieve, \
@@ -114,6 +114,8 @@ urlpatterns = [
     path('api/v1/students/list/', StudentsViewAll.as_view(), name="students-list"),
     path('api/v1/students/id/<int:pk>', StudentsViewRetrieve.as_view(), name="students-id"),
     path('api/v1/students/rud/<int:pk>', StudentsViewRetrieveUpdateDestroy.as_view(), name="students-rud"),
+    path('api/v1/students_course/create/', CourseStudentViewCreate.as_view()),
+    path('api/v1/students_course/list/', CourseStudentViewAll.as_view()),
 
     path('api/v1/teachers/list/', TeachersViewList.as_view(), name="teachers-list"),
     path('api/v1/teachers/id/<int:pk>', TeachersViewRetrieve.as_view(), name="teachers-id"),
