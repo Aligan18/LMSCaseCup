@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
+import { GoogleAuthButton } from 'features/GoogleAuthButton'
 import { TranslateButton } from 'features/Translate'
 
 import { Button, Icon, ListItem, Loader } from 'shared/ui'
@@ -10,16 +11,7 @@ const HomePage = () => {
 		<div>
 			<TranslateButton />
 			<Loader />
-			<ListItem
-				left={
-					<Icon
-						icon="right"
-						variation="secondary"
-					/>
-				}
-			>
-				Мое обучение
-			</ListItem>
+			<GoogleAuthButton />
 			{t('glavnaya-stranica')}
 		</div>
 	)
