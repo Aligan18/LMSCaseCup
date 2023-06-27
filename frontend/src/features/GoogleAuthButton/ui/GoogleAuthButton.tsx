@@ -7,6 +7,7 @@ import { Button } from 'shared/ui'
 
 export const GoogleAuthButton = ({ styles }: IGoogleAuthButtonProps) => {
 	console.log('HELLO ')
+	console.log('WORLD')
 	console.log(
 		`${process.env.REACT_APP_API_URL}/auth/o/google-oauth2/?redirect_uri=${process.env.REACT_APP_API_URL}/google`,
 	)
