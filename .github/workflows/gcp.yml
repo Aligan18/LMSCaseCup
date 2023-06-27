@@ -41,20 +41,19 @@ jobs:
           cat .env
 
       - name: Extract metadata (tags, labels) for Backend Docker
-        id: meta
+        id: meta-back
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: aligan/lmscasecup-backend
 
       - name: Build and push Backend Docker image
-        working-directory: ./backend/lmssite/
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
         with:
-          context: .
-          file: ./Dockerfile
+          context: ./backend/lmssite/
+          file: ./backend/lmssite/Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta-back.outputs.tags }}
+          labels: ${{ steps.meta-back.outputs.labels }}
 
       - name: Extract metadata (tags, labels) for Nginx Docker
         id: meta
