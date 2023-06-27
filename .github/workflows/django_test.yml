@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-python@v2
       - run: ls
       - run: pip install -r requirements.txt # install all our dependencies for the project
-      -  env:
-        DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+      - env:
+          DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
         run: python manage.py test
 
