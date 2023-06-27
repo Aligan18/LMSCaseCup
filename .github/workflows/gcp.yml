@@ -37,9 +37,10 @@ jobs:
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - name: Build the Backend Docker image
+        working-directory: ./backend/lmssite/
         run: |
           ls
-          docker build -t aligan/lmscasecup-backend . --file ./backend/lmssite/Dockerfile --tag backend:$(date +%s)
+          docker build -t aligan/lmscasecup-backend . --file ./Dockerfile --tag backend:$(date +%s)
 
       - name: Docker Push
         run: docker push aligan/lmscasecup-backend
