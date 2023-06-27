@@ -1,3 +1,5 @@
+import { DetailedHTMLProps, HtmlHTMLAttributes } from 'react'
+
 import classes from './Icon.module.scss'
 
 import BookIcon from 'shared/assets/svg/BookIcon.svg'
@@ -26,22 +28,25 @@ import SearchIcon from 'shared/assets/svg/SearchIcon.svg'
 import SettingsIcon from 'shared/assets/svg/SettingsIcon.svg'
 import ShieldIcon from 'shared/assets/svg/ShieldIcon.svg'
 import StarFilledIcon from 'shared/assets/svg/StarFilledIcon.svg'
+import StarIcon from 'shared/assets/svg/StarIcon.svg'
 import TeacherIcon from 'shared/assets/svg/TeacherIcon.svg'
 import ToolIcon from 'shared/assets/svg/ToolIcon.svg'
 import UpIcon from 'shared/assets/svg/UpIcon.svg'
 import VideoIcon from 'shared/assets/svg/VideoIcon.svg'
 import { classnames as cn } from 'shared/lib'
 
-export const Icon = ({ styles, variation, icon }: IIconProps) => {
+export const Icon = ({ styles, variation, icon, cursor = 'cursor_none', ...props }: IIconProps) => {
 	const styleMod = {
 		[classes.primary]: variation === 'primary',
 		[classes.secondary]: variation === 'secondary',
 		[classes.red]: variation === 'red',
 		[classes.inverted_secondary]: variation === 'inverted-secondary',
+		[classes.cursor_pointer]: cursor === 'cursor_pointer',
+		[classes.cursor_none]: cursor === 'cursor_none',
 	}
 
 	return (
-		<>
+		<div {...props}>
 			{icon === 'home' && <HomeIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'book' && <BookIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'calendar' && (
@@ -80,17 +85,19 @@ export const Icon = ({ styles, variation, icon }: IIconProps) => {
 			{icon === 'star_filled' && (
 				<StarFilledIcon className={cn(classes.Icon, [styles], styleMod)} />
 			)}
+			{icon === 'star' && <StarIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'teacher' && <TeacherIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'tool' && <ToolIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'up' && <UpIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'video' && <VideoIcon className={cn(classes.Icon, [styles], styleMod)} />}
-		</>
+		</div>
 	)
 }
 
-interface IIconProps {
+interface IIconProps extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	styles?: string
 	variation?: 'primary' | 'secondary' | 'red' | 'inverted-secondary'
+	cursor?: 'cursor_pointer' | 'cursor_none'
 	icon:
 		| 'home'
 		| 'book'
@@ -118,6 +125,7 @@ interface IIconProps {
 		| 'settings'
 		| 'shield'
 		| 'star_filled'
+		| 'star'
 		| 'teacher'
 		| 'tool'
 		| 'up'

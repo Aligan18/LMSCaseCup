@@ -1,13 +1,12 @@
 version: "3.8"
 # Поднимаем два сервиса, django И node
 services:
-
   backend:
     build:
       context: ./backend/lmssite/
     command: gunicorn mysite.wsgi:application --bind 0.0.0.0:8000
     ports:
-      - "8000:8000"  
+      - "8000:8000"
     restart: always
     # Для статики мы подключаем два volume (чтобы при перезапуске наши данные не пропадали)), создадим их ниже.
     # volumes:
@@ -19,12 +18,13 @@ services:
     # Аналогично, build из ./frontend/dockerfile
     build:
       context: ./frontend
+      args:
+        - API_URL=localhost:8000
     # рестарт
     restart: always
     volumes:
-     - react_build:/react/.build
-     - react_locales:/react/public/locales
-      
+      - react_build:/react/.build
+      - react_locales:/react/public/locales
 
   nginx:
     image: nginx:latest
@@ -34,6 +34,7 @@ services:
       - ./nginx/nginx-setup.conf:/etc/nginx/conf.d/default.conf:ro
       - react_build:/var/www/react
       - react_locales:/var/www/react/locales
+      - ./frontend/.build:/var/www/react
     depends_on:
       - backend
       - frontend
