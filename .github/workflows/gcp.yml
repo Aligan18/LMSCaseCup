@@ -8,64 +8,42 @@ jobs:
     name: Build and Push to GCP
     runs-on: ubuntu-latest
     env:
-      IMAGE_NGINX: lmscasecup_nginx
-      IMAGE_BACKEND: lmscasecup_backend
+      IMAGE_NAME: lmscasecup_nginx
       PROJECT_ID: lmsproject-390908
+      DJANGO_DEFAULT_FROM_EMAIL: ${{ secrets.DJANGO_DEFAULT_FROM_EMAIL }}
+      DJANGO_EMAIL_HOST_PASSWORD: ${{ secrets.DJANGO_EMAIL_HOST_PASSWORD }}
+      DJANGO_EMAIL_HOST_USER: ${{ secrets.DJANGO_EMAIL_HOST_USER }}
+      DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+      DJANGO_SOCIAL_AUTH_GITHUB_SECRET: ${{ secrets.DJANGO_SOCIAL_AUTH_GITHUB_SECRET }}
+      DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY: ${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY }}
+      DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET: ${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - uses: google-github-actions/setup-gcloud@v0
-        with:
-          service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-          project_id: ${{ env.PROJECT_ID }}
-          export_default_credentials: true
-
       - name: Frontend Build
-        env:
-          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
         working-directory: ./frontend
         run: |
+          touch .env
+          echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}" > .env
+          cat .env
           npm install 
           npm run build:prod
 
-      - name: Build Docker
+      - name: docker login
         env:
-          DJANGO_DEFAULT_FROM_EMAIL: ${{ secrets.DJANGO_DEFAULT_FROM_EMAIL }}
-          DJANGO_EMAIL_HOST_PASSWORD: ${{ secrets.DJANGO_EMAIL_HOST_PASSWORD }}
-          DJANGO_EMAIL_HOST_USER: ${{ secrets.DJANGO_EMAIL_HOST_USER }}
-          DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
-          DJANGO_SOCIAL_AUTH_GITHUB_SECRET: ${{ secrets.DJANGO_SOCIAL_AUTH_GITHUB_SECRET }}
-          DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY: ${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY }}
-          DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET: ${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET }}
+          DOCKER_USER: ${{secrets.DOCKER_USER}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
         run: |
-          docker-compose build
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Build the Backend Docker image
+        run: docker build -t aligan/lmscasecup-backend . --file ./backend/lmssite/Dockerfile --tag backend:$(date +%s)
 
-      - name: Configure Docker Client
-        run: |-
-          gcloud auth configure-docker --quiet
-          gcloud auth configure-docker us-west2-docker.pkg.dev --quiet
+      - name: Docker Push
+        run: docker push aligan/lmscasecup-backend
 
-      - name: Push Docker Image to Container Registry (GCR)
-        env:
-          GIT_TAG: v0.1.0
-        run: |-
-          docker images
-          docker tag $IMAGE_NGINX:latest gcr.io/$PROJECT_ID/$IMAGE_NGINX:latest
-          docker tag $IMAGE_NGINX:latest gcr.io/$PROJECT_ID/$IMAGE_NGINX:$GIT_TAG
-          docker push gcr.io/$PROJECT_ID/$IMAGE_NGINX:latest
-          docker push gcr.io/$PROJECT_ID/$IMAGE_NGINX:$GIT_TAG
+      - name: Build the Nginx Docker image
+        run: docker build -t aligan/lmscasecup-nginx . --file ./Dockerfile --tag nginx:$(date +%s)
 
-          docker tag $IMAGE_BACKEND:latest gcr.io/$PROJECT_ID/$IMAGE_BACKEND:latest
-          docker tag $IMAGE_BACKEND:latest gcr.io/$PROJECT_ID/$IMAGE_BACKEND:$GIT_TAG
-          docker push gcr.io/$PROJECT_ID/$IMAGE_BACKEND:latest
-          docker push gcr.io/$PROJECT_ID/$IMAGE_BACKEND:$GIT_TAG
-
-      # - name: Push Docker Image to Artifact Registry
-      #   env:
-      #     GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
-      #   run: |-
-      #     docker tag $IMAGE_NAME:latest us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
-      #     docker tag $IMAGE_NAME:latest us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
-      #     docker push us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
-      #     docker push us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
+      - name: Docker Push
+        run: docker push aligan/lmscasecup-nginx
