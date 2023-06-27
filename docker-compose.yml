@@ -2,10 +2,11 @@ version: "3.8"
 # Поднимаем два сервиса, django И node
 services:
   backend:
-    image: aligan/lmscasecup-backend:latest
+    image: aligan/lmscasecup-backend:master
     command: gunicorn mysite.wsgi:application --bind 0.0.0.0:8000
     ports:
       - "8000:8000"
+
     restart: always
     # Для статики мы подключаем два volume (чтобы при перезапуске наши данные не пропадали)), создадим их ниже.
     # volumes:
@@ -14,7 +15,7 @@ services:
     #   - ./backend/lmssite/:/app/
 
   nginx:
-    image: aligan/lmscasecup-nginx:latest
+    image: aligan/lmscasecup-nginx:master
     ports:
       - 80:8080
     depends_on:
