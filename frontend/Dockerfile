@@ -1,5 +1,5 @@
 # так же берём готовый контейнер с node на основе alpine
-FROM node:18-alpine as build
+FROM node:18-alpine as build-react
 # Задаем рабочий каталог
 WORKDIR /react
 # Копируем туда наши json файлы
@@ -15,7 +15,17 @@ ADD ./public ./public
 ADD ./src ./src
 ADD ./config ./config
 
-RUN npm run build:prod
+#Переменные окружения 
+RUN cat > .env
+
+ARG API_URL
+RUN echo "REACT_APP_API_URL = "$API_URL >> .env
+
+RUN cat  ./.env
+
+RUN  npm run build:prod
+
+
 
 
 

@@ -165,6 +165,11 @@ export const StarFilled: Story = {
 	decorators: [ThemeDecorator(ETheme.LIGHT)],
 }
 
+export const Star: Story = {
+	args: { icon: 'star', variation: 'inverted-secondary' },
+	decorators: [ThemeDecorator(ETheme.LIGHT)],
+}
+
 export const Teacher: Story = {
 	args: { icon: 'teacher', variation: 'inverted-secondary' },
 	decorators: [ThemeDecorator(ETheme.LIGHT)],

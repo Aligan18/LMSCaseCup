@@ -26,17 +26,16 @@ load_dotenv()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:8000"
-]
+CORS_ALLOW_ALL_ORIGINS=True
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",
+#     "http://localhost:8000"
+#     "http://localhost"
+# ]
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -208,12 +207,12 @@ DJOSER = {
     #     'user_delete': 'djoser.serializers.UserDeleteSerializer',
     # },
 }
-
+SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
 #Google
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv("DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv("DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile', 'openid']
-SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['name', 'surname']
+# SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['name', 'surname']
 
 #Github
 SOCIAL_AUTH_GITHUB_SECRET = os.getenv("DJANGO_SOCIAL_AUTH_GITHUB_SECRET")

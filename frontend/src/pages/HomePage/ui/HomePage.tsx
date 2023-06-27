@@ -1,17 +1,22 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { GoogleAuthButton } from 'features/GoogleAuthButton'
 import { TranslateButton } from 'features/Translate'
 
+import { StarsGroup } from 'entities/StarsGroup'
+
 import { Button, Icon, ListItem, Loader } from 'shared/ui'
 
 const HomePage = () => {
+	const [rating, setRating] = useState<number>(0)
 	const { t } = useTranslation('home')
 	return (
 		<div>
 			<TranslateButton />
 			<Loader />
 			<GoogleAuthButton />
+
 			{t('glavnaya-stranica')}
 		</div>
 	)
