@@ -18,7 +18,7 @@ jobs:
         working-directory: ./frontend
         run: |
           touch .env
-          echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}" > .env
+          echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}" >> .env
           npm install 
           npm run build:prod
 
@@ -32,12 +32,12 @@ jobs:
         working-directory: ./backend/lmssite/
         run: |
           touch .env
-          echo "DJANGO_DEFAULT_FROM_EMAIL=${{ secrets.DJANGO_DEFAULT_FROM_EMAIL }}" > .env
-          echo "DJANGO_EMAIL_HOST_USER=${{ secrets.DJANGO_EMAIL_HOST_USER }}" > .env
-          echo "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" > .env
-          echo "DJANGO_SOCIAL_AUTH_GITHUB_SECRET=${{ secrets.DJANGO_SOCIAL_AUTH_GITHUB_SECRET }}" > .env
-          echo "DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY=${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY }}" > .env
-          echo "DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET }}" > .env
+          echo "DJANGO_DEFAULT_FROM_EMAIL=${{ secrets.DJANGO_DEFAULT_FROM_EMAIL }}" >> .env
+          echo "DJANGO_EMAIL_HOST_USER=${{ secrets.DJANGO_EMAIL_HOST_USER }}" >> .env
+          echo "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" >> .env
+          echo "DJANGO_SOCIAL_AUTH_GITHUB_SECRET=${{ secrets.DJANGO_SOCIAL_AUTH_GITHUB_SECRET }}" >> .env
+          echo "DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY=${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY }}" >> .env
+          echo "DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET }}" >> .env
           cat .env
           docker build -t aligan/lmscasecup-backend . --file ./Dockerfile --tag backend:$(date +%s)
 
