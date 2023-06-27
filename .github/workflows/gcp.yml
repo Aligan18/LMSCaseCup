@@ -19,10 +19,14 @@ jobs:
           service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
           project_id: ${{ env.PROJECT_ID }}
           export_default_credentials: true
-
-      - name: Build Docker Image
-        run: docker-compose up --build
-
+          
+      - name: Build Docker compose
+      - uses: isbang/compose-action@v1.4.1
+        with:
+          secrets: |
+              "API_URL=${{ secrets.API_URL }}"
+          compose-file: "./docker-compose.yml"
+         
       - name: Configure Docker Client
         run: |-
           gcloud auth configure-docker --quiet
