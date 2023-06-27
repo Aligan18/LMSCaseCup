@@ -8,7 +8,8 @@ jobs:
     name: Build and Push to GCP
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: lmscasecup
+      IMAGE_NGINX: lmscasecup_nginx
+      IMAGE_BACKEND: lmscasecup_backend
       PROJECT_ID: lmsproject-390908
     steps:
       - name: Checkout
@@ -50,10 +51,15 @@ jobs:
           GIT_TAG: v0.1.0
         run: |-
           docker images
-      #     docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
-      #     docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
-      #     docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
-      #     docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+          docker tag $IMAGE_NGINX:latest gcr.io/$PROJECT_ID/$IMAGE_NGINX:latest
+          docker tag $IMAGE_NGINX:latest gcr.io/$PROJECT_ID/$IMAGE_NGINX:$GIT_TAG
+          docker push gcr.io/$PROJECT_ID/$IMAGE_NGINX:latest
+          docker push gcr.io/$PROJECT_ID/$IMAGE_NGINX:$GIT_TAG
+
+          docker tag $IMAGE_BACKEND:latest gcr.io/$PROJECT_ID/$IMAGE_BACKEND:latest
+          docker tag $IMAGE_BACKEND:latest gcr.io/$PROJECT_ID/$IMAGE_BACKEND:$GIT_TAG
+          docker push gcr.io/$PROJECT_ID/$IMAGE_BACKEND:latest
+          docker push gcr.io/$PROJECT_ID/$IMAGE_BACKEND:$GIT_TAG
 
       # - name: Push Docker Image to Artifact Registry
       #   env:
