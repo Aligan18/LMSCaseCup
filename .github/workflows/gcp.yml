@@ -22,7 +22,7 @@ jobs:
 
       - name: Frontend Build
         env:
-          REACT_APP_API_URL: ${{ secrets.API_URL }}
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
         working-directory: ./frontend
         run: |
           npm install 
@@ -30,8 +30,13 @@ jobs:
 
       - name: Build Docker
         env:
-          REACT_APP_API_URL: ${{ secrets.API_URL }}
+          DJANGO_DEFAULT_FROM_EMAIL: ${{ secrets.DJANGO_DEFAULT_FROM_EMAIL }}
+          DJANGO_EMAIL_HOST_PASSWORD: ${{ secrets.DJANGO_EMAIL_HOST_PASSWORD }}
+          DJANGO_EMAIL_HOST_USER: ${{ secrets.DJANGO_EMAIL_HOST_USER }}
           DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+          DJANGO_SOCIAL_AUTH_GITHUB_SECRET: ${{ secrets.DJANGO_SOCIAL_AUTH_GITHUB_SECRET }}
+          DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY: ${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY }}
+          DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET: ${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET }}
         run: |
           docker-compose build
 
