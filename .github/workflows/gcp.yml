@@ -10,13 +10,6 @@ jobs:
     env:
       IMAGE_NAME: lmscasecup_nginx
       PROJECT_ID: lmsproject-390908
-      DJANGO_DEFAULT_FROM_EMAIL: ${{ secrets.DJANGO_DEFAULT_FROM_EMAIL }}
-      DJANGO_EMAIL_HOST_PASSWORD: ${{ secrets.DJANGO_EMAIL_HOST_PASSWORD }}
-      DJANGO_EMAIL_HOST_USER: ${{ secrets.DJANGO_EMAIL_HOST_USER }}
-      DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
-      DJANGO_SOCIAL_AUTH_GITHUB_SECRET: ${{ secrets.DJANGO_SOCIAL_AUTH_GITHUB_SECRET }}
-      DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY: ${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY }}
-      DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET: ${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -26,7 +19,6 @@ jobs:
         run: |
           touch .env
           echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}" > .env
-          cat .env
           npm install 
           npm run build:prod
 
@@ -39,7 +31,14 @@ jobs:
       - name: Build the Backend Docker image
         working-directory: ./backend/lmssite/
         run: |
-          ls
+          touch .env
+          echo "DJANGO_DEFAULT_FROM_EMAIL=${{ secrets.DJANGO_DEFAULT_FROM_EMAIL }}" > .env
+          echo "DJANGO_EMAIL_HOST_USER=${{ secrets.DJANGO_EMAIL_HOST_USER }}" > .env
+          echo "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" > .env
+          echo "DJANGO_SOCIAL_AUTH_GITHUB_SECRET=${{ secrets.DJANGO_SOCIAL_AUTH_GITHUB_SECRET }}" > .env
+          echo "DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY=${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY }}" > .env
+          echo "DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET }}" > .env
+          cat .env
           docker build -t aligan/lmscasecup-backend . --file ./Dockerfile --tag backend:$(date +%s)
 
       - name: Docker Push

@@ -2,8 +2,7 @@ version: "3.8"
 # Поднимаем два сервиса, django И node
 services:
   backend:
-    build:
-      context: ./backend/lmssite/
+    image: aligan/lmscasecup-backend:latest
     command: gunicorn mysite.wsgi:application --bind 0.0.0.0:8000
     ports:
       - "8000:8000"
@@ -15,8 +14,7 @@ services:
     #   - ./backend/lmssite/:/app/
 
   nginx:
-    build:
-      context: ./
+    image: aligan/lmscasecup-nginx:latest
     ports:
       - 80:8080
     depends_on:
