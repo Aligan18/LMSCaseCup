@@ -39,13 +39,13 @@ jobs:
           echo "DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY=${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY }}" >> .env
           echo "DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET }}" >> .env
           cat .env
-          docker build -t aligan/lmscasecup-backend . --file ./Dockerfile --tag backend:$(date +%s)
+          docker build -t aligan/lmscasecup-backend . --file ./Dockerfile --tag aligan/lmscasecup-backend:$(date +%s)
 
       - name: Docker Push
         run: docker push aligan/lmscasecup-backend
 
       - name: Build the Nginx Docker image
-        run: docker build -t aligan/lmscasecup-nginx . --file ./Dockerfile --tag nginx:$(date +%s)
+        run: docker build -t aligan/lmscasecup-nginx . --file ./Dockerfile --tag aligan/lmscasecup-nginx:$(date +%s)
 
       - name: Docker Push
         run: docker push aligan/lmscasecup-nginx
