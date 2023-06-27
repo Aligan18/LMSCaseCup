@@ -28,7 +28,7 @@ jobs:
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-      - name: Build the Backend Docker image
+      - name: Create Backend Env
         working-directory: ./backend/lmssite/
         run: |
           touch .env
@@ -39,13 +39,45 @@ jobs:
           echo "DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY=${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY }}" >> .env
           echo "DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET }}" >> .env
           cat .env
-          docker build -t aligan/lmscasecup-backend . --file ./Dockerfile --tag aligan/lmscasecup-backend:$(date +%s)
 
-      - name: Docker Push
-        run: docker push aligan/lmscasecup-backend
+      - name: Extract metadata (tags, labels) for Backend Docker
+        id: meta
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: aligan/lmscasecup-backend
 
-      - name: Build the Nginx Docker image
-        run: docker build -t aligan/lmscasecup-nginx . --file ./Dockerfile --tag aligan/lmscasecup-nginx:$(date +%s)
+      - name: Build and push Backend Docker image
+        working-directory: ./backend/lmssite/
+        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Docker Push
-        run: docker push aligan/lmscasecup-nginx
+      - name: Extract metadata (tags, labels) for Nginx Docker
+        id: meta
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: aligan/lmscasecup-nginx
+
+      - name: Build and push Backend Docker image
+        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      #     docker build -t aligan/lmscasecup-backend . --file ./Dockerfile --tag aligan/lmscasecup-backend:$(date +%s)
+
+      # - name: Docker Push
+      #   run: docker push aligan/lmscasecup-backend
+
+      # - name: Build the Nginx Docker image
+      #   run: docker build -t aligan/lmscasecup-nginx . --file ./Dockerfile --tag aligan/lmscasecup-nginx:$(date +%s)
+
+      # - name: Docker Push
+      #   run: docker push aligan/lmscasecup-nginx
