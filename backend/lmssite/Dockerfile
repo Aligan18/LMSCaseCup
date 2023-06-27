@@ -18,6 +18,7 @@ RUN pip install --upgrade pip
 # скопируем и установим зависимости. эта операция закешируется
 # и будет перезапускаться только при изменении requirements.txt
 COPY requirements.txt .
+COPY .env .
 RUN pip install -r requirements.txt
 
 # копируем всё что осталось.
