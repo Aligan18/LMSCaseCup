@@ -24,13 +24,14 @@ jobs:
         env:
           REACT_APP_API_URL: ${{ secrets.API_URL }}
         working-directory: ./frontend
-        run: npm run build:prod
+        run: |
+          npm install 
+          npm run build:prod
           
       - name: Build Docker
         env:
           REACT_APP_API_URL: ${{ secrets.API_URL }}
         run: |
-          npm run build:prod
           docker-compose build
 
       - name: Configure Docker Client
