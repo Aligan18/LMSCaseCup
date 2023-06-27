@@ -34,7 +34,7 @@ services:
       - ./nginx/nginx-setup.conf:/etc/nginx/conf.d/default.conf:ro
       - react_build:/var/www/react
       - react_locales:/var/www/react/locales
-      - ./frontend/.build:/var/www/react
+
     depends_on:
       - backend
       - frontend
