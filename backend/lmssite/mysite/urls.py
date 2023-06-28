@@ -1,8 +1,10 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.shortcuts import render
+from django.urls import path, include, re_path
 
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
 
 from admins.views import AdminsViewList, AdminsRetrieveUpdateDestroyView
 from categories.views import CategoriesViewCreate, CategoriesViewList, CategoriesViewRetrieve, \
@@ -35,14 +37,17 @@ from test_tasks.views import TestTasksViewCreate, TestTasksViewList, TestTasksVi
     TestTasksViewRetrieveUpdateDestroy, TestQuestionAnswerViewCreate, TestQuestionAnswerViewList, \
     TestQuestionAnswerViewRetrieve, TestQuestionAnswerViewRetrieveUpdateDestroy, TestAnswerOptionsViewAllCreate, \
     TestAnswerOptionsViewList, TestAnswerOptionsViewRetrieve, TestAnswerOptionsViewUpdateDestroy, \
-     TestGradeViewList, TestGradeViewRetrieve, TestGradeViewRetrieveUpdateDestroy, \
+    TestGradeViewList, TestGradeViewRetrieve, TestGradeViewRetrieveUpdateDestroy, \
     TestGradeViewCreate
+from .views import index
 
 urlpatterns = [
+
+    path('', index, name='index'),
     path('admin/', admin.site.urls),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
-    path('auth/', include('djoser.social.urls')), ####для гугл?
+    path('auth/', include('djoser.social.urls')),  ####для гугл?
     path('accounts/activate/<uid>/<token>', ActivateUser.as_view({'get': 'activation'}), name='activation'),
 
     path('api/v1/admins/list/', AdminsViewList.as_view(), name='admins-list'),
@@ -67,7 +72,7 @@ urlpatterns = [
     path('api/v1/course/id/<int:pk>', CourseViewRetrieve.as_view(), name="course-id"),
     path('api/v1/course/update/<int:pk>', CourseViewUpdate.as_view(), name="course-update"),
     path('api/v1/course/delete/<int:pk>', CourseViewDestroy.as_view(), name="course-delete"),
-    path('api/v1/course_students/list/', CourseStudentsListViewRetrieve.as_view()), #????????
+    path('api/v1/course_students/list/', CourseStudentsListViewRetrieve.as_view()),  # ????????
 
     path('api/v1/course_student/create/', CourseStudentViewAll.as_view()),
 
@@ -80,14 +85,15 @@ urlpatterns = [
     # нужно передавать /?course=<id>
     path('api/v1/file_tasks_grade/list/', FileTasksGradeViewList.as_view(), name="file_tasks_grade-list"),
     path('api/v1/file_tasks_grade/id/<int:pk>', FileTasksGradeViewRetrieve.as_view(), name="file_tasks_grade-id"),
-    path('api/v1/file_tasks_grade/rud/<int:pk>', FileTasksGradeViewRetrieveUpdateDestroy.as_view(), name="file_tasks_grade-rud"),
-
+    path('api/v1/file_tasks_grade/rud/<int:pk>', FileTasksGradeViewRetrieveUpdateDestroy.as_view(),
+         name="file_tasks_grade-rud"),
 
     path('api/v1/file_tasks_answer/create/', FileTasksAnswerViewCreate.as_view(), name="file_tasks_answer-create"),
     # нужно передавать /?course=<id>
     path('api/v1/file_tasks_answer/list/', FileTasksAnswerViewList.as_view(), name="file_tasks_answer-list"),
     path('api/v1/file_tasks_answer/id/<int:pk>', FileTasksAnswerViewRetrieve.as_view(), name="file_tasks_answer-id"),
-    path('api/v1/file_tasks_answer/rud/<int:pk>', FileTasksAnswerViewRetrieveUpdateDestroy.as_view(), name="file_tasks_answer-rud"),
+    path('api/v1/file_tasks_answer/rud/<int:pk>', FileTasksAnswerViewRetrieveUpdateDestroy.as_view(),
+         name="file_tasks_answer-rud"),
 
     # нужно передавать /?course=<id> /?student=<id>
     path('api/v1/attendance/create/', AttendanceForLecturesViewCreate.as_view()),
@@ -122,14 +128,19 @@ urlpatterns = [
     path('api/v1/teachers/rud/<int:pk>', TeachersViewRetrieveUpdateDestroy.as_view(), name="teachers-rud"),
 
     path('api/v1/test_tasks/create/', TestTasksViewCreate.as_view(), name="test_tasks-create"),
-    path('api/v1/test_tasks/list/', TestTasksViewList.as_view(), name="test_tasks-list"),  # нужно передавать /?course=<id> /?student=<id>
+    path('api/v1/test_tasks/list/', TestTasksViewList.as_view(), name="test_tasks-list"),
+    # нужно передавать /?course=<id> /?student=<id>
     path('api/v1/test_tasks/id/<int:pk>', TestTasksViewRetrieve.as_view(), name="test_tasks-id"),
     path('api/v1/test_tasks/rud/<int:pk>', TestTasksViewRetrieveUpdateDestroy.as_view(), name="test_tasks-rud"),
 
-    path('api/v1/test_question_answer/create/', TestQuestionAnswerViewCreate.as_view(), name="test_question_answer-create"),
-    path('api/v1/test_question_answer/list/', TestQuestionAnswerViewList.as_view(), name="test_question_answer-list"),  # нужно передавать /?course=<id>
-    path('api/v1/test_question_answer/id/<int:pk>', TestQuestionAnswerViewRetrieve.as_view(), name="test_question_answer-id"),
-    path('api/v1/test_question_answer/rud/<int:pk>', TestQuestionAnswerViewRetrieveUpdateDestroy.as_view(), name="test_question_answer-rud"),
+    path('api/v1/test_question_answer/create/', TestQuestionAnswerViewCreate.as_view(),
+         name="test_question_answer-create"),
+    path('api/v1/test_question_answer/list/', TestQuestionAnswerViewList.as_view(), name="test_question_answer-list"),
+    # нужно передавать /?course=<id>
+    path('api/v1/test_question_answer/id/<int:pk>', TestQuestionAnswerViewRetrieve.as_view(),
+         name="test_question_answer-id"),
+    path('api/v1/test_question_answer/rud/<int:pk>', TestQuestionAnswerViewRetrieveUpdateDestroy.as_view(),
+         name="test_question_answer-rud"),
 
     path('api/v1/test_answer_options/create/', TestAnswerOptionsViewAllCreate.as_view()),
     # нужно передавать /?course=<id> /?student=<id>
@@ -138,21 +149,25 @@ urlpatterns = [
     path('api/v1/test_answer_options/rud/<int:pk>', TestAnswerOptionsViewUpdateDestroy.as_view()),
 
     path('api/v1/test_tasks_grade/create/', TestGradeViewCreate.as_view(), name="test_tasks_grade-create"),
-    path('api/v1/test_tasks_grade/list/', TestGradeViewList.as_view(), name="test_tasks_grade-list"),  # нужно передавать /?course=<id>
+    path('api/v1/test_tasks_grade/list/', TestGradeViewList.as_view(), name="test_tasks_grade-list"),
+    # нужно передавать /?course=<id>
     path('api/v1/test_tasks_grade/id/<int:pk>', TestGradeViewRetrieve.as_view(), name="test_tasks_grade-id"),
-    path('api/v1/test_tasks_grade/rud/<int:pk>', TestGradeViewRetrieveUpdateDestroy.as_view(), name="test_tasks_grade-rud"),
+    path('api/v1/test_tasks_grade/rud/<int:pk>', TestGradeViewRetrieveUpdateDestroy.as_view(),
+         name="test_tasks_grade-rud"),
 
     path('api/v1/student_ticket/create/', StudentTicketsViewCreate.as_view(), name="student_ticket-create"),
     path('api/v1/student_ticket/list/', StudentTicketsViewList.as_view(), name="student_ticket-list"),
     path('api/v1/one_student_ticket/list/', OnlyOneStudentTicketsViewList.as_view()),  # требует /?student=<id>
     path('api/v1/student_ticket/id/<int:pk>', StudentTicketsViewRetrieve.as_view(), name="student_ticket-id"),
-    path('api/v1/student_ticket/rud/<int:pk>', StudentTicketsViewRetrieveUpdateDestroy.as_view(), name="student_ticket-rud"),
+    path('api/v1/student_ticket/rud/<int:pk>', StudentTicketsViewRetrieveUpdateDestroy.as_view(),
+         name="student_ticket-rud"),
 
     path('api/v1/teacher_ticket/create/', TeacherTicketsViewCreate.as_view(), name="teacher_ticket-create"),
     path('api/v1/teacher_ticket/list/', TeacherTicketsViewList.as_view(), name="teacher_ticket-list"),
     path('api/v1/one_teacher_ticket/list/', OnlyOneTeacherTicketsViewList.as_view()),  # требует /?teacher=<id>
     path('api/v1/teacher_ticket/id/<int:pk>', TeacherTicketsViewRetrieve.as_view(), name="teacher_ticket-id"),
-    path('api/v1/teacher_ticket/rud/<int:pk>', TeacherTicketsViewRetrieveUpdateDestroy.as_view(), name="teacher_ticket-rud"),
+    path('api/v1/teacher_ticket/rud/<int:pk>', TeacherTicketsViewRetrieveUpdateDestroy.as_view(),
+         name="teacher_ticket-rud"),
 
     path('api/v1/admin_ticket/create/', AdminTicketsViewCreate.as_view(), name="admin_ticket-create"),
     path('api/v1/admin_ticket/list/', AdminTicketsViewList.as_view(), name="admin_ticket-list"),
@@ -160,11 +175,13 @@ urlpatterns = [
     path('api/v1/admin_ticket/id/<int:pk>', AdminTicketsViewRetrieve.as_view(), name="admin_ticket-id"),
     path('api/v1/admin_ticket/rud/<int:pk>', AdminTicketsViewRetrieveUpdateDestroy.as_view(), name="admin_ticket-rud"),
 
-    path('api/v1/unauthorized_ticket/create/', UnauthorizedTicketsViewCreate.as_view(), name="unauthorized_ticket-create"),
+    path('api/v1/unauthorized_ticket/create/', UnauthorizedTicketsViewCreate.as_view(),
+         name="unauthorized_ticket-create"),
     path('api/v1/unauthorized_ticket/list/', UnauthorizedTicketsViewList.as_view(), name="unauthorized_ticket-list"),
-    path('api/v1/unauthorized_ticket/id/<int:pk>', UnauthorizedTicketsViewRetrieve.as_view(), name="unauthorized_ticket-id"),
-    path('api/v1/unauthorized_ticket/rud/<int:pk>', UnauthorizedTicketsViewRetrieveUpdateDestroy.as_view(), name="unauthorized_ticket-rud"),
-
+    path('api/v1/unauthorized_ticket/id/<int:pk>', UnauthorizedTicketsViewRetrieve.as_view(),
+         name="unauthorized_ticket-id"),
+    path('api/v1/unauthorized_ticket/rud/<int:pk>', UnauthorizedTicketsViewRetrieveUpdateDestroy.as_view(),
+         name="unauthorized_ticket-rud"),
 
 ]
 
