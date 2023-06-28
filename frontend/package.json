@@ -16,7 +16,8 @@
 		"stylelint:fix": "npx stylelint \"**/*.scss\" --fix",
 		"jest": "jest --config ./config/jest/jest.config.ts",
 		"storybook": "storybook dev -p 6006 -c ./config/storybook",
-		"build-storybook": "storybook build -c ./config/storybook"
+		"build-storybook": "storybook build -c ./config/storybook",
+		"prepare": "cd .. && husky install frontend/.husky"
 	},
 	"keywords": [],
 	"author": "",
@@ -90,7 +91,8 @@
 		"webpack": "^5.83.1",
 		"webpack-bundle-analyzer": "^4.9.0",
 		"webpack-cli": "^5.1.1",
-		"webpack-dev-server": "^4.15.0"
+		"webpack-dev-server": "^4.15.0",
+		"husky": "^8.0.0"
 	},
 	"dependencies": {
 		"@types/react-router-dom": "^5.3.3",
