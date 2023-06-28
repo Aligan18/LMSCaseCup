@@ -1,4 +1,5 @@
 import path from 'path'
+import { ConcatenationScope } from 'webpack'
 
 import { buildWebpackConfig } from './config/build/BuildWebpackConfig'
 import { IBuildEnv, IBuildPath } from './config/build/types/config'
@@ -9,11 +10,13 @@ export default (env: IBuildEnv) => {
 	const isDev: boolean = mode === 'development'
 
 	const paths: IBuildPath = {
-		build: path.resolve(__dirname, '.build'),
+		static: 'https://test.org/example/',
+		build: path.resolve(__dirname, 'build'),
 		entry: path.resolve(__dirname, 'src', 'index.tsx'),
 		html: path.resolve(__dirname, 'public', 'index.html'),
 		src: path.resolve(__dirname, 'src'),
 	}
+	console.log('HELLO ', paths.static)
 
 	const config = buildWebpackConfig({
 		mode,

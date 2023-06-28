@@ -1,6 +1,7 @@
 export type IBuildMode = 'development' | 'production'
 
 export interface IBuildPath {
+	static: string
 	entry: string
 	build: string
 	html: string
