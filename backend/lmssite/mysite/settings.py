@@ -29,6 +29,12 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+import mimetypes
+
+mimetypes.add_type("text/css", ".css", True)
+
+mimetypes.add_type("text/javascript", ".js", True)
+
 ALLOWED_HOSTS = ['*']
 CORS_ALLOW_ALL_ORIGINS=True
 # CORS_ALLOWED_ORIGINS = [
@@ -90,8 +96,9 @@ REST_FRAMEWORK = {
 
 MIDDLEWARE = [
     'social_django.middleware.SocialAuthExceptionMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -101,24 +108,49 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'mysite.urls'
-
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        # Tell Django where to find Reacts index.html file
+        "DIRS": [os.path.join(BASE_DIR, "frontend/build")],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'frontend/build/static')
+]
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+# TEMPLATES = [
+#     {
+#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+#         'DIRS': [ ],
+#         'APP_DIRS': True,
+#         'OPTIONS': {
+#             'context_processors': [
+#                 'django.template.context_processors.debug',
+#                 'django.template.context_processors.request',
+#                 'django.contrib.auth.context_processors.auth',
+#                 'django.contrib.messages.context_processors.messages',
+#                 'social_django.context_processors.backends',
+#                 'social_django.context_processors.login_redirect',
+#             ],
+#         },
+#     },
+# ]
+
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
@@ -161,12 +193,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
@@ -208,13 +237,14 @@ DJOSER = {
     # },
 }
 SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
-#Google
+# Google
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv("DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv("DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
-SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile', 'openid']
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.email',
+                                   'https://www.googleapis.com/auth/userinfo.profile', 'openid']
 # SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['name', 'surname']
 
-#Github
+# Github
 SOCIAL_AUTH_GITHUB_SECRET = os.getenv("DJANGO_SOCIAL_AUTH_GITHUB_SECRET")
 SOCIAL_AUTH_GITHUB_SCOPE = ['email']
 SOCIAL_AUTH_GITHUB_PROFILE_EXTRA_PARAMS = {
@@ -229,5 +259,3 @@ EMAIL_HOST_USER = os.getenv("DJANGO_EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("DJANGO_EMAIL_HOST_PASSWORD")
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = os.getenv("DJANGO_DEFAULT_FROM_EMAIL")
-
-
