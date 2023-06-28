@@ -23,7 +23,11 @@
 	color: var(--primary-color);
 	background: var(--secondary-color);
 }
-
+.flex {
+	display: flex;
+	justify-content: center;
+	align-items: start;
+}
 .clear {
 	border: none;
 	color: var(--gray-color);

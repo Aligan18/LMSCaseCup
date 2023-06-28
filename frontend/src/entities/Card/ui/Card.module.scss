@@ -1,0 +1,53 @@
+.Card {
+	border: 1px solid black;
+	padding: 18px;
+	background: var(--background);
+	width: 475px;
+	height: 482px;
+	display: grid;
+	grid-template-rows: 230px 67px 50px 46px;
+	gap: 18px;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.image {
+}
+
+.tegs {
+	display: grid;
+	grid-template-areas:
+		'title title title'
+		'first_teg second_teg third_teg';
+}
+
+.teg {
+	color: var(--inverted-secondary);
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 6px;
+}
+.title {
+	grid-area: title;
+	margin-bottom: 11px;
+}
+.first_teg {
+	grid-area: first_teg;
+}
+
+.second_teg {
+	grid-area: second_teg;
+}
+
+.third_teg {
+	grid-area: third_teg;
+}
+
+.button {
+	width: 91%;
+	height: 46px;
+}
+.wrapper_button {
+	width: inherit;
+}
