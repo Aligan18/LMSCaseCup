@@ -23,7 +23,7 @@ export const Button: FC<IButtonProps> = ({
 			})}
 			{...props}
 		>
-			{children}
+			<div className={classes.flex}>{children}</div>
 		</button>
 	)
 }
