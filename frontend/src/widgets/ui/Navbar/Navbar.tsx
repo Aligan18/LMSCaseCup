@@ -3,24 +3,72 @@ import { Link } from 'react-router-dom'
 
 import classes from './Navbar.module.scss'
 
-import { useTheme } from 'app/providers/ThemeProvider'
+import { ChangeThemeButton } from 'features/ChangeTheme'
+import { NotificationIcon } from 'features/NotificationIcon'
+import { TranslateButton } from 'features/Translate'
 
-import DarkIcon from 'shared/assets/svg/DarkMode.svg'
+import { Avatar } from 'entities/Avatar'
+
 import { classnames as cn } from 'shared/lib'
+import { Button, Icon, Input, ListItem } from 'shared/ui'
+import { Logo } from 'shared/ui/Logo/Logo'
 
 export const Navbar = ({ style }: INavbarProps) => {
-	const { t } = useTranslation()
-	const { changeTheme } = useTheme()
+	const { t, i18n } = useTranslation()
+	const userType: 'student' | 'teacher' | 'admin' = 'student'
 
 	return (
 		<div className={cn(classes.Navbar, [style])}>
-			<DarkIcon
-				width={50}
-				height={50}
-			/>
-			<button onClick={changeTheme}>{t('theme')}</button>
-			<Link to={'/'}>{t('home-page')} </Link>
-			<Link to={'/about'}>{t('about-page')} </Link>
+			<div className={classes.left}>
+				<Link to={'/'}>
+					<Logo />
+				</Link>
+				<Input variation={'clear'}>Найти</Input>
+			</div>
+			<div className={classes.right}>
+				{userType == 'student' && (
+					<Button
+						variation={'clear'}
+						format={'small'}
+					>
+						{t('kurator')}
+						<Icon
+							variation={'primary'}
+							icon={'edit'}
+						/>
+					</Button>
+				)}
+				{userType && (
+					<Button
+						variation={'clear'}
+						format={'small'}
+					>
+						{t('uchitelskaya')}
+						<Icon
+							variation={'primary'}
+							icon={'book'}
+						/>
+					</Button>
+				)}
+
+				{userType && (
+					<Button
+						variation={'clear'}
+						format={'small'}
+					>
+						{t('admin')}
+						<Icon
+							variation={'primary'}
+							icon={'tool'}
+						/>
+					</Button>
+				)}
+				<ChangeThemeButton />
+				<TranslateButton />
+				<NotificationIcon />
+
+				<Avatar />
+			</div>
 		</div>
 	)
 }

@@ -17,10 +17,6 @@ i18n.use(Backend)
 		lng: 'en',
 		fallbackLng: 'en',
 		debug: __IS_DEV__ ? true : false,
-		backend: {
-			// Задайте новый URL-адрес переводов
-			loadPath: '/static/locales/{{lng}}/{{ns}}.json',
-		},
 
 		interpolation: {
 			escapeValue: false, // not needed for react as it escapes by default
