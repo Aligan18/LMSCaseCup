@@ -50,3 +50,4 @@ export const Card = ({ styles }: ICardProps) => {
 interface ICardProps {
 	styles?: string
 }
+

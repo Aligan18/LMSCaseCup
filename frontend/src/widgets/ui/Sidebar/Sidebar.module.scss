@@ -1,0 +1,21 @@
+.Sidebar {
+	padding: 12px;
+	top: 120px;
+	background: var(--background);
+	width: 300px;
+	height: calc(100vh - var(--navbar-height));
+	display: block;
+	gap: 12px;
+	justify-content: flex-start;
+	align-items: center;
+}
+.top_button {
+	width: 100%;
+	height: 48px;
+}
+.bottom_button {
+	top: 840px;
+	width: 100%;
+	height: 48px;
+	gap: 16px;
+}

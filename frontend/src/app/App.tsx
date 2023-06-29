@@ -4,7 +4,7 @@ import { AppRouters } from './providers/AppRouters'
 import { useTheme } from './providers/ThemeProvider'
 import './styles/index.scss'
 
-import { Navbar } from 'widgets/ui'
+import { Navbar, Sidebar } from 'widgets/ui'
 
 import { LoadingPage } from 'features/LoaderForPage'
 
@@ -16,6 +16,7 @@ const App = () => {
 		<div className={classnames('app', [theme])}>
 			<Suspense fallback={<LoadingPage />}>
 				<Navbar />
+				<Sidebar />
 				<AppRouters />
 			</Suspense>
 		</div>
