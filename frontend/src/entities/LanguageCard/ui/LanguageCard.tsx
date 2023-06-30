@@ -1,4 +1,3 @@
-import { use } from 'i18next'
 import { useTranslation } from 'react-i18next'
 
 import classes from './LanguageCard.module.scss'
@@ -10,7 +9,6 @@ export const LanguageCard = ({ styles }: ILanguageCardProps) => {
 	const { t } = useTranslation()
 	return (
 		<div className={cn(classes.LanguageCard, [styles])}>
-			<div className={classes.title}></div>
 			<ListItem
 				hover={'hover_inverted-secondary'}
 				variation={'clear'}
