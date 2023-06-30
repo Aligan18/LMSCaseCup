@@ -35,6 +35,7 @@ export const Navbar = ({ styles }: INavbarProps) => {
 						<Icon
 							variation={'primary'}
 							icon={'edit'}
+							size={'small'}
 						/>
 					</Button>
 				)}
@@ -47,6 +48,7 @@ export const Navbar = ({ styles }: INavbarProps) => {
 						<Icon
 							variation={'primary'}
 							icon={'book'}
+							size={'small'}
 						/>
 					</Button>
 				)}
@@ -60,6 +62,7 @@ export const Navbar = ({ styles }: INavbarProps) => {
 						<Icon
 							variation={'primary'}
 							icon={'tool'}
+							size={'small'}
 						/>
 					</Button>
 				)}
@@ -67,7 +70,7 @@ export const Navbar = ({ styles }: INavbarProps) => {
 				<TranslateButton />
 				<NotificationIcon />
 
-				<Avatar />
+				<Avatar size="medium" />
 			</div>
 		</div>
 	)

@@ -5,8 +5,6 @@ import { Layout } from './providers/Layout'
 import { useTheme } from './providers/ThemeProvider'
 import './styles/index.scss'
 
-import { Navbar, Sidebar } from 'widgets/ui'
-
 import { LoadingPage } from 'features/LoaderForPage'
 
 import { classnames } from 'shared/lib'

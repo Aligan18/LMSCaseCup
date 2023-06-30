@@ -2,10 +2,8 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { GoogleAuthButton } from 'features/GoogleAuthButton'
-import { TranslateButton } from 'features/Translate'
 
-import { Card } from 'entities/Card/ui/Card'
-import { StarsGroup } from 'entities/StarsGroup'
+import { CourseCard } from 'entities/CourseCard'
 
 import { Button, Icon, ListItem, Loader } from 'shared/ui'
 
@@ -16,7 +14,7 @@ const HomePage = () => {
 		<div>
 			<Loader />
 			<GoogleAuthButton />
-			<Card />
+
 			{t('glavnaya-stranica')}
 		</div>
 	)
