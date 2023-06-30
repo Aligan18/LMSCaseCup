@@ -24,12 +24,13 @@ export const CourseCard = ({ styles, data }: ICourseCardProps) => {
 
 			<div className={classes.wrapper_button}>
 				<Button
+					variation="clear"
 					styles={classes.button}
 					format={'small'}
 				>
 					{t('podrobnee')}
 					<Icon
-						variation={'secondary'}
+						variation={'primary'}
 						icon={'link'}
 					/>
 				</Button>

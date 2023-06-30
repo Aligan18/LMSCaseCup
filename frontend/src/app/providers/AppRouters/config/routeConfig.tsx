@@ -5,7 +5,7 @@ import { CoursesPage } from 'pages/CoursesPage'
 import { HomePage } from 'pages/HomePage'
 import { NotFoundPage } from 'pages/NotFoundPage'
 
-export enum RoutePath {
+export enum ERoutePath {
 	ABOUT = '/about',
 	HOME = '/',
 	NOT_FOUND = '*',
@@ -14,19 +14,19 @@ export enum RoutePath {
 
 export const RouteConfig: Array<RouteProps> = [
 	{
-		path: RoutePath.ABOUT,
+		path: ERoutePath.ABOUT,
 		element: <AboutPage />,
 	},
 	{
-		path: RoutePath.HOME,
+		path: ERoutePath.HOME,
 		element: <HomePage />,
 	},
 	{
-		path: RoutePath.NOT_FOUND,
+		path: ERoutePath.NOT_FOUND,
 		element: <NotFoundPage />,
 	},
 	{
-		path: RoutePath.COURSES,
+		path: ERoutePath.COURSES,
 		element: <CoursesPage />,
 	},
 ]
