@@ -1,9 +1,13 @@
+import { useTranslation } from 'react-i18next'
+
 import classes from './Sidebar.module.scss'
 
 import { classnames as cn } from 'shared/lib'
 import { Icon, ListItem } from 'shared/ui'
 
 export const Sidebar = ({ styles }: ISidebarProps) => {
+	const { t } = useTranslation()
+
 	return (
 		<div className={cn(classes.Sidebar, [styles])}>
 			<div className={classes.top_button}>
@@ -13,7 +17,7 @@ export const Sidebar = ({ styles }: ISidebarProps) => {
 					left={<Icon icon="home" />}
 					styles={classes.top_button}
 				>
-					Мое обучение
+					{t('moe-obuchenie')}
 				</ListItem>
 				<ListItem
 					hover={'hover_inverted-secondary'}
@@ -21,7 +25,7 @@ export const Sidebar = ({ styles }: ISidebarProps) => {
 					left={<Icon icon="courses" />}
 					styles={classes.top_button}
 				>
-					Курсы
+					{t('kursy')}
 				</ListItem>
 				<ListItem
 					hover={'hover_inverted-secondary'}
@@ -29,7 +33,7 @@ export const Sidebar = ({ styles }: ISidebarProps) => {
 					left={<Icon icon="calendar" />}
 					styles={classes.top_button}
 				>
-					Календарь
+					{t('kalendar')}
 				</ListItem>
 				<ListItem
 					hover={'hover_inverted-secondary'}
@@ -37,7 +41,7 @@ export const Sidebar = ({ styles }: ISidebarProps) => {
 					left={<Icon icon="chat" />}
 					styles={classes.top_button}
 				>
-					Сообщения
+					{t('soobsheniya')}
 				</ListItem>
 			</div>
 			<div className={classes.bottom_button}>
@@ -47,7 +51,7 @@ export const Sidebar = ({ styles }: ISidebarProps) => {
 					left={<Icon icon="shield" />}
 					styles={classes.bottom_button}
 				>
-					Поддержка
+					{t('podderzhka')}
 				</ListItem>
 			</div>
 		</div>

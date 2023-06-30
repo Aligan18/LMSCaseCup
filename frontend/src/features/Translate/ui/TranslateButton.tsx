@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next'
 import { Icon } from 'shared/ui'
 
 export const TranslateButton = () => {
-	const { t, i18n } = useTranslation()
+	const { i18n } = useTranslation()
 	const toggle = async () => {
-		await i18n.changeLanguage(i18n.language === 'en' ? 'ru' : 'en')
+		await i18n.changeLanguage(i18n.language === 'kz' ? 'ru' : 'kz')
 	}
 	return (
 		<Icon

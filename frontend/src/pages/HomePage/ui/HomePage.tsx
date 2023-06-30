@@ -14,7 +14,6 @@ const HomePage = () => {
 	const { t } = useTranslation('home')
 	return (
 		<div>
-			<TranslateButton />
 			<Loader />
 			<GoogleAuthButton />
 			<Card />
