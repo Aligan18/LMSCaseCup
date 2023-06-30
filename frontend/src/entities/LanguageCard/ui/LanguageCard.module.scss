@@ -1,0 +1,20 @@
+.LanguageCard {
+	background: var(--inverted-background);
+	border-radius: 4px;
+	border-bottom: 1px solid var(--light-gray-color);
+	box-shadow: 1px 1px 1px 1px var(--light-gray-color);
+
+	width: 170px;
+	height: 142px;
+	display: grid;
+	color: var(--gray-color);
+	justify-content: center;
+}
+.butn {
+	width: 100%;
+	text-align: center;
+	height: 35.6px;
+
+	border-radius: 0;
+	border-bottom: 1px solid var(--light-gray-color);
+}
