@@ -7,6 +7,10 @@
 }
 
 .page {
+	background-color: var(--secondary-color);
+	padding: 40px 50px;
+	width: 98%;
+	border-radius: 8px;
 	grid-area: page;
 }
 

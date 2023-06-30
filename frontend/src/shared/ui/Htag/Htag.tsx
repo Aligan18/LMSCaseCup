@@ -9,7 +9,7 @@ export const Htag = ({ styles, tag = 'medium', children, ...props }: IHtagProps)
 		case 'very-large':
 			return (
 				<h1
-					className={cn(classes.very_large, [styles])}
+					className={cn(classes.very_large, [styles, classes.cursor])}
 					{...props}
 				>
 					{children}
@@ -19,7 +19,7 @@ export const Htag = ({ styles, tag = 'medium', children, ...props }: IHtagProps)
 		case 'large':
 			return (
 				<h1
-					className={cn(classes.large, [styles])}
+					className={cn(classes.large, [styles, classes.cursor])}
 					{...props}
 				>
 					{children}
@@ -29,7 +29,7 @@ export const Htag = ({ styles, tag = 'medium', children, ...props }: IHtagProps)
 		case 'medium':
 			return (
 				<h2
-					className={cn(classes.medium, [styles])}
+					className={cn(classes.medium, [styles, classes.cursor])}
 					{...props}
 				>
 					{children}
@@ -39,7 +39,7 @@ export const Htag = ({ styles, tag = 'medium', children, ...props }: IHtagProps)
 		case 'small':
 			return (
 				<h3
-					className={cn(classes.small, [styles])}
+					className={cn(classes.small, [styles, classes.cursor])}
 					{...props}
 				>
 					{children}
@@ -49,7 +49,7 @@ export const Htag = ({ styles, tag = 'medium', children, ...props }: IHtagProps)
 		case 'very-small':
 			return (
 				<h3
-					className={cn(classes.very_small, [styles])}
+					className={cn(classes.very_small, [styles, classes.cursor])}
 					{...props}
 				>
 					{children}

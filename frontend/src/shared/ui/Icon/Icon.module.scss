@@ -1,4 +1,4 @@
-.Icon {
+.Icon svg {
 }
 
 .cursor_pointer {
@@ -6,12 +6,7 @@
 }
 
 .cursor_none {
-	cursor: auto;
-}
-
-.medium g {
-	width: 24px;
-	height: 24px;
+	cursor: default;
 }
 
 .secondary path {
@@ -28,4 +23,13 @@
 
 .red path {
 	stroke: var(--red-color);
+}
+.small {
+	width: 18px;
+	height: 18px;
+}
+
+.medium {
+	width: 24px;
+	height: 24px;
 }

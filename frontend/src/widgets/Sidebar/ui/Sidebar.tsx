@@ -1,6 +1,9 @@
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 import classes from './Sidebar.module.scss'
+
+import { ERoutePath } from 'app/providers/AppRouters/'
 
 import { classnames as cn } from 'shared/lib'
 import { Icon, ListItem } from 'shared/ui'
@@ -19,14 +22,16 @@ export const Sidebar = ({ styles }: ISidebarProps) => {
 				>
 					{t('moe-obuchenie')}
 				</ListItem>
-				<ListItem
-					hover={'hover_inverted-secondary'}
-					variation={'clear'}
-					left={<Icon icon="courses" />}
-					styles={classes.top_button}
-				>
-					{t('kursy')}
-				</ListItem>
+				<Link to={ERoutePath.COURSES}>
+					<ListItem
+						hover={'hover_inverted-secondary'}
+						variation={'clear'}
+						left={<Icon icon="courses" />}
+						styles={classes.top_button}
+					>
+						{t('kursy')}
+					</ListItem>
+				</Link>
 				<ListItem
 					hover={'hover_inverted-secondary'}
 					variation={'clear'}

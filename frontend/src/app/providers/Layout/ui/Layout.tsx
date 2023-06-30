@@ -2,7 +2,8 @@ import { DetailedHTMLProps, HTMLAttributes } from 'react'
 
 import classes from './Layout.module.scss'
 
-import { Navbar, Sidebar } from 'widgets/ui'
+import { Navbar } from 'widgets/Navbar'
+import { Sidebar } from 'widgets/Sidebar'
 
 import { classnames as cn } from 'shared/lib'
 

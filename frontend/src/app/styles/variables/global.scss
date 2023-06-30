@@ -1,7 +1,7 @@
 :root {
 	--font-family-main: 'Nunito', sans-serif;
 
-	--font-size-very-s: 14px;
+	--font-size-very-s: 17px;
 	--font-line-very-s: 18px;
 	--font-very-s: var(--font-size-very-s) / var(--font-line-very-s) var(--font-family-main);
 
@@ -21,7 +21,7 @@
 	--font-line-very-l: 26px;
 	--font-very-l: var(--font-size-very-l) / var(--font-line-very-l) var(--font-family-main);
 
-	--navbar-height: 88px;
+	--navbar-height: 120px;
 
 	p {
 		transform-origin: 0 0;

@@ -1,9 +1,9 @@
 import { Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-import { LoadingPage } from 'features/LoaderForPage'
+import { RouteConfig } from '../'
 
-import { RouteConfig } from 'shared/config'
+import { LoadingPage } from 'features/LoaderForPage'
 
 export const AppRouters = () => {
 	return (

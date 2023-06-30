@@ -20,6 +20,7 @@ import LeftIcon from 'shared/assets/svg/LeftIcon.svg'
 import LinkIcon from 'shared/assets/svg/LinkIcon.svg'
 import LockIcon from 'shared/assets/svg/LockIcon.svg'
 import MailIcon from 'shared/assets/svg/MailIcon.svg'
+import MoonIcon from 'shared/assets/svg/MoonIcon.svg'
 import NotificationIcon from 'shared/assets/svg/NotificationIcon.svg'
 import PlusIcon from 'shared/assets/svg/PlusIcon.svg'
 import RightIcon from 'shared/assets/svg/RightIcon.svg'
@@ -29,13 +30,21 @@ import SettingsIcon from 'shared/assets/svg/SettingsIcon.svg'
 import ShieldIcon from 'shared/assets/svg/ShieldIcon.svg'
 import StarFilledIcon from 'shared/assets/svg/StarFilledIcon.svg'
 import StarIcon from 'shared/assets/svg/StarIcon.svg'
+import SunIcon from 'shared/assets/svg/SunIcon.svg'
 import TeacherIcon from 'shared/assets/svg/TeacherIcon.svg'
 import ToolIcon from 'shared/assets/svg/ToolIcon.svg'
 import UpIcon from 'shared/assets/svg/UpIcon.svg'
 import VideoIcon from 'shared/assets/svg/VideoIcon.svg'
 import { classnames as cn } from 'shared/lib'
 
-export const Icon = ({ styles, variation, icon, cursor = 'cursor_none', ...props }: IIconProps) => {
+export const Icon = ({
+	styles,
+	variation = 'inverted-secondary',
+	icon,
+	cursor = 'cursor_pointer',
+	size = 'medium',
+	...props
+}: IIconProps) => {
 	const styleMod = {
 		[classes.primary]: variation === 'primary',
 		[classes.secondary]: variation === 'secondary',
@@ -43,6 +52,8 @@ export const Icon = ({ styles, variation, icon, cursor = 'cursor_none', ...props
 		[classes.inverted_secondary]: variation === 'inverted-secondary',
 		[classes.cursor_pointer]: cursor === 'cursor_pointer',
 		[classes.cursor_none]: cursor === 'cursor_none',
+		[classes.small]: size === 'small',
+		[classes.medium]: size === 'medium',
 	}
 
 	return (
@@ -90,6 +101,8 @@ export const Icon = ({ styles, variation, icon, cursor = 'cursor_none', ...props
 			{icon === 'tool' && <ToolIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'up' && <UpIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'video' && <VideoIcon className={cn(classes.Icon, [styles], styleMod)} />}
+			{icon === 'moon' && <MoonIcon className={cn(classes.Icon, [styles], styleMod)} />}
+			{icon === 'sun' && <SunIcon className={cn(classes.Icon, [styles], styleMod)} />}
 		</div>
 	)
 }
@@ -98,6 +111,7 @@ interface IIconProps extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement
 	styles?: string
 	variation?: 'primary' | 'secondary' | 'red' | 'inverted-secondary'
 	cursor?: 'cursor_pointer' | 'cursor_none'
+	size?: 'small' | 'medium' | 'large'
 	icon:
 		| 'home'
 		| 'book'
@@ -130,4 +144,6 @@ interface IIconProps extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement
 		| 'tool'
 		| 'up'
 		| 'video'
+		| 'moon'
+		| 'sun'
 }
