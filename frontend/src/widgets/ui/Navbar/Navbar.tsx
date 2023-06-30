@@ -13,12 +13,12 @@ import { classnames as cn } from 'shared/lib'
 import { Button, Icon, Input, ListItem } from 'shared/ui'
 import { Logo } from 'shared/ui/Logo/Logo'
 
-export const Navbar = ({ style }: INavbarProps) => {
+export const Navbar = ({ styles }: INavbarProps) => {
 	const { t, i18n } = useTranslation()
 	const userType: 'student' | 'teacher' | 'admin' = 'student'
 
 	return (
-		<div className={cn(classes.Navbar, [style])}>
+		<div className={cn(classes.Navbar, [styles])}>
 			<div className={classes.left}>
 				<Link to={'/'}>
 					<Logo />
@@ -74,5 +74,5 @@ export const Navbar = ({ style }: INavbarProps) => {
 }
 
 interface INavbarProps {
-	style?: string
+	styles?: string
 }

@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 
 import { AppRouters } from './providers/AppRouters'
+import { Layout } from './providers/Layout'
 import { useTheme } from './providers/ThemeProvider'
 import './styles/index.scss'
 
@@ -15,9 +16,9 @@ const App = () => {
 	return (
 		<div className={classnames('app', [theme])}>
 			<Suspense fallback={<LoadingPage />}>
-				<Navbar />
-				<Sidebar />
-				<AppRouters />
+				<Layout>
+					<AppRouters />
+				</Layout>
 			</Suspense>
 		</div>
 	)
