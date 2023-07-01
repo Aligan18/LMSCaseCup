@@ -1,0 +1,25 @@
+.ModuleCard {
+	background: var(--background);
+	border-top: 1px;
+	border-radius: 4px 4px 0px 0px;
+	width: 100%;
+	height: max-content;
+	display: inline-flex;
+	justify-content: space-between;
+	position: relative;
+	padding: 20px;
+}
+.left_block {
+	color: var(--gray-color);
+	line-height: 2;
+}
+.right_block {
+	position: absolute;
+	right: 3%;
+	top: 50%;
+	transform: translateY(-50%);
+	border: 2px solid var(--primary-color);
+	border-radius: 50%;
+	width: 28px;
+	height: 28px;
+}

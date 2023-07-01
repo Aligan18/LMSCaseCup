@@ -2,5 +2,9 @@
 	"i18n-ally.localesPaths": ["public/locales", "src/shared/config/i18n"],
 	"i18n-ally.keystyle": "nested",
 	"translatorHelper.targetLanguage": "kk",
-	"translatorHelper.sourceLanguage": "ru"
+	"translatorHelper.sourceLanguage": "ru",
+	"workbench.colorCustomizations": {
+		"minimap.background": "#00000000",
+		"scrollbar.shadow": "#00000000"
+	}
 }
