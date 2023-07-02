@@ -8,13 +8,14 @@ import { NotificationIcon } from 'features/NotificationIcon'
 import { TranslateButton } from 'features/Translate'
 
 import { Avatar } from 'entities/Avatar'
+import { LanguageCard } from 'entities/LanguageCard'
 
 import { classnames as cn } from 'shared/lib'
 import { Button, Icon, Input, ListItem } from 'shared/ui'
 import { Logo } from 'shared/ui/Logo/Logo'
 
 export const Navbar = ({ styles }: INavbarProps) => {
-	const { t, i18n } = useTranslation()
+	const { t } = useTranslation()
 	const userType: 'student' | 'teacher' | 'admin' = 'student'
 
 	return (

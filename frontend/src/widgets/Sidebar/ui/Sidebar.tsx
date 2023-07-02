@@ -49,15 +49,18 @@ export const Sidebar = ({ styles }: ISidebarProps) => {
 					{t('soobsheniya')}
 				</ListItem>
 			</div>
+
 			<div className={classes.bottom_button}>
-				<ListItem
-					hover={'hover_inverted-secondary'}
-					variation={'clear'}
-					left={<Icon icon="shield" />}
-					styles={classes.bottom_button}
-				>
-					{t('podderzhka')}
-				</ListItem>
+				<Link to={ERoutePath.TICKETS}>
+					<ListItem
+						hover={'hover_inverted-secondary'}
+						variation={'clear'}
+						left={<Icon icon="shield" />}
+						styles={classes.bottom_button}
+					>
+						{t('podderzhka')}
+					</ListItem>
+				</Link>
 			</div>
 		</div>
 	)
