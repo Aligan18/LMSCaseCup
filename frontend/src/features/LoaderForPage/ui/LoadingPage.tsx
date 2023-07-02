@@ -2,11 +2,11 @@
 import classes from './LoadingPage.module.scss'
 
 import { classnames as cn } from 'shared/lib'
-import { Loader } from 'shared/ui'
+import { Htag, Loader } from 'shared/ui'
 
-export const LoadingPage = ({ style }: ILoadingPageProps) => {
+export const LoadingPage = ({ styles }: ILoadingPageProps) => {
 	return (
-		<div className={cn(classes.LoadingPage, [style])}>
+		<div className={cn(classes.LoadingPage, [styles])}>
 			<h1>Loading</h1>
 			<Loader
 				width={20}
@@ -17,5 +17,5 @@ export const LoadingPage = ({ style }: ILoadingPageProps) => {
 }
 
 interface ILoadingPageProps {
-	style?: string
+	styles?: string
 }

@@ -32,6 +32,7 @@ export const StarsGroup = ({
 							onMouseEnter={() => changeRating(index + 1)}
 							onClick={() => setRating(index + 1)}
 							key={index}
+							variation={'primary'}
 						/>
 					)
 				} else {
@@ -43,6 +44,7 @@ export const StarsGroup = ({
 							onMouseEnter={() => changeRating(index + 1)}
 							onClick={() => setRating(index + 1)}
 							key={index}
+							variation={'primary'}
 						/>
 					)
 				}
@@ -52,6 +54,7 @@ export const StarsGroup = ({
 						<Icon
 							icon={'star_filled'}
 							key={index}
+							variation={'primary'}
 						/>
 					)
 				} else {
@@ -59,6 +62,7 @@ export const StarsGroup = ({
 						<Icon
 							icon={'star'}
 							key={index}
+							variation={'primary'}
 						/>
 					)
 				}
