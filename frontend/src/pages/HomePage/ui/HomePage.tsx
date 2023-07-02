@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { FileUploader } from 'widgets/FileUploader/ui/FileUploader'
+
 import { GoogleAuthButton } from 'features/GoogleAuthButton'
 
 import { CourseCard } from 'entities/CourseCard'
@@ -19,6 +21,7 @@ const HomePage = () => {
 			<Grade />
 
 			{t('glavnaya-stranica')}
+			<FileUploader />
 		</div>
 	)
 }
