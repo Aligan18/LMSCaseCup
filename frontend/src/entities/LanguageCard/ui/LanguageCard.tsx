@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import classes from './LanguageCard.module.scss'
@@ -5,7 +6,7 @@ import classes from './LanguageCard.module.scss'
 import { classnames as cn } from 'shared/lib'
 import { ListItem } from 'shared/ui'
 
-export const LanguageCard = ({ styles }: ILanguageCardProps) => {
+export const LanguageCard = ({ styles, setLanguage }: ILanguageCardProps) => {
 	const { t } = useTranslation()
 	return (
 		<div className={cn(classes.LanguageCard, [styles])}>
@@ -13,6 +14,7 @@ export const LanguageCard = ({ styles }: ILanguageCardProps) => {
 				hover={'hover_inverted-secondary'}
 				variation={'clear'}
 				styles={classes.butn}
+				onClick={() => setLanguage('ru')}
 			>
 				{t('russkii')}
 			</ListItem>
@@ -20,6 +22,7 @@ export const LanguageCard = ({ styles }: ILanguageCardProps) => {
 				hover={'hover_inverted-secondary'}
 				variation={'clear'}
 				styles={classes.butn}
+				onClick={() => setLanguage('kz')}
 			>
 				{t('kazakhskii')}
 			</ListItem>
@@ -27,6 +30,7 @@ export const LanguageCard = ({ styles }: ILanguageCardProps) => {
 				hover={'hover_inverted-secondary'}
 				variation={'clear'}
 				styles={classes.butn}
+				onClick={() => setLanguage('en')}
 			>
 				{t('angliiskii')}
 			</ListItem>
@@ -36,4 +40,5 @@ export const LanguageCard = ({ styles }: ILanguageCardProps) => {
 
 interface ILanguageCardProps {
 	styles?: string
+	setLanguage: Dispatch<SetStateAction<'ru' | 'en' | 'kz'>>
 }

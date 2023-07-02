@@ -1,22 +1,20 @@
 import { RouteProps } from 'react-router-dom'
 
-import { AboutPage } from 'pages/AboutPage'
+import { AboutCoursePage } from 'pages/AboutCoursePage'
 import { CoursesPage } from 'pages/CoursesPage'
 import { HomePage } from 'pages/HomePage'
 import { NotFoundPage } from 'pages/NotFoundPage'
+import { TicketsPage } from 'pages/TicketsPage'
 
 export enum ERoutePath {
-	ABOUT = '/about',
 	HOME = '/',
 	NOT_FOUND = '*',
 	COURSES = '/courses',
+	TICKETS = '/tickets',
+	ABOUT_COURSE = '/about_course/:id',
 }
 
 export const RouteConfig: Array<RouteProps> = [
-	{
-		path: ERoutePath.ABOUT,
-		element: <AboutPage />,
-	},
 	{
 		path: ERoutePath.HOME,
 		element: <HomePage />,
@@ -28,5 +26,13 @@ export const RouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.COURSES,
 		element: <CoursesPage />,
+	},
+	{
+		path: ERoutePath.TICKETS,
+		element: <TicketsPage />,
+	},
+	{
+		path: ERoutePath.ABOUT_COURSE,
+		element: <AboutCoursePage />,
 	},
 ]

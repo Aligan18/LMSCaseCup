@@ -1,6 +1,15 @@
 .right_block {
-	border: 2px solid var(--primary-color);
 	border-radius: 50%;
 	width: 28px;
 	height: 28px;
+}
+
+.primary {
+	border: 2px solid var(--primary-color);
+}
+.red {
+	border: 2px solid var(--red-color);
+}
+.inverted {
+	border: 2px solid var(--inverted-secondary);
 }

@@ -1,8 +1,13 @@
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 import classes from './CourseCard.module.scss'
 
-import { classnames as cn } from 'shared/lib'
+import { ERoutePath } from 'app/providers/AppRouters'
+
+import { IAboutCourseData } from 'widgets/CourseList'
+
+import { classnames as cn, deleteRouteId } from 'shared/lib'
 import { Button, Icon } from 'shared/ui'
 import { Htag } from 'shared/ui'
 import { TextBox } from 'shared/ui'
@@ -23,17 +28,19 @@ export const CourseCard = ({ styles, data }: ICourseCardProps) => {
 			<TextBox size={'medium'}>{data.price + ' тг'} </TextBox>
 
 			<div className={classes.wrapper_button}>
-				<Button
-					variation="clear"
-					styles={classes.button}
-					format={'small'}
-				>
-					{t('podrobnee')}
-					<Icon
-						variation={'primary'}
-						icon={'link'}
-					/>
-				</Button>
+				<Link to={deleteRouteId(ERoutePath.ABOUT_COURSE) + data.id}>
+					<Button
+						variation="clear"
+						styles={classes.button}
+						format={'small'}
+					>
+						{t('podrobnee')}
+						<Icon
+							variation={'primary'}
+							icon={'link'}
+						/>
+					</Button>
+				</Link>
 			</div>
 		</div>
 	)
@@ -41,12 +48,5 @@ export const CourseCard = ({ styles, data }: ICourseCardProps) => {
 
 interface ICourseCardProps {
 	styles?: string
-	data: ICourseDataProps
-}
-
-interface ICourseDataProps {
-	id: number
-	title: string
-	description: string
-	price: number
+	data: IAboutCourseData
 }
