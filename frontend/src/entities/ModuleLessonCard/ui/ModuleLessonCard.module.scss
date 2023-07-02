@@ -1,11 +1,9 @@
-.ModuleCard {
-	cursor: pointer;
-	background: var(--background);
-	border-top: 1px;
-	border-radius: 4px 4px 0px 0px;
+.ModuleLessonCard {
+	background: var(--secondary-color);
+	border: 1px solid var(--background);
+	border-radius: 0px 0px 4px 4px;
 	width: 100%;
-
-	max-height: max-content;
+	height: max-content;
 	display: inline-flex;
 	justify-content: space-between;
 	position: relative;
@@ -18,5 +16,4 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 28px;
 }
