@@ -7,6 +7,7 @@ import { CourseCard } from 'entities/CourseCard'
 import { Grade } from 'entities/Grade/ui/Grade'
 import { LanguageCard } from 'entities/LanguageCard/ui/LanguageCard'
 import { ModuleCard } from 'entities/ModuleCard/ui/ModuleCard'
+import { ModuleLessonCard } from 'entities/ModuleLessonCard/ui/ModuleLessonCard'
 import { TicketItem } from 'entities/TicketItem'
 
 import { Button, Icon, ListItem, Loader } from 'shared/ui'
@@ -21,6 +22,7 @@ const HomePage = () => {
 			<Grade />
 			<LanguageCard />
 			<ModuleCard />
+			<ModuleLessonCard />
 
 			{t('glavnaya-stranica')}
 		</div>
