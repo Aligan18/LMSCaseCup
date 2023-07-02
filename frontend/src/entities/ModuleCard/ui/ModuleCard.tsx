@@ -1,7 +1,7 @@
 import classes from './ModuleCard.module.scss'
 
 import { classnames as cn } from 'shared/lib'
-import { Htag, Icon } from 'shared/ui'
+import { CircleForIcon, Htag, Icon } from 'shared/ui'
 
 export const ModuleCard = ({ styles }: IModuleCardProps) => {
 	return (
@@ -28,10 +28,12 @@ export const ModuleCard = ({ styles }: IModuleCardProps) => {
 				</Htag>
 			</div>
 			<div className={classes.right_block}>
-				<Icon
-					variation={'primary'}
-					icon={'up'}
-				/>
+				<CircleForIcon>
+					<Icon
+						variation={'primary'}
+						icon={'up'}
+					/>
+				</CircleForIcon>
 			</div>
 		</div>
 	)
