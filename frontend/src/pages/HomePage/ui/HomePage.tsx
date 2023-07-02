@@ -7,6 +7,7 @@ import { CourseCard } from 'entities/CourseCard'
 import { Grade } from 'entities/Grade/ui/Grade'
 import { LanguageCard } from 'entities/LanguageCard/ui/LanguageCard'
 import { ModuleCard } from 'entities/ModuleCard/ui/ModuleCard'
+import { TicketItem } from 'entities/TicketItem'
 
 import { Button, Icon, ListItem, Loader } from 'shared/ui'
 

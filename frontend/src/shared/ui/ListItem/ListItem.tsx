@@ -27,14 +27,16 @@ export const ListItem = ({
 				[classes.clear]: variation === 'clear',
 			})}
 		>
-			<div
-				className={cn(classes.left, [], {
-					[classes.down]: Boolean(mid_up),
-					[classes.up]: Boolean(mid_down),
-				})}
-			>
-				{left && left}
-			</div>
+			{left && (
+				<div
+					className={cn(classes.left, [], {
+						[classes.down]: Boolean(mid_up),
+						[classes.up]: Boolean(mid_down),
+					})}
+				>
+					{left}
+				</div>
+			)}
 
 			<div className={classes.mid_wrapper}>
 				{mid_up && <div className={classes.mid_up}>{mid_up}</div>}
@@ -42,14 +44,16 @@ export const ListItem = ({
 				{mid_down && <div className={classes.mid_down}>{mid_down}</div>}
 			</div>
 
-			<div
-				className={cn(classes.right, [], {
-					[classes.down]: Boolean(mid_up),
-					[classes.up]: Boolean(mid_down),
-				})}
-			>
-				{right && right}
-			</div>
+			{right && (
+				<div
+					className={cn(classes.right, [], {
+						[classes.down]: Boolean(mid_up),
+						[classes.up]: Boolean(mid_down),
+					})}
+				>
+					{right}
+				</div>
+			)}
 		</div>
 	)
 }
@@ -60,7 +64,7 @@ interface IListItemProps {
 	left?: React.ReactNode | null
 	mid_up?: string
 	mid_down?: string
-	hover: 'hover_primary' | 'hover_inverted-secondary'
+	hover: 'hover_primary' | 'hover_inverted-secondary' | 'none'
 	variation: 'primary' | 'inverted-secondary' | 'clear'
 	children?: string
 	onClick?: () => void | null
