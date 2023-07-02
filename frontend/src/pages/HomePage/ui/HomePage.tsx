@@ -22,12 +22,9 @@ const HomePage = () => {
 			<Loader />
 			<GoogleAuthButton />
 			<Grade />
-			<LanguageCard />
-			<ModuleCard />
-			<ModuleLessonCard />
-			<FileUploader />
 
 			{t('glavnaya-stranica')}
+			<FileUploader />
 		</div>
 	)
 }
