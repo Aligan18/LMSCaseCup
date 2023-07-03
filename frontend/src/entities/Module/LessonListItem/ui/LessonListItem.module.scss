@@ -10,22 +10,26 @@
 	padding: 20px;
 }
 .left_block {
+	display: grid;
+	gap: 12px;
 	color: var(--gray-color);
 }
 .right_block {
+	width: 200px;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-end;
 	align-items: center;
 }
 .button {
 	width: 29px;
 	height: 29px;
 	padding: 0px;
-	&:hover {
-		width: 110px;
-		padding-left: 20px;
-		padding-right: 5px;
-	}
+}
+.hover_button {
+	width: 110px;
+	height: 29px;
+	padding-left: 20px;
+	padding-right: 5px;
 }
 
 .button_children {

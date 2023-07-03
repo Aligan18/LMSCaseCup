@@ -1,3 +1,5 @@
 export { ModuleListItem } from './ModuleListItem/ui/ModuleListItem'
 export { LessonListItem } from './LessonListItem/ui/LessonListItem'
 export { ModuleList } from './ModuleList/ui/ModuleList'
+export { IModuleData } from './types/Module.types'
+export { ILessonData } from './types/Lesson.types'

@@ -1,13 +1,36 @@
 import classes from './AboutCoursePage.module.scss'
 
+import { AboutCourse } from 'widgets/AboutCourse'
 import { CourseProgram } from 'widgets/CourseProgram'
 
 import { classnames as cn } from 'shared/lib'
+import { Htag, TextBox } from 'shared/ui'
 
 const AboutCoursePage = ({ styles }: IAboutCoursePageProps) => {
+	const data = {
+		id: 1,
+		title: 'Python-разработчик с нуля  ',
+		description:
+			'Разработчик на Python создает сайты и приложения, которыми вы пользуетесь каждый день.',
+		price: 100000,
+	}
 	return (
 		<div className={cn(classes.AboutCoursePage, [styles])}>
-			<CourseProgram />
+			<div className={classes.course_title}>
+				<Htag tag={'very-large'}>{data.title}</Htag>
+				<TextBox
+					styles={classes.description}
+					size={'medium'}
+				>
+					{data.description}
+				</TextBox>
+			</div>
+			<div className={classes.module_list}>
+				<CourseProgram />
+			</div>
+			<div className={classes.course_card}>
+				<AboutCourse data={data} />
+			</div>
 		</div>
 	)
 }

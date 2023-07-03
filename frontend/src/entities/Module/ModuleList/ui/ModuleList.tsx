@@ -2,9 +2,7 @@ import { useState } from 'react'
 
 import classes from './ModuleList.module.scss'
 
-import { ILessonData, IModuleData } from 'widgets/CourseProgram'
-
-import { LessonListItem, ModuleListItem } from 'entities/Module'
+import { ILessonData, IModuleData, LessonListItem, ModuleListItem } from 'entities/Module'
 
 import { classnames as cn } from 'shared/lib'
 import { List } from 'shared/ui'

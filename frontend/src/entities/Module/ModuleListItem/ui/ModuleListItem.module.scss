@@ -12,6 +12,8 @@
 	padding: 20px;
 }
 .left_block {
+	display: grid;
+	gap: 10px;
 	color: var(--gray-color);
 }
 .right_block {
@@ -19,4 +21,7 @@
 	justify-content: center;
 	align-items: center;
 	width: 28px;
+}
+.description {
+	color: var(--gray-color);
 }

@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, DetailsHTMLAttributes, HtmlHTMLAttributes } from 'react'
+import { DetailedHTMLProps, HtmlHTMLAttributes } from 'react'
 
 import classes from './Htag.module.scss'
 
