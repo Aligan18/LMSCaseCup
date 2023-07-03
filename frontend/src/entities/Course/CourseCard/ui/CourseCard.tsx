@@ -5,7 +5,7 @@ import classes from './CourseCard.module.scss'
 
 import { ERoutePath } from 'app/providers/AppRouters'
 
-import { IAboutCourseData } from 'widgets/CourseList'
+import { IAboutCourseData } from 'entities/Course'
 
 import { classnames as cn, deleteRouteId } from 'shared/lib'
 import { Button, Icon } from 'shared/ui'
@@ -25,6 +25,7 @@ export const CourseCard = ({ styles, data }: ICourseCardProps) => {
 			</div>
 
 			<TextBox size={'small'}>{data.description}</TextBox>
+
 			<TextBox size={'medium'}>{data.price + ' тг'} </TextBox>
 
 			<div className={classes.wrapper_button}>

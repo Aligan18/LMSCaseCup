@@ -1,29 +1,4 @@
-.tegs {
+.AboutCourse {
 	display: grid;
-	grid-template-areas:
-		'title title title'
-		'first_teg second_teg third_teg';
-}
-
-.teg {
-	color: var(--inverted-secondary);
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	gap: 6px;
-}
-.title {
-	grid-area: title;
-	margin-bottom: 11px;
-}
-.first_teg {
-	grid-area: first_teg;
-}
-
-.second_teg {
-	grid-area: second_teg;
-}
-
-.third_teg {
-	grid-area: third_teg;
+	gap: 30px;
 }

@@ -2,9 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import classes from './CourseProgram.module.scss'
 
-import { IModuleData } from 'widgets/CourseProgram'
-
-import { ModuleList } from 'entities/Module'
+import { IModuleData, ModuleList } from 'entities/Module'
 
 import { classnames as cn } from 'shared/lib'
 import { Htag, List } from 'shared/ui'
@@ -78,7 +76,7 @@ export const CourseProgram = ({ styles }: ICourseProgramProps) => {
 		<div className={cn(classes.CourseProgram, [styles])}>
 			<Htag
 				styles={classes.title}
-				tag={'medium'}
+				tag={'large'}
 			>
 				{t('programma-kursa')}
 			</Htag>

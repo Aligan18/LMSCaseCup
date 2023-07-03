@@ -1,4 +1,4 @@
-import { ILessonData } from 'widgets/CourseProgram'
+import { ILessonData } from 'entities/Module/'
 
 export interface IModuleData {
 	id: number

@@ -1,16 +1,14 @@
-.Card {
-	padding: 18px;
-	background: var(--background);
+.mini_card {
+	background: none;
 	border-radius: 5px;
 	height: fit-content;
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: 230px 30px 44px 20px 46px;
-	gap: 18px;
+	grid-template-rows: 230px 30px;
+	gap: 13px;
 	justify-content: flex-start;
 	align-items: center;
 }
-
 .image {
 	margin-bottom: 15px;
 	border-radius: 3px;
@@ -29,4 +27,16 @@
 }
 .wrapper_button {
 	width: inherit;
+}
+.tegs {
+	display: grid;
+	grid-template-areas: 'first_teg second_teg third_teg';
+}
+
+.teg {
+	color: var(--inverted-secondary);
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 6px;
 }

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 import classes from './ModuleListItem.module.scss'
 
-import { IModuleData } from 'widgets/CourseProgram'
+import { IModuleData } from 'entities/Module'
 
 import { classnames as cn } from 'shared/lib'
 import { CircleForIcon, Htag, Icon } from 'shared/ui'
@@ -16,21 +16,13 @@ export const ModuleListItem = ({ styles, data, ...props }: IModuleListItemProps)
 			{...props}
 		>
 			<div className={classes.left_block}>
-				<Htag
-					tag={'very-small'}
-					style={{ lineHeight: '1' }}
-				>
+				<Htag tag={'very-small'}>
 					{t('modul')} {data.number}
 				</Htag>
+				<Htag tag={'medium'}>{data.title}</Htag>
 				<Htag
-					tag={'medium'}
-					style={{ lineHeight: '2' }}
-				>
-					{data.title}
-				</Htag>
-				<Htag
+					styles={classes.description}
 					tag={'small'}
-					style={{ lineHeight: '1.25' }}
 				>
 					{data.description}
 				</Htag>
