@@ -8,6 +8,7 @@ import { GoogleAuthButton } from 'features/GoogleAuthButton'
 import { CourseCard } from 'entities/CourseCard'
 import { Grade } from 'entities/Grade/ui/Grade'
 import { LanguageCard } from 'entities/LanguageCard/ui/LanguageCard'
+import { AboutStudentList } from 'entities/Student/AboutStudentList/ui/AboutStudentList'
 
 import { Button, Icon, ListItem, Loader } from 'shared/ui'
 
@@ -19,6 +20,7 @@ const HomePage = () => {
 			<Loader />
 			<GoogleAuthButton />
 			<Grade />
+			<AboutStudentList />
 
 			{t('glavnaya-stranica')}
 			<FileUploader />
