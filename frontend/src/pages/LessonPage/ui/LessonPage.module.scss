@@ -1,0 +1,15 @@
+.LessonPage {
+	display: grid;
+	gap: 40px;
+	grid-template-columns: 65% 33%;
+	grid-template-areas:
+		'full_lesson all_lesson '
+		'full_lesson  additions';
+}
+
+.full_lesson {
+	grid-area: full_lesson;
+}
+.all_lesson {
+	grid-area: all_lesson;
+}

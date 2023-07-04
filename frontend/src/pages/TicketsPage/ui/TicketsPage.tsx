@@ -3,7 +3,7 @@ import classes from './TicketsPage.module.scss'
 import { TicketList } from 'widgets/TicketList'
 
 import { classnames as cn } from 'shared/lib'
-import { Htag } from 'shared/ui'
+import { Hr, Htag } from 'shared/ui'
 
 const TicketsPage = ({ styles }: ITicketPageProps) => {
 	return (
@@ -14,7 +14,7 @@ const TicketsPage = ({ styles }: ITicketPageProps) => {
 			>
 				Мои обращения
 			</Htag>
-			<hr className={classes.line} />
+			<Hr />
 			<TicketList />
 		</div>
 	)

@@ -10,4 +10,10 @@ export { TextBox } from './TextBox/TextBox'
 export { TextInput } from './TextInput/TextInput'
 export { CircleForIcon } from './CircleForIcon/CircleForIcon'
 export { List } from './List/List'
+
 export { Header } from './Header/Header'
+
+
+export { CodeBox } from './CodeBox/CodeBox'
+export { Hr } from './Hr/Hr'
+

@@ -6,7 +6,7 @@ import classes from './LessonListItem.module.scss'
 
 import { ERoutePath } from 'app/providers/AppRouters'
 
-import { ILessonData } from 'entities/Module'
+import { IAboutLessonData } from 'entities/Lesson'
 
 import { classnames as cn, deleteRouteId } from 'shared/lib'
 import { Button, Htag, Icon, TextBox } from 'shared/ui'
@@ -48,5 +48,5 @@ export const LessonListItem = ({ styles, data }: ILessonListItemProps) => {
 
 interface ILessonListItemProps {
 	styles?: string
-	data: ILessonData
+	data: IAboutLessonData
 }
