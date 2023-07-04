@@ -12,8 +12,7 @@ export { CircleForIcon } from './CircleForIcon/CircleForIcon'
 export { List } from './List/List'
 
 export { Header } from './Header/Header'
-
+export { SelectOption } from './SelectOption/SelectOption'
 
 export { CodeBox } from './CodeBox/CodeBox'
 export { Hr } from './Hr/Hr'
-
