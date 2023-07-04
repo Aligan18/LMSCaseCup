@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 import classes from './LessonListItem.module.scss'
 
+import { ERoutePath } from 'app/providers/AppRouters'
+
 import { ILessonData } from 'entities/Module'
 
-import { classnames as cn } from 'shared/lib'
+import { classnames as cn, deleteRouteId } from 'shared/lib'
 import { Button, Htag, Icon, TextBox } from 'shared/ui'
 
 export const LessonListItem = ({ styles, data }: ILessonListItemProps) => {
@@ -17,26 +20,28 @@ export const LessonListItem = ({ styles, data }: ILessonListItemProps) => {
 				<TextBox size={'medium'}>{data.title}</TextBox>
 				<Htag tag={'very-small'}>{data.description}</Htag>
 			</div>
-			<div
-				onMouseEnter={() => setIsHovered(true)}
-				onMouseLeave={() => setIsHovered(false)}
-				className={classes.right_block}
-			>
-				<Button
-					variation="primary"
-					styles={isHovered ? classes.hover_button : classes.button}
-					format={'small'}
+			<Link to={deleteRouteId(ERoutePath.LESSON) + data.id}>
+				<div
+					onMouseEnter={() => setIsHovered(true)}
+					onMouseLeave={() => setIsHovered(false)}
+					className={classes.right_block}
 				>
-					<div className={classes.button_children}>
-						{isHovered && <div>{t('pereiti')}</div>}
+					<Button
+						variation="primary"
+						styles={isHovered ? classes.hover_button : classes.button}
+						format={'small'}
+					>
+						<div className={classes.button_children}>
+							{isHovered && <div>{t('pereiti')}</div>}
 
-						<Icon
-							variation={'secondary'}
-							icon={'right'}
-						/>
-					</div>
-				</Button>
-			</div>
+							<Icon
+								variation={'secondary'}
+								icon={'right'}
+							/>
+						</div>
+					</Button>
+				</div>
+			</Link>
 		</div>
 	)
 }
