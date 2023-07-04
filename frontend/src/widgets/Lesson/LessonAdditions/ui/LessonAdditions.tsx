@@ -1,11 +1,13 @@
-import classes from './FullLesson.module.scss'
+import classes from './LessonAdditions.module.scss'
 
-import { LessonContentList } from 'entities/Lesson'
+import { DownloadingFileButton } from 'features/DownloadingFileButton'
+
+import { IAdditionData } from 'entities/Lesson'
 
 import { classnames as cn } from 'shared/lib'
-import { Htag } from 'shared/ui'
+import { Htag, List } from 'shared/ui'
 
-export const FullLesson = ({ styles }: IFullLessonProps) => {
+export const LessonAdditions = ({ styles }: ILessonAdditionsProps) => {
 	const data = {
 		title: 'Введение в программирование',
 		video: 'https://www.youtube.com/embed/i-uvtDKeFgE',
@@ -57,23 +59,23 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 	}
 
 	return (
-		<div className={cn(classes.Lesson, [styles])}>
+		<div className={cn(classes.LessonAdditions, [styles])}>
 			<div className={classes.title}>
-				<Htag tag={'very-large'}>{data.title}</Htag>
+				<Htag tag={'medium'}>Дополнительные материалы</Htag>
 			</div>
-			<div className={classes.video_wrapper}>
-				<iframe
-					className={classes.iframe}
-					width="100%"
-					height="100%"
-					src={data.video}
-				></iframe>
+			<div className={classes.file_box}>
+				<List
+					variation={'card'}
+					items={data.additions}
+					renderItem={(addition: IAdditionData) => (
+						<DownloadingFileButton data={addition} />
+					)}
+				></List>
 			</div>
-			<LessonContentList data={data.lesson} />
 		</div>
 	)
 }
 
-interface IFullLessonProps {
+interface ILessonAdditionsProps {
 	styles?: string
 }

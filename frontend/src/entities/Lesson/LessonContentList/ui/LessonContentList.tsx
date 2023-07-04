@@ -16,7 +16,7 @@ export const LessonContentList = ({ styles, data }: ILessonContentListProps) => 
 						{content.title && (
 							<>
 								<Hr />
-								<Htag tag={'large'}> {content.title}</Htag>
+								<Htag tag={'large'}>{content.title}</Htag>
 							</>
 						)}
 						{content.type === 'text' && (

@@ -2,14 +2,16 @@
 	display: grid;
 	gap: 40px;
 	grid-template-columns: 65% 33%;
-	grid-template-areas:
-		'full_lesson all_lesson '
-		'full_lesson  additions';
+	grid-template-areas: 'full_lesson all_lesson ';
 }
 
 .full_lesson {
 	grid-area: full_lesson;
 }
 .all_lesson {
+	height: fit-content;
+	display: grid;
+	grid-template-rows: auto;
+	gap: 25px;
 	grid-area: all_lesson;
 }

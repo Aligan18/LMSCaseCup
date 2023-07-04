@@ -24,12 +24,15 @@
 	width: 29px;
 	height: 29px;
 	padding: 0px;
+	padding-top: 5px;
 }
 .hover_button {
 	width: 110px;
 	height: 29px;
+	padding: 0px;
+	padding-top: 4px;
+	padding-right: 7px;
 	padding-left: 20px;
-	padding-right: 5px;
 }
 
 .button_children {
@@ -38,4 +41,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+.go_text {
+	width: 100%;
+	height: 100%;
 }

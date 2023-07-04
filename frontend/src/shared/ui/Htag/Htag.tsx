@@ -4,12 +4,16 @@ import classes from './Htag.module.scss'
 
 import { classnames as cn } from 'shared/lib'
 
-export const Htag = ({ styles, tag = 'medium', children, ...props }: IHtagProps) => {
+export const Htag = ({ styles, tag = 'medium', children, variation, ...props }: IHtagProps) => {
+	const styleMod = {
+		[classes.primary]: variation === 'primary',
+	}
+
 	switch (tag) {
 		case 'very-large':
 			return (
 				<h1
-					className={cn(classes.very_large, [styles, classes.cursor])}
+					className={cn(classes.very_large, [styles, classes.cursor], styleMod)}
 					{...props}
 				>
 					{children}
@@ -19,7 +23,7 @@ export const Htag = ({ styles, tag = 'medium', children, ...props }: IHtagProps)
 		case 'large':
 			return (
 				<h1
-					className={cn(classes.large, [styles, classes.cursor])}
+					className={cn(classes.large, [styles, classes.cursor], styleMod)}
 					{...props}
 				>
 					{children}
@@ -29,7 +33,7 @@ export const Htag = ({ styles, tag = 'medium', children, ...props }: IHtagProps)
 		case 'medium':
 			return (
 				<h2
-					className={cn(classes.medium, [styles, classes.cursor])}
+					className={cn(classes.medium, [styles, classes.cursor], styleMod)}
 					{...props}
 				>
 					{children}
@@ -39,7 +43,7 @@ export const Htag = ({ styles, tag = 'medium', children, ...props }: IHtagProps)
 		case 'small':
 			return (
 				<h3
-					className={cn(classes.small, [styles, classes.cursor])}
+					className={cn(classes.small, [styles, classes.cursor], styleMod)}
 					{...props}
 				>
 					{children}
@@ -64,4 +68,5 @@ export const Htag = ({ styles, tag = 'medium', children, ...props }: IHtagProps)
 interface IHtagProps extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	styles?: string
 	tag: 'large' | 'medium' | 'small' | 'very-small' | 'very-large'
+	variation?: 'primary' | 'inverted-secondary'
 }
