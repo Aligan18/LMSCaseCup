@@ -1,9 +1,9 @@
-import { ILessonData } from 'entities/Module/'
+import { IAboutLessonData } from 'entities/Lesson'
 
 export interface IModuleData {
 	id: number
 	title: string
 	description: string
 	number: number
-	lesson: ILessonData[]
+	lesson: IAboutLessonData[]
 }

@@ -1,6 +1,6 @@
 import classes from './LessonList.module.scss'
 
-import { ILessonData } from 'entities/Module'
+import { IAboutLessonData } from 'entities/Lesson'
 
 import { classnames as cn } from 'shared/lib'
 import { Htag, Icon, List, ListItem } from 'shared/ui'
@@ -18,7 +18,7 @@ export const LessonList = ({ styles }: ILessonListProps) => {
 				styles={classes.list}
 				variation={'list'}
 				items={data}
-				renderItem={(lesson: ILessonData) => (
+				renderItem={(lesson: IAboutLessonData) => (
 					<ListItem
 						variation={'inverted-secondary'}
 						hover={'hover_primary'}
