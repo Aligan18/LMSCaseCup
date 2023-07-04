@@ -2,7 +2,8 @@ import { useState } from 'react'
 
 import classes from './ModuleList.module.scss'
 
-import { ILessonData, IModuleData, LessonListItem, ModuleListItem } from 'entities/Module'
+import { IAboutLessonData, LessonListItem } from 'entities/Lesson'
+import { IModuleData, ModuleListItem } from 'entities/Module'
 
 import { classnames as cn } from 'shared/lib'
 import { List } from 'shared/ui'
@@ -23,7 +24,7 @@ export const ModuleList = ({ styles, module }: IModuleListProps) => {
 					styles={classes.lesson_list}
 					items={module.lesson}
 					variation={'list'}
-					renderItem={(data: ILessonData) => (
+					renderItem={(data: IAboutLessonData) => (
 						<LessonListItem
 							data={data}
 							key={data.id}
