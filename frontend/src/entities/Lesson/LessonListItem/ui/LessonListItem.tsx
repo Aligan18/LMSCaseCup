@@ -32,7 +32,7 @@ export const LessonListItem = ({ styles, data }: ILessonListItemProps) => {
 						format={'small'}
 					>
 						<div className={classes.button_children}>
-							{isHovered && <div>{t('pereiti')}</div>}
+							{isHovered && <div className={classes.go_text}>{t('pereiti')}</div>}
 
 							<Icon
 								variation={'secondary'}

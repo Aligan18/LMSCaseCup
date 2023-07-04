@@ -10,10 +10,16 @@ export interface ILessonData {
 	title: string
 	video: string
 	lesson: ILessonContentData[]
+	additions: IAdditionData[]
 }
 
 export interface ILessonContentData {
 	title: string
 	type: string
 	content: string
+}
+
+export interface IAdditionData {
+	title: string
+	file: string
 }

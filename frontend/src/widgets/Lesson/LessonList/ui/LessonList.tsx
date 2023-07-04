@@ -10,6 +10,9 @@ export const LessonList = ({ styles }: ILessonListProps) => {
 		{ id: 1, title: 'Название урока', number: 1, status: true },
 		{ id: 2, title: 'Название урока', number: 2, status: false },
 		{ id: 3, title: 'Название урока', number: 3, status: false },
+		{ id: 1, title: 'Название урока', number: 1, status: true },
+		{ id: 2, title: 'Название урока', number: 2, status: false },
+		{ id: 3, title: 'Название урока', number: 3, status: false },
 	]
 	return (
 		<div className={cn(classes.LessonList, [styles])}>
