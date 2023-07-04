@@ -1,4 +1,8 @@
 .line {
-	border: 2px solid var(--light-gray-color);
+	border: 1px solid var(--border-gray);
 	margin-bottom: 24px;
+}
+.wrapper{
+	width: 100%;
+	display: block;
 }

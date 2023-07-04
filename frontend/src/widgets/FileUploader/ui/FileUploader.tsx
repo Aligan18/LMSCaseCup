@@ -10,9 +10,9 @@ export const FileUploader = ({ styles }: IFileUploaderProps) => {
 	return (
 		<div className={cn(classes.FileUploader, [styles])}>
 			<div className={classes.top_block}>
-				<Htag tag={'medium'}>{t('oblozhka-kursa')}</Htag>
+				<Htag tag={'small'}>{t('oblozhka-kursa')}</Htag>
 				<Htag
-					tag={'small'}
+					tag={'very-small'}
 					styles={classes.top_block}
 				>
 					JPEG до 5 Мб
