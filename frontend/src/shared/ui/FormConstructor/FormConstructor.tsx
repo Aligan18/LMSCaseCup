@@ -29,7 +29,7 @@ export const FormConstructor = ({ styles, data }: IFormConstructorProps) => {
 					</Input>
 				)
 			case 'text-input':
-				return <TextInput>{formItem.title}</TextInput>
+				return <TextInput styles={classes.text_input}>{formItem.title}</TextInput>
 
 			case 'selector':
 				return <SelectOption options={formItem.options} />

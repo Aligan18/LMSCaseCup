@@ -1,13 +1,16 @@
+import { useTranslation } from 'react-i18next'
+
 import classes from './CreateTicketForm.module.scss'
 
 import { classnames as cn } from 'shared/lib'
 import { FormConstructor, IFormConstructorData } from 'shared/ui'
 
 export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
+	const { t } = useTranslation('ticket')
 	const data: IFormConstructorData[] = [
 		{
 			type: 'input',
-			title: 'Название',
+			title: `${t('nazvanie')}`,
 			description: 'До 20 символов',
 		},
 		{
@@ -18,18 +21,13 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 				{ title: 'Смена обучения', value: '3' },
 			],
 			title: 'Тема обращение',
-			description: 'До 20 символов',
 		},
 		{
 			type: 'text-input',
 			title: 'Описание тикета',
 			description: 'До 80 символов',
 		},
-		{
-			type: 'check-box',
-			title: 'Вы принимаете условия соглашения ? ',
-			description: 'Принять',
-		},
+
 		{
 			type: 'file-input',
 		},
