@@ -38,35 +38,24 @@ const CreateCoursePage = ({ styles }: ICreateCoursePageProps) => {
 					</>
 				}
 			/>
-			<div className={classes.right_block}>
-				<Htag tag={'small'}>Название курса</Htag>
-				<Htag tag={'very-small'}>До 20 символов</Htag>
-				<Input variation={'clear'}>Название</Input>
-				<Htag tag={'small'}>Описание урока</Htag>
-				<Htag tag={'very-small'}>До 80 символов</Htag>
-				<TextInput>Описание</TextInput>
 
-				<SelectOption
-					title={'Длительность курса'}
-					name_title={''}
-					id_title={''}
-					value_title={'1 месяц'}
-				/>
+			<div className={classes.top_block}>
+				<Htag tag={'small'}>Длительность курса</Htag>
+				<Button
+					variation="primary"
+					styles={classes.button}
+					format={'small'}
+				>
+					Сохранить
+					<Icon
+						variation={'secondary'}
+						icon={'save'}
+					/>
+				</Button>
 			</div>
-			<Button
-				variation="primary"
-				styles={classes.button}
-				format={'small'}
-			>
-				Сохранить
-				<Icon
-					variation={'secondary'}
-					icon={'save'}
-				/>
-			</Button>
-			<div className={classes.bottom_block}>
-				<FileUploader />
-			</div>
+			<div className={classes.bottom_block}></div>
+			<FileUploader />
+
 		</div>
 	)
 }

@@ -26,6 +26,10 @@ export const Secondary: Story = {
 	args: { variation: 'secondary', children: 'Найти' },
 	decorators: [ThemeDecorator(ETheme.LIGHT)],
 }
+export const Large: Story = {
+	args: { format: 'large', children: 'Найти' },
+	decorators: [ThemeDecorator(ETheme.LIGHT)],
+}
 
 export const Medium: Story = {
 	args: { format: 'medium', children: 'Найти' },

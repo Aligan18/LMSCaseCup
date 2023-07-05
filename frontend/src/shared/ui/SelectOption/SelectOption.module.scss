@@ -1,15 +1,17 @@
-.SelectOption {
-	background: var(--background);
-	width: 100%;
-	display: grid;
-	grid-gap: 10px;
 
-}
+
 .selectElement {
-	//color: red;
+	padding: 11px 8px;
+	font: var(--font-s);
 	background: var(--light-gray-color);
-	font-size: 0.75em;
+	width: 100%;
 	border: none;
-	width: 516px;
-	height: 48px;
+
+	border-radius: 4px;
+}
+.option {
+	font: var(--font-very-s);
+	height: 24px;
+	padding: 20px;
+
 }
