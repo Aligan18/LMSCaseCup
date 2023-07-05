@@ -5,7 +5,6 @@ import { FileUploader } from 'widgets/FileUploader/ui/FileUploader'
 import { GoogleAuthButton } from 'features/GoogleAuthButton'
 
 import { Grade } from 'entities/Grade/ui/Grade'
-import { LanguageCard } from 'entities/LanguageCard/ui/LanguageCard'
 import { AboutStudentList } from 'entities/Student/AboutStudentList/ui/AboutStudentList'
 
 import { Loader } from 'shared/ui'

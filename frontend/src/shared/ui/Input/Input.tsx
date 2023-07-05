@@ -17,6 +17,7 @@ export const Input = ({
 				[classes.clear]: variation === 'clear',
 				[classes.medium]: format === 'medium',
 				[classes.small]: format === 'small',
+				[classes.large]: format === 'large',
 			})}
 			placeholder={children}
 		></input>
@@ -27,6 +28,6 @@ interface IInputProps
 	extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
 	styles?: string
 	variation?: 'secondary' | 'clear'
-	format?: 'small' | 'medium'
+	format?: 'small' | 'medium' | 'large'
 	children?: string
 }

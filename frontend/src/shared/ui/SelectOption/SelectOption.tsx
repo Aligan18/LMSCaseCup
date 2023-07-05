@@ -1,36 +1,25 @@
-import { Htag } from '../Htag/Htag'
 import classes from './SelectOption.module.scss'
+import { IOptions } from './types/Options'
 
 import { classnames as cn } from 'shared/lib'
 
-export const SelectOption = ({
-	styles,
-	title,
-	name_title,
-	id_title,
-	value_title,
-}: ISelectOptionProps) => {
+export const SelectOption = ({ styles, options = [] }: ISelectOptionProps) => {
 	return (
-		<div className={cn(classes.SelectOption, [styles])}>
-			<label>
-				<Htag tag={'small'}>{title}</Htag>
-			</label>
-
-			<select
-				name={name_title}
-				id={id_title}
-				className={classes.selectElement}
-			>
-				<option value="">{value_title}</option>
-			</select>
-		</div>
+		<select className={cn(classes.selectElement, [styles])}>
+			{options.map((option) => (
+				<option
+					className={classes.option}
+					key={option.value}
+					value={option.value}
+				>
+					{option.title}
+				</option>
+			))}
+		</select>
 	)
 }
 
 interface ISelectOptionProps {
 	styles?: string
-	title: string
-	name_title: string
-	id_title: string
-	value_title: string
+	options: IOptions[]
 }

@@ -10,17 +10,18 @@
 }
 
 .textarea {
+	width: 100%;
 	padding: 12px;
 	font: var(--font-s);
 	border-radius: 5px;
 	border: 1px solid var(--light-gray-color);
-	color: var(--inverted-secondary);;
+	color: var(--inverted-secondary);
 	background-color: var(--light-gray-color);
 }
 
 .textarea::placeholder {
 	font: var(--font-s);
-
+	color: var(--gray-color);
 }
 
 .textarea:focus {

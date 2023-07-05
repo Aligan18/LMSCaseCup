@@ -4,6 +4,7 @@ import classes from './CreateTicketPage.module.scss'
 
 import { BackButton } from 'features/BackButton'
 import { CreateTicketButton } from 'features/Ticket/CreateTicketButton'
+import { CreateTicketForm } from 'features/Ticket/CreateTicketForm'
 
 import { classnames as cn } from 'shared/lib'
 import { Header } from 'shared/ui'
@@ -20,6 +21,7 @@ const CreateTicketPage = ({ styles }: ICreateTicketPageProps) => {
 					title={t('novyi-tiket')}
 					buttons={<CreateTicketButton />}
 				/>
+				<CreateTicketForm />
 			</div>
 		</div>
 	)
