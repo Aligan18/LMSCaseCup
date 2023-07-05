@@ -16,7 +16,6 @@ export default (env: IBuildEnv) => {
 		html: path.resolve(__dirname, 'public', 'index.html'),
 		src: path.resolve(__dirname, 'src'),
 	}
-	console.log('HELLO ', paths.static)
 
 	const config = buildWebpackConfig({
 		mode,

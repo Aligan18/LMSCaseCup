@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next'
 
-import classes from './CourseProgram.module.scss'
+import classes from './ModuleProgram.module.scss'
 
 import { IModuleData, ModuleList } from 'entities/Module'
 
 import { classnames as cn } from 'shared/lib'
 import { Htag, List } from 'shared/ui'
 
-export const CourseProgram = ({ styles }: ICourseProgramProps) => {
+export const ModuleProgram = ({ styles }: IModuleProgramProps) => {
 	const data = [
 		{
 			id: 1,
@@ -53,6 +53,18 @@ export const CourseProgram = ({ styles }: ICourseProgramProps) => {
 					description:
 						'IDE и установка Python, файлы. Погружение: коллекции и вложенность, JSON, requests ',
 				},
+				{
+					id: 1,
+					title: 'Введение в программирование',
+					description:
+						'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
+				},
+				{
+					id: 2,
+					title: 'Основы программирования',
+					description:
+						'IDE и установка Python, файлы. Погружение: коллекции и вложенность, JSON, requests ',
+				},
 			],
 		},
 		{
@@ -66,6 +78,30 @@ export const CourseProgram = ({ styles }: ICourseProgramProps) => {
 					title: 'Введение в программирование',
 					description:
 						'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
+				},
+				{
+					id: 1,
+					title: 'Введение в программирование',
+					description:
+						'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
+				},
+				{
+					id: 2,
+					title: 'Основы программирования',
+					description:
+						'IDE и установка Python, файлы. Погружение: коллекции и вложенность, JSON, requests ',
+				},
+				{
+					id: 1,
+					title: 'Введение в программирование',
+					description:
+						'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
+				},
+				{
+					id: 2,
+					title: 'Основы программирования',
+					description:
+						'IDE и установка Python, файлы. Погружение: коллекции и вложенность, JSON, requests ',
 				},
 			],
 		},
@@ -94,6 +130,6 @@ export const CourseProgram = ({ styles }: ICourseProgramProps) => {
 	)
 }
 
-interface ICourseProgramProps {
+interface IModuleProgramProps {
 	styles?: string
 }

@@ -16,22 +16,22 @@ export const ModuleList = ({ styles, module }: IModuleListProps) => {
 			key={module.id}
 		>
 			<ModuleListItem
+				isOpen={isOpen}
 				data={module}
 				onClick={() => setIsOpen(!isOpen)}
 			/>
-			{isOpen && (
-				<List
-					styles={classes.lesson_list}
-					items={module.lesson}
-					variation={'list'}
-					renderItem={(data: IAboutLessonData) => (
-						<LessonListItem
-							data={data}
-							key={data.id}
-						/>
-					)}
-				/>
-			)}
+
+			<List
+				styles={[classes.lesson_list, isOpen && classes.is_open].join(' ')}
+				items={module.lesson}
+				variation={'list'}
+				renderItem={(data: IAboutLessonData) => (
+					<LessonListItem
+						data={data}
+						key={data.id}
+					/>
+				)}
+			/>
 		</div>
 	)
 }

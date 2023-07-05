@@ -1,18 +1,15 @@
-.Header{
+.Header {
 	padding: 24px;
 	padding-bottom: 0%;
 	background-color: var(--background);
 	width: 100%;
-	height: 100%;
-
-
-}	
-.button{
+	height: fit-content;
+}
+.button {
 	display: flex;
 	gap: 10px;
-
 }
-.wrapper{
+.wrapper {
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 24px;

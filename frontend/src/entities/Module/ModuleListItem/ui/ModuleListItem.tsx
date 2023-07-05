@@ -8,7 +8,7 @@ import { IModuleData } from 'entities/Module'
 import { classnames as cn } from 'shared/lib'
 import { CircleForIcon, Htag, Icon } from 'shared/ui'
 
-export const ModuleListItem = ({ styles, data, ...props }: IModuleListItemProps) => {
+export const ModuleListItem = ({ styles, data, isOpen, ...props }: IModuleListItemProps) => {
 	const { t } = useTranslation('course')
 	return (
 		<div
@@ -30,6 +30,7 @@ export const ModuleListItem = ({ styles, data, ...props }: IModuleListItemProps)
 			<div className={classes.right_block}>
 				<CircleForIcon variation={'primary'}>
 					<Icon
+						styles={[classes.animate, isOpen && classes.is_open].join(' ')}
 						variation={'primary'}
 						icon={'up'}
 					/>
@@ -43,4 +44,5 @@ interface IModuleListItemProps
 	extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	styles?: string
 	data: IModuleData
+	isOpen: boolean
 }

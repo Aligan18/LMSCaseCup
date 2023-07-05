@@ -1,4 +1,4 @@
-import { IAboutTicketData } from '../../../entities/Ticket/types/Ticket.types'
+import { IAboutTicketData } from '../../../../entities/Ticket/types/Ticket.types'
 import classes from './TicketList.module.scss'
 
 import { TicketItem } from 'entities/Ticket'
