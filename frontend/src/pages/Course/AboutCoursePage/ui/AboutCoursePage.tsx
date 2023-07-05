@@ -1,7 +1,7 @@
 import classes from './AboutCoursePage.module.scss'
 
-import { AboutCourse } from 'widgets/AboutCourse'
-import { CourseProgram } from 'widgets/CourseProgram'
+import { AboutCourse } from 'widgets/Course/AboutCourse'
+import { ModuleProgram } from 'widgets/Module/ModuleProgram'
 
 import { classnames as cn } from 'shared/lib'
 import { Htag, TextBox } from 'shared/ui'
@@ -26,7 +26,7 @@ const AboutCoursePage = ({ styles }: IAboutCoursePageProps) => {
 				</TextBox>
 			</div>
 			<div className={classes.module_list}>
-				<CourseProgram />
+				<ModuleProgram />
 			</div>
 			<div className={classes.course_card}>
 				<AboutCourse data={data} />

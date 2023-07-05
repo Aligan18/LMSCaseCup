@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import classes from './CoursesPage.module.scss'
 
-import { CourseList } from 'widgets/CourseList'
+import { CourseList } from 'widgets/Course/CourseList'
 
 import { classnames as cn } from 'shared/lib'
 import { Htag } from 'shared/ui/Htag/Htag'

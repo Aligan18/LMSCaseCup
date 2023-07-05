@@ -1,12 +1,10 @@
-import { ReactNode } from 'react'
+import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react'
 
-import { Hr } from '..'
-import { Button } from '../Button/Button'
-import { Htag } from '../Htag/Htag'
-import { Icon } from '../Icon/Icon'
 import classes from './Header.module.scss'
 
 import { classnames as cn } from 'shared/lib'
+import { Htag } from 'shared/ui'
+import { Hr } from 'shared/ui'
 
 export const Header = ({ styles, title, buttons }: IHeaderProps) => {
 	return (
@@ -22,8 +20,8 @@ export const Header = ({ styles, title, buttons }: IHeaderProps) => {
 	)
 }
 
-interface IHeaderProps {
+interface IHeaderProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	styles?: string
 	title: string
-	buttons: ReactNode
+	buttons?: ReactNode
 }

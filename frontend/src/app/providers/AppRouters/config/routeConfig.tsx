@@ -1,12 +1,13 @@
 import { RouteProps } from 'react-router-dom'
 
-import { AboutCoursePage } from 'pages/AboutCoursePage'
-import { CoursesPage } from 'pages/CoursesPage'
-import { CreateCoursePage } from 'pages/CreateCoursePage'
+import { AboutCoursePage } from 'pages/Course/AboutCoursePage'
+import { CoursesPage } from 'pages/Course/CoursesPage'
+import { CreateCoursePage } from 'pages/Course/CreateCoursePage'
 import { HomePage } from 'pages/HomePage'
-import { LessonPage } from 'pages/LessonPage'
+import { LessonPage } from 'pages/Lesson/LessonPage'
 import { NotFoundPage } from 'pages/NotFoundPage'
-import { TicketsPage } from 'pages/TicketsPage'
+import { CreateTicketPage } from 'pages/Ticket/CreateTicketPage'
+import { TicketsPage } from 'pages/Ticket/TicketsPage'
 
 export enum ERoutePath {
 	HOME = '/',
@@ -16,6 +17,7 @@ export enum ERoutePath {
 	ABOUT_COURSE = '/about_course/:id',
 	LESSON = '/lesson/:id',
 	CREATE_COURSE = '/create_course',
+	CREATE_TICKET = '/create_ticket',
 }
 
 export const RouteConfig: Array<RouteProps> = [
@@ -46,5 +48,9 @@ export const RouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.CREATE_COURSE,
 		element: <CreateCoursePage />,
+	},
+	{
+		path: ERoutePath.CREATE_TICKET,
+		element: <CreateTicketPage />,
 	},
 ]
