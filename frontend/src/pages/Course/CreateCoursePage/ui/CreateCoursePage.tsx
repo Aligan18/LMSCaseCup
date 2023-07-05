@@ -10,7 +10,7 @@ import { Button, Header, Htag, Icon, Input, SelectOption, TextInput } from 'shar
 const CreateCoursePage = ({ styles }: ICreateCoursePageProps) => {
 	return (
 		<div className={cn(classes.CreateCoursePage, [styles])}>
-			<div className={classes.top_button}>
+			<div className={classes.left_button}>
 				<BackButton />
 			</div>
 			<Header
@@ -38,6 +38,7 @@ const CreateCoursePage = ({ styles }: ICreateCoursePageProps) => {
 					</>
 				}
 			/>
+
 			<div className={classes.top_block}>
 				<Htag tag={'small'}>Длительность курса</Htag>
 				<Button
@@ -54,6 +55,7 @@ const CreateCoursePage = ({ styles }: ICreateCoursePageProps) => {
 			</div>
 			<div className={classes.bottom_block}></div>
 			<FileUploader />
+
 		</div>
 	)
 }
