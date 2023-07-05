@@ -62,10 +62,10 @@ interface IListItemProps {
 	styles?: string
 	right?: ReactNode | null
 	left?: React.ReactNode | null
-	mid_up?: string
-	mid_down?: string
+	mid_up?: string | ReactNode
+	mid_down?: string | ReactNode
 	hover: 'hover_primary' | 'hover_inverted-secondary' | 'none'
 	variation: 'primary' | 'inverted-secondary' | 'clear'
-	children?: string
+	children?: string | ReactNode
 	onClick?: () => void | null
 }
