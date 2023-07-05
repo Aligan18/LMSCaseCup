@@ -1,7 +1,8 @@
 import classes from './LessonPage.module.scss'
 
-import { LessonAdditions, LessonList } from 'widgets/Lesson'
 import { FullLesson } from 'widgets/Lesson/FullLesson'
+import { LessonAdditions } from 'widgets/Lesson/LessonAdditions'
+import { LessonList } from 'widgets/Lesson/LessonList'
 
 import { classnames as cn } from 'shared/lib'
 
