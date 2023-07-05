@@ -7,6 +7,7 @@ import { GoogleAuthButton } from 'features/GoogleAuthButton'
 import { Grade } from 'entities/Grade/ui/Grade'
 import { LanguageCard } from 'entities/LanguageCard/ui/LanguageCard'
 import { AboutStudentList } from 'entities/Student/AboutStudentList/ui/AboutStudentList'
+import { GroupTerm } from 'entities/Student/GroupTerm/ui/GroupTerm'
 
 import { Loader } from 'shared/ui'
 
@@ -18,6 +19,7 @@ const HomePage = () => {
 			<GoogleAuthButton />
 			<Grade />
 			<AboutStudentList />
+			<GroupTerm />
 
 			{t('glavnaya-stranica')}
 			<FileUploader />
