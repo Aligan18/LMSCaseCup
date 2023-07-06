@@ -1,3 +1,5 @@
+import { UseFormRegister } from 'react-hook-form'
+
 import { IOptions } from 'shared/ui'
 
 export interface IFormConstructorData {
@@ -5,4 +7,5 @@ export interface IFormConstructorData {
 	options?: IOptions[]
 	title?: string
 	description?: string
+	register: any | (() => any)
 }
