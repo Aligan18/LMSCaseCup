@@ -1,4 +1,5 @@
 import { FormEvent, useState } from 'react'
+import { Controller } from 'react-hook-form'
 
 import classes from './FormConstructor.module.scss'
 
@@ -16,7 +17,13 @@ import {
 	UploadFile,
 } from 'shared/ui'
 
-export function FormConstructor({ styles, data, errors, onSubmit }: IFormConstructorProps) {
+export function FormConstructor({
+	styles,
+	data,
+	errors,
+	onSubmit,
+	control,
+}: IFormConstructorProps) {
 	const [file, setFile] = useState<File>()
 
 	const renderFormItem = (formItem: IConbineFormConstructor) => {
@@ -43,9 +50,16 @@ export function FormConstructor({ styles, data, errors, onSubmit }: IFormConstru
 
 			case 'selector':
 				return (
-					<SelectOption
-						options={formItem.options}
-						{...formItem.register}
+					<Controller
+						name={formItem.key}
+						control={control}
+						rules={formItem.register}
+						render={({ field }) => (
+							<SelectOption
+								{...field}
+								options={formItem.options}
+							/>
+						)}
 					/>
 				)
 
@@ -86,14 +100,19 @@ export function FormConstructor({ styles, data, errors, onSubmit }: IFormConstru
 						className={classes.form_item}
 						key={formItem.key}
 					>
-						{formItem.title && <Htag tag={'small'}>{formItem.title}</Htag>}
-						{formItem.description && formItem.type !== 'check-box' && (
-							<Htag tag={'very-small'}>{formItem.description}</Htag>
-						)}
+						<div className={classes.form_description}>
+							<div>
+								{formItem.title && <Htag tag={'small'}>{formItem.title}</Htag>}
+								{formItem.description && formItem.type !== 'check-box' && (
+									<Htag tag={'very-small'}>{formItem.description}</Htag>
+								)}
+							</div>
+							{errors[formItem.key] && (
+								<ErrorText>{errors[formItem.key].message}</ErrorText>
+							)}
+						</div>
+
 						{renderFormItem(formItem)}
-						{errors[formItem.key] && (
-							<ErrorText>{errors[formItem.key].message}</ErrorText>
-						)}
 					</div>
 				)}
 			/>
@@ -107,6 +126,7 @@ interface IFormConstructorProps {
 	data: IFormConstructorData[]
 	errors: any
 	onSubmit: any
+	control: any
 }
 
 interface IConbineFormConstructor extends IFormConstructorData {

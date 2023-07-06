@@ -16,6 +16,13 @@ export const SelectOption = forwardRef(
 				className={cn(classes.selectElement, [styles])}
 				{...props}
 			>
+				<option
+					className={classes.option}
+					key={'empty'}
+					value={''}
+				>
+					{''}
+				</option>
 				{options.map((option) => (
 					<option
 						className={classes.option}
