@@ -1,5 +1,15 @@
 {
-	"pereiti": "Беру",
-	"modul": "Модуль",
-	"programma-kursa": "Курстық бағдарлама"
+  "pereiti": "Беру",
+  "modul": "Модуль",
+  "programma-kursa": "Курстық бағдарлама",
+  "mesyaca": "ай",
+  "urokov": "сабақ",
+  "materiala": "материал",
+  " tg": " тг",
+  "oblozhka-kursa": "Курстың мұқабасы",
+  "jpeg-do-5-mb": "JPEG 5 Мб дейін",
+  "zagruzit-fail": "Файлды жүктеңіз",
+  "ili-peretashite-fail": "Немесе файлды сүйреңіз",
+  "raspisanie": "Кесте",
+  "urok": "Сабақ"
 }

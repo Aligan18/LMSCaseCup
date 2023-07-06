@@ -1,5 +1,15 @@
 {
-	"pereiti": "Go",
-	"modul": "Module",
-	"programma-kursa": "Course program"
+  "pereiti": "Go",
+  "modul": "Module",
+  "programma-kursa": "Course program",
+  "mesyaca": "months",
+  "urokov": "lessons",
+  "materiala": "material",
+  " tg": " tg",
+  "oblozhka-kursa": "Course cover",
+  "jpeg-do-5-mb": "JPEG up to 5 Mb",
+  "zagruzit-fail": "Upload file",
+  "ili-peretashite-fail": "Or drag the file",
+  "raspisanie": "Schedule",
+  "urok": "Lesson"
 }

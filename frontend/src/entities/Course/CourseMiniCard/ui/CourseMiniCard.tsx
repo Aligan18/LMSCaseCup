@@ -10,7 +10,7 @@ import { Htag } from 'shared/ui'
 import { TextBox } from 'shared/ui'
 
 export const CourseMiniCard = ({ styles, data }: ICourseMiniCardProps) => {
-	const { t } = useTranslation()
+	const { t } = useTranslation('course')
 	return (
 		<div className={cn(classes.mini_card, [styles])}>
 			<div className={classes.image}>
@@ -23,25 +23,25 @@ export const CourseMiniCard = ({ styles, data }: ICourseMiniCardProps) => {
 						icon={'clock'}
 						cursor="cursor_none"
 					/>
-					<Htag tag={'very-small'}>2 месяца</Htag>
+					<Htag tag={'very-small'}>2 {t('mesyaca')}</Htag>
 				</div>
 				<div className={cn(classes.second_teg, [classes.teg])}>
 					<Icon
 						icon={'video'}
 						cursor="cursor_none"
 					/>
-					<Htag tag={'very-small'}>16 уроков</Htag>
+					<Htag tag={'very-small'}>16 {t('urokov')}</Htag>
 				</div>
 				<div className={cn(classes.third_teg, [classes.teg])}>
 					<Icon
 						icon={'file'}
 						cursor="cursor_none"
 					/>
-					<Htag tag={'very-small'}>24 материала</Htag>
+					<Htag tag={'very-small'}>24 {t('materiala')}</Htag>
 				</div>
 			</div>
 
-			<TextBox size={'medium'}>{data.price + ' тг'} </TextBox>
+			<TextBox size={'medium'}>{data.price + `${t(' tg')}`} </TextBox>
 		</div>
 	)
 }

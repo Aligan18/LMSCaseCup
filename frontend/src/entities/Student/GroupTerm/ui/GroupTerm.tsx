@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import classes from './GroupTerm.module.scss'
 
 import { classnames as cn } from 'shared/lib'
@@ -5,6 +7,7 @@ import { CircleForIcon, Htag, Icon, Tag } from 'shared/ui'
 import { ListItem } from 'shared/ui/ListItem/ListItem'
 
 export const GroupTerm = ({ styles }: IGroupTermProps) => {
+	const { t } = useTranslation('admin')
 	return (
 		<div className={cn(classes.GroupTerm, [styles])}>
 			<ListItem
@@ -39,7 +42,7 @@ export const GroupTerm = ({ styles }: IGroupTermProps) => {
 					styles={classes.title}
 					tag={'medium'}
 				>
-					Группа №1
+					{t('gruppa')} №1
 				</Htag>
 			</ListItem>
 		</div>

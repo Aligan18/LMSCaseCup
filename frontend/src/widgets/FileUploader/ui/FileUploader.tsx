@@ -15,7 +15,7 @@ export const FileUploader = ({ styles }: IFileUploaderProps) => {
 					tag={'very-small'}
 					styles={classes.top_block}
 				>
-					JPEG до 5 Мб
+					{t('jpeg-do-5-mb')}
 				</Htag>
 			</div>
 			<div className={classes.bottom_block}>
@@ -31,14 +31,14 @@ export const FileUploader = ({ styles }: IFileUploaderProps) => {
 					styles={classes.button}
 					format={'small'}
 				>
-					Загрузить файл
+					{t('zagruzit-fail')}
 					<Icon
 						variation={'secondary'}
 						icon={'save'}
 					/>
 				</Button>
 				<div className={classes.text}>
-					<Htag tag={'very-small'}>Или перетащите файл</Htag>
+					<Htag tag={'very-small'}>{t('ili-peretashite-fail')}</Htag>
 				</div>
 			</div>
 		</div>

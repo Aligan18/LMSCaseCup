@@ -11,7 +11,7 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 		{
 			type: 'input',
 			title: `${t('nazvanie')}`,
-			description: 'До 20 символов',
+			description: `${t('do-20-simvolov')}`,
 		},
 		{
 			type: 'selector',
