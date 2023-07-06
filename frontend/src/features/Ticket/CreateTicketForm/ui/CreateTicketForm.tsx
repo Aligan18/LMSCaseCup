@@ -29,7 +29,7 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 		{
 			type: 'input',
 			title: `${t('nazvanie')}`,
-      description: `${t('do-20-simvolov')}`,
+			description: `${t('do-20-simvolov')}`,
 			key: 'title',
 			register: {
 				...register('title', {
@@ -37,7 +37,6 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 					maxLength: { value: 20, message: 'Название больше 20 символов' },
 				}),
 			},
-
 		},
 		{
 			type: 'selector',
@@ -49,13 +48,11 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 			title: 'Тема обращение',
 			key: 'theme',
 			register: {
-				...register('theme', {
-					required: { value: true, message: 'выберите тему обращения' },
-				}),
+				required: { value: true, message: 'выберите тему обращения' },
 			},
 		},
 		{
-			type: 'input',
+			type: 'text-input',
 			title: 'Описание тикета',
 			description: 'До 80 символов',
 			key: 'description',
@@ -80,6 +77,7 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 	return (
 		<div className={cn(classes.CreateTicketForm, [styles])}>
 			<FormConstructor
+				control={control}
 				onSubmit={onSubmit}
 				errors={errors}
 				data={data}
