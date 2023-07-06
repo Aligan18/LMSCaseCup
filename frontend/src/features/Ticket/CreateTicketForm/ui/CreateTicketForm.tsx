@@ -29,7 +29,7 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 		{
 			type: 'input',
 			title: `${t('nazvanie')}`,
-			description: 'До 20 символов',
+      description: `${t('do-20-simvolov')}`,
 			key: 'title',
 			register: {
 				...register('title', {
@@ -37,6 +37,7 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 					maxLength: { value: 20, message: 'Название больше 20 символов' },
 				}),
 			},
+
 		},
 		{
 			type: 'selector',

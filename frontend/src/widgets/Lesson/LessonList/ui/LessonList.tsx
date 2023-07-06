@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import classes from './LessonList.module.scss'
 
 import { IAboutLessonData } from 'entities/Lesson'
@@ -6,6 +8,8 @@ import { classnames as cn } from 'shared/lib'
 import { Htag, Icon, List, ListItem } from 'shared/ui'
 
 export const LessonList = ({ styles }: ILessonListProps) => {
+	const { t } = useTranslation('course')
+
 	const data = [
 		{ id: 1, title: 'Название урока', number: 1, status: true },
 		{ id: 2, title: 'Название урока', number: 2, status: false },
@@ -16,7 +20,7 @@ export const LessonList = ({ styles }: ILessonListProps) => {
 	]
 	return (
 		<div className={cn(classes.LessonList, [styles])}>
-			<Htag tag={'medium'}>Расписание</Htag>
+			<Htag tag={'medium'}>{t('raspisanie')}</Htag>
 			<List
 				styles={classes.list}
 				variation={'list'}
@@ -25,7 +29,7 @@ export const LessonList = ({ styles }: ILessonListProps) => {
 					<ListItem
 						variation={'inverted-secondary'}
 						hover={'hover_primary'}
-						mid_up={'Урок №' + lesson.number}
+						mid_up={`${t('urok')}` + ' №' + lesson.number}
 						left={
 							<Icon
 								icon={lesson.status ? 'circle_filled' : 'circle'}
