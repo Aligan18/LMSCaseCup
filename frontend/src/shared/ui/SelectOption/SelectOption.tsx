@@ -1,4 +1,4 @@
-import { ForwardedRef, forwardRef } from 'react'
+import { DetailedHTMLProps, ForwardedRef, HtmlHTMLAttributes, forwardRef } from 'react'
 
 import classes from './SelectOption.module.scss'
 import { IOptions } from './types/Options'
@@ -37,7 +37,8 @@ export const SelectOption = forwardRef(
 	},
 )
 
-interface ISelectOptionProps {
+interface ISelectOptionProps
+	extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
 	styles?: string
 	options: IOptions[]
 }

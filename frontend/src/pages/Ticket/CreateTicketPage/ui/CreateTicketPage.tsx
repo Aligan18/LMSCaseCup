@@ -17,10 +17,7 @@ const CreateTicketPage = ({ styles }: ICreateTicketPageProps) => {
 				<BackButton />
 			</div>
 			<div className={classes.wrapper}>
-				<Header
-					title={t('novyi-tiket')}
-					buttons={<CreateTicketButton />}
-				/>
+				<Header title={t('novyi-tiket')} />
 				<CreateTicketForm />
 			</div>
 		</div>

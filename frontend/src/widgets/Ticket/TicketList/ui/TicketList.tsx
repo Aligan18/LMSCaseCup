@@ -9,21 +9,25 @@ import { List } from 'shared/ui'
 export const TicketList = ({ styles }: ITicketListProps) => {
 	const data = [
 		{
+			id: 1,
 			date: '01.01.2023',
 			title: 'Не отправляется ДЗ',
 			completed: false,
 		},
 		{
+			id: 2,
 			date: '01.01.2023',
 			title: 'Я ничего не понимаю =(',
 			completed: true,
 		},
 		{
+			id: 3,
 			date: '01.01.2023',
 			title: 'У меня нет задания ',
 			completed: false,
 		},
 		{
+			id: 4,
 			date: '01.01.2023',
 			title: 'Материал не открывается',
 			completed: false,

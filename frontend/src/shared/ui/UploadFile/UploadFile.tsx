@@ -1,4 +1,12 @@
-import { ChangeEvent, Dispatch, ForwardedRef, SetStateAction, forwardRef } from 'react'
+import {
+	ChangeEvent,
+	DetailedHTMLProps,
+	Dispatch,
+	ForwardedRef,
+	HtmlHTMLAttributes,
+	SetStateAction,
+	forwardRef,
+} from 'react'
 
 import classes from './UploadFile.module.scss'
 
@@ -6,16 +14,7 @@ import { classnames as cn } from 'shared/lib'
 import { Button, Icon } from 'shared/ui'
 
 export const UploadFile = forwardRef(
-	(
-		{ styles, setFile, disabled = false, ...props }: IUploadFileProps,
-		ref: ForwardedRef<HTMLInputElement>,
-	) => {
-		const handleAddBanner = (event: ChangeEvent<HTMLInputElement>) => {
-			event.preventDefault()
-			if (event.target.files) {
-				setFile(event.target.files[0])
-			}
-		}
+	({ styles, ...props }: IUploadFileProps, ref: ForwardedRef<HTMLInputElement>) => {
 		return (
 			<Button
 				styles={classes.button}
@@ -24,17 +23,9 @@ export const UploadFile = forwardRef(
 				<label className={cn(classes.UploadFile, [styles])}>
 					<input
 						ref={ref}
-						disabled={disabled}
 						type="file"
 						className={classes.input}
 						{...props}
-						onChange={
-							disabled
-								? () => {
-										;('')
-								  }
-								: handleAddBanner
-						}
 					/>
 					Прикрепить файл
 					<Icon
@@ -47,9 +38,7 @@ export const UploadFile = forwardRef(
 	},
 )
 
-interface IUploadFileProps {
+interface IUploadFileProps
+	extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
 	styles?: string
-	setFile: Dispatch<SetStateAction<File>>
-
-	disabled?: boolean
 }
