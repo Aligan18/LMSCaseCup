@@ -20,7 +20,7 @@ export const LessonContentList = ({ styles, data }: ILessonContentListProps) => 
 							</>
 						)}
 						{content.type === 'text' && (
-							<TextBox size={'small'}>{content.content}</TextBox>
+							<TextBox size={'medium'}>{content.content}</TextBox>
 						)}
 						{content.type === 'code' && <CodeBox>{content.content}</CodeBox>}
 					</>

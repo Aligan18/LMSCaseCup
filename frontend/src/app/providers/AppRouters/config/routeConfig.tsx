@@ -4,6 +4,7 @@ import { AboutCoursePage } from 'pages/Course/AboutCoursePage'
 import { CoursesPage } from 'pages/Course/CoursesPage'
 import { CreateCoursePage } from 'pages/Course/CreateCoursePage'
 import { HomePage } from 'pages/HomePage'
+import { CreateLessonPage } from 'pages/Lesson/CreateLessonPage'
 import { LessonPage } from 'pages/Lesson/LessonPage'
 import { NotFoundPage } from 'pages/NotFoundPage'
 import { CreateTicketPage } from 'pages/Ticket/CreateTicketPage'
@@ -18,6 +19,7 @@ export enum ERoutePath {
 	LESSON = '/lesson/:id',
 	CREATE_COURSE = '/create_course',
 	CREATE_TICKET = '/create_ticket',
+	CREATE_LESSON = '/create_lesson',
 }
 
 export const RouteConfig: Array<RouteProps> = [
@@ -52,5 +54,9 @@ export const RouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.CREATE_TICKET,
 		element: <CreateTicketPage />,
+	},
+	{
+		path: ERoutePath.CREATE_LESSON,
+		element: <CreateLessonPage />,
 	},
 ]

@@ -7,6 +7,7 @@ import { Htag } from 'shared/ui'
 
 export const FullLesson = ({ styles }: IFullLessonProps) => {
 	const data = {
+		id: 1,
 		title: 'Введение в программирование',
 		video: 'https://www.youtube.com/embed/i-uvtDKeFgE',
 		additions: [
