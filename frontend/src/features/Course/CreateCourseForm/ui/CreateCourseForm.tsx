@@ -3,12 +3,10 @@ import { useTranslation } from 'react-i18next'
 
 import classes from './CreateCourseForm.module.scss'
 
-import { CreateCourseButton } from 'features/Course/CreateCourseButton/ui/CreateCourseButton'
-
 import { ICourseFormConstructor, ICreateCourseData } from 'entities/Course/types/Course.types'
 
 import { classnames as cn } from 'shared/lib'
-import { FormConstructor } from 'shared/ui'
+import { FormConstructor, Icon } from 'shared/ui'
 
 export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 	const { t } = useTranslation('course')
@@ -16,11 +14,6 @@ export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 	const onSubmit = (formData: ICreateCourseData, event: BaseSyntheticEvent) => {
 		event.preventDefault()
 		console.log(formData)
-	}
-
-	const renderButton = (isValid: boolean, isDirty: boolean) => {
-		console.log('disabled', isValid, isDirty)
-		return isDirty && isValid ? <CreateCourseButton /> : <CreateCourseButton disabled={true} />
 	}
 
 	const data: ICourseFormConstructor[] = [
@@ -76,7 +69,15 @@ export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 			<FormConstructor
 				onSubmit={onSubmit}
 				data={data}
-				button={renderButton}
+				button={
+					<>
+						{t('sokhranit')}
+						<Icon
+							variation={'secondary'}
+							icon={'save'}
+						/>
+					</>
+				}
 			/>
 		</div>
 	)
