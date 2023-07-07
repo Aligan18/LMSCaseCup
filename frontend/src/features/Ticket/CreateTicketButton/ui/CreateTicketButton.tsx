@@ -4,13 +4,22 @@ import classes from './CreateTicketButton.module.scss'
 
 import { Button } from 'shared/ui'
 
-export const CreateTicketButton = ({ styles }: ICreateTicketButtonProps) => {
+export const CreateTicketButton = ({ styles, ...props }: ICreateTicketButtonProps) => {
 	const { t } = useTranslation('ticket')
 	return (
-		<Button styles={[classes.CreateTicket, styles].join(' ')}>{t('otpravit-zayavku')}</Button>
+		<Button
+			onClick={() => {
+				console.log('CLICKED')
+			}}
+			styles={[classes.CreateTicket, styles].join(' ')}
+			{...props}
+		>
+			{t('otpravit-zayavku')}
+		</Button>
 	)
 }
 
 interface ICreateTicketButtonProps {
 	styles?: string
+	disabled?: boolean
 }

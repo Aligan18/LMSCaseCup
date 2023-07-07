@@ -1,4 +1,4 @@
-import { ForwardedRef, forwardRef } from 'react'
+import { DetailedHTMLProps, ForwardedRef, HtmlHTMLAttributes, forwardRef } from 'react'
 
 import classes from './CheckBox.module.scss'
 
@@ -19,7 +19,8 @@ export const CheckBox = forwardRef(
 	},
 )
 
-interface ICheckBoxProps {
+interface ICheckBoxProps
+	extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
 	styles?: string
 	title: string
 }

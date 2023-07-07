@@ -1,7 +1,10 @@
 import { BaseSyntheticEvent } from 'react'
+import { FieldErrors, FieldValues } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import classes from './CreateTicketForm.module.scss'
+
+import { CreateTicketButton } from 'features/Ticket/CreateTicketButton'
 
 import { ICreateTicketData, ITicketFormConstructor } from 'entities/Ticket'
 
@@ -14,6 +17,11 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 	const onSubmit = (formData: ICreateTicketData, event: BaseSyntheticEvent) => {
 		event.preventDefault()
 		console.log(formData)
+	}
+
+	const renderButton = (isValid: boolean, isDirty: boolean) => {
+		console.log('disabled', isValid, isDirty)
+		return isDirty && isValid ? <CreateTicketButton /> : <CreateTicketButton disabled={true} />
 	}
 
 	const data: ITicketFormConstructor[] = [
@@ -64,6 +72,7 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 			<FormConstructor
 				onSubmit={onSubmit}
 				data={data}
+				button={renderButton}
 			/>
 		</div>
 	)
