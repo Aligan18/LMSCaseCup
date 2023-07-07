@@ -29,9 +29,3 @@ export interface IAdditionData {
 	title: string
 	file: string
 }
-
-export interface ICreateLessonData {
-	description?: string
-	title: string
-	video?: string
-}

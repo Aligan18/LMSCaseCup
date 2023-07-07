@@ -64,8 +64,8 @@ export const RenderFormItem = ({ formItem, control, register, getValues }: IRend
 							...rules,
 							onChange: () => {
 								const value = getValues(formItem.key)
-								console.log(value[0].name)
-								setFile(value[0].name)
+
+								value[0] && setFile(value[0].name)
 							},
 						})}
 					/>
