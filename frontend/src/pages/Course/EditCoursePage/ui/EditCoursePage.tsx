@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import classes from './CreateCoursePage.module.scss'
+import classes from './EditCoursePage.module.scss'
 
 import { FileUploader } from 'widgets/FileUploader'
 
@@ -8,18 +8,18 @@ import { BackButton } from 'features/BackButton'
 import { CreateCourseForm } from 'features/Course/CreateCourseForm'
 
 import { classnames as cn } from 'shared/lib'
-import { Button, Header, Htag, Icon, Input, SelectOption, TextInput } from 'shared/ui'
+import { Button, Header } from 'shared/ui'
 
-const CreateCoursePage = ({ styles }: ICreateCoursePageProps) => {
+export const EditCoursePage = ({ styles }: IEditCoursePageProps) => {
 	const { t } = useTranslation('course')
 
 	return (
-		<div className={cn(classes.CreateCoursePage, [styles])}>
+		<div className={cn(classes.EditCoursePage, [styles])}>
 			<BackButton />
 			<div className={classes.main}>
 				<div className={classes.wrapper}>
 					<Header
-						title={`${t('sozdanie-kursa')}`}
+						title={`${t('redaktirovanie-kursa')}`}
 						buttons={
 							<Button
 								variation="primary"
@@ -41,9 +41,8 @@ const CreateCoursePage = ({ styles }: ICreateCoursePageProps) => {
 		</div>
 	)
 }
+export default EditCoursePage
 
-export default CreateCoursePage
-
-interface ICreateCoursePageProps {
+interface IEditCoursePageProps {
 	styles?: string
 }

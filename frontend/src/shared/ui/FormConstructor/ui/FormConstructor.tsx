@@ -68,5 +68,5 @@ interface IFormConstructorProps {
 	styles?: string
 	data: IConbineFormConstructor[]
 	onSubmit: (formData: any, event: BaseSyntheticEvent) => void
-	button: string
+	button: string | ReactNode
 }
