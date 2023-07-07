@@ -3,8 +3,10 @@ import { useTranslation } from 'react-i18next'
 import classes from './CreateLessonPage.module.scss'
 
 import { BackButton } from 'features/BackButton'
+import { CreateLessonAboutForm } from 'features/Lesson/CreateLessonAboutForm'
+import { CreateLessonAdditionForm } from 'features/Lesson/CreateLessonAdditionForm'
 import { CreateLessonButton } from 'features/Lesson/CreateLessonButton'
-import { CreateLessonForm } from 'features/Lesson/CreateLessonForm'
+import { CreateLessonContentForm } from 'features/Lesson/CreateLessonContentForm'
 
 import { classnames as cn } from 'shared/lib'
 import { Header } from 'shared/ui'
@@ -21,7 +23,9 @@ const CreateLessonPage = ({ styles }: ICreateLessonPageProps) => {
 					title={t('dobavlenie-uroka')}
 					buttons={<CreateLessonButton />}
 				/>
-				<CreateLessonForm />
+				<CreateLessonAboutForm />
+				<CreateLessonContentForm />
+				<CreateLessonAdditionForm />
 			</div>
 		</div>
 	)

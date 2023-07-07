@@ -16,12 +16,8 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 
 	const onSubmit = (formData: ICreateTicketData, event: BaseSyntheticEvent) => {
 		event.preventDefault()
-		console.log(formData)
-	}
 
-	const renderButton = (isValid: boolean, isDirty: boolean) => {
-		console.log('disabled', isValid, isDirty)
-		return isDirty && isValid ? <CreateTicketButton /> : <CreateTicketButton disabled={true} />
+		console.log(formData)
 	}
 
 	const data: ITicketFormConstructor[] = [
@@ -72,7 +68,7 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 			<FormConstructor
 				onSubmit={onSubmit}
 				data={data}
-				button={renderButton}
+				button={'Оптравить заявку'}
 			/>
 		</div>
 	)

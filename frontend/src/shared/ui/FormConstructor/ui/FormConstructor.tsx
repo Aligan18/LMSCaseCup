@@ -1,7 +1,6 @@
 import { BaseSyntheticEvent, ReactNode, useEffect, useState } from 'react'
-import { FieldErrors, FieldValues, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
-import { createIsValidObject } from '../lib/createIsValidObject/createIsValidObject'
 import { IConbineFormConstructor } from '../types/FormConstructor'
 import classes from './FormConstructor.module.scss'
 import { RenderFormItem } from './RenderFormItem/RenderFormItem'
@@ -15,7 +14,7 @@ export function FormConstructor({ styles, data, onSubmit, button }: IFormConstru
 		handleSubmit,
 		control,
 		getValues,
-		formState: { errors, isDirty, isValid },
+		formState: { errors },
 	} = useForm({ mode: 'onChange' })
 
 	return (
@@ -52,11 +51,12 @@ export function FormConstructor({ styles, data, onSubmit, button }: IFormConstru
 					</div>
 				)}
 			/>
-			<div
-				className={classes.submit}
-				onClick={handleSubmit(onSubmit)}
-			>
-				{button(isValid, isDirty)}{' '}
+			<div className={classes.submit_wrapper}>
+				<div
+					className={classes.submit}
+					onClick={handleSubmit(onSubmit)}
+				></div>
+				<Button styles={classes.button}>{button}</Button>
 			</div>
 		</form>
 	)
@@ -66,5 +66,5 @@ interface IFormConstructorProps {
 	styles?: string
 	data: IConbineFormConstructor[]
 	onSubmit: (formData: any, event: BaseSyntheticEvent) => void
-	button: (isValid: boolean, isDirty: boolean) => ReactNode
+	button: string
 }
