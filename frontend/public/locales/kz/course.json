@@ -11,5 +11,17 @@
   "zagruzit-fail": "Файлды жүктеңіз",
   "ili-peretashite-fail": "Немесе файлды сүйреңіз",
   "raspisanie": "Кесте",
-  "urok": "Сабақ"
+  "urok": "Сабақ",
+  "nazvanie-kursa": "Курс атауы",
+  "do-20-simvolov-0": "20 таңбаға дейін",
+  "opisanie-kursa": "Курстың сипаттамасы",
+  "do-80-simvolov": "80 таңбаға дейін",
+  "dlitelnost-kursa": "Курстың ұзақтығы",
+  "mesyac": "ай",
+  "mesyaca-0": "айлар",
+  "napravlenie-obucheniya": "Оқу бағыты",
+  "razrabotka": "Даму",
+  "sokhranit": "Жинау",
+  "sozdanie-kursa": "Курсты құру",
+  "dobavit-urok-0": "Сабақты қосыңыз"
 }

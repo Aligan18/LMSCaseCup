@@ -52,10 +52,11 @@ export function FormConstructor({ styles, data, onSubmit, button }: IFormConstru
 					</div>
 				)}
 			/>
-			<div
-				className={classes.submit}
-				onClick={handleSubmit(onSubmit)}
-			>
+			<div>
+				<div
+					className={classes.submit}
+					onClick={handleSubmit(onSubmit)}
+				></div>
 				{button(isValid, isDirty)}{' '}
 			</div>
 		</form>

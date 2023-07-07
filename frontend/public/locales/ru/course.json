@@ -12,5 +12,17 @@
   "zagruzit-fail": "Загрузить файл",
   "ili-peretashite-fail": "Или перетащите файл",
   "raspisanie": "Расписание",
-  "urok": "Урок"
+  "urok": "Урок",
+  "nazvanie-kursa": "Название курса",
+  "do-20-simvolov-0": "До 20 символов",
+  "opisanie-kursa": "Описание курса",
+  "do-80-simvolov": "До 80 символов",
+  "dlitelnost-kursa": "Длительность курса",
+  "mesyac": "месяц",
+  "mesyaca-0": "месяца",
+  "napravlenie-obucheniya": "Направление обучения",
+  "razrabotka": "Разработка",
+  "sokhranit": "Сохранить",
+  "sozdanie-kursa": "Создание курса",
+  "dobavit-urok-0": "Добавить урок"
 }
