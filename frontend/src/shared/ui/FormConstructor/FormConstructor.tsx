@@ -1,5 +1,5 @@
-import { FormEvent, useState } from 'react'
-import { Controller } from 'react-hook-form'
+import { BaseSyntheticEvent, useState } from 'react'
+import { Controller, useForm } from 'react-hook-form'
 
 import classes from './FormConstructor.module.scss'
 
@@ -20,20 +20,40 @@ import {
 export function FormConstructor({
 	styles,
 	data,
-	errors,
+
 	onSubmit,
-	control,
 }: IFormConstructorProps) {
 	const [file, setFile] = useState<File>()
+	const {
+		register,
+		handleSubmit,
+		control,
+		formState: { errors },
+	} = useForm()
+
+	const rulesConstructor = ({ rules }: IConbineFormConstructor) => {
+		if (rules) {
+			return {
+				required: rules.required && { value: true, message: 'Обязательное поле' },
+				maxLength: rules.maxLength && {
+					value: rules.maxLength,
+					message: `Больше ${rules.maxLength} символов`,
+				},
+			}
+		}
+		return {}
+	}
 
 	const renderFormItem = (formItem: IConbineFormConstructor) => {
+		const rules = rulesConstructor(formItem)
+
 		switch (formItem.type) {
 			case 'input':
 				return (
 					<Input
 						format={'large'}
 						variation={'clear'}
-						{...formItem.register}
+						{...register(formItem.key, rules)}
 					>
 						{formItem.title}
 					</Input>
@@ -42,7 +62,7 @@ export function FormConstructor({
 				return (
 					<TextInput
 						styles={classes.text_input}
-						{...formItem.register}
+						{...register(formItem.key, rules)}
 					>
 						{formItem.title}
 					</TextInput>
@@ -53,7 +73,7 @@ export function FormConstructor({
 					<Controller
 						name={formItem.key}
 						control={control}
-						rules={formItem.register}
+						rules={rules}
 						render={({ field }) => (
 							<SelectOption
 								{...field}
@@ -67,7 +87,7 @@ export function FormConstructor({
 				return (
 					<CheckBox
 						title={formItem.description}
-						{...formItem.register}
+						{...register(formItem.key, rules)}
 					/>
 				)
 
@@ -76,7 +96,7 @@ export function FormConstructor({
 					<>
 						<UploadFile
 							setFile={setFile}
-							{...formItem.register}
+							{...register(formItem.key, rules)}
 						/>
 						<div>{file && `${file.name} - ${file.type}`}</div>
 					</>
@@ -88,7 +108,7 @@ export function FormConstructor({
 
 	return (
 		<form
-			onSubmit={onSubmit()}
+			onSubmit={handleSubmit(onSubmit)}
 			className={cn(classes.FormConstructor, [styles])}
 		>
 			<List
@@ -108,7 +128,7 @@ export function FormConstructor({
 								)}
 							</div>
 							{errors[formItem.key] && (
-								<ErrorText>{errors[formItem.key].message}</ErrorText>
+								<ErrorText>{String(errors[formItem.key].message)}</ErrorText>
 							)}
 						</div>
 
@@ -124,9 +144,7 @@ export function FormConstructor({
 interface IFormConstructorProps {
 	styles?: string
 	data: IFormConstructorData[]
-	errors: any
-	onSubmit: any
-	control: any
+	onSubmit: (formData: any, event: BaseSyntheticEvent) => void
 }
 
 interface IConbineFormConstructor extends IFormConstructorData {

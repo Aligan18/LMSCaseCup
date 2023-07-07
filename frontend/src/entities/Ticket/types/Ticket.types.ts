@@ -12,7 +12,6 @@ export interface ICreateTicketData {
 	theme: string
 	description: string
 	file: File
-	checkbox: boolean
 }
 
 interface ICreateTicketKeys {

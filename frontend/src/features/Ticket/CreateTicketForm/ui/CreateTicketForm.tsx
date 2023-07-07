@@ -1,5 +1,4 @@
 import { BaseSyntheticEvent } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import classes from './CreateTicketForm.module.scss'
@@ -10,19 +9,11 @@ import { classnames as cn } from 'shared/lib'
 import { FormConstructor } from 'shared/ui'
 
 export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
-	const {
-		register,
-		handleSubmit,
-		control,
-		formState: { errors },
-	} = useForm<ICreateTicketData>()
 	const { t } = useTranslation('ticket')
 
-	const onSubmit = () => {
-		return handleSubmit((formData: ICreateTicketData, event: BaseSyntheticEvent) => {
-			event.preventDefault()
-			console.log(formData)
-		})
+	const onSubmit = (formData: ICreateTicketData, event: BaseSyntheticEvent) => {
+		event.preventDefault()
+		console.log(formData)
 	}
 
 	const data: ITicketFormConstructor[] = [
@@ -31,11 +22,9 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 			title: `${t('nazvanie')}`,
 			description: `${t('do-20-simvolov')}`,
 			key: 'title',
-			register: {
-				...register('title', {
-					required: { value: true, message: 'Заполните название' },
-					maxLength: { value: 20, message: 'Название больше 20 символов' },
-				}),
+			rules: {
+				required: true,
+				maxLength: 20,
 			},
 		},
 		{
@@ -45,10 +34,10 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 				{ title: 'Смена обуч', value: '2' },
 				{ title: 'Смена ', value: '3' },
 			],
-			title: 'Тема обращение',
+			title: 'Тема обращения',
 			key: 'theme',
-			register: {
-				required: { value: true, message: 'выберите тему обращения' },
+			rules: {
+				required: true,
 			},
 		},
 		{
@@ -56,30 +45,24 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 			title: 'Описание тикета',
 			description: 'До 80 символов',
 			key: 'description',
-			register: {
-				...register('description', {
-					required: { value: true, message: 'Заполните описание тикета' },
-					maxLength: { value: 80, message: 'Описание тикета больше 80 символов' },
-				}),
+			rules: {
+				required: true,
+				maxLength: 80,
 			},
 		},
 
 		{
 			type: 'file-input',
 			key: 'file',
-			register: {
-				...register('file', {
-					required: { value: true, message: 'Выберите файл' },
-				}),
+			rules: {
+				required: true,
 			},
 		},
 	]
 	return (
 		<div className={cn(classes.CreateTicketForm, [styles])}>
 			<FormConstructor
-				control={control}
 				onSubmit={onSubmit}
-				errors={errors}
 				data={data}
 			/>
 		</div>

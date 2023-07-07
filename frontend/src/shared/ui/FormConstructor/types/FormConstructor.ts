@@ -7,5 +7,10 @@ export interface IFormConstructorData {
 	options?: IOptions[]
 	title?: string
 	description?: string
-	register: any | (() => any)
+	rules?: IRegisterRules
+}
+
+interface IRegisterRules {
+	required?: boolean
+	maxLength?: number
 }

@@ -1,3 +1,5 @@
+import { FieldError } from 'react-hook-form'
+
 import classes from './ErrorText.module.scss'
 
 import { classnames as cn } from 'shared/lib'

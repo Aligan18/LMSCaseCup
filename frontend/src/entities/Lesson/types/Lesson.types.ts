@@ -7,6 +7,10 @@ export interface IAboutLessonData {
 }
 
 export interface ILessonData {
+	id?: number
+	description: string
+	status: boolean
+	number: number
 	title: string
 	video: string
 	lesson: ILessonContentData[]
@@ -14,12 +18,20 @@ export interface ILessonData {
 }
 
 export interface ILessonContentData {
+	id?: number
 	title: string
 	type: string
 	content: string
 }
 
 export interface IAdditionData {
+	id: number
 	title: string
 	file: string
+}
+
+export interface ICreateLessonData {
+	description?: string
+	title: string
+	video?: string
 }
