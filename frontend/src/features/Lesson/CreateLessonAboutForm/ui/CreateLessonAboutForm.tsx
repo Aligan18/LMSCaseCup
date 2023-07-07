@@ -1,0 +1,62 @@
+import { BaseSyntheticEvent } from 'react'
+
+import classes from './CreateLessonAboutForm.module.scss'
+
+import { ICreateLessonAboutData, ILessonAboutFormConstructor } from 'entities/Lesson'
+
+import { classnames as cn } from 'shared/lib'
+import { FormConstructor } from 'shared/ui'
+
+export const CreateLessonAboutForm = ({ styles }: ICreateLessonAboutFormProps) => {
+	const onSubmit = (formData: ICreateLessonAboutData, event: BaseSyntheticEvent) => {
+		event.preventDefault()
+		console.log(formData)
+	}
+
+	const description: ILessonAboutFormConstructor[] = [
+		{
+			title: 'Название урока',
+			description: 'До 20 символов',
+			key: 'title',
+			type: 'input',
+			rules: {
+				required: true,
+				maxLength: 20,
+			},
+		},
+		{
+			title: 'Описание урока',
+			description: 'До 80 символов',
+			key: 'description',
+			type: 'text-input',
+			rules: {
+				required: true,
+				maxLength: 80,
+			},
+		},
+		{
+			title: 'Видео урока',
+			description: 'Введите ссылку на YouTube',
+			key: 'video',
+			type: 'input',
+			rules: {
+				required: true,
+				maxLength: 80,
+			},
+		},
+	]
+
+	return (
+		<div className={cn(classes.CreateLessonForm, [styles])}>
+			<FormConstructor
+				data={description}
+				onSubmit={onSubmit}
+				button={'Применить описание'}
+			/>
+		</div>
+	)
+}
+
+interface ICreateLessonAboutFormProps {
+	styles?: string
+}
