@@ -11,5 +11,17 @@
   "zagruzit-fail": "Upload file",
   "ili-peretashite-fail": "Or drag the file",
   "raspisanie": "Schedule",
-  "urok": "Lesson"
+  "urok": "Lesson",
+  "nazvanie-kursa": "Course name",
+  "do-20-simvolov-0": "Up to 20 characters",
+  "opisanie-kursa": "Course Description",
+  "do-80-simvolov": "Up to 80 characters",
+  "dlitelnost-kursa": "Course duration",
+  "mesyac": "month",
+  "mesyaca-0": "months",
+  "napravlenie-obucheniya": "Direction of study",
+  "razrabotka": "Development",
+  "sokhranit": "Save",
+  "sozdanie-kursa": "Create a course",
+  "dobavit-urok-0": "Add Lesson"
 }

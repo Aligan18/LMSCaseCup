@@ -51,11 +51,13 @@ export function FormConstructor({ styles, data, onSubmit, button }: IFormConstru
 					</div>
 				)}
 			/>
+
 			<div className={classes.submit_wrapper}>
 				<div
 					className={classes.submit}
 					onClick={handleSubmit(onSubmit)}
 				></div>
+
 				<Button styles={classes.button}>{button}</Button>
 			</div>
 		</form>
