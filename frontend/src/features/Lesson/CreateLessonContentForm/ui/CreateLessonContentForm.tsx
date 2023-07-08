@@ -21,7 +21,7 @@ export const CreateLessonContentForm = ({ styles }: ICreateLessonContentFormProp
 	const content: ILessonContentFormConstructor[] = [
 		{
 			title: 'Введите заголовок',
-			description: 'Это не обязательное поле',
+			description: 'Это необязательное поле',
 			key: 'title',
 			type: 'input',
 			rules: {

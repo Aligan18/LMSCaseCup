@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
@@ -12,7 +13,7 @@ import { Button, Icon } from 'shared/ui'
 import { Htag } from 'shared/ui'
 import { TextBox } from 'shared/ui'
 
-export const CourseCard = ({ styles, data }: ICourseCardProps) => {
+export const CourseCard = ({ styles, data, buttons }: ICourseCardProps) => {
 	const { t } = useTranslation()
 	return (
 		<div className={cn(classes.Card, [styles])}>
@@ -29,19 +30,7 @@ export const CourseCard = ({ styles, data }: ICourseCardProps) => {
 			<TextBox size={'medium'}>{data.price + ' тг'} </TextBox>
 
 			<div className={classes.wrapper_button}>
-				<Link to={deleteRouteId(ERoutePath.ABOUT_COURSE) + data.id}>
-					<Button
-						variation="clear"
-						styles={classes.button}
-						format={'small'}
-					>
-						{t('podrobnee')}
-						<Icon
-							variation={'primary'}
-							icon={'link'}
-						/>
-					</Button>
-				</Link>
+				<div className={classes.button}>{buttons}</div>
 			</div>
 		</div>
 	)
@@ -50,4 +39,5 @@ export const CourseCard = ({ styles, data }: ICourseCardProps) => {
 interface ICourseCardProps {
 	styles?: string
 	data: IAboutCourseData
+	buttons?: ReactNode
 }
