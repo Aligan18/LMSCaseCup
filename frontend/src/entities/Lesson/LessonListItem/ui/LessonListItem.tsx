@@ -6,7 +6,7 @@ import classes from './LessonListItem.module.scss'
 
 import { ERoutePath } from 'app/providers/AppRouters'
 
-import { IAboutLessonData } from 'entities/Lesson'
+import { IAboutLessonData } from 'entities/Lesson/types'
 
 import { classnames as cn, deleteRouteId } from 'shared/lib'
 import { Button, Htag, Icon, TextBox } from 'shared/ui'

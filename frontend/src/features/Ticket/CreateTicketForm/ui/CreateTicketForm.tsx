@@ -1,12 +1,9 @@
 import { BaseSyntheticEvent } from 'react'
-import { FieldErrors, FieldValues } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import classes from './CreateTicketForm.module.scss'
 
-import { CreateTicketButton } from 'features/Ticket/CreateTicketButton'
-
-import { ICreateTicketData, ITicketFormConstructor } from 'entities/Ticket'
+import { ICreateTicketData, ITicketFormConstructor } from 'entities/Ticket/types'
 
 import { classnames as cn } from 'shared/lib'
 import { FormConstructor } from 'shared/ui'

@@ -1,6 +1,6 @@
 import classes from './LessonContentList.module.scss'
 
-import { ILessonContentData } from 'entities/Lesson'
+import { ILessonContentData } from 'entities/Lesson/types'
 
 import { classnames as cn } from 'shared/lib'
 import { CodeBox, Hr, Htag, List, TextBox } from 'shared/ui'

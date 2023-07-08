@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import classes from './CourseMiniCard.module.scss'
 
-import { IAboutCourseData } from 'entities/Course'
+import { IAboutCourseData } from 'entities/Course/types'
 
 import { classnames as cn } from 'shared/lib'
 import { Icon } from 'shared/ui'

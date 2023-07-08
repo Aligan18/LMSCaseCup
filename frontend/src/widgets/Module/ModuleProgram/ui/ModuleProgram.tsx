@@ -2,7 +2,8 @@ import { useTranslation } from 'react-i18next'
 
 import classes from './ModuleProgram.module.scss'
 
-import { IModuleData, ModuleList } from 'entities/Module'
+import { ModuleList } from 'entities/Module/ModuleList'
+import { IModuleData } from 'entities/Module/types'
 
 import { classnames as cn } from 'shared/lib'
 import { Htag, List } from 'shared/ui'

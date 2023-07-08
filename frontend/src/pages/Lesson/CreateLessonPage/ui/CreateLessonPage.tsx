@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import classes from './CreateLessonPage.module.scss'
 
+import { LessonConstructor } from 'widgets/Lesson/LessonConstructor'
 import { LessonFormSteps } from 'widgets/Lesson/LessonFormSteps'
 
 import { BackButton } from 'features/BackButton'
@@ -17,6 +18,7 @@ const CreateLessonPage = ({ styles }: ICreateLessonPageProps) => {
 			</div>
 			<div className={classes.lesson}>
 				<BackButton />
+				<LessonConstructor />
 			</div>
 		</div>
 	)

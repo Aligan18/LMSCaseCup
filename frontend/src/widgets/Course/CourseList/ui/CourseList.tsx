@@ -1,6 +1,7 @@
 import classes from './CourseList.module.scss'
 
-import { CourseCard, IAboutCourseData } from 'entities/Course'
+import { CourseCard } from 'entities/Course/CourseCard'
+import { IAboutCourseData } from 'entities/Course/types'
 
 import { classnames as cn } from 'shared/lib'
 import { List } from 'shared/ui'

@@ -1,4 +1,4 @@
-import { IAboutLessonData } from 'entities/Lesson'
+import { IAboutLessonData } from 'entities/Lesson/types'
 
 export interface IModuleData {
 	id: number

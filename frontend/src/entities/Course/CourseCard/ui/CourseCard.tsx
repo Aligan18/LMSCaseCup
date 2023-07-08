@@ -5,7 +5,7 @@ import classes from './CourseCard.module.scss'
 
 import { ERoutePath } from 'app/providers/AppRouters'
 
-import { IAboutCourseData } from 'entities/Course'
+import { IAboutCourseData } from 'entities/Course/types'
 
 import { classnames as cn, deleteRouteId } from 'shared/lib'
 import { Button, Icon } from 'shared/ui'
