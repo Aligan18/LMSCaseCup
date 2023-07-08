@@ -2,8 +2,10 @@ import { useState } from 'react'
 
 import classes from './ModuleList.module.scss'
 
-import { IAboutLessonData, LessonListItem } from 'entities/Lesson'
-import { IModuleData, ModuleListItem } from 'entities/Module'
+import { LessonListItem } from 'entities/Lesson/LessonListItem'
+import { IAboutLessonData } from 'entities/Lesson/types'
+import { ModuleListItem } from 'entities/Module/ModuleListItem'
+import { IModuleData } from 'entities/Module/types'
 
 import { classnames as cn } from 'shared/lib'
 import { List } from 'shared/ui'

@@ -1,6 +1,6 @@
 import classes from './DownloadingFileButton.module.scss'
 
-import { IAdditionData } from 'entities/Lesson'
+import { IAdditionData } from 'entities/Lesson/types'
 
 import { Button, Icon } from 'shared/ui'
 

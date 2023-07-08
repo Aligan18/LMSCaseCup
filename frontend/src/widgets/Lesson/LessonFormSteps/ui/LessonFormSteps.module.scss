@@ -1,6 +1,10 @@
 .LessonFormSteps {
-	width: 100%;
+	position: relative;
 	height: 100%;
+}
+.wrapper {
+	width: 100%;
+	height: fit-content;
 
 	align-items: start;
 }

@@ -24,36 +24,38 @@ export const LessonFormSteps = ({ styles }: ILessonFormStepsProps) => {
 	}
 	return (
 		<div className={cn(classes.LessonFormSteps, [styles])}>
-			<div className={classes.header}>
-				<Step
-					onClick={() => setStep(1)}
-					stepNumber={1}
-					format={'first'}
-					variation={'primary'}
-				>
-					Описание
-				</Step>
-				<Step
-					onClick={() => setStep(2)}
-					stepNumber={2}
-					format={'second'}
-					variation={step > 1 ? 'primary' : 'secondary'}
-				>
-					Контент
-				</Step>
-				<Step
-					onClick={() => setStep(3)}
-					stepNumber={3}
-					format={'last'}
-					variation={step > 2 ? 'primary' : 'secondary'}
-				>
-					Материалы
-				</Step>
+			<div className={classes.wrapper}>
+				<div className={classes.header}>
+					<Step
+						onClick={() => setStep(1)}
+						stepNumber={1}
+						format={'first'}
+						variation={'primary'}
+					>
+						Описание
+					</Step>
+					<Step
+						onClick={() => setStep(2)}
+						stepNumber={2}
+						format={'second'}
+						variation={step > 1 ? 'primary' : 'secondary'}
+					>
+						Контент
+					</Step>
+					<Step
+						onClick={() => setStep(3)}
+						stepNumber={3}
+						format={'last'}
+						variation={step > 2 ? 'primary' : 'secondary'}
+					>
+						Материалы
+					</Step>
+				</div>
+
+				<Hr />
+
+				{formRender()}
 			</div>
-
-			<Hr />
-
-			{formRender()}
 		</div>
 	)
 }

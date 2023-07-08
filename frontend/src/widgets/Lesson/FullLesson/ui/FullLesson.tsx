@@ -1,9 +1,9 @@
 import classes from './FullLesson.module.scss'
 
-import { LessonContentList } from 'entities/Lesson'
+import { LessonContentList } from 'features/Lesson/LessonContentList'
 
 import { classnames as cn } from 'shared/lib'
-import { Htag } from 'shared/ui'
+import { Header, Htag, YouTubeVideo } from 'shared/ui'
 
 export const FullLesson = ({ styles }: IFullLessonProps) => {
 	const data = {
@@ -59,17 +59,8 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 
 	return (
 		<div className={cn(classes.Lesson, [styles])}>
-			<div className={classes.title}>
-				<Htag tag={'very-large'}>{data.title}</Htag>
-			</div>
-			<div className={classes.video_wrapper}>
-				<iframe
-					className={classes.iframe}
-					width="100%"
-					height="100%"
-					src={data.video}
-				></iframe>
-			</div>
+			<Header title={data.title} />
+			<YouTubeVideo video_link={data.video} />
 			<LessonContentList data={data.lesson} />
 		</div>
 	)

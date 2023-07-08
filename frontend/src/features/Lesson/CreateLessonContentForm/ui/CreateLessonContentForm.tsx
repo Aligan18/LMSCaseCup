@@ -2,10 +2,10 @@ import { BaseSyntheticEvent } from 'react'
 
 import classes from './CreateLessonContentForm.module.scss'
 
-import { ICreateLessonContentData, ILessonContentFormConstructor } from 'entities/Lesson'
+import { ICreateLessonContentData, ILessonContentFormConstructor } from 'entities/Lesson/types'
 
 import { classnames as cn } from 'shared/lib'
-import { Button, FormConstructor } from 'shared/ui'
+import { FormConstructor } from 'shared/ui'
 
 export const CreateLessonContentForm = ({ styles }: ICreateLessonContentFormProps) => {
 	const onSubmit = (formData: ICreateLessonContentData, event: BaseSyntheticEvent) => {

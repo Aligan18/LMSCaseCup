@@ -1,7 +1,7 @@
 import { IAboutTicketData } from '../../../../entities/Ticket/types/Ticket.types'
 import classes from './TicketList.module.scss'
 
-import { TicketItem } from 'entities/Ticket'
+import { TicketItem } from 'entities/Ticket/TicketItem'
 
 import { classnames as cn } from 'shared/lib'
 import { List } from 'shared/ui'

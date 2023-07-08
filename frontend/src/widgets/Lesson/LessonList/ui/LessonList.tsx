@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import classes from './LessonList.module.scss'
 
-import { IAboutLessonData } from 'entities/Lesson'
+import { IAboutLessonData } from 'entities/Lesson/types'
 
 import { classnames as cn } from 'shared/lib'
 import { Htag, Icon, List, ListItem } from 'shared/ui'

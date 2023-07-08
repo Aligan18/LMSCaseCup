@@ -2,7 +2,7 @@ import classes from './LessonAdditions.module.scss'
 
 import { DownloadingFileButton } from 'features/DownloadingFileButton'
 
-import { IAdditionData } from 'entities/Lesson'
+import { IAdditionData } from 'entities/Lesson/types'
 
 import { classnames as cn } from 'shared/lib'
 import { Htag, List } from 'shared/ui'

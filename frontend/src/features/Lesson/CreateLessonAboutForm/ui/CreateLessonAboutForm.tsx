@@ -2,7 +2,7 @@ import { BaseSyntheticEvent } from 'react'
 
 import classes from './CreateLessonAboutForm.module.scss'
 
-import { ICreateLessonAboutData, ILessonAboutFormConstructor } from 'entities/Lesson'
+import { ICreateLessonAboutData, ILessonAboutFormConstructor } from 'entities/Lesson/types'
 
 import { classnames as cn } from 'shared/lib'
 import { FormConstructor } from 'shared/ui'

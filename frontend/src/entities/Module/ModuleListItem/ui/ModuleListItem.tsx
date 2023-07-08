@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 import classes from './ModuleListItem.module.scss'
 
-import { IModuleData } from 'entities/Module'
+import { IModuleData } from 'entities/Module/types'
 
 import { classnames as cn } from 'shared/lib'
 import { CircleForIcon, Htag, Icon } from 'shared/ui'

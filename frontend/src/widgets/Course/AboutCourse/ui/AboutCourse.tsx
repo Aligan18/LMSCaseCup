@@ -2,7 +2,8 @@ import classes from './AboutCourse.module.scss'
 
 import { EnrollCourseButton } from 'features/Course'
 
-import { CourseMiniCard, IAboutCourseData } from 'entities/Course'
+import { CourseMiniCard } from 'entities/Course/CourseMiniCard'
+import { IAboutCourseData } from 'entities/Course/types'
 
 import { classnames as cn } from 'shared/lib'
 

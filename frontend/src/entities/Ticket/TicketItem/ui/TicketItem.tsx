@@ -1,6 +1,6 @@
 import classes from './TicketItem.module.scss'
 
-import { IAboutTicketData } from 'entities/Ticket'
+import { IAboutTicketData } from 'entities/Ticket/types'
 
 import { classnames as cn } from 'shared/lib'
 import { CircleForIcon, Icon, ListItem } from 'shared/ui'
