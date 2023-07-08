@@ -18,6 +18,7 @@ export { Hr } from './Hr/Hr'
 export { UploadFile } from './UploadFile/UploadFile'
 export { CheckBox } from './CheckBox/CheckBox'
 export { ErrorText } from './ErrorText/ErrorText'
+export { Step } from './Step/Step'
 
 export { IOptions } from './SelectOption/types/Options'
 export { IFormConstructorData } from './FormConstructor/types/FormConstructor'

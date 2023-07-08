@@ -2,6 +2,10 @@
 	stroke: var(--white);
 }
 
+.gray path {
+	stroke: var(--gray-color);
+}
+
 .cursor_pointer {
 	cursor: pointer;
 }

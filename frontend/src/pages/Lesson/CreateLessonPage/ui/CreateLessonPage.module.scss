@@ -1,0 +1,18 @@
+.CreateLessonPage {
+	width: 100%;
+	display: grid;
+	gap: 40px;
+	grid-template-columns: 65% 33%;
+	grid-template-areas: 'lesson form ';
+}
+
+.form {
+	border-radius: 8px;
+	padding: 16px;
+	background: var(--background);
+	grid-area: form;
+}
+
+.lesson {
+	grid-area: lesson;
+}

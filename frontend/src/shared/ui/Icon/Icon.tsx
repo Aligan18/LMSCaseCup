@@ -50,6 +50,7 @@ export const Icon = ({
 		[classes.secondary]: variation === 'secondary',
 		[classes.red]: variation === 'red',
 		[classes.white]: variation === 'white',
+		[classes.gray]: variation === 'gray',
 		[classes.inverted_secondary]: variation === 'inverted-secondary',
 		[classes.cursor_pointer]: cursor === 'cursor_pointer',
 		[classes.cursor_none]: cursor === 'cursor_none',
@@ -110,7 +111,7 @@ export const Icon = ({
 
 interface IIconProps extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	styles?: string
-	variation?: 'primary' | 'secondary' | 'red' | 'inverted-secondary' | 'white'
+	variation?: 'primary' | 'secondary' | 'red' | 'inverted-secondary' | 'white' | 'gray'
 	cursor?: 'cursor_pointer' | 'cursor_none'
 	size?: 'small' | 'medium' | 'large'
 	icon:
