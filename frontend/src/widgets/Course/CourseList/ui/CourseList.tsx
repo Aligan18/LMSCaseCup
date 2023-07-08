@@ -1,12 +1,19 @@
+import { useTranslation } from 'react-i18next'
+
 import classes from './CourseList.module.scss'
+
+import { ERoutePath } from 'app/providers/AppRouters'
 
 import { CourseCard } from 'entities/Course/CourseCard'
 import { IAboutCourseData } from 'entities/Course/types'
 
-import { classnames as cn } from 'shared/lib'
-import { List } from 'shared/ui'
+import { classnames as cn, deleteRouteId } from 'shared/lib'
+import { Button, Icon, List } from 'shared/ui'
+import { Link } from 'react-router-dom'
 
 export const CourseList = ({ styles }: ICourseListProps) => {
+	const { t } = useTranslation('course')
+
 	const data = [
 		{
 			id: 1,
@@ -52,6 +59,21 @@ export const CourseList = ({ styles }: ICourseListProps) => {
 					<CourseCard
 						key={info.id}
 						data={info}
+						buttons={
+							<Link to={deleteRouteId(ERoutePath.ABOUT_COURSE) + info.id}>
+								<Button
+									variation="clear"
+									styles={classes.button}
+									format={'small'}
+								>
+									{t('podrobnee-0')}
+									<Icon
+										variation={'primary'}
+										icon={'link'}
+									/>
+								</Button>
+							</Link>
+						}
 					/>
 				)}
 				variation={'card'}

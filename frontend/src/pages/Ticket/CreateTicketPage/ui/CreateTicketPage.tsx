@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import classes from './CreateTicketPage.module.scss'
 
 import { BackButton } from 'features/BackButton'
-import { CreateTicketButton } from 'features/Ticket/CreateTicketButton'
 import { CreateTicketForm } from 'features/Ticket/CreateTicketForm'
 
 import { classnames as cn } from 'shared/lib'

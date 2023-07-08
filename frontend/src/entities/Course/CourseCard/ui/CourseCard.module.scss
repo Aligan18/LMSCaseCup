@@ -37,9 +37,22 @@
 .button {
 	width: 100%;
 	height: 46px;
+	justify-content: center;
+	display: flex;
+	gap: 20px;
+}
+.button button {
+	width: 80%;
+	
 }
 .wrapper_button {
 	width: inherit;
+
+}
+.wrapper_button a{
+	width: 100%;
+	justify-content: center;
+	display: flex;
 }
 .tegs {
 	display: grid;
