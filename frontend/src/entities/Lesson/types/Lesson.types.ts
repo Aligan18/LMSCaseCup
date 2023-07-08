@@ -9,7 +9,6 @@ export interface IAboutLessonData {
 export interface ILessonData {
 	id?: number
 	description: string
-	status: boolean
 	number: number
 	title: string
 	video: string
@@ -20,7 +19,7 @@ export interface ILessonData {
 export interface ILessonContentData {
 	id?: number
 	title: string
-	type: string
+	type: 'text' | 'code'
 	content: string
 }
 
