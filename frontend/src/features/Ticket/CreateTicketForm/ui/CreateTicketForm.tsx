@@ -24,7 +24,7 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 		{
 			type: 'input',
 			title: `${t('nazvanie')}`,
-			description: `${t('do-20-simvolov')}`,
+			description: `${t('do ')}` + 20 + `${t(' simvolov')}`,
 			key: 'title',
 			rules: {
 				required: true,
@@ -38,7 +38,7 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 				{ title: 'Смена обуч', value: '2' },
 				{ title: 'Смена ', value: '3' },
 			],
-			title: 'Тема обращения',
+			title: `${t('tema-obrasheniya')}`,
 			key: 'theme',
 			rules: {
 				required: true,
@@ -46,8 +46,8 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 		},
 		{
 			type: 'text-input',
-			title: 'Описание тикета',
-			description: 'До 80 символов',
+			title: `${t('opisanie-tiketa')}`,
+			description: `${t('do ')}` + 80 + `${t(' simvolov')}`,
 			key: 'description',
 			rules: {
 				required: true,
@@ -68,7 +68,7 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 			<FormConstructor
 				onSubmit={onSubmit}
 				data={data}
-				button={'Оптравить заявку'}
+				button={`${t('otpravit-zayavku-0')}`}
 			/>
 		</div>
 	)

@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent } from 'react'
+import { BaseSyntheticEvent, ReactNode } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { IConbineFormConstructor } from '../types/FormConstructor'

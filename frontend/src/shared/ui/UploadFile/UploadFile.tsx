@@ -7,6 +7,7 @@ import {
 	SetStateAction,
 	forwardRef,
 } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import classes from './UploadFile.module.scss'
 
@@ -15,6 +16,8 @@ import { Button, Icon } from 'shared/ui'
 
 export const UploadFile = forwardRef(
 	({ styles, ...props }: IUploadFileProps, ref: ForwardedRef<HTMLInputElement>) => {
+		const { t } = useTranslation()
+
 		return (
 			<Button
 				styles={classes.button}
@@ -27,7 +30,7 @@ export const UploadFile = forwardRef(
 						className={classes.input}
 						{...props}
 					/>
-					Прикрепить файл
+					{t('prikrepit-fail')}
 					<Icon
 						variation={'white'}
 						icon={'save'}
