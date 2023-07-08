@@ -10,8 +10,25 @@ export const LessonContentSlice = createSlice({
 		add_content: (state, payload) => {
 			state.push(payload.payload)
 		},
-		decrement: (state) => {
-			state
+		change_sort_content: (state: ILessonContentSchema[], payload) => {
+			const sortedPayload = payload.payload.sort(
+				(a: ILessonContentSchema, b: ILessonContentSchema) => {
+					if (a.order > b.order) {
+						return 1
+					} else {
+						return -1
+					}
+				},
+			)
+			console.log('sortedPayload', sortedPayload)
+
+			// Очистка текущего состояния state
+			state.splice(0, state.length)
+
+			// Добавление отсортированных элементов в состояние state
+			sortedPayload.forEach((item: ILessonContentSchema) => {
+				state.push(item)
+			})
 		},
 	},
 })

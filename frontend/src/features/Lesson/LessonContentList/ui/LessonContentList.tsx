@@ -1,8 +1,11 @@
-import { BaseSyntheticEvent, DragEvent, useState } from 'react'
+import { BaseSyntheticEvent, DragEvent, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import classes from './LessonContentList.module.scss'
 
-import { ILessonContentSchema } from 'features/Lesson/CreateLessonContentForm'
+import { IStateSchema } from 'app/providers/StoreProvider/config/StateSchema'
+
+import { ILessonContentSchema, lessonContentActions } from 'features/Lesson/CreateLessonContentForm'
 
 import { ILessonContentData } from 'entities/Lesson/types'
 
@@ -24,11 +27,15 @@ export const LessonContentList = ({ styles, data, editor = false }: ILessonConte
 			</div>
 		)
 	}
+	const dispatch = useDispatch()
+	const contentData = useSelector((state: IStateSchema) => state.createLessonContent)
 
-	const [currentCard, setCurrentCard] = useState<ILessonContentData | null>(null)
+	const [chengedContent, setChengedContent] = useState([...contentData])
 
-	function dragStartHandler(e: BaseSyntheticEvent, content: ILessonContentData): void {
-		setCurrentCard(content)
+	const [currentContent, setCurrentContent] = useState<ILessonContentSchema | null>(null)
+
+	function dragStartHandler(e: BaseSyntheticEvent, content: ILessonContentSchema): void {
+		setCurrentContent(content)
 	}
 
 	function dragEndHandler(e: BaseSyntheticEvent): void {
@@ -39,9 +46,21 @@ export const LessonContentList = ({ styles, data, editor = false }: ILessonConte
 
 		e.target.style.background = 'var(--primary-color)'
 	}
-	function dropHandler(e: BaseSyntheticEvent, content: ILessonContentData): void {
+	function dropHandler(e: BaseSyntheticEvent, content: ILessonContentSchema): void {
 		e.preventDefault()
 		e.target.style.background = 'none'
+		const chengedContent = contentData.map((oldContent) => {
+			if (oldContent.id === content.id) {
+				return { ...oldContent, order: currentContent.order }
+			}
+			if (oldContent.id === currentContent.id) {
+				return { ...oldContent, order: content.order }
+			}
+			return oldContent
+		})
+		console.log('chengedContent', chengedContent)
+
+		dispatch(lessonContentActions.change_sort_content(chengedContent))
 	}
 
 	if (editor === false) {
@@ -50,7 +69,7 @@ export const LessonContentList = ({ styles, data, editor = false }: ILessonConte
 				<List
 					styles={classes.list}
 					variation={'list'}
-					items={data}
+					items={contentData}
 					renderItem={(content: ILessonContentData) => (
 						<div key={content.id}>{renderContent(content)}</div>
 					)}

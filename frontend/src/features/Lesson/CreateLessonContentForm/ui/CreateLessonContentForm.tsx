@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent } from 'react'
+import { BaseSyntheticEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { lessonContentActions } from '../model/slice/LessonContentSlice'
@@ -10,11 +10,16 @@ import { classnames as cn } from 'shared/lib'
 import { FormConstructor } from 'shared/ui'
 
 export const CreateLessonContentForm = ({ styles }: ICreateLessonContentFormProps) => {
+	const [counter, setConter] = useState(0)
 	const dispatch = useDispatch()
 
 	const onSubmit = (formData: ICreateLessonContentData, event: BaseSyntheticEvent) => {
 		event.preventDefault()
+		formData.id = counter
+		formData.order = counter
+		setConter(counter + 1)
 		console.log(formData)
+
 		dispatch(lessonContentActions.add_content(formData))
 	}
 

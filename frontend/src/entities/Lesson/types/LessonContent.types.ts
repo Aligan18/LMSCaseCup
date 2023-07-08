@@ -1,6 +1,8 @@
 import { IFormConstructorData } from 'shared/ui'
 
 export interface ICreateLessonContentData {
+	id: number
+	order: number
 	title: string
 	type: 'text' | 'code'
 	content: string
