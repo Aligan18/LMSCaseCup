@@ -3,5 +3,9 @@
   "novyi-tiket": "New ticket",
   "otpravit-zayavku": "Submit a ticket",
   "nazvanie": "Name",
-  "do-20-simvolov": "Up to 20 characters"
+  "tema-obrasheniya": "Topic",
+  "opisanie-tiketa": "Ticket description",
+  "do ": "Before ",
+  " simvolov": " characters",
+  "otpravit-zayavku-0": "Submit an application"
 }

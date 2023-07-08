@@ -3,5 +3,9 @@
   "novyi-tiket": "Новый тикет",
   "otpravit-zayavku": "Отправить заявку",
   "nazvanie": "Название",
-  "do-20-simvolov": "До 20 символов"
+  "tema-obrasheniya": "Тема обращения",
+  "opisanie-tiketa": "Описание тикета",
+  "do ": "До ",
+  " simvolov": " символов",
+  "otpravit-zayavku-0": "Отправить заявку"
 }
