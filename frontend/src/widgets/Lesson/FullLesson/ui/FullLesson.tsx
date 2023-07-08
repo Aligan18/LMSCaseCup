@@ -2,18 +2,22 @@ import classes from './FullLesson.module.scss'
 
 import { LessonContentList } from 'features/Lesson/LessonContentList'
 
+import { ILessonContentData, ILessonData } from 'entities/Lesson/types'
+
 import { classnames as cn } from 'shared/lib'
 import { Header, Htag, YouTubeVideo } from 'shared/ui'
 
 export const FullLesson = ({ styles }: IFullLessonProps) => {
-	const data = {
+	const data: ILessonData = {
 		id: 1,
+		number: 5,
+		description: 'Введение в программирование',
 		title: 'Введение в программирование',
 		video: 'https://www.youtube.com/embed/i-uvtDKeFgE',
 		additions: [
-			{ title: 'Презентация', file: 'https://www.youtube.com/' },
-			{ title: 'Регламент', file: 'https://www.youtube.com/' },
-			{ title: 'Книга', file: 'https://www.youtube.com/' },
+			{ id: 1, title: 'Презентация', file: 'https://www.youtube.com/' },
+			{ id: 2, title: 'Регламент', file: 'https://www.youtube.com/' },
+			{ id: 3, title: 'Книга', file: 'https://www.youtube.com/' },
 		],
 
 		lesson: [
