@@ -1,6 +1,7 @@
 import { RouteProps } from 'react-router-dom'
 
 import { TeacherRoomPage } from 'pages/Admin/TeacherRoomPage'
+import { ViewAnswerPage } from 'pages/Admin/ViewAnswerPage'
 import { AboutCoursePage } from 'pages/Course/AboutCoursePage'
 import { CoursesPage } from 'pages/Course/CoursesPage'
 import { CreateCoursePage } from 'pages/Course/CreateCoursePage'
@@ -22,8 +23,9 @@ export enum ERoutePath {
 	CREATE_COURSE = '/create_course',
 	CREATE_TICKET = '/create_ticket',
 	CREATE_LESSON = '/create_lesson',
-	EDIT_COURSE = '/edit_course',
+	EDIT_COURSE = '/edit_course/:id',
 	TEACHER_ROOM = '/teacher_room',
+	VIEW_ANSWER = '/view_answer/',
 }
 
 export const RouteConfig: Array<RouteProps> = [
@@ -70,5 +72,9 @@ export const RouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.TEACHER_ROOM,
 		element: <TeacherRoomPage />,
+	},
+	{
+		path: ERoutePath.VIEW_ANSWER,
+		element: <ViewAnswerPage />,
 	},
 ]

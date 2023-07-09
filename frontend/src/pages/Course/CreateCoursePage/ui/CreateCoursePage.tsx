@@ -1,6 +1,9 @@
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 import classes from './CreateCoursePage.module.scss'
+
+import { ERoutePath } from 'app/providers/AppRouters'
 
 import { FileUploader } from 'widgets/FileUploader'
 
@@ -21,13 +24,15 @@ const CreateCoursePage = ({ styles }: ICreateCoursePageProps) => {
 					<Header
 						title={`${t('sozdanie-kursa')}`}
 						buttons={
-							<Button
-								variation="primary"
-								styles={classes.button}
-								format={'small'}
-							>
-								{t('dobavit-urok-0')}
-							</Button>
+							<Link to={ERoutePath.CREATE_LESSON}>
+								<Button
+									variation="primary"
+									styles={classes.button}
+									format={'small'}
+								>
+									{t('dobavit-urok-0')}
+								</Button>
+							</Link>
 						}
 					/>
 				</div>

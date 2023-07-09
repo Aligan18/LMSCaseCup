@@ -1,0 +1,26 @@
+.ViewAnswerPage {
+	display: grid;
+	gap: 43px;
+}
+.main {
+	//display: grid;
+	gap: 43px;
+	//justify-content: space-between;
+	background-color: var(--background);
+	padding: 24px;
+}
+
+.wrapper {
+	background-color: var(--background);
+	grid-area: wrapper;
+}
+.message {
+	background: var(--light-gray-color);
+	height: 100%;
+	resize: none;
+	width: 100%;
+	padding: 12px;
+	border-radius: 5px;
+	border: 1px solid var(--light-gray-color);
+	color: var(--inverted-secondary);
+}

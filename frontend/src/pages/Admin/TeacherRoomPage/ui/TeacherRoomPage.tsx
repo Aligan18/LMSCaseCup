@@ -13,7 +13,7 @@ import { CourseCard } from 'entities/Course/CourseCard'
 import { IAboutCourseData } from 'entities/Course/types'
 
 import { classnames as cn, deleteRouteId } from 'shared/lib'
-import { Button, Htag, Icon, List } from 'shared/ui'
+import { Button, CircleForIcon, Header, Htag, Icon, List } from 'shared/ui'
 
 export const TeacherRoomPage = ({ styles }: ITeacherRoomPageProps) => {
 	const { t } = useTranslation('admin')
@@ -59,7 +59,21 @@ export const TeacherRoomPage = ({ styles }: ITeacherRoomPageProps) => {
 		<div className={cn(classes.TeacherRoomPage, [styles])}>
 			<div className={classes.course_card}>
 				<div className={classes.title}>
-					<Htag tag="large">{t('kursy-0')}</Htag>
+					<Header
+						title={'Курсы'}
+						line={false}
+						buttons={
+							<Link to={ERoutePath.CREATE_COURSE}>
+								<Button
+									variation="primary"
+									styles={classes.button}
+									format={'small'}
+								>
+									{t('dobavit-kurs')}
+								</Button>
+							</Link>
+						}
+					/>
 				</div>
 				<List
 					items={data}
@@ -68,6 +82,7 @@ export const TeacherRoomPage = ({ styles }: ITeacherRoomPageProps) => {
 						<CourseCard
 							key={info.id}
 							data={info}
+							price_view={false}
 							buttons={
 								<>
 									<Link to={deleteRouteId(ERoutePath.ABOUT_COURSE) + info.id}>
@@ -89,32 +104,29 @@ export const TeacherRoomPage = ({ styles }: ITeacherRoomPageProps) => {
 											styles={classes.button}
 											format={'small'}
 										>
-											Просмотр групп
+											{t('gruppy')}
 											<Icon
 												variation={'primary'}
 												icon={'link'}
 											/>
 										</Button>
 									</Link>
-									<Link to={deleteRouteId(ERoutePath.ABOUT_COURSE) + info.id}>
-										<Button
-											variation="clear"
-											styles={classes.button}
-											format={'small'}
+									<Link to={deleteRouteId(ERoutePath.EDIT_COURSE) + info.id}>
+										<CircleForIcon
+											variation={'primary'}
+											styles={classes.circle}
 										>
-											Редактировать
 											<Icon
 												variation={'primary'}
-												icon={'link'}
+												icon={'edit'}
 											/>
-										</Button>
+										</CircleForIcon>
 									</Link>
 								</>
 							}
 						/>
 					)}
 				/>
-				<AddCourseCard />
 			</div>
 		</div>
 	)
