@@ -22,6 +22,8 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 
 		lesson: [
 			{
+				id: 1,
+				order: 1,
 				title: 'Python Install',
 				type: 'text',
 				content: `Many PCs and Macs will have python already installed.To check if you have python installed on a Windows PC, 
@@ -36,24 +38,32 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 						Add any other parameters to the URL (see below)`,
 			},
 			{
+				id: 2,
+				order: 2,
 				title: null,
 				type: 'text',
 				content:
 					'Many PCs and Macs will have python already installed.To check if you have python installed on a Windows PC, search in the start bar for Python or run the following on the Command Line (cmd.exe):',
 			},
 			{
+				id: 3,
+				order: 3,
 				title: null,
 				type: 'text',
 				content:
 					'Many PCs and Macs will have python already installed.To check if you have python installed on a Windows PC, search in the start bar for Python or run the following on the Command Line (cmd.exe):',
 			},
 			{
+				id: 4,
+				order: 4,
 				title: 'Python',
 				type: 'text',
 				content:
 					'Many PCs and Macs will have python already installed.To check if you have python installed on a Windows PC, search in the start bar for Python or run the following on the Command Line (cmd.exe):',
 			},
 			{
+				id: 5,
+				order: 5,
 				title: null,
 				type: 'code',
 				content: 'C:UsersYour Name>python --version',

@@ -14,8 +14,8 @@ export const CreateLessonAboutSlice = createSlice({
 			state: ICreateLessonAboutData,
 			{ payload }: PayloadAction<ICreateLessonAboutData>,
 		) => {
-			state.title = payload.title
-			state.description = payload.description
+			state.title = payload.title ? payload.title : null
+			state.description = payload.description ? payload.description : null
 			state.video = payload.video ? payload.video : null
 		},
 

@@ -11,7 +11,7 @@ import { BackButton } from 'features/BackButton'
 import { CreateCourseForm } from 'features/Course/CreateCourseForm'
 
 import { classnames as cn } from 'shared/lib'
-import { Button, Header, Htag, Icon, Input, SelectOption, TextInput } from 'shared/ui'
+import { Button, Header } from 'shared/ui'
 
 const CreateCoursePage = ({ styles }: ICreateCoursePageProps) => {
 	const { t } = useTranslation('course')
