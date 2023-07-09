@@ -17,7 +17,8 @@ export interface ILessonData {
 }
 
 export interface ILessonContentData {
-	id?: number
+	order: number
+	id: number
 	title: string
 	type: 'text' | 'code'
 	content: string

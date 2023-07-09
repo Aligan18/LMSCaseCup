@@ -24,6 +24,7 @@ export enum ERoutePath {
 	CREATE_LESSON = '/create_lesson',
 	EDIT_COURSE = '/edit_course',
 	TEACHER_ROOM = '/teacher_room',
+	EDIT_LESSON = '/edit_lesson/:id',
 }
 
 export const RouteConfig: Array<RouteProps> = [
@@ -70,5 +71,9 @@ export const RouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.TEACHER_ROOM,
 		element: <TeacherRoomPage />,
+	},
+	{
+		path: ERoutePath.EDIT_LESSON,
+		element: <CreateLessonPage />,
 	},
 ]

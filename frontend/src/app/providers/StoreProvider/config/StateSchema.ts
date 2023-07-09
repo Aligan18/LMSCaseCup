@@ -1,8 +1,11 @@
-import { ILessonContentSchema } from 'features/Lesson/CreateLessonContentForm'
-
-import { ICreateLessonAboutData } from 'entities/Lesson/types'
+import {
+	ICreateAdditionData,
+	ICreateLessonAboutData,
+	ILessonContentData,
+} from 'entities/Lesson/types'
 
 export interface IStateSchema {
-	createLessonContent: ILessonContentSchema[]
+	createLessonContent: ILessonContentData[]
 	createLessonAbout: ICreateLessonAboutData
+	createLessonAddition: ICreateAdditionData[]
 }

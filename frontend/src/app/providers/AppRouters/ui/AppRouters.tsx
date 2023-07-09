@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
-import { RouteConfig } from '../'
+import { ERoutePath, RouteConfig } from '../'
 
 import { LoadingPage } from 'features/LoaderForPage'
 
@@ -16,6 +16,15 @@ export const AppRouters = () => {
 						element={route.element}
 					/>
 				))}
+				<Route
+					path="*"
+					element={
+						<Navigate
+							to={ERoutePath.HOME}
+							replace
+						/>
+					}
+				/>
 			</Routes>
 		</Suspense>
 	)

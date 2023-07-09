@@ -2,7 +2,7 @@ import { Configuration as DevServerConfiguration } from 'webpack-dev-server'
 
 import { IBuildOptions } from './types/config'
 
-export function buildDevServer({ port, isDev }: IBuildOptions): DevServerConfiguration {
+export function buildDevServer({ port, isDev }: IBuildOptions) {
 	return {
 		port,
 		open: true,

@@ -1,18 +1,19 @@
-import { BaseSyntheticEvent, DragEvent, useEffect, useState } from 'react'
+import { BaseSyntheticEvent, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import classes from './LessonContentList.module.scss'
 
 import { IStateSchema } from 'app/providers/StoreProvider/config/StateSchema'
 
-import { ILessonContentSchema, lessonContentActions } from 'features/Lesson/CreateLessonContentForm'
+import { lessonContentActions } from 'features/Lesson/CreateLessonContentForm'
 
 import { ILessonContentData } from 'entities/Lesson/types'
 
 import { classnames as cn } from 'shared/lib'
-import { CodeBox, Hr, Htag, List, TextBox } from 'shared/ui'
+import { CodeBox, DeleteZone, Hr, Htag, List, TextBox } from 'shared/ui'
 
 export const LessonContentList = ({ styles, data, editor = false }: ILessonContentListProps) => {
+	const [isVisible, setIsVisible] = useState(false)
 	const renderContent = (content: ILessonContentData) => {
 		return (
 			<div className={classes.content_wrapper}>
@@ -30,21 +31,26 @@ export const LessonContentList = ({ styles, data, editor = false }: ILessonConte
 	const dispatch = useDispatch()
 	const contentData = useSelector((state: IStateSchema) => state.createLessonContent)
 
-	const [currentContent, setCurrentContent] = useState<ILessonContentSchema | null>(null)
+	const [currentContent, setCurrentContent] = useState<ILessonContentData | null>(null)
 
-	function dragStartHandler(e: BaseSyntheticEvent, content: ILessonContentSchema): void {
+	function dragStartHandler(e: BaseSyntheticEvent, content: ILessonContentData): void {
 		setCurrentContent(content)
+		setIsVisible(true)
 	}
-
 	function dragEndHandler(e: BaseSyntheticEvent): void {
+		setIsVisible(false)
+	}
+	function dragLeaveHandler(e: BaseSyntheticEvent): void {
 		e.target.style.background = 'none'
 	}
 	function dragOverHandler(e: BaseSyntheticEvent): void {
 		e.preventDefault()
-
 		e.target.style.background = 'var(--primary-color)'
 	}
-	function dropHandler(e: BaseSyntheticEvent, content: ILessonContentSchema): void {
+	function dragOverForDeleteHandler(e: BaseSyntheticEvent): void {
+		e.preventDefault()
+	}
+	function dropHandler(e: BaseSyntheticEvent, content: ILessonContentData): void {
 		e.preventDefault()
 		e.target.style.background = 'none'
 		const chengedContent = contentData.map((oldContent) => {
@@ -61,13 +67,20 @@ export const LessonContentList = ({ styles, data, editor = false }: ILessonConte
 		dispatch(lessonContentActions.change_sort_content(chengedContent))
 	}
 
+	function dropDeleteHandler(e: BaseSyntheticEvent) {
+		e.preventDefault()
+		setIsVisible(false)
+
+		dispatch(lessonContentActions.delete_content(currentContent))
+	}
+
 	if (editor === false) {
 		return (
 			<div className={cn(classes.LessonContentList, [styles])}>
 				<List
 					styles={classes.list}
 					variation={'list'}
-					items={contentData}
+					items={data}
 					renderItem={(content: ILessonContentData) => (
 						<div key={content.id}>{renderContent(content)}</div>
 					)}
@@ -77,14 +90,19 @@ export const LessonContentList = ({ styles, data, editor = false }: ILessonConte
 	} else {
 		return (
 			<div className={cn(classes.LessonContentList, [styles])}>
+				<DeleteZone
+					onDragOver={(e) => dragOverForDeleteHandler(e)}
+					onDrop={(e) => dropDeleteHandler(e)}
+					isVisible={isVisible}
+				/>
 				<List
 					variation={'list'}
 					items={data}
-					renderItem={(content: ILessonContentSchema) => (
+					renderItem={(content: ILessonContentData) => (
 						<div
 							key={content.id}
 							onDragStart={(e) => dragStartHandler(e, content)}
-							onDragLeave={(e) => dragEndHandler(e)}
+							onDragLeave={(e) => dragLeaveHandler(e)}
 							onDragEnd={(e) => dragEndHandler(e)}
 							onDragOver={(e) => dragOverHandler(e)}
 							onDrop={(e) => dropHandler(e, content)}
@@ -102,6 +120,6 @@ export const LessonContentList = ({ styles, data, editor = false }: ILessonConte
 
 interface ILessonContentListProps {
 	styles?: string
-	data: ILessonContentData[] | ILessonContentSchema[]
+	data: ILessonContentData[] | ILessonContentData[]
 	editor?: boolean
 }
