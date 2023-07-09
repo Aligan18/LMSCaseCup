@@ -1,5 +1,7 @@
 import { BaseSyntheticEvent } from 'react'
+import { useDispatch } from 'react-redux'
 
+import { createLessonAboutActions } from '../model/slice/CreateLessonAboutSlice'
 import classes from './CreateLessonAboutForm.module.scss'
 
 import { ICreateLessonAboutData, ILessonAboutFormConstructor } from 'entities/Lesson/types'
@@ -8,9 +10,12 @@ import { classnames as cn } from 'shared/lib'
 import { FormConstructor } from 'shared/ui'
 
 export const CreateLessonAboutForm = ({ styles }: ICreateLessonAboutFormProps) => {
+	const dispatch = useDispatch()
+
 	const onSubmit = (formData: ICreateLessonAboutData, event: BaseSyntheticEvent) => {
 		event.preventDefault()
 		console.log(formData)
+		dispatch(createLessonAboutActions.change_about_lesson(formData))
 	}
 
 	const description: ILessonAboutFormConstructor[] = [
