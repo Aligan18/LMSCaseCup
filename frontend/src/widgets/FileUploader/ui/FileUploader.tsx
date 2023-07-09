@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import classes from './FileUploader.module.scss'
 
 import { classnames as cn } from 'shared/lib'
-import { Button, Htag, Icon } from 'shared/ui'
+import { Button, Htag, Icon, UploadFile } from 'shared/ui'
 
 export const FileUploader = ({ styles }: IFileUploaderProps) => {
 	const { t } = useTranslation('course')
@@ -26,17 +26,8 @@ export const FileUploader = ({ styles }: IFileUploaderProps) => {
 						styles={classes.icon_size}
 					/>
 				</div>
-				<Button
-					variation="primary"
-					styles={classes.button}
-					format={'small'}
-				>
-					{t('zagruzit-fail')}
-					<Icon
-						variation={'secondary'}
-						icon={'save'}
-					/>
-				</Button>
+
+				<UploadFile />
 				<div className={classes.text}>
 					<Htag tag={'very-small'}>{t('ili-peretashite-fail')}</Htag>
 				</div>
