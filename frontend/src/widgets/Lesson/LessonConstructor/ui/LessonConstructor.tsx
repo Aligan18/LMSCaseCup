@@ -1,83 +1,86 @@
-import { useSelector } from 'react-redux'
+import { BaseSyntheticEvent, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import classes from './LessonConstructor.module.scss'
 
 import { IStateSchema } from 'app/providers/StoreProvider/config/StateSchema'
 
-import { ILessonContentSchema } from 'features/Lesson/CreateLessonContentForm'
+import { createLessonAboutActions } from 'features/Lesson/CreateLessonAboutForm'
 import { LessonContentList } from 'features/Lesson/LessonContentList'
 
+import { ICreateLessonAboutData } from 'entities/Lesson/types'
+
 import { classnames as cn } from 'shared/lib'
-import { Header, YouTubeVideo } from 'shared/ui'
+import { DeleteZone, Header, YouTubeVideo } from 'shared/ui'
 
 export const LessonConstructor = ({ styles }: ILessonConstructorProps) => {
-	const data = {
-		id: 1,
-		title: 'Введение в программирование',
-		video: 'https://www.youtube.com/embed/i-uvtDKeFgE',
-		additions: [
-			{ title: 'Презентация', file: 'https://www.youtube.com/' },
-			{ title: 'Регламент', file: 'https://www.youtube.com/' },
-			{ title: 'Книга', file: 'https://www.youtube.com/' },
-		],
-	}
-
+	const about_lesson = useSelector((state: IStateSchema) => state.createLessonAbout)
 	const lesson = useSelector((state: IStateSchema) => state.createLessonContent)
 
-	// const lesson: ILessonContentSchema[] = [
-	// 	{
-	// 		id: 1,
-	// 		order: 3,
-	// 		title: 'Python Install',
-	// 		type: 'text',
-	// 		content: `Many PCs and Macs will have python already installed.To check if you have python installed on a Windows PC,
-	// 				search in the start bar for Python or run the following on the Command Line (cmd.exe):
-	// 				To play your video on a web page, do the following:
+	const dispatch = useDispatch()
+	const [isVisible, setIsVisible] = useState(false)
+	const [currentContent, setCurrentContent] = useState<keyof ICreateLessonAboutData | null>(null)
 
-	// 					Upload the video to YouTube
-	// 					Take a note of the video id
-	// 					Define an <iframe> element in your web page
-	// 					Let the src attribute point to the video URL
-	// 					Use the width and height attributes to specify the dimension of the player
-	// 					Add any other parameters to the URL (see below)`,
-	// 	},
-	// 	{
-	// 		id: 2,
-	// 		order: 1,
-	// 		title: null,
-	// 		type: 'text',
-	// 		content:
-	// 			'Many PCs and Macs will have python already installed.To check if you have python installed on a Windows PC, search in the start bar for Python or run the following on the Command Line (cmd.exe):',
-	// 	},
-	// 	{
-	// 		id: 3,
-	// 		order: 2,
-	// 		title: null,
-	// 		type: 'text',
-	// 		content:
-	// 			'Many PCs and Macs will have python already installed.To check if you have python installed on a Windows PC, search in the start bar for Python or run the following on the Command Line (cmd.exe):',
-	// 	},
-	// 	{
-	// 		id: 4,
-	// 		order: 4,
-	// 		title: 'Python',
-	// 		type: 'text',
-	// 		content:
-	// 			'Many PCs and Macs will have python already installed.To check if you have python installed on a Windows PC, search in the start bar for Python or run the following on the Command Line (cmd.exe):',
-	// 	},
-	// 	{
-	// 		id: 5,
-	// 		order: 5,
-	// 		title: null,
-	// 		type: 'code',
-	// 		content: 'C:UsersYour Name>python --version',
-	// 	},
-	// ]
+	function dragStartHandler(e: BaseSyntheticEvent): void {
+		if (e.target.className === classes.title_wrapper) {
+			setCurrentContent('title')
+		} else if (e.target.className === classes.video_wrapper) {
+			setCurrentContent('video')
+		}
+
+		setIsVisible(true)
+	}
+
+	function dragEndHandler(e: BaseSyntheticEvent): void {
+		setIsVisible(false)
+	}
+	function dragOverHandler(e: BaseSyntheticEvent): void {
+		e.preventDefault()
+		if (e.target.id === 'delete_title') e.target.style.background = 'var(--primary-color)'
+	}
+	function dropHandler(e: BaseSyntheticEvent): void {
+		e.preventDefault()
+		setIsVisible(false)
+		console.log('DROP')
+		dispatch(createLessonAboutActions.delete_field_about_lesson(currentContent))
+	}
 
 	return (
 		<div className={cn(classes.Lesson, [styles])}>
-			<Header title={data.title} />
-			<YouTubeVideo video_link={data.video} />
+			{about_lesson.title && (
+				<div
+					className={classes.title_wrapper}
+					draggable={true}
+					onDragEnd={(e) => dragEndHandler(e)}
+					onDragStart={(e) => dragStartHandler(e)}
+				>
+					<Header
+						line={false}
+						styles={classes.no_drag}
+						title={about_lesson.title}
+					/>
+				</div>
+			)}
+			{about_lesson.video && (
+				<div
+					className={classes.video_wrapper}
+					draggable={true}
+					onDragEnd={(e) => dragEndHandler(e)}
+					onDragStart={(e) => dragStartHandler(e)}
+				>
+					<YouTubeVideo
+						styles={classes.no_drag}
+						video_link={about_lesson.video}
+					/>
+				</div>
+			)}
+
+			<DeleteZone
+				onDragOver={(e) => dragOverHandler(e)}
+				onDrop={(e) => dropHandler(e)}
+				isVisible={isVisible}
+			/>
+
 			<LessonContentList
 				editor={true}
 				data={lesson}

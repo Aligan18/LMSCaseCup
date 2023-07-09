@@ -6,7 +6,7 @@ import { classnames as cn } from 'shared/lib'
 import { Htag } from 'shared/ui'
 import { Hr } from 'shared/ui'
 
-export const Header = ({ styles, title, buttons }: IHeaderProps) => {
+export const Header = ({ styles, title, buttons, line = true }: IHeaderProps) => {
 	return (
 		<>
 			<div className={cn(classes.Header, [styles])}>
@@ -14,7 +14,7 @@ export const Header = ({ styles, title, buttons }: IHeaderProps) => {
 					<Htag tag={'large'}>{title}</Htag>
 					<div className={classes.button}>{buttons}</div>
 				</div>
-				<Hr></Hr>
+				{line && <Hr></Hr>}
 			</div>
 		</>
 	)
@@ -24,4 +24,5 @@ interface IHeaderProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>,
 	styles?: string
 	title: string
 	buttons?: ReactNode
+	line?: boolean
 }

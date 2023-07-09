@@ -1,17 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 import { ILessonContentSchema } from '../types/LessonContentSchema'
 
 const initialState: ILessonContentSchema[] | undefined[] = []
 export const LessonContentSlice = createSlice({
-	name: 'counter',
+	name: 'lessonContentSlice',
 	initialState: initialState,
 	reducers: {
-		add_content: (state, payload) => {
-			state.push(payload.payload)
+		add_content: (
+			state: ILessonContentSchema[],
+			{ payload }: PayloadAction<ILessonContentSchema>,
+		) => {
+			state.push(payload)
 		},
-		change_sort_content: (state: ILessonContentSchema[], payload) => {
-			const sortedPayload = payload.payload.sort(
+		change_sort_content: (
+			state: ILessonContentSchema[],
+			{ payload }: PayloadAction<ILessonContentSchema[]>,
+		) => {
+			const sortedPayload = payload.sort(
 				(a: ILessonContentSchema, b: ILessonContentSchema) => {
 					if (a.order > b.order) {
 						return 1
@@ -20,7 +26,6 @@ export const LessonContentSlice = createSlice({
 					}
 				},
 			)
-			console.log('sortedPayload', sortedPayload)
 
 			// Очистка текущего состояния state
 			state.splice(0, state.length)

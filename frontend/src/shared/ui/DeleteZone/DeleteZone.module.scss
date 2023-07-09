@@ -1,0 +1,12 @@
+.DeleteZone {
+	height: calc(100vh - var(--navbar-height));
+	width: 30%;
+	position: fixed;
+	right: 0;
+	top: var(--navbar-height);
+	background: red;
+	opacity: 0.5;
+}
+.invisible {
+	display: none;
+}

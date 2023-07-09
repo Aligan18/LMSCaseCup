@@ -30,8 +30,6 @@ export const LessonContentList = ({ styles, data, editor = false }: ILessonConte
 	const dispatch = useDispatch()
 	const contentData = useSelector((state: IStateSchema) => state.createLessonContent)
 
-	const [chengedContent, setChengedContent] = useState([...contentData])
-
 	const [currentContent, setCurrentContent] = useState<ILessonContentSchema | null>(null)
 
 	function dragStartHandler(e: BaseSyntheticEvent, content: ILessonContentSchema): void {

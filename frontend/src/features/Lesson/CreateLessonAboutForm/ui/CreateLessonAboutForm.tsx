@@ -1,5 +1,7 @@
 import { BaseSyntheticEvent } from 'react'
+import { useDispatch } from 'react-redux'
 
+import { createLessonAboutActions } from '../model/slice/CreateLessonAboutSlice'
 import classes from './CreateLessonAboutForm.module.scss'
 
 import { ICreateLessonAboutData, ILessonAboutFormConstructor } from 'entities/Lesson/types'
@@ -8,20 +10,23 @@ import { classnames as cn } from 'shared/lib'
 import { FormConstructor } from 'shared/ui'
 
 export const CreateLessonAboutForm = ({ styles }: ICreateLessonAboutFormProps) => {
+	const dispatch = useDispatch()
+
 	const onSubmit = (formData: ICreateLessonAboutData, event: BaseSyntheticEvent) => {
 		event.preventDefault()
 		console.log(formData)
+		dispatch(createLessonAboutActions.change_about_lesson(formData))
 	}
 
 	const description: ILessonAboutFormConstructor[] = [
 		{
 			title: 'Название урока',
-			description: 'До 20 символов',
+			description: 'До 50 символов',
 			key: 'title',
 			type: 'input',
 			rules: {
 				required: true,
-				maxLength: 20,
+				maxLength: 50,
 			},
 		},
 		{
@@ -39,10 +44,6 @@ export const CreateLessonAboutForm = ({ styles }: ICreateLessonAboutFormProps) =
 			description: 'Введите ссылку на YouTube',
 			key: 'video',
 			type: 'input',
-			rules: {
-				required: true,
-				maxLength: 80,
-			},
 		},
 	]
 
