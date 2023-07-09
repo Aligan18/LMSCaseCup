@@ -11,7 +11,7 @@
 .all_lesson {
 	height: fit-content;
 	display: grid;
-	grid-template-rows: auto;
+	grid-auto-rows: min-content;
 	gap: 25px;
 	grid-area: all_lesson;
 }

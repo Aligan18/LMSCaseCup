@@ -20,6 +20,7 @@
 
 .lesson {
 	display: grid;
+	grid-auto-rows: min-content;
 	gap: 20px;
 	grid-area: lesson;
 }

@@ -18,6 +18,22 @@ export const CreateLessonAboutSlice = createSlice({
 			state.description = payload.description
 			state.video = payload.video ? payload.video : null
 		},
+
+		delete_field_about_lesson: (
+			state: ICreateLessonAboutData,
+			{ payload }: PayloadAction<keyof ICreateLessonAboutData>,
+		) => {
+			switch (payload) {
+				case 'title':
+					state.title = null
+					break
+				case 'video':
+					state.video = null
+					break
+				default:
+					break
+			}
+		},
 	},
 })
 

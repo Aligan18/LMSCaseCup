@@ -21,12 +21,12 @@ export const CreateLessonAboutForm = ({ styles }: ICreateLessonAboutFormProps) =
 	const description: ILessonAboutFormConstructor[] = [
 		{
 			title: 'Название урока',
-			description: 'До 20 символов',
+			description: 'До 50 символов',
 			key: 'title',
 			type: 'input',
 			rules: {
 				required: true,
-				maxLength: 20,
+				maxLength: 50,
 			},
 		},
 		{
@@ -44,10 +44,6 @@ export const CreateLessonAboutForm = ({ styles }: ICreateLessonAboutFormProps) =
 			description: 'Введите ссылку на YouTube',
 			key: 'video',
 			type: 'input',
-			rules: {
-				required: true,
-				maxLength: 80,
-			},
 		},
 	]
 

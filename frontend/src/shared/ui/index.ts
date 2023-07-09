@@ -20,6 +20,7 @@ export { CheckBox } from './CheckBox/CheckBox'
 export { ErrorText } from './ErrorText/ErrorText'
 export { Step } from './Step/Step'
 export { YouTubeVideo } from './YouTubeVideo/YouTubeVideo'
+export { DeleteZone } from './DeleteZone/DeleteZone'
 
 export { IOptions } from './SelectOption/types/Options'
 export { IFormConstructorData } from './FormConstructor/types/FormConstructor'

@@ -4,4 +4,5 @@ export const getRightLinkForYouTube = (link: string) => {
 		const rightLink = 'https://www.youtube.com/embed/' + id
 		return rightLink
 	}
+	return null
 }

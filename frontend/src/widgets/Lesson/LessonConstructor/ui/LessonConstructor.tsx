@@ -1,22 +1,86 @@
-import { useSelector } from 'react-redux'
+import { BaseSyntheticEvent, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import classes from './LessonConstructor.module.scss'
 
 import { IStateSchema } from 'app/providers/StoreProvider/config/StateSchema'
 
+import { createLessonAboutActions } from 'features/Lesson/CreateLessonAboutForm'
 import { LessonContentList } from 'features/Lesson/LessonContentList'
 
+import { ICreateLessonAboutData } from 'entities/Lesson/types'
+
 import { classnames as cn } from 'shared/lib'
-import { Header, YouTubeVideo } from 'shared/ui'
+import { DeleteZone, Header, YouTubeVideo } from 'shared/ui'
 
 export const LessonConstructor = ({ styles }: ILessonConstructorProps) => {
 	const about_lesson = useSelector((state: IStateSchema) => state.createLessonAbout)
 	const lesson = useSelector((state: IStateSchema) => state.createLessonContent)
 
+	const dispatch = useDispatch()
+	const [isVisible, setIsVisible] = useState(false)
+	const [currentContent, setCurrentContent] = useState<keyof ICreateLessonAboutData | null>(null)
+
+	function dragStartHandler(e: BaseSyntheticEvent): void {
+		if (e.target.className === classes.title_wrapper) {
+			setCurrentContent('title')
+		} else if (e.target.className === classes.video_wrapper) {
+			setCurrentContent('video')
+		}
+
+		setIsVisible(true)
+	}
+
+	function dragEndHandler(e: BaseSyntheticEvent): void {
+		setIsVisible(false)
+	}
+	function dragOverHandler(e: BaseSyntheticEvent): void {
+		e.preventDefault()
+		if (e.target.id === 'delete_title') e.target.style.background = 'var(--primary-color)'
+	}
+	function dropHandler(e: BaseSyntheticEvent): void {
+		e.preventDefault()
+		setIsVisible(false)
+		console.log('DROP')
+		dispatch(createLessonAboutActions.delete_field_about_lesson(currentContent))
+	}
+
 	return (
 		<div className={cn(classes.Lesson, [styles])}>
-			<Header title={about_lesson.title} />
-			<YouTubeVideo video_link={about_lesson.video} />
+			{about_lesson.title && (
+				<div
+					className={classes.title_wrapper}
+					draggable={true}
+					onDragEnd={(e) => dragEndHandler(e)}
+					onDragStart={(e) => dragStartHandler(e)}
+				>
+					<Header
+						line={false}
+						styles={classes.no_drag}
+						title={about_lesson.title}
+					/>
+				</div>
+			)}
+			{about_lesson.video && (
+				<div
+					className={classes.video_wrapper}
+					draggable={true}
+					onDragEnd={(e) => dragEndHandler(e)}
+					onDragStart={(e) => dragStartHandler(e)}
+				>
+					<YouTubeVideo
+						styles={classes.no_drag}
+						video_link={about_lesson.video}
+					/>
+				</div>
+			)}
+
+			<DeleteZone
+				onDragOver={(e) => dragOverHandler(e)}
+				onDrop={(e) => dropHandler(e)}
+				isVisible={isVisible}
+			/>
+
 			<LessonContentList
 				editor={true}
 				data={lesson}

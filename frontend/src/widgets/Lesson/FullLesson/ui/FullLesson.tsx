@@ -63,7 +63,10 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 
 	return (
 		<div className={cn(classes.Lesson, [styles])}>
-			<Header title={data.title} />
+			<Header
+				line={false}
+				title={data.title}
+			/>
 			<YouTubeVideo video_link={data.video} />
 			<LessonContentList data={data.lesson} />
 		</div>
