@@ -1,5 +1,6 @@
 import { DetailedHTMLProps, HTMLAttributes } from 'react'
 
+import { Icon } from '../Icon/Icon'
 import classes from './DeleteZone.module.scss'
 
 import { classnames as cn } from 'shared/lib'
@@ -11,7 +12,14 @@ export const DeleteZone = ({ styles, isVisible, ...props }: IDeleteZoneProps) =>
 				[classes.invisible]: isVisible === false,
 			})}
 			{...props}
-		></div>
+		>
+			<Icon
+				size={'large'}
+				variation={'red'}
+				styles={classes.icon}
+				icon={'trash'}
+			/>
+		</div>
 	)
 }
 

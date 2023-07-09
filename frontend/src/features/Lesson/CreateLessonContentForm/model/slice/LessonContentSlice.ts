@@ -1,37 +1,43 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-import { ILessonContentSchema } from '../types/LessonContentSchema'
+import { ILessonContentData } from 'entities/Lesson/types'
 
-const initialState: ILessonContentSchema[] | undefined[] = []
+const initialState: ILessonContentData[] | undefined[] = []
+
 export const LessonContentSlice = createSlice({
 	name: 'lessonContentSlice',
 	initialState: initialState,
 	reducers: {
+		delete_content: (
+			state: ILessonContentData[],
+			{ payload }: PayloadAction<ILessonContentData>,
+		) => {
+			const index = state.findIndex((content) => content.id === payload.id)
+			state.splice(index, 1)
+		},
 		add_content: (
-			state: ILessonContentSchema[],
-			{ payload }: PayloadAction<ILessonContentSchema>,
+			state: ILessonContentData[],
+			{ payload }: PayloadAction<ILessonContentData>,
 		) => {
 			state.push(payload)
 		},
 		change_sort_content: (
-			state: ILessonContentSchema[],
-			{ payload }: PayloadAction<ILessonContentSchema[]>,
+			state: ILessonContentData[],
+			{ payload }: PayloadAction<ILessonContentData[]>,
 		) => {
-			const sortedPayload = payload.sort(
-				(a: ILessonContentSchema, b: ILessonContentSchema) => {
-					if (a.order > b.order) {
-						return 1
-					} else {
-						return -1
-					}
-				},
-			)
+			const sortedPayload = payload.sort((a: ILessonContentData, b: ILessonContentData) => {
+				if (a.order > b.order) {
+					return 1
+				} else {
+					return -1
+				}
+			})
 
 			// Очистка текущего состояния state
 			state.splice(0, state.length)
 
 			// Добавление отсортированных элементов в состояние state
-			sortedPayload.forEach((item: ILessonContentSchema) => {
+			sortedPayload.forEach((item: ILessonContentData) => {
 				state.push(item)
 			})
 		},

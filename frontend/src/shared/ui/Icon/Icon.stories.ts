@@ -189,3 +189,8 @@ export const Video: Story = {
 	args: { icon: 'video', variation: 'inverted-secondary' },
 	decorators: [ThemeDecorator(ETheme.LIGHT)],
 }
+
+export const Trash: Story = {
+	args: { icon: 'trash', variation: 'inverted-secondary' },
+	decorators: [ThemeDecorator(ETheme.LIGHT)],
+}

@@ -33,6 +33,7 @@ import StarIcon from 'shared/assets/svg/StarIcon.svg'
 import SunIcon from 'shared/assets/svg/SunIcon.svg'
 import TeacherIcon from 'shared/assets/svg/TeacherIcon.svg'
 import ToolIcon from 'shared/assets/svg/ToolIcon.svg'
+import TrashIcon from 'shared/assets/svg/TrashIcon.svg'
 import UpIcon from 'shared/assets/svg/UpIcon.svg'
 import VideoIcon from 'shared/assets/svg/VideoIcon.svg'
 import { classnames as cn } from 'shared/lib'
@@ -105,6 +106,7 @@ export const Icon = ({
 			{icon === 'video' && <VideoIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'moon' && <MoonIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'sun' && <SunIcon className={cn(classes.Icon, [styles], styleMod)} />}
+			{icon === 'trash' && <TrashIcon className={cn(classes.Icon, [styles], styleMod)} />}
 		</div>
 	)
 }
@@ -148,4 +150,5 @@ interface IIconProps extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement
 		| 'video'
 		| 'moon'
 		| 'sun'
+		| 'trash'
 }
