@@ -11,9 +11,9 @@ import { HomePage } from 'pages/HomePage'
 import { CreateLessonPage } from 'pages/Lesson/CreateLessonPage'
 import { LessonPage } from 'pages/Lesson/LessonPage'
 import { NotFoundPage } from 'pages/NotFoundPage'
+import { CreateAnswerPage } from 'pages/Task/CreateAnswerPage'
 import { CreateTicketPage } from 'pages/Ticket/CreateTicketPage'
 import { TicketsPage } from 'pages/Ticket/TicketsPage'
-import { CreateAnswerPage } from 'pages/Task/CreateAnswerPage'
 
 export enum ERoutePath {
 	HOME = '/',
@@ -27,10 +27,10 @@ export enum ERoutePath {
 	CREATE_LESSON = '/create_lesson',
 	EDIT_COURSE = '/edit_course/:id',
 	TEACHER_ROOM = '/teacher_room',
-	VIEW_ANSWER = '/view_answer/',
+	VIEW_ANSWER = '/view_answer/:id',
 	EDIT_LESSON = '/edit_lesson/:id',
 	GROUP_LIST = '/group_list/:id',
-	CREATE_ANSWER = '/create_answer/',
+	CREATE_ANSWER = '/create_answer/:id',
 }
 
 export const RouteConfig: Array<RouteProps> = [
