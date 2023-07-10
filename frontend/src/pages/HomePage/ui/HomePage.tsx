@@ -17,8 +17,6 @@ const HomePage = () => {
 			<Loader />
 			<GoogleAuthButton />
 			<Grade />
-			<AboutStudentList />
-			<GroupTerm />
 
 			{t('glavnaya-stranica')}
 			<FileUploader />

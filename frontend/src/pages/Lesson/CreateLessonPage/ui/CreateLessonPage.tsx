@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
@@ -11,14 +12,17 @@ import { LessonFormSteps } from 'widgets/Lesson/LessonFormSteps'
 
 import { BackButton } from 'features/BackButton'
 import { createLessonAboutActions } from 'features/Lesson/CreateLessonAboutForm'
+import { CreateLessonButton } from 'features/Lesson/CreateLessonButton'
 import { lessonContentActions } from 'features/Lesson/CreateLessonContentForm'
 
 import { ILessonData } from 'entities/Lesson/types'
 
 import { classnames as cn, deleteRouteId } from 'shared/lib'
+import { Header } from 'shared/ui'
 
 const CreateLessonPage = ({ styles }: ICreateLessonPageProps) => {
 	const { t } = useTranslation('admin')
+	const [isEditor, setIsEditor] = useState(false)
 	const data: ILessonData = {
 		id: 1,
 		number: 5,
@@ -83,18 +87,35 @@ const CreateLessonPage = ({ styles }: ICreateLessonPageProps) => {
 	}
 	const despatch = useDispatch()
 	const location = useLocation()
-	if (deleteRouteId(location.pathname) === deleteRouteId(ERoutePath.EDIT_LESSON)) {
-		despatch(lessonContentActions.change_sort_content(data.lesson))
-		despatch(createLessonAboutActions.change_about_lesson(data))
-	}
+
+	useEffect(() => {
+		if (deleteRouteId(location.pathname) === deleteRouteId(ERoutePath.EDIT_LESSON)) {
+			setIsEditor(true)
+			despatch(lessonContentActions.change_sort_content(data.lesson))
+			despatch(createLessonAboutActions.change_about_lesson(data))
+		}
+	}, [])
 
 	return (
 		<div className={cn(classes.CreateLessonPage, [styles])}>
 			<div className={classes.form}>
+				{isEditor ? (
+					<Header
+						styles={classes.header}
+						title={'Редактирование лекции'}
+						buttons={<CreateLessonButton />}
+					/>
+				) : (
+					<Header
+						title={'Создание лекции'}
+						buttons={<CreateLessonButton />}
+					/>
+				)}
 				<LessonFormSteps />
 			</div>
 			<div className={classes.lesson}>
 				<BackButton />
+
 				<LessonConstructor />
 			</div>
 		</div>

@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, HTMLAttributes } from 'react'
+import { DetailedHTMLProps, HTMLAttributes, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import classes from './ModuleListItem.module.scss'
@@ -6,12 +6,14 @@ import classes from './ModuleListItem.module.scss'
 import { IModuleData } from 'entities/Module/types'
 
 import { classnames as cn } from 'shared/lib'
-import { CircleForIcon, Htag, Icon } from 'shared/ui'
+import { AccordionButton, Htag } from 'shared/ui'
 
-export const ModuleListItem = ({ styles, data, isOpen, ...props }: IModuleListItemProps) => {
+export const ModuleListItem = ({ styles, data, ...props }: IModuleListItemProps) => {
 	const { t } = useTranslation('course')
+	const [isOpen, setIsOpen] = useState(false)
 	return (
 		<div
+			onClick={() => setIsOpen(!isOpen)}
 			className={cn(classes.ModuleListItem, [styles])}
 			{...props}
 		>
@@ -28,13 +30,7 @@ export const ModuleListItem = ({ styles, data, isOpen, ...props }: IModuleListIt
 				</Htag>
 			</div>
 			<div className={classes.right_block}>
-				<CircleForIcon variation={'primary'}>
-					<Icon
-						styles={[classes.animate, isOpen && classes.is_open].join(' ')}
-						variation={'primary'}
-						icon={'up'}
-					/>
-				</CircleForIcon>
+				<AccordionButton isOpen={isOpen} />
 			</div>
 		</div>
 	)
@@ -44,5 +40,4 @@ interface IModuleListItemProps
 	extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	styles?: string
 	data: IModuleData
-	isOpen: boolean
 }

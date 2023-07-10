@@ -1,20 +1,31 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import classes from './GroupTerm.module.scss'
 
+import { IAboutGroupData } from 'entities/Student/types'
+
 import { classnames as cn } from 'shared/lib'
-import { CircleForIcon, Htag, Icon, Tag } from 'shared/ui'
+import { AccordionButton, CircleForIcon, Htag, Icon, Tag } from 'shared/ui'
 import { ListItem } from 'shared/ui/ListItem/ListItem'
 
-export const GroupTerm = ({ styles }: IGroupTermProps) => {
+export const GroupTerm = ({ styles, data }: IGroupTermProps) => {
 	const { t } = useTranslation('admin')
+	const [isOpen, setIsOpen] = useState(false)
 	return (
-		<div className={cn(classes.GroupTerm, [styles])}>
+		<div
+			onClick={() => setIsOpen(!isOpen)}
+			className={cn(classes.GroupTerm, [styles])}
+		>
 			<ListItem
 				styles={classes.wrapper}
 				hover={'none'}
 				variation={'inverted-secondary'}
-				mid_up={<Htag tag={'very-small'}>01.01.2023 - 01.01.2024</Htag>}
+				mid_up={
+					<Htag tag={'very-small'}>
+						{data.start_date} - {data.end_date}
+					</Htag>
+				}
 				mid_down={
 					<div className={classes.tags}>
 						<Tag
@@ -29,12 +40,7 @@ export const GroupTerm = ({ styles }: IGroupTermProps) => {
 				}
 				right={
 					<div className={classes.buttons}>
-						<CircleForIcon variation="primary">
-							<Icon
-								icon={'up'}
-								variation={'primary'}
-							/>
-						</CircleForIcon>
+						<AccordionButton isOpen={isOpen} />
 					</div>
 				}
 			>
@@ -42,7 +48,7 @@ export const GroupTerm = ({ styles }: IGroupTermProps) => {
 					styles={classes.title}
 					tag={'medium'}
 				>
-					{t('gruppa')} №1
+					{t('gruppa')} №{data.group_number}
 				</Htag>
 			</ListItem>
 		</div>
@@ -50,5 +56,6 @@ export const GroupTerm = ({ styles }: IGroupTermProps) => {
 }
 
 interface IGroupTermProps {
+	data: IAboutGroupData
 	styles?: string
 }
