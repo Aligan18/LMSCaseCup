@@ -69,6 +69,8 @@ export const ViewAnswerPage = ({ styles }: IViewAnswerPageProps) => {
 						></StarsGroup>
 					</div>
 					<Htag tag={'small'}>{t('kommentarii-k-ocenke')}</Htag>
+					<Htag tag={'very-small'}>До 300 символов</Htag>
+
 
 					<TextInput styles={classes.your_message}>{t('kommentarii')}</TextInput>
 				</div>

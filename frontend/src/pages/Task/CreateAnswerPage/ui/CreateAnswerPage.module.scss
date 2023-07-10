@@ -1,0 +1,26 @@
+.CreateAnswerPage {
+	display: grid;
+	gap: 43px;
+}
+.main {
+	background-color: var(--background);
+	padding: 24px;
+	color: var(--gray-color);
+	border-radius: 4px;
+
+}
+
+.upload {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.wrapper {
+	display: grid;
+	gap: 10px;
+}
+.your_message {
+	min-height: 137px;
+	width: 600px;
+}

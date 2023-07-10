@@ -13,6 +13,7 @@ import { LessonPage } from 'pages/Lesson/LessonPage'
 import { NotFoundPage } from 'pages/NotFoundPage'
 import { CreateTicketPage } from 'pages/Ticket/CreateTicketPage'
 import { TicketsPage } from 'pages/Ticket/TicketsPage'
+import { CreateAnswerPage } from 'pages/Task/CreateAnswerPage'
 
 export enum ERoutePath {
 	HOME = '/',
@@ -29,6 +30,7 @@ export enum ERoutePath {
 	VIEW_ANSWER = '/view_answer/',
 	EDIT_LESSON = '/edit_lesson/:id',
 	GROUP_LIST = '/group_list/:id',
+	CREATE_ANSWER = '/create_answer/',
 }
 
 export const RouteConfig: Array<RouteProps> = [
@@ -87,5 +89,9 @@ export const RouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.GROUP_LIST,
 		element: <GroupListPage />,
+	},
+	{
+		path: ERoutePath.CREATE_ANSWER,
+		element: <CreateAnswerPage />,
 	},
 ]
