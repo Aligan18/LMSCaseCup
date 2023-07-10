@@ -21,6 +21,8 @@ export { ErrorText } from './ErrorText/ErrorText'
 export { Step } from './Step/Step'
 export { YouTubeVideo } from './YouTubeVideo/YouTubeVideo'
 export { DeleteZone } from './DeleteZone/DeleteZone'
+export { AccordionWrapper } from './AccordionWrapper/AccordionWrapper'
+export { AccordionButton } from './AccordionButton/AccordionButton'
 
 export { IOptions } from './SelectOption/types/Options'
 export { IFormConstructorData } from './FormConstructor/types/FormConstructor'
