@@ -1,0 +1,20 @@
+.RegistrationForm {
+	display: grid;
+	gap: 43px;
+	width: 50%;
+}
+
+.main {
+	padding: 24px;
+	background-color: var(--background);
+	color: var(--gray-color);
+}
+
+.input {
+	height: 60px;
+	width: 600px;
+	margin: 10px;
+}
+.bottom_block {
+	margin: 15px;
+}
