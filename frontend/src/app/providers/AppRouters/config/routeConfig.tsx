@@ -3,6 +3,7 @@ import { RouteProps } from 'react-router-dom'
 import { GroupListPage } from 'pages/Admin/GroupListPage'
 import { TeacherRoomPage } from 'pages/Admin/TeacherRoomPage'
 import { ViewAnswerPage } from 'pages/Admin/ViewAnswerPage'
+import { AuthorizationPage } from 'pages/AuthorizationPage'
 import { AboutCoursePage } from 'pages/Course/AboutCoursePage'
 import { CoursesPage } from 'pages/Course/CoursesPage'
 import { CreateCoursePage } from 'pages/Course/CreateCoursePage'
@@ -31,6 +32,7 @@ export enum ERoutePath {
 	EDIT_LESSON = '/edit_lesson/:id',
 	GROUP_LIST = '/group_list/:id',
 	CREATE_ANSWER = '/create_answer/:id',
+	AUTHORIZATION = 'authorization',
 }
 
 export const RouteConfig: Array<RouteProps> = [
@@ -93,5 +95,9 @@ export const RouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.CREATE_ANSWER,
 		element: <CreateAnswerPage />,
+	},
+	{
+		path: ERoutePath.AUTHORIZATION,
+		element: <AuthorizationPage />,
 	},
 ]
