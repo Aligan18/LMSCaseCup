@@ -2,14 +2,30 @@ import { IAboutCourseData } from 'entities/Course/types'
 
 export interface IStudentAboutData {
 	id: number
-	avatar: string | null
-	email: string
+	student: ICustomUser
 	name: string
 	surname: string
 	patronymic: string
+	grade: number
+}
+
+export interface IStudentData {
+	sex: string
+	age: number
+	country: string
+	student: ICustomUser
+	name: string
+	surname: string
+	patronymic: string
+	about: string
+	university: string
+}
+
+interface ICustomUser {
+	avatar: string | null
+	email: string
 	phone: string
 	is_active: boolean
-	grade: number
 }
 
 export interface IOnlyStudentsInGroupData {
