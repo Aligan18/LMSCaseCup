@@ -18,6 +18,9 @@ export interface ICreateCourseData {
 export interface ICourseData {
 	image: File
 	title: string
+	time_create: string
+	time_update: string
+	is_published: boolean
 	description: string
 	course_duration: string
 	category: string
