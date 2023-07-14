@@ -18,9 +18,16 @@
 }
 .inverted_secondary {
 	color: var(--inverted-secondary);
+	path {
+		stroke: var(--inverted-secondary);
+	}
 }
+
 .clear {
 	color: var(--gray-color);
+	path {
+		stroke: var(--gray-color);
+	}
 }
 
 .hover_primary {
@@ -52,9 +59,6 @@
 		background: var(--secondary-color);
 		color: var(--inverted-secondary);
 	}
-}
-.hover_inverted path {
-	stroke: var(--gray-color);
 }
 
 .large {

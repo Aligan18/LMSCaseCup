@@ -32,7 +32,7 @@ export enum ERoutePath {
 	EDIT_LESSON = '/edit_lesson/:id',
 	GROUP_LIST = '/group_list/:id',
 	CREATE_ANSWER = '/create_answer/:id',
-	AUTHORIZATION = 'authorization',
+	AUTHORIZATION = '/authorization',
 }
 
 export const RouteConfig: Array<RouteProps> = [

@@ -23,6 +23,8 @@ export { YouTubeVideo } from './YouTubeVideo/YouTubeVideo'
 export { DeleteZone } from './DeleteZone/DeleteZone'
 export { AccordionWrapper } from './AccordionWrapper/AccordionWrapper'
 export { AccordionButton } from './AccordionButton/AccordionButton'
+export { VerticalBarChart } from './VerticalBarChart/VerticalBarChart'
+export { DoughnutChart } from './DoughnutChart/DoughnutChart'
 
 export { IOptions } from './SelectOption/types/Options'
 export { IFormConstructorData } from './FormConstructor/types/FormConstructor'
