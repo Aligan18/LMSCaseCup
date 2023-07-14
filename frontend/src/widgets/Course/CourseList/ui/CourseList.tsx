@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 import classes from './CourseList.module.scss'
 
@@ -9,7 +10,6 @@ import { IAboutCourseData } from 'entities/Course/types'
 
 import { classnames as cn, deleteRouteId } from 'shared/lib'
 import { Button, Icon, List } from 'shared/ui'
-import { Link } from 'react-router-dom'
 
 export const CourseList = ({ styles }: ICourseListProps) => {
 	const { t } = useTranslation('course')

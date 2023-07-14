@@ -8,10 +8,20 @@ export interface IAboutCourseData {
 }
 
 export interface ICreateCourseData {
+	image: File
 	title: string
 	description: string
 	course_duration: string
 	category: string
+}
+
+export interface ICourseData {
+	image: File
+	title: string
+	description: string
+	course_duration: string
+	category: string
+	rating: number
 }
 
 interface ICreateCourseKeys {
