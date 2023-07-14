@@ -5,6 +5,7 @@ export interface IAboutTicketData {
 	date: Date
 	title: string
 	completed: boolean
+	student: string
 }
 
 export interface ICreateTicketData {
