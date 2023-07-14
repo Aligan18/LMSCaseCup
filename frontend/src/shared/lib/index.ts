@@ -1,3 +1,5 @@
 export { classnames } from './classnames/classnames'
 export { deleteRouteId } from './deleteRouteId/deleteRouteId'
 export { getRightLinkForYouTube } from './getYouTubeLinkForPlayer/getRightLinkForYouTube'
+export { customCanvasBackgroundColor } from './pluginForChart/customCanvasBackgroundColor'
+export { doughnutBorderRadius } from './pluginForChart/doughnutBorderRadius'
