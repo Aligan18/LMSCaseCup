@@ -1,4 +1,31 @@
 {
+	"slice": {
+		"prefix": "slice",
+		"description": "slice",
+		"scope": "typescript",
+		"body": [
+			"import { PayloadAction, createSlice } from '@reduxjs/toolkit'\r",
+			"\r",
+			"import { LoginSchema } from '../types/loginSchema.type'\r",
+			"\r",
+			"const initialState: LoginSchema = {\r",
+			"\tisLoading: false,\r",
+			"\trememberMe: false,\r",
+			"    \r",
+			"\r",
+			"}\r",
+			"\r",
+			"export const loginSlice = createSlice({\r",
+			"\tname: 'loginSlice',\r",
+			"\tinitialState: initialState,\r",
+			"\treducers: {},\r",
+			"})\r",
+			"\r",
+			"export const { actions: loginSliceActions } = loginSlice\r",
+			"export const { reducer: loginSliceReducer } = loginSlice\r",
+			""
+		]
+	},
 	"story": {
 		"prefix": "story",
 		"description": "story",

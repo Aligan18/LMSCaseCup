@@ -1,12 +1,12 @@
 import classes from './ListStudentsInGroup.module.scss'
 
-import { AboutStudentList } from 'entities/Student/AboutStudentList'
-import { GroupTerm } from 'entities/Student/GroupTerm'
+import { AboutStudentList } from 'entities/Users/Student/AboutStudentList'
+import { GroupTerm } from 'entities/Users/Student/GroupTerm'
 import {
 	IAboutGroupData,
 	IOnlyStudentsInGroupData,
 	IStudentAboutData,
-} from 'entities/Student/types'
+} from 'entities/Users/Student/types'
 
 import { classnames as cn } from 'shared/lib'
 import { List } from 'shared/ui'
@@ -18,6 +18,7 @@ export const ListStudentsInGroup = ({ styles, groupData }: IListStudentsInGroupP
 			{
 				id: 1,
 				student: {
+					id: 1,
 					avatar: null,
 					email: '00694234239@stud.satbayev.university',
 					phone: '+77077077070',
@@ -31,6 +32,7 @@ export const ListStudentsInGroup = ({ styles, groupData }: IListStudentsInGroupP
 			{
 				id: 2,
 				student: {
+					id: 2,
 					avatar: null,
 					email: '00694234239@stud.satbayev.university',
 					phone: '+77077077070',

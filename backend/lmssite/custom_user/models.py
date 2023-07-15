@@ -25,10 +25,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
     phone = models.CharField(max_length=30, null=True, blank=True, unique=True)
 
+
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['login',  'type']
+    REQUIRED_FIELDS = ['login',  'type' ,  'is_active' , 'is_staff' ,'avatar' , 'phone']
 
     class Meta:
         verbose_name = 'user'
