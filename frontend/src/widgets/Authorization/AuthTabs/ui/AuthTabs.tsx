@@ -41,7 +41,7 @@ export const AuthTabs = ({ styles }: IAuthTabsProps) => {
 						onClick={() => setSelectedTab('registration')}
 						hover={'hover_inverted-secondary'}
 						variation={selectedTab === 'registration' ? 'inverted-secondary' : 'clear'}
-						left={<Icon icon="plus" />}
+						left={<Icon icon="registration" />}
 						styles={classes.top_button}
 					>
 						Регистрация

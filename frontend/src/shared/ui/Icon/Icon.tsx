@@ -23,6 +23,7 @@ import MailIcon from 'shared/assets/svg/MailIcon.svg'
 import MoonIcon from 'shared/assets/svg/MoonIcon.svg'
 import NotificationIcon from 'shared/assets/svg/NotificationIcon.svg'
 import PlusIcon from 'shared/assets/svg/PlusIcon.svg'
+import RegistrationIcon from 'shared/assets/svg/RegistrationIcon.svg'
 import RightIcon from 'shared/assets/svg/RightIcon.svg'
 import SaveIcon from 'shared/assets/svg/SaveIcon.svg'
 import SearchIcon from 'shared/assets/svg/SearchIcon.svg'
@@ -107,6 +108,9 @@ export const Icon = ({
 			{icon === 'moon' && <MoonIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'sun' && <SunIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'trash' && <TrashIcon className={cn(classes.Icon, [styles], styleMod)} />}
+			{icon === 'registration' && (
+				<RegistrationIcon className={cn(classes.Icon, [styles], styleMod)} />
+			)}
 		</div>
 	)
 }
@@ -151,4 +155,5 @@ interface IIconProps extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement
 		| 'moon'
 		| 'sun'
 		| 'trash'
+		| 'registration'
 }

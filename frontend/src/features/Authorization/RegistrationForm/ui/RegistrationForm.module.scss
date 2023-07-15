@@ -1,20 +1,34 @@
 .RegistrationForm {
 	display: grid;
 	gap: 43px;
-	width: 50%;
+	width: 580px;
 }
 
 .main {
-	padding: 24px;
+	padding: 0px 24px;
 	background-color: var(--background);
 	color: var(--gray-color);
 }
-
-.input {
+.button {
+	height: 24px;
+}
+.password {
+	display: flex;
+	color: var(--gray-color);
 	height: 60px;
-	width: 600px;
 	margin: 10px;
+	gap: 15px;
+	width: 600px;
+}
+.email {
+	height: 60px;
+	margin: 10px;
+	width: 600px;
 }
 .bottom_block {
+	display: flex;
+	gap: 15px;
 	margin: 15px;
+	justify-content: space-between;
+	align-items: center;
 }

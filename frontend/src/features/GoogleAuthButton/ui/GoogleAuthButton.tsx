@@ -6,8 +6,6 @@ import { classnames as cn } from 'shared/lib'
 import { Button } from 'shared/ui'
 
 export const GoogleAuthButton = ({ styles }: IGoogleAuthButtonProps) => {
-	console.log('HELLO ')
-	console.log('WORLD')
 	console.log(
 		`${process.env.REACT_APP_API_URL}/auth/o/google-oauth2/?redirect_uri=${process.env.REACT_APP_API_URL}/google`,
 	)
@@ -26,7 +24,12 @@ export const GoogleAuthButton = ({ styles }: IGoogleAuthButtonProps) => {
 
 	return (
 		<div className={cn(classes.GoogleAuthButton, [styles])}>
-			<Button onClick={continueWithGoogle}> Continue With Google</Button>
+			<Button
+				format={'small'}
+				onClick={continueWithGoogle}
+			>
+				Continue With Google
+			</Button>
 		</div>
 	)
 }

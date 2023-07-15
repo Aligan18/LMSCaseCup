@@ -19,7 +19,7 @@ class Students(models.Model):
     surname = models.CharField(max_length=40, null=True)
     patronymic = models.CharField(max_length=40, null=True)
     about = models.TextField(blank=True, null=True)
- 
+
     university = models.CharField(max_length=80, null=True)
     favorite = models.ManyToManyField(Course, related_name='student_favorite', blank=True)
 

@@ -14,6 +14,7 @@ export function FormConstructor({ styles, data, onSubmit, button }: IFormConstru
 		handleSubmit,
 		control,
 		getValues,
+		watch,
 		formState: { errors },
 	} = useForm({ mode: 'onChange' })
 
@@ -42,6 +43,7 @@ export function FormConstructor({ styles, data, onSubmit, button }: IFormConstru
 
 						{
 							<RenderFormItem
+								watch={watch}
 								getValues={getValues}
 								formItem={formItem}
 								control={control}

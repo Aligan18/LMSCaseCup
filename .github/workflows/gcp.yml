@@ -1,82 +1,82 @@
----
-name: Build and Push  Images to Docker Hub
-on:
-  push:
-    branches: [master]
-jobs:
-  build-push-gcr:
-    name: Build and Push to GCP
-    runs-on: ubuntu-latest
-    env:
-      IMAGE_NAME: lmscasecup_nginx
-      PROJECT_ID: lmsproject-390908
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+# ---
+# name: Build and Push  Images to Docker Hub
+# on:
+#   push:
+#     branches: [master]
+# jobs:
+#   build-push-gcr:
+#     name: Build and Push to GCP
+#     runs-on: ubuntu-latest
+#     env:
+#       IMAGE_NAME: lmscasecup_nginx
+#       PROJECT_ID: lmsproject-390908
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
 
-      - name: Frontend Build
-        working-directory: ./frontend
-        run: |
-          touch .env
-          echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}" >> .env
-          npm install 
-          npm run build:prod
+#       - name: Frontend Build
+#         working-directory: ./frontend
+#         run: |
+#           touch .env
+#           echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}" >> .env
+#           npm install
+#           npm run build:prod
 
-      - name: docker login
-        env:
-          DOCKER_USER: ${{secrets.DOCKER_USER}}
-          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-        run: |
-          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-      - name: Create Backend Env
-        working-directory: ./backend/lmssite/
-        run: |
-          touch .env
-          echo "DJANGO_DEFAULT_FROM_EMAIL=${{ secrets.DJANGO_DEFAULT_FROM_EMAIL }}" >> .env
-          echo "DJANGO_EMAIL_HOST_USER=${{ secrets.DJANGO_EMAIL_HOST_USER }}" >> .env
-          echo "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" >> .env
-          echo "DJANGO_SOCIAL_AUTH_GITHUB_SECRET=${{ secrets.DJANGO_SOCIAL_AUTH_GITHUB_SECRET }}" >> .env
-          echo "DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY=${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY }}" >> .env
-          echo "DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET }}" >> .env
-          cat .env
+#       - name: docker login
+#         env:
+#           DOCKER_USER: ${{secrets.DOCKER_USER}}
+#           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+#         run: |
+#           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+#       - name: Create Backend Env
+#         working-directory: ./backend/lmssite/
+#         run: |
+#           touch .env
+#           echo "DJANGO_DEFAULT_FROM_EMAIL=${{ secrets.DJANGO_DEFAULT_FROM_EMAIL }}" >> .env
+#           echo "DJANGO_EMAIL_HOST_USER=${{ secrets.DJANGO_EMAIL_HOST_USER }}" >> .env
+#           echo "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" >> .env
+#           echo "DJANGO_SOCIAL_AUTH_GITHUB_SECRET=${{ secrets.DJANGO_SOCIAL_AUTH_GITHUB_SECRET }}" >> .env
+#           echo "DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY=${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY }}" >> .env
+#           echo "DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=${{ secrets.DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET }}" >> .env
+#           cat .env
 
-      - name: Extract metadata (tags, labels) for Backend Docker
-        id: meta-back
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-        with:
-          images: aligan/lmscasecup-backend
+#       - name: Extract metadata (tags, labels) for Backend Docker
+#         id: meta-back
+#         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+#         with:
+#           images: aligan/lmscasecup-backend
 
-      - name: Build and push Backend Docker image
-        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
-        with:
-          context: ./backend/lmssite/
-          file: ./backend/lmssite/Dockerfile
-          push: true
-          tags: ${{ steps.meta-back.outputs.tags }}
-          labels: ${{ steps.meta-back.outputs.labels }}
+#       - name: Build and push Backend Docker image
+#         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+#         with:
+#           context: ./backend/lmssite/
+#           file: ./backend/lmssite/Dockerfile
+#           push: true
+#           tags: ${{ steps.meta-back.outputs.tags }}
+#           labels: ${{ steps.meta-back.outputs.labels }}
 
-      - name: Extract metadata (tags, labels) for Nginx Docker
-        id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-        with:
-          images: aligan/lmscasecup-nginx
+#       - name: Extract metadata (tags, labels) for Nginx Docker
+#         id: meta
+#         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+#         with:
+#           images: aligan/lmscasecup-nginx
 
-      - name: Build and push Backend Docker image
-        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+#       - name: Build and push Backend Docker image
+#         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+#         with:
+#           context: .
+#           file: ./Dockerfile
+#           push: true
+#           tags: ${{ steps.meta.outputs.tags }}
+#           labels: ${{ steps.meta.outputs.labels }}
 
-      #     docker build -t aligan/lmscasecup-backend . --file ./Dockerfile --tag aligan/lmscasecup-backend:$(date +%s)
+#       #     docker build -t aligan/lmscasecup-backend . --file ./Dockerfile --tag aligan/lmscasecup-backend:$(date +%s)
 
-      # - name: Docker Push
-      #   run: docker push aligan/lmscasecup-backend
+#       # - name: Docker Push
+#       #   run: docker push aligan/lmscasecup-backend
 
-      # - name: Build the Nginx Docker image
-      #   run: docker build -t aligan/lmscasecup-nginx . --file ./Dockerfile --tag aligan/lmscasecup-nginx:$(date +%s)
+#       # - name: Build the Nginx Docker image
+#       #   run: docker build -t aligan/lmscasecup-nginx . --file ./Dockerfile --tag aligan/lmscasecup-nginx:$(date +%s)
 
-      # - name: Docker Push
-      #   run: docker push aligan/lmscasecup-nginx
+#       # - name: Docker Push
+#       #   run: docker push aligan/lmscasecup-nginx
