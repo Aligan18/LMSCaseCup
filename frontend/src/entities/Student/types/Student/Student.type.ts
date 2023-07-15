@@ -25,7 +25,12 @@ interface ICustomUser {
 	avatar: string | null
 	email: string
 	phone: string
-	is_active: boolean
+	is_active: boolean | string
+}
+
+export interface IColumnNames extends Record<keyof IStudentAboutData, string | ICustomUser> {
+	grade: string
+	student: ICustomUser
 }
 
 export interface IOnlyStudentsInGroupData {
