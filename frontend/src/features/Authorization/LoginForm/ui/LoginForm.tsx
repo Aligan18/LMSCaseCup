@@ -1,22 +1,58 @@
+import { BaseSyntheticEvent } from 'react'
+
 import classes from './LoginForm.module.scss'
 
 import { GoogleAuthButton } from 'features/GoogleAuthButton'
 
+import { ICreateLoginData, ILoginFormConstructor } from 'entities/Authorization/types'
+
 import { classnames as cn } from 'shared/lib'
-import { Button, CheckBox, Htag, Icon, ListItem, TextInput } from 'shared/ui'
+import { Button, CheckBox, FormConstructor, Htag } from 'shared/ui'
 
 export const LoginForm = ({ styles }: ILoginFormProps) => {
+	const onSubmit = (formData: ICreateLoginData, event: BaseSyntheticEvent) => {
+		event.preventDefault()
+
+		console.log(formData)
+	}
+
+	const loginForm: ILoginFormConstructor[] = [
+		{
+			type: 'input',
+			key: 'email',
+			title: 'Введите Email',
+			rules: {
+				required: true,
+				pattern: 'email',
+			},
+		},
+		{
+			type: 'input',
+			key: 'password',
+			title: 'Введите пароль',
+			rules: {
+				required: true,
+				minLength: 8,
+				validate: 'email',
+			},
+		},
+		{
+			type: 'check-box',
+			key: 'rememberMe',
+			description: 'Запомнить меня',
+			rules: {
+				required: false,
+			},
+		},
+	]
+
 	return (
 		<div className={cn(classes.LoginForm, [styles])}>
 			<div className={classes.main}>
-				<TextInput styles={classes.email}>Введите Email</TextInput>
-				<div className={classes.password}>
-					<TextInput>Введите пароль</TextInput>
-					<Htag tag={'very-small'}>Забыли пароль?</Htag>
-				</div>
-				<div className={classes.bottom_block}>
-					<CheckBox title={'Запомнить меня'} />
-					<div className={classes.flex}>
+				<FormConstructor
+					onSubmit={onSubmit}
+					data={loginForm}
+					button={
 						<Button
 							variation="primary"
 							styles={classes.button}
@@ -24,8 +60,12 @@ export const LoginForm = ({ styles }: ILoginFormProps) => {
 						>
 							Вход
 						</Button>
-						<GoogleAuthButton />
-					</div>
+					}
+				/>
+				<div className={classes.bottom_block}>
+					<Htag tag={'very-small'}>Забыли пароль?</Htag>
+
+					<GoogleAuthButton />
 				</div>
 			</div>
 		</div>

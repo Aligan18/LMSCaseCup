@@ -7,9 +7,15 @@ import classes from './RenderFormItem.module.scss'
 
 import { CheckBox, Input, SelectOption, TextInput, UploadFile } from 'shared/ui'
 
-export const RenderFormItem = ({ formItem, control, register, getValues }: IRenderFormProps) => {
+export const RenderFormItem = ({
+	formItem,
+	control,
+	register,
+	getValues,
+	watch,
+}: IRenderFormProps) => {
 	const [file, setFile] = useState<string>()
-	const rules = rulesConstructor(formItem)
+	const rules = rulesConstructor(formItem.rules, watch)
 
 	switch (formItem.type) {
 		case 'input':
@@ -18,9 +24,7 @@ export const RenderFormItem = ({ formItem, control, register, getValues }: IRend
 					format={'large'}
 					variation={'clear'}
 					{...register(formItem.key, rules)}
-				>
-					{formItem.title}
-				</Input>
+				></Input>
 			)
 		case 'text-input':
 			return (
@@ -81,4 +85,5 @@ interface IRenderFormProps {
 	control: any
 	register: any
 	getValues: any
+	watch: any
 }
