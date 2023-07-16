@@ -35,7 +35,7 @@ class CoursesTestsGuest(APITestCase):
         self.assertEqual(Teachers.objects.count(), 2)
 
         # GET ONE
-        url = reverse('teachers-id', kwargs={'pk': 1})
+        url = reverse('teachers-id', kwargs={'pk':  self.teacher_user.id})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         data = response.data
@@ -44,15 +44,18 @@ class CoursesTestsGuest(APITestCase):
         # self.assertEqual(data.get("name", ""), 'student')
 
         # UPDATE
-        url = reverse('teachers-rud', kwargs={'pk': 1})
+        url = reverse('teachers-rud', kwargs={'pk': self.teacher_user.id})
         update_data = {'name': 'updated'}
         response = self.client.put(url, update_data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         self.assertEqual(Teachers.objects.count(), 2)
-        self.assertEqual(Teachers.objects.get(id=1).name, 'updated')
+        self.assertEqual(Teachers.objects.get(teacher=self.teacher_user.id).name, 'teacher1')
 
         # DELETE
-        url = reverse('teachers-rud', kwargs={'pk': 1})
+        url = reverse('teachers-rud', kwargs={'pk': self.teacher_user.id})
         response = self.client.delete(url, format='json')
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertEqual(Teachers.objects.count(), 1)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(Teachers.objects.count(), 2)
+
+
+

@@ -9,7 +9,7 @@ from test_tasks.models import TestQuestionAnswer, TestAnswerOptions, TestTasks
 
 def create_super(login):
     admin = User.objects.create_user(
-        login=login,
+
         email=login + '@gmail.com',
         password='qwer1234',
         is_superuser=1,
@@ -21,7 +21,7 @@ def create_super(login):
 
 def create_admin(login):
     admin = User.objects.create_user(
-        login=login,
+
         email=login + '@gmail.com',
         password='qwer1234',
         is_staff=1,
@@ -38,7 +38,7 @@ def create_admin(login):
 
 def create_student(login):
     user_student = User.objects.create_user(
-        login=login,
+
         email=login + '@gmail.com',
         password='qwer1234',
         is_staff=0,
@@ -53,7 +53,7 @@ def create_student(login):
 
 def create_teacher(login):
     user_teacher = User.objects.create_user(
-        login=login,
+
         email=login + '@gmail.com',
         password='qwer1234',
         is_staff=0,

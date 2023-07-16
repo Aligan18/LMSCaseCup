@@ -34,7 +34,7 @@ class StudentsViewRetrieve(generics.RetrieveAPIView):
 class StudentsViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Students.objects.all()
     serializer_class = CreateStudentsSerializers
-    permission_classes = [IsAdminUser | IsStudentOwner]
+    permission_classes = [ IsStudentOwner]
 
 
 # Admin

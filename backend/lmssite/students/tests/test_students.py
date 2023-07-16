@@ -50,7 +50,7 @@ class CoursesTestsGuest(APITestCase):
         print("THIS IS DATA2 ", data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(Students.objects.count(), 2)
-        self.assertEqual(Students.objects.get(id=1).name, 'updated')
+        self.assertEqual(Students.objects.get(student=1).name, 'updated')
 
         # DELETE
         url = reverse('students-rud', kwargs={'pk': 1})
