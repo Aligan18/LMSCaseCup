@@ -5,7 +5,7 @@ import { ListStudentsInGroup } from 'widgets/Student/ListStudentsInGroup'
 import { BackButton } from 'features/BackButton'
 
 import { IAboutCourseData } from 'entities/Course/types'
-import { IAboutGroupData } from 'entities/Student/types'
+import { IAboutGroupData } from 'entities/Users/Student/types'
 
 import { classnames as cn } from 'shared/lib'
 import { Header, Htag, List } from 'shared/ui'

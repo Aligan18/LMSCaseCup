@@ -6,6 +6,7 @@ import { createReduxStore } from '../config/store'
 
 export const StoreProvider = ({ children, initialState }: IStoreProviderProps) => {
 	const store = createReduxStore(initialState)
+
 	return <Provider store={store}>{children}</Provider>
 }
 

@@ -7,7 +7,7 @@ import { classnames as cn } from 'shared/lib'
 export const Button: FC<IButtonProps> = ({
 	styles,
 	variation = 'primary',
-	format = 'medium',
+	format = 'small',
 	children,
 	...props
 }) => {

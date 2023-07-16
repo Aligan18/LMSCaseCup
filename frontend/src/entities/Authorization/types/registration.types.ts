@@ -1,9 +1,14 @@
+import { ICustomUserType } from 'entities/Users/CustomUser'
+
 import { IFormConstructorData } from 'shared/ui'
 
 export interface ICreateRegistrationData {
 	email: string
 	password: string
-	confirm_password: string
+	re_password: string
+	name: string
+	surname: string
+	type: ICustomUserType
 }
 
 interface ICreateRegistrationKeys {

@@ -1,20 +1,41 @@
-import { BaseSyntheticEvent } from 'react'
+import { BaseSyntheticEvent, useCallback, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
+import { getLoginState } from '../model/selectors/getLoginState/getLoginState'
+import { loginByEmail } from '../services/loginByEmail/LoginByEmail'
 import classes from './LoginForm.module.scss'
 
 import { GoogleAuthButton } from 'features/GoogleAuthButton'
 
 import { ICreateLoginData, ILoginFormConstructor } from 'entities/Authorization/types'
+import { getFullUserState, getUserInfo } from 'entities/Users/CustomUser'
+import { getUserType } from 'entities/Users/CustomUser/lib/getUserType'
 
+import { useAppDispatch } from 'shared/lib'
 import { classnames as cn } from 'shared/lib'
-import { Button, CheckBox, FormConstructor, Htag } from 'shared/ui'
+import { Button, ErrorText, FormConstructor, Htag, Loader, LoadingDiv } from 'shared/ui'
 
 export const LoginForm = ({ styles }: ILoginFormProps) => {
-	const onSubmit = (formData: ICreateLoginData, event: BaseSyntheticEvent) => {
-		event.preventDefault()
+	const dispatch = useAppDispatch()
+	const navigate = useNavigate()
+	const { error, isLoading } = useSelector(getLoginState)
+	const { token, userType } = useSelector(getFullUserState)
+	const userInfo = useSelector(getUserInfo)
 
-		console.log(formData)
-	}
+	const onSubmit = useCallback(
+		(formData: ICreateLoginData, event: BaseSyntheticEvent) => {
+			event.preventDefault()
+			dispatch(loginByEmail(formData))
+		},
+		[dispatch],
+	)
+
+	useEffect(() => {
+		if (userType) {
+			navigate(-1)
+		}
+	}, [userType])
 
 	const loginForm: ILoginFormConstructor[] = [
 		{
@@ -33,7 +54,6 @@ export const LoginForm = ({ styles }: ILoginFormProps) => {
 			rules: {
 				required: true,
 				minLength: 8,
-				validate: 'email',
 			},
 		},
 		{
@@ -48,8 +68,10 @@ export const LoginForm = ({ styles }: ILoginFormProps) => {
 
 	return (
 		<div className={cn(classes.LoginForm, [styles])}>
+			{isLoading && <LoadingDiv />}
 			<div className={classes.main}>
 				<FormConstructor
+					disabled={isLoading}
 					onSubmit={onSubmit}
 					data={loginForm}
 					button={
@@ -62,6 +84,7 @@ export const LoginForm = ({ styles }: ILoginFormProps) => {
 						</Button>
 					}
 				/>
+				{error && <ErrorText>{error}</ErrorText>}
 				<div className={classes.bottom_block}>
 					<Htag tag={'very-small'}>Забыли пароль?</Htag>
 

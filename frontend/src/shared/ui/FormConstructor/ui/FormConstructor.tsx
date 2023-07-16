@@ -8,7 +8,13 @@ import { RenderFormItem } from './RenderFormItem/RenderFormItem'
 import { classnames as cn } from 'shared/lib'
 import { Button, ErrorText, Htag, List } from 'shared/ui'
 
-export function FormConstructor({ styles, data, onSubmit, button }: IFormConstructorProps) {
+export function FormConstructor({
+	styles,
+	data,
+	onSubmit,
+	button,
+	disabled,
+}: IFormConstructorProps) {
 	const {
 		register,
 		handleSubmit,
@@ -55,12 +61,15 @@ export function FormConstructor({ styles, data, onSubmit, button }: IFormConstru
 			/>
 
 			<div className={classes.submit_wrapper}>
-				<div
-					className={classes.submit}
-					onClick={handleSubmit(onSubmit)}
-				></div>
+				{
+					<div
+						className={classes.submit}
+						// eslint-disable-next-line @typescript-eslint/no-empty-function
+						onClick={!disabled ? handleSubmit(onSubmit) : () => {}}
+					></div>
+				}
 
-				<Button styles={classes.button}>{button}</Button>
+				<div className={classes.button}>{button}</div>
 			</div>
 		</form>
 	)
@@ -71,4 +80,5 @@ interface IFormConstructorProps {
 	data: IConbineFormConstructor[]
 	onSubmit: (formData: any, event: BaseSyntheticEvent) => void
 	button: string | ReactNode
+	disabled?: boolean
 }

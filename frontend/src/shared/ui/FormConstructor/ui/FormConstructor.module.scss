@@ -1,5 +1,5 @@
 .FormConstructor {
-	margin: 30px 0px;
+	margin: 20px 0px;
 	color: var(--gray-color);
 	display: grid;
 	gap: 20px;
@@ -35,7 +35,13 @@
 }
 
 .button {
+	height: fit-content;
 	width: 100%;
+	height: 100%;
+	button {
+		width: 100%;
+		height: 100%;
+	}
 }
 
 .submit_wrapper {
