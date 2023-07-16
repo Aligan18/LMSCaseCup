@@ -16,7 +16,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         ("4", "Student"),
     ]
     type = models.CharField(choices=USER_TYPES, default="4", max_length=1)
-    login = models.CharField('email address', max_length=100, unique=True)
     email = models.EmailField('email address', unique=True)
     date_joined = models.DateTimeField('date joined', auto_now_add=True)
     is_active = models.BooleanField(default=False, blank=True)
@@ -29,7 +28,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['login',  'type' ,  'is_active' , 'is_staff' ,'avatar' , 'phone']
+    REQUIRED_FIELDS = [ 'type' ,  'is_active' , 'is_staff' ,'avatar' , 'phone']
 
     class Meta:
         verbose_name = 'user'

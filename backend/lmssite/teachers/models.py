@@ -13,7 +13,7 @@ class Teachers(models.Model):
     sex = models.CharField(choices=USER_SEX, max_length=1, null=True, blank=True)
     age = models.IntegerField(validators=[MinValueValidator(10), MaxValueValidator(100)], null=True, blank=True)
     country = models.CharField(max_length=80, null=True, blank=True)
-    teacher = models.OneToOneField(User, on_delete=models.CASCADE)
+    teacher = models.OneToOneField(User,  on_delete=models.CASCADE, primary_key=True,)
     name = models.CharField(max_length=40, null=True, blank=True)
     surname = models.CharField(max_length=40, null=True, blank=True)
     patronymic = models.CharField(max_length=40, null=True, blank=True)

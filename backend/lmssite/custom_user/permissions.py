@@ -94,7 +94,7 @@ class IsTeacherOwnerForList(permissions.BasePermission):  # для List треб
 class IsStudentOwner(permissions.BasePermission):  # Проверен тестами
     def has_object_permission(self, request, view, obj):
         if bool(request.user and request.user.is_authenticated):
-            if bool(obj.student == request.user):
+            if bool(obj.student.id == request.user.id):
                 return True
 
 
@@ -143,7 +143,7 @@ class IsStudent(permissions.BasePermission):  # Проверен тестами
 class IsTeacher(permissions.BasePermission):
     def has_permission(self, request, view):
         if bool(request.user and request.user.is_authenticated):
-            print('WORKS', request.user.type)
+
             if bool(request.user.type == "3"):
                 return True
 
