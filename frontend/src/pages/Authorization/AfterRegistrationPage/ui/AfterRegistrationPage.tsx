@@ -7,12 +7,12 @@ export const AfterRegistrationPage = ({ styles }: IAfterRegistrationPageProps) =
 	return (
 		<div className={cn(classes.AfterRegistrationPage, [styles])}>
 			<div className={classes.text}>
-				<Htag tag={'very-large'}>На Вашу почту отправлено письмо</Htag>
+				<Htag tag={'very-large'}>Для завершения регистрации активируйте аккаунт</Htag>
 				<Htag
 					tag={'medium'}
 					styles={classes.small_text}
 				>
-					Для завершения регистрации активируйте аккаунт
+					На Вашу почту отправлено письмо
 				</Htag>
 			</div>
 		</div>
