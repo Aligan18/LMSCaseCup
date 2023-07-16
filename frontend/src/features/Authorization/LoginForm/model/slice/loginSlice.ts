@@ -5,23 +5,12 @@ import { ILoginSchema } from '../types/loginSchema.type'
 
 const initialState: ILoginSchema = {
 	isLoading: false,
-	formData: { email: '', password: '', rememberMe: false },
 }
 
 export const loginSlice = createSlice({
 	name: 'loginSlice',
 	initialState: initialState,
-	reducers: {
-		setEmail: (state: ILoginSchema, { payload }: PayloadAction<string>) => {
-			state.formData.email = payload
-		},
-		setPassword: (state: ILoginSchema, { payload }: PayloadAction<string>) => {
-			state.formData.password = payload
-		},
-		setRememberMe: (state: ILoginSchema, { payload }: PayloadAction<boolean>) => {
-			state.formData.rememberMe = payload
-		},
-	},
+	reducers: {},
 	extraReducers: (builder) => {
 		builder
 			.addCase(loginByEmail.pending, (state: ILoginSchema, action) => {

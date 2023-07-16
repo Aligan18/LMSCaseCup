@@ -1,4 +1,5 @@
 import { ILoginSchema } from 'features/Authorization/LoginForm'
+import { IRegistrationSchema } from 'features/Authorization/RegistrationForm'
 
 import {
 	ICreateAdditionData,
@@ -13,4 +14,5 @@ export interface IStateSchema {
 	createLessonAddition: ICreateAdditionData[]
 	loginForm: ILoginSchema
 	customUser: ICustomUserSchema
+	registrationForm: IRegistrationSchema
 }

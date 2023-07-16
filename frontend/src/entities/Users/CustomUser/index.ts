@@ -1,6 +1,7 @@
 export { ICustomUser } from './types/CustomUser.type'
 export { IAboutCustomUser } from './types/CustomUser.type'
 export { ICustomUserSchema } from './model/types/CustomUserSchema'
+
 export { customUserSliceActions } from './model/slice/CustomUserSlice'
 export { customUserSliceReducer } from './model/slice/CustomUserSlice'
 export { IUserType } from './model/types/CustomUserSchema'
@@ -8,3 +9,4 @@ export { getFullUserState } from './model/selectors/getFullUserInfo'
 export { getUserInfo } from './model/selectors/getUserInfo'
 export { getUserToken } from './model/selectors/getUserToken'
 export { getUserType } from './model/selectors/getUserType'
+export { ICustomUserType } from './types/CustomUser.type'

@@ -12,9 +12,9 @@ import { ICreateLoginData, ILoginFormConstructor } from 'entities/Authorization/
 import { getFullUserState, getUserInfo } from 'entities/Users/CustomUser'
 import { getUserType } from 'entities/Users/CustomUser/lib/getUserType'
 
-import { useAppDispatch } from 'shared/config'
+import { useAppDispatch } from 'shared/lib'
 import { classnames as cn } from 'shared/lib'
-import { Button, ErrorText, FormConstructor, Htag, Loader } from 'shared/ui'
+import { Button, ErrorText, FormConstructor, Htag, Loader, LoadingDiv } from 'shared/ui'
 
 export const LoginForm = ({ styles }: ILoginFormProps) => {
 	const dispatch = useAppDispatch()
@@ -68,14 +68,7 @@ export const LoginForm = ({ styles }: ILoginFormProps) => {
 
 	return (
 		<div className={cn(classes.LoginForm, [styles])}>
-			{isLoading && (
-				<div className={classes.isLoading}>
-					<Loader
-						width={20}
-						height={20}
-					/>
-				</div>
-			)}
+			{isLoading && <LoadingDiv />}
 			<div className={classes.main}>
 				<FormConstructor
 					disabled={isLoading}
