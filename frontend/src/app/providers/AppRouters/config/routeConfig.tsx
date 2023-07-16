@@ -3,7 +3,8 @@ import { RouteProps } from 'react-router-dom'
 import { GroupListPage } from 'pages/Admin/GroupListPage'
 import { TeacherRoomPage } from 'pages/Admin/TeacherRoomPage'
 import { ViewAnswerPage } from 'pages/Admin/ViewAnswerPage'
-import { AuthorizationPage } from 'pages/AuthorizationPage'
+import { ActivationPage } from 'pages/Authorization/ActivationPage'
+import { AuthorizationPage } from 'pages/Authorization/AuthorizationPage'
 import { AboutCoursePage } from 'pages/Course/AboutCoursePage'
 import { CoursesPage } from 'pages/Course/CoursesPage'
 import { CreateCoursePage } from 'pages/Course/CreateCoursePage'
@@ -15,6 +16,7 @@ import { NotFoundPage } from 'pages/NotFoundPage'
 import { CreateAnswerPage } from 'pages/Task/CreateAnswerPage'
 import { CreateTicketPage } from 'pages/Ticket/CreateTicketPage'
 import { TicketsPage } from 'pages/Ticket/TicketsPage'
+import { AfterRegistrationPage } from 'pages/Authorization/AfterRegistrationPage'
 
 export enum ERoutePath {
 	HOME = '/',
@@ -33,6 +35,8 @@ export enum ERoutePath {
 	GROUP_LIST = '/group_list/:id',
 	CREATE_ANSWER = '/create_answer/:id',
 	AUTHORIZATION = '/authorization',
+	ACTIVATION = '/activation',
+	AFTER_REGISTRATION = '/after_registration',
 }
 
 export const RouteConfig: Array<RouteProps> = [
@@ -99,5 +103,13 @@ export const RouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.AUTHORIZATION,
 		element: <AuthorizationPage />,
+	},
+	{
+		path: ERoutePath.ACTIVATION,
+		element: <ActivationPage />,
+	},
+	{
+		path: ERoutePath.AFTER_REGISTRATION,
+		element: <AfterRegistrationPage />,
 	},
 ]
