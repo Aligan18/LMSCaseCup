@@ -54,7 +54,7 @@ export const LessonFormSteps = ({ styles }: ILessonFormStepsProps) => {
 						format={'last'}
 						variation={step > 2 ? 'primary' : 'secondary'}
 					>
-						Материалы
+						Файлы
 					</Step>
 				</div>
 

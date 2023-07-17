@@ -15,7 +15,7 @@ class Lectures(models.Model):
 
 
 class Additions(models.Model):
-    file = models.FileField(blank=True)
+    file = models.FileField(upload_to="files/",blank=True)
     title = models.CharField(max_length=100)
 
     def __str__(self):
@@ -23,7 +23,7 @@ class Additions(models.Model):
 
 
 class LessonContent(models.Model):
-    title = models.CharField(max_length=100, blank=True)
+    title = models.CharField(max_length=100, null=True, blank=True)
     type = models.CharField(max_length=10,blank=True)
     content = models.TextField(blank=True)
     order = models.IntegerField(blank=True)
