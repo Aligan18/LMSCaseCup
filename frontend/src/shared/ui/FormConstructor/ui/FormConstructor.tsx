@@ -69,7 +69,7 @@ export function FormConstructor({
 					></div>
 				}
 
-				<div className={classes.button}>{button}</div>
+				<Button styles={classes.button}>{button}</Button>
 			</div>
 		</form>
 	)

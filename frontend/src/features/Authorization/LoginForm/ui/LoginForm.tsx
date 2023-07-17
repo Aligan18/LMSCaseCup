@@ -74,15 +74,7 @@ export const LoginForm = ({ styles }: ILoginFormProps) => {
 					disabled={isLoading}
 					onSubmit={onSubmit}
 					data={loginForm}
-					button={
-						<Button
-							variation="primary"
-							styles={classes.button}
-							format={'small'}
-						>
-							Вход
-						</Button>
-					}
+					button={'Вход'}
 				/>
 				{error && <ErrorText>{error}</ErrorText>}
 				<div className={classes.bottom_block}>

@@ -15,7 +15,7 @@ import { createLessonAboutActions } from 'features/Lesson/CreateLessonAboutForm'
 import { CreateLessonButton } from 'features/Lesson/CreateLessonButton'
 import { lessonContentActions } from 'features/Lesson/CreateLessonContentForm'
 
-import { ILessonData } from 'entities/Lesson/types'
+import { ILectureData } from 'entities/Lesson/types'
 
 import { classnames as cn, deleteRouteId } from 'shared/lib'
 import { Header } from 'shared/ui'
@@ -23,7 +23,7 @@ import { Header } from 'shared/ui'
 const CreateLessonPage = ({ styles }: ICreateLessonPageProps) => {
 	const { t } = useTranslation('admin')
 	const [isEditor, setIsEditor] = useState(false)
-	const data: ILessonData = {
+	const data: ILectureData = {
 		id: 1,
 		number: 5,
 		description: 'Введение в программирование',

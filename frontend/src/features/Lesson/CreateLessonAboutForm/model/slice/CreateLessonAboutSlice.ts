@@ -4,6 +4,8 @@ import { ICreateLessonAboutData } from 'entities/Lesson/types'
 
 const initialState: ICreateLessonAboutData = {
 	title: null,
+	description: null,
+	video: null,
 }
 
 export const CreateLessonAboutSlice = createSlice({

@@ -4,6 +4,7 @@ import classes from './LessonFormSteps.module.scss'
 
 import { CreateLessonAboutForm } from 'features/Lesson/CreateLessonAboutForm'
 import { CreateLessonAdditionForm } from 'features/Lesson/CreateLessonAdditionForm'
+import { CreateLessonAdditionList } from 'features/Lesson/CreateLessonAdditionList'
 import { CreateLessonContentForm } from 'features/Lesson/CreateLessonContentForm'
 
 import { classnames as cn } from 'shared/lib'
@@ -19,7 +20,12 @@ export const LessonFormSteps = ({ styles }: ILessonFormStepsProps) => {
 			case 2:
 				return <CreateLessonContentForm />
 			case 3:
-				return <CreateLessonAdditionForm />
+				return (
+					<>
+						<CreateLessonAdditionForm />
+						<CreateLessonAdditionList />
+					</>
+				)
 		}
 	}
 	return (
