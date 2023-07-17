@@ -99,15 +99,7 @@ export const RegistrationForm = ({ styles }: IRegistrationFormProps) => {
 				<FormConstructor
 					onSubmit={onSubmit}
 					data={registrationForm}
-					button={
-						<Button
-							variation="primary"
-							styles={classes.button}
-							format={'small'}
-						>
-							Регистрация
-						</Button>
-					}
+					button={'Регистрация'}
 				/>
 			</div>
 		</div>

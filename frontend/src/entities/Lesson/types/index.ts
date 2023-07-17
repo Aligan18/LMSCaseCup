@@ -1,5 +1,6 @@
 export { IAboutLessonData } from './Lesson.types'
-export { ILessonData } from './Lesson.types'
+export { ILectureData } from './Lesson.types'
+export { ICreateLectureData } from './Lesson.types'
 export { ILessonContentData } from './Lesson.types'
 export { IAdditionData } from './Lesson.types'
 

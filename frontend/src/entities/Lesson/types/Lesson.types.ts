@@ -6,7 +6,7 @@ export interface IAboutLessonData {
 	status: boolean
 }
 
-export interface ILessonData {
+export interface ILectureData {
 	id?: number
 	description: string
 	number: number
@@ -14,6 +14,14 @@ export interface ILessonData {
 	video: string
 	lesson: ILessonContentData[]
 	additions: IAdditionData[]
+}
+export interface ICreateLectureData {
+	description: string
+
+	title: string
+	video: string
+	lesson: number[]
+	additions: number[]
 }
 
 export interface ILessonContentData {

@@ -1,35 +1,35 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
+
+import { IThunkExtraArg } from 'app/providers/StoreProvider'
 
 import { ICreateLoginData, IToken } from 'entities/Authorization/types'
-import { ICustomUser, customUserSliceActions } from 'entities/Users/CustomUser'
+import { ICustomUser, ICustomUserSchema, customUserSliceActions } from 'entities/Users/CustomUser'
 import { getUserType } from 'entities/Users/CustomUser/lib/getUserType'
 import { IStudentData } from 'entities/Users/Student/types'
 
+import { USER_LOCALSTORAGE_KEY } from 'shared/const'
+
 export const loginByEmail = createAsyncThunk<
-	ICustomUser,
+	void,
 	ICreateLoginData,
-	{ rejectValue: string }
->('login/loginByEmail', async (authData, thunkAPI) => {
+	{ rejectValue: string; extra: IThunkExtraArg }
+>('login/loginByEmail', async (authData, { rejectWithValue, dispatch, extra }) => {
 	try {
-		const token = await axios.post<IToken>('http://127.0.0.1:8000/auth/jwt/create/', authData)
+		const token = await extra.$axios.post<IToken>(extra.API.auth.jwt.create, authData)
+
 		if (!token.data) {
 			throw new Error()
 		}
-		const customUser = await axios.get<ICustomUser>('http://127.0.0.1:8000/auth/users/me/', {
-			headers: { Authorization: `Bearer ${token.data.access}` },
-		})
+
+		const customUser = await extra.$axios.get<ICustomUser>(extra.API.auth.users.me)
 		if (!customUser.data) {
 			throw new Error()
 		}
 		let userInfo
 		switch (customUser.data.type) {
 			case '4': {
-				const studentInfo = await axios.get<IStudentData>(
-					'http://127.0.0.1:8000/api/v1/students/id/' + customUser.data.id,
-					{
-						headers: { Authorization: `Bearer ${token.data.access}` },
-					},
+				const studentInfo = await extra.$axios.get<IStudentData>(
+					extra.API.students.id + customUser.data.id,
 				)
 				userInfo = studentInfo.data
 			}
@@ -39,12 +39,17 @@ export const loginByEmail = createAsyncThunk<
 			throw new Error()
 		}
 
-		thunkAPI.dispatch(customUserSliceActions.setToken(token.data))
-		thunkAPI.dispatch(customUserSliceActions.userType(getUserType(customUser.data.type)))
-		thunkAPI.dispatch(customUserSliceActions.userInfo(userInfo))
-		return customUser.data
+		dispatch(customUserSliceActions.setToken(token.data))
+		dispatch(customUserSliceActions.userType(getUserType(customUser.data.type)))
+		dispatch(customUserSliceActions.userInfo(userInfo))
+		const localCustomUser: ICustomUserSchema = {
+			token: token.data,
+			userInfo: userInfo,
+			userType: getUserType(customUser.data.type),
+		}
+		localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(localCustomUser))
 	} catch (error) {
 		console.log(error)
-		return thunkAPI.rejectWithValue(error.response.data.detail)
+		return rejectWithValue(error.response.data.detail)
 	}
 })

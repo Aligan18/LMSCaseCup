@@ -1,6 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { NavigateOptions, To } from 'react-router-dom'
 
 import { IStateSchema } from './StateSchema'
+
+import { ERoutePath } from 'app/providers/AppRouters'
 
 import { loginSliceReducer } from 'features/Authorization/LoginForm'
 import { registrationFormSliceReducer } from 'features/Authorization/RegistrationForm'
@@ -10,8 +13,13 @@ import { lessonContentReducer } from 'features/Lesson/CreateLessonContentForm'
 
 import { customUserSliceReducer } from 'entities/Users/CustomUser'
 
-export function createReduxStore(initialState?: IStateSchema) {
-	return configureStore<IStateSchema>({
+import { $api, API } from 'shared/api'
+
+export function createReduxStore(
+	initialState?: IStateSchema,
+	navigate?: (to: To, options?: NavigateOptions) => void,
+) {
+	return configureStore({
 		reducer: {
 			createLessonContent: lessonContentReducer,
 			createLessonAbout: createLessonAboutReducer,
@@ -23,8 +31,17 @@ export function createReduxStore(initialState?: IStateSchema) {
 
 		devTools: __IS_DEV__,
 		preloadedState: initialState,
+		middleware: (getDefaultMiddleware) =>
+			getDefaultMiddleware({
+				thunk: {
+					extraArgument: {
+						$axios: $api,
+						API: API,
+						navigate: navigate,
+					},
+				},
+			}),
 	})
 }
 
-const store = createReduxStore()
-export type AppDispatch = typeof store.dispatch
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch']

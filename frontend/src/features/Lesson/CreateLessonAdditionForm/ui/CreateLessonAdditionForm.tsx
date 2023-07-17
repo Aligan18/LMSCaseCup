@@ -1,18 +1,29 @@
 import { BaseSyntheticEvent } from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-import { createLessonAdditionActions } from '../model/slice/CreateLessonAdditionSlice'
+import { getError } from '../model/selectors/getAdditionError'
+import { getIsLoading } from '../model/selectors/getIsLoading'
+import { IAdditionsDataSchema, ICreateAdditionSchema } from '../model/type/CreateAdditionSchema'
+import { createLessonAdditionRequest } from '../services/CreateLessonAdditionRequest'
 import classes from './CreateLessonAdditionForm.module.scss'
 
 import { ICreateAdditionData, ILessonAdditionFormConstructor } from 'entities/Lesson/types'
 
-import { classnames as cn } from 'shared/lib'
-import { FormConstructor } from 'shared/ui'
+import { classnames as cn, useAppDispatch } from 'shared/lib'
+import { ErrorText, FormConstructor, LoadingDiv } from 'shared/ui'
 
 export const CreateLessonAdditionForm = ({ styles }: ICreateLessonAdditionFormProps) => {
+	const dispatch = useAppDispatch()
+	const isLoading = useSelector(getIsLoading)
+	const error = useSelector(getError)
 	const onSubmit = (formData: ICreateAdditionData, event: BaseSyntheticEvent) => {
 		event.preventDefault()
-		console.log(formData)
+		const additonData: IAdditionsDataSchema = {
+			title: formData.title,
+			file: formData.file[0],
+		}
+
+		dispatch(createLessonAdditionRequest(additonData))
 	}
 
 	const addition: ILessonAdditionFormConstructor[] = [
@@ -32,11 +43,13 @@ export const CreateLessonAdditionForm = ({ styles }: ICreateLessonAdditionFormPr
 
 	return (
 		<div className={cn(classes.CreateLessonAdditionForm, [styles])}>
+			{isLoading && <LoadingDiv />}
 			<FormConstructor
 				button={'Добавить файл'}
 				data={addition}
 				onSubmit={onSubmit}
 			/>
+			{error && <ErrorText>{error}</ErrorText>}
 		</div>
 	)
 }

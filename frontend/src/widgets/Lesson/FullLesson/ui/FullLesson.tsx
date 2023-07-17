@@ -2,13 +2,13 @@ import classes from './FullLesson.module.scss'
 
 import { LessonContentList } from 'features/Lesson/LessonContentList'
 
-import { ILessonContentData, ILessonData } from 'entities/Lesson/types'
+import { ILectureData, ILessonContentData } from 'entities/Lesson/types'
 
 import { classnames as cn } from 'shared/lib'
 import { Header, Htag, YouTubeVideo } from 'shared/ui'
 
 export const FullLesson = ({ styles }: IFullLessonProps) => {
-	const data: ILessonData = {
+	const data: ILectureData = {
 		id: 1,
 		number: 5,
 		description: 'Введение в программирование',
