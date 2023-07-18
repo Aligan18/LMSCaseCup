@@ -26,6 +26,8 @@ export const registartionByEmail = createAsyncThunk<
 			}
 			case 0:
 				return rejectWithValue('Сервер не отвечает попробуйте позже')
+			case 401:
+				return rejectWithValue('Вы не авторизованы')
 
 			default:
 				return rejectWithValue('Что то пошло не так попробуйте позже')
