@@ -5,6 +5,7 @@ import { IStateSchema } from './StateSchema'
 
 import { loginSliceReducer } from 'features/Authorization/LoginForm'
 import { registrationFormSliceReducer } from 'features/Authorization/RegistrationForm'
+import { createCourseReducer } from 'features/Course/CreateCourseForm'
 import { createLessonAboutReducer } from 'features/Lesson/CreateLessonAboutForm'
 import { createLessonAdditionReducer } from 'features/Lesson/CreateLessonAdditionForm'
 import { lessonContentReducer } from 'features/Lesson/CreateLessonContentForm'
@@ -25,6 +26,7 @@ export function createReduxStore(
 			loginForm: loginSliceReducer,
 			customUser: customUserSliceReducer,
 			registrationForm: registrationFormSliceReducer,
+			createCourseForm: createCourseReducer,
 		},
 
 		devTools: __IS_DEV__,

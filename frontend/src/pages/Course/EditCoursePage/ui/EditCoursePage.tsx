@@ -5,10 +5,10 @@ import classes from './EditCoursePage.module.scss'
 
 import { ERoutePath } from 'app/providers/AppRouters'
 
-import { FileUploader } from 'widgets/FileUploader'
-
 import { BackButton } from 'features/BackButton'
 import { CreateCourseForm } from 'features/Course/CreateCourseForm'
+
+import { FileUploader } from 'entities/FileUploader'
 
 import { classnames as cn } from 'shared/lib'
 import { Button, Header } from 'shared/ui'

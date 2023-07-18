@@ -20,6 +20,9 @@ export const API = {
 	students: {
 		id: '/students/id/',
 	},
+	course: {
+		create: '/course/create/',
+	},
 }
 
 export type IAPI = typeof API

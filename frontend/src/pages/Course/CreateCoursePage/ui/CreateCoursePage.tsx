@@ -5,8 +5,6 @@ import classes from './CreateCoursePage.module.scss'
 
 import { ERoutePath } from 'app/providers/AppRouters'
 
-import { FileUploader } from 'widgets/FileUploader'
-
 import { BackButton } from 'features/BackButton'
 import { CreateCourseForm } from 'features/Course/CreateCourseForm'
 
@@ -38,9 +36,6 @@ const CreateCoursePage = ({ styles }: ICreateCoursePageProps) => {
 				</div>
 				<div className={classes.left_block}>
 					<CreateCourseForm />
-				</div>
-				<div className={classes.right_block}>
-					<FileUploader />
 				</div>
 			</div>
 		</div>
