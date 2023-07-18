@@ -10,15 +10,15 @@ export interface IStudentAboutData {
 }
 
 export interface IStudentData {
-	sex: string
-	age: number
-	country: string
-	student: ICustomUser
+	sex: string | null
+	age: number | null
+	country: string | null
+	student: ICustomUser | null
 	name: string
 	surname: string
-	patronymic: string
-	about: string
-	university: string
+	patronymic: string | null
+	about: string | null
+	university: string | null
 }
 
 export interface IColumnNames extends Record<keyof IStudentAboutData, string | IAboutCustomUser> {

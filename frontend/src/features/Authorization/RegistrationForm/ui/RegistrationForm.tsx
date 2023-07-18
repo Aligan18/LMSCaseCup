@@ -1,9 +1,9 @@
-import { BaseSyntheticEvent, useState } from 'react'
+import { useState } from 'react'
+import { SubmitHandler } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 
 import { getRegistrationErrors } from '../model/selectors/getRegistrationErrors'
 import { getRegistrationLoading } from '../model/selectors/getRegistrationLoading'
-import { getUserNameSurname } from '../model/selectors/getUserNameSurname'
 import { registrationFormSliceActions } from '../model/slice/RegistrationFormSlice'
 import { registartionByEmail } from '../services/RegistrationByEmail'
 import classes from './RegistrationForm.module.scss'
@@ -16,8 +16,11 @@ import { Button, ErrorText, FormConstructor, Htag, LoadingDiv } from 'shared/ui'
 
 export const RegistrationForm = ({ styles }: IRegistrationFormProps) => {
 	const dispatch = useAppDispatch()
-	const onSubmit = (formData: ICreateRegistrationData, event: BaseSyntheticEvent) => {
-		event.preventDefault()
+	const onSubmit: SubmitHandler<ICreateRegistrationData> = (
+		formData: ICreateRegistrationData,
+		event,
+	) => {
+		event?.preventDefault()
 		dispatch(registrationFormSliceActions.setName(formData.name))
 		dispatch(registrationFormSliceActions.setName(formData.surname))
 		formData.type = userType

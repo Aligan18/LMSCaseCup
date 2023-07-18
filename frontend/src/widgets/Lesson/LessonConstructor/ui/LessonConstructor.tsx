@@ -43,7 +43,9 @@ export const LessonConstructor = ({ styles }: ILessonConstructorProps) => {
 		e.preventDefault()
 		setIsVisible(false)
 		console.log('DROP')
-		dispatch(createLessonAboutActions.delete_field_about_lesson(currentContent))
+		if (currentContent) {
+			dispatch(createLessonAboutActions.delete_field_about_lesson(currentContent))
+		}
 	}
 
 	return (

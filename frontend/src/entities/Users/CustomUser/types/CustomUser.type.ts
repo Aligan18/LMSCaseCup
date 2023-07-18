@@ -1,11 +1,10 @@
 export interface ICustomUser {
 	avatar: string | null
 	email: string
-	phone: string
+	phone: string | null
 	is_active: boolean | string
-	login: string
 	type: ICustomUserType
-	is_staff: false
+	is_staff: boolean
 	id: number
 }
 

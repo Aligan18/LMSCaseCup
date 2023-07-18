@@ -3,8 +3,6 @@ import { NavigateOptions, To } from 'react-router-dom'
 
 import { IStateSchema } from './StateSchema'
 
-import { ERoutePath } from 'app/providers/AppRouters'
-
 import { loginSliceReducer } from 'features/Authorization/LoginForm'
 import { registrationFormSliceReducer } from 'features/Authorization/RegistrationForm'
 import { createLessonAboutReducer } from 'features/Lesson/CreateLessonAboutForm'

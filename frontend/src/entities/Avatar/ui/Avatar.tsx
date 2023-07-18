@@ -23,6 +23,6 @@ export const Avatar = ({ styles, image, size }: IAvatarProps) => {
 
 interface IAvatarProps {
 	styles?: string
-	image?: string
+	image?: string | null
 	size: 'small' | 'medium' | 'large'
 }

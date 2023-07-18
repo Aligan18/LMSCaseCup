@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import { useState } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { rulesConstructor } from '../../lib/rulesConstructor/rulesConstructor'
@@ -7,13 +7,13 @@ import classes from './RenderFormItem.module.scss'
 
 import { CheckBox, Input, SelectOption, TextInput, UploadFile } from 'shared/ui'
 
-export const RenderFormItem = ({
+export function RenderFormItem<T>({
 	formItem,
 	control,
 	register,
 	getValues,
 	watch,
-}: IRenderFormProps) => {
+}: IRenderFormProps<T>) {
 	const [file, setFile] = useState<string>()
 	const rules = rulesConstructor(formItem.rules, watch)
 
@@ -39,13 +39,13 @@ export const RenderFormItem = ({
 		case 'selector':
 			return (
 				<Controller
-					name={formItem.key}
+					name={String(formItem.key)}
 					control={control}
 					rules={rules}
 					render={({ field }) => (
 						<SelectOption
 							{...field}
-							options={formItem.options}
+							options={formItem.options ? formItem.options : []}
 						/>
 					)}
 				/>
@@ -80,8 +80,8 @@ export const RenderFormItem = ({
 	}
 }
 
-interface IRenderFormProps {
-	formItem: IConbineFormConstructor
+interface IRenderFormProps<T> {
+	formItem: IConbineFormConstructor<T>
 	control: any
 	register: any
 	getValues: any

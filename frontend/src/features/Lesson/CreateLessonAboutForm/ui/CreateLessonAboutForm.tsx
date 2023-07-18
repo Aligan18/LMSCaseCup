@@ -1,4 +1,5 @@
 import { BaseSyntheticEvent } from 'react'
+import { SubmitHandler } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 
 import { createLessonAboutActions } from '../model/slice/CreateLessonAboutSlice'
@@ -12,8 +13,11 @@ import { FormConstructor } from 'shared/ui'
 export const CreateLessonAboutForm = ({ styles }: ICreateLessonAboutFormProps) => {
 	const dispatch = useDispatch()
 
-	const onSubmit = (formData: ICreateLessonAboutData, event: BaseSyntheticEvent) => {
-		event.preventDefault()
+	const onSubmit: SubmitHandler<ICreateLessonAboutData> = (
+		formData: ICreateLessonAboutData,
+		event,
+	) => {
+		event?.preventDefault()
 		console.log(formData)
 		dispatch(createLessonAboutActions.change_about_lesson(formData))
 	}

@@ -27,6 +27,6 @@ export interface IStateSchema {
 
 export interface IThunkExtraArg {
 	$axios: AxiosInstance
-	navigate: (to: To, options?: NavigateOptions) => void
+	navigate?: (to: To, options?: NavigateOptions) => void
 	API: IAPI
 }

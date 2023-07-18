@@ -1,9 +1,9 @@
-import { BaseSyntheticEvent } from 'react'
+import { SubmitHandler } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 
 import { getError } from '../model/selectors/getAdditionError'
 import { getIsLoading } from '../model/selectors/getIsLoading'
-import { IAdditionsDataSchema, ICreateAdditionSchema } from '../model/type/CreateAdditionSchema'
+import { IAdditionsDataSchema } from '../model/type/CreateAdditionSchema'
 import { createLessonAdditionRequest } from '../services/CreateLessonAdditionRequest'
 import classes from './CreateLessonAdditionForm.module.scss'
 
@@ -16,8 +16,8 @@ export const CreateLessonAdditionForm = ({ styles }: ICreateLessonAdditionFormPr
 	const dispatch = useAppDispatch()
 	const isLoading = useSelector(getIsLoading)
 	const error = useSelector(getError)
-	const onSubmit = (formData: ICreateAdditionData, event: BaseSyntheticEvent) => {
-		event.preventDefault()
+	const onSubmit: SubmitHandler<ICreateAdditionData> = (formData: ICreateAdditionData, event) => {
+		event?.preventDefault()
 		const additonData: IAdditionsDataSchema = {
 			title: formData.title,
 			file: formData.file[0],

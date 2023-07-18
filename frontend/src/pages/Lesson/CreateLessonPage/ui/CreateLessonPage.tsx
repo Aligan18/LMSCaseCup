@@ -55,7 +55,7 @@ const CreateLessonPage = ({ styles }: ICreateLessonPageProps) => {
 			{
 				id: 2,
 				order: 2,
-				title: null,
+				title: '',
 				type: 'text',
 				content:
 					'Many PCs and Macs will have python already installed.To check if you have python installed on a Windows PC, search in the start bar for Python or run the following on the Command Line (cmd.exe):',
@@ -63,7 +63,7 @@ const CreateLessonPage = ({ styles }: ICreateLessonPageProps) => {
 			{
 				id: 3,
 				order: 3,
-				title: null,
+				title: '',
 				type: 'text',
 				content:
 					'Many PCs and Macs will have python already installed.To check if you have python installed on a Windows PC, search in the start bar for Python or run the following on the Command Line (cmd.exe):',
@@ -79,7 +79,7 @@ const CreateLessonPage = ({ styles }: ICreateLessonPageProps) => {
 			{
 				id: 5,
 				order: 5,
-				title: null,
+				title: '',
 				type: 'code',
 				content: 'C:UsersYour Name>python --version',
 			},

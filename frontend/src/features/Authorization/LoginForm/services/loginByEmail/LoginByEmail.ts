@@ -48,8 +48,21 @@ export const loginByEmail = createAsyncThunk<
 			userType: getUserType(customUser.data.type),
 		}
 		localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(localCustomUser))
-	} catch (error) {
-		console.log(error)
-		return rejectWithValue(error.response.data.detail)
+	} catch (error: any) {
+		switch (error.request.status) {
+			case 400: {
+				const errorData = error.response.data
+				let errorMessage = ''
+				for (const key in errorData) {
+					errorMessage = errorData[key]
+				}
+				return rejectWithValue(errorMessage)
+			}
+			case 0:
+				return rejectWithValue('Сервер не отвечает попробуйте позже')
+
+			default:
+				return rejectWithValue('Что то пошло не так попробуйте позже')
+		}
 	}
 })

@@ -1,7 +1,9 @@
+import { FieldValues, Validate } from 'react-hook-form'
+
 import { IOptions } from 'shared/ui'
 
-export interface IConbineFormConstructor extends IFormConstructorData {
-	key: string
+export interface IConbineFormConstructor<T> extends IFormConstructorData {
+	key: keyof T
 }
 
 export interface IFormConstructorData {

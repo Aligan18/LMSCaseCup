@@ -31,7 +31,7 @@ export const LessonContentList = ({ styles, data, editor = false }: ILessonConte
 	const dispatch = useDispatch()
 	const contentData = useSelector((state: IStateSchema) => state.createLessonContent)
 
-	const [currentContent, setCurrentContent] = useState<ILessonContentData | null>(null)
+	const [currentContent, setCurrentContent] = useState<ILessonContentData | undefined>(undefined)
 
 	function dragStartHandler(e: BaseSyntheticEvent, content: ILessonContentData): void {
 		setCurrentContent(content)
@@ -53,25 +53,28 @@ export const LessonContentList = ({ styles, data, editor = false }: ILessonConte
 	function dropHandler(e: BaseSyntheticEvent, content: ILessonContentData): void {
 		e.preventDefault()
 		e.target.style.background = 'none'
-		const chengedContent = contentData.map((oldContent) => {
-			if (oldContent.id === content.id) {
-				return { ...oldContent, order: currentContent.order }
-			}
-			if (oldContent.id === currentContent.id) {
-				return { ...oldContent, order: content.order }
-			}
-			return oldContent
-		})
-		console.log('chengedContent', chengedContent)
+		if (currentContent) {
+			const chengedContent = contentData.map((oldContent) => {
+				if (oldContent.id === content.id) {
+					return { ...oldContent, order: currentContent.order }
+				}
+				if (oldContent.id === currentContent.id) {
+					return { ...oldContent, order: content.order }
+				}
+				return oldContent
+			})
+			console.log('chengedContent', chengedContent)
 
-		dispatch(lessonContentActions.change_sort_content(chengedContent))
+			dispatch(lessonContentActions.change_sort_content(chengedContent))
+		}
 	}
 
 	function dropDeleteHandler(e: BaseSyntheticEvent) {
 		e.preventDefault()
 		setIsVisible(false)
-
-		dispatch(lessonContentActions.delete_content(currentContent))
+		if (currentContent) {
+			dispatch(lessonContentActions.delete_content(currentContent))
+		}
 	}
 
 	if (editor === false) {

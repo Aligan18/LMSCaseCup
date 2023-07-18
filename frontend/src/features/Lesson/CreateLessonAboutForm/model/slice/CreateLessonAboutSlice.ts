@@ -3,9 +3,9 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { ICreateLessonAboutData } from 'entities/Lesson/types'
 
 const initialState: ICreateLessonAboutData = {
-	title: null,
-	description: null,
-	video: null,
+	title: '',
+	description: '',
+	video: undefined,
 }
 
 export const CreateLessonAboutSlice = createSlice({
@@ -16,9 +16,9 @@ export const CreateLessonAboutSlice = createSlice({
 			state: ICreateLessonAboutData,
 			{ payload }: PayloadAction<ICreateLessonAboutData>,
 		) => {
-			state.title = payload.title ? payload.title : null
-			state.description = payload.description ? payload.description : null
-			state.video = payload.video ? payload.video : null
+			state.title = payload.title ? payload.title : ''
+			state.description = payload.description ? payload.description : ''
+			state.video = payload.video ? payload.video : undefined
 		},
 
 		delete_field_about_lesson: (
@@ -27,10 +27,10 @@ export const CreateLessonAboutSlice = createSlice({
 		) => {
 			switch (payload) {
 				case 'title':
-					state.title = null
+					state.title = ''
 					break
 				case 'video':
-					state.video = null
+					state.video = ''
 					break
 				default:
 					break

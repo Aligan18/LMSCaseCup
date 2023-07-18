@@ -27,7 +27,7 @@ export const CourseCard = ({ styles, data, buttons, price_view = true }: ICourse
 
 			<TextBox size={'small'}>{data.description}</TextBox>
 
-			<TextBox size={'medium'}>{price_view && data.price + ' тг'} </TextBox>
+			<TextBox size={'medium'}>{price_view ? data.price + ' тг' : ''} </TextBox>
 
 			<div className={classes.wrapper_button}>
 				<div className={classes.button}>{buttons}</div>

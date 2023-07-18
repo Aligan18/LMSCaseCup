@@ -1,4 +1,5 @@
-import { BaseSyntheticEvent, useState } from 'react'
+import { useState } from 'react'
+import { SubmitHandler } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 
 import { lessonContentActions } from '../model/slice/LessonContentSlice'
@@ -13,8 +14,11 @@ export const CreateLessonContentForm = ({ styles }: ICreateLessonContentFormProp
 	const [counter, setConter] = useState(0)
 	const dispatch = useDispatch()
 
-	const onSubmit = (formData: ICreateLessonContentData, event: BaseSyntheticEvent) => {
-		event.preventDefault()
+	const onSubmit: SubmitHandler<ICreateLessonContentData> = (
+		formData: ICreateLessonContentData,
+		event,
+	) => {
+		event?.preventDefault()
 		formData.id = counter
 		formData.order = counter
 		setConter(counter + 1)
@@ -57,7 +61,7 @@ export const CreateLessonContentForm = ({ styles }: ICreateLessonContentFormProp
 
 	return (
 		<div className={cn(classes.CreateLessonContentForm, [styles])}>
-			<FormConstructor
+			<FormConstructor<ICreateLessonContentData>
 				data={content}
 				onSubmit={onSubmit}
 				button={'Добавить блок лекции'}

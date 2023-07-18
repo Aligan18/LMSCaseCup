@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent } from 'react'
+import { SubmitHandler } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import classes from './CreateCourseForm.module.scss'
@@ -11,8 +11,8 @@ import { FormConstructor, Icon } from 'shared/ui'
 export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 	const { t } = useTranslation('course')
 
-	const onSubmit = (formData: ICreateCourseData, event: BaseSyntheticEvent) => {
-		event.preventDefault()
+	const onSubmit: SubmitHandler<ICreateCourseData> = (formData: ICreateCourseData, event) => {
+		event?.preventDefault()
 		console.log(formData)
 	}
 
@@ -65,8 +65,7 @@ export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 
 	return (
 		<div className={cn(classes.CreateCourseForm, [styles])}>
-			{' '}
-			<FormConstructor
+			<FormConstructor<ICreateCourseData>
 				onSubmit={onSubmit}
 				data={data}
 				button={

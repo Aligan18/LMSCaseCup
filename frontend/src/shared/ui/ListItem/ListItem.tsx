@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react'
+import { DetailedHTMLProps, HtmlHTMLAttributes, ReactNode, useState } from 'react'
 
 import classes from './ListItem.module.scss'
 
@@ -12,12 +12,11 @@ export const ListItem = ({
 	mid_down,
 	hover = 'hover_inverted-secondary',
 	variation = 'clear',
-	onClick = null,
 	children,
+	...props
 }: IListItemProps) => {
 	return (
 		<div
-			onClick={onClick}
 			className={cn(classes.ListItem, [styles], {
 				[classes.large]: Boolean(mid_up) || Boolean(mid_down),
 				[classes.hover_primary]: hover === 'hover_primary',
@@ -26,6 +25,7 @@ export const ListItem = ({
 				[classes.inverted_secondary]: variation === 'inverted-secondary',
 				[classes.clear]: variation === 'clear',
 			})}
+			{...props}
 		>
 			{left && (
 				<div
@@ -58,7 +58,8 @@ export const ListItem = ({
 	)
 }
 
-interface IListItemProps {
+interface IListItemProps
+	extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	styles?: string
 	right?: ReactNode | null
 	left?: React.ReactNode | null
@@ -67,5 +68,4 @@ interface IListItemProps {
 	hover: 'hover_primary' | 'hover_inverted-secondary' | 'none'
 	variation: 'primary' | 'inverted-secondary' | 'clear'
 	children?: string | ReactNode
-	onClick?: () => void | null
 }

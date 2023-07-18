@@ -3,7 +3,7 @@ import { IFormConstructorData } from 'shared/ui'
 export interface ICreateLessonAboutData {
 	description: string
 	title: string
-	video: string
+	video?: string
 }
 
 interface ICreateLessonAboutKeys {

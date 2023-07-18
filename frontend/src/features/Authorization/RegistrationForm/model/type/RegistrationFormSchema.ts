@@ -5,7 +5,7 @@ export interface IRegistrationSchema {
 	surname: string
 }
 
-export interface I400Error extends Record<string, string> {
-	email?: string
-	password?: string
-}
+// export interface I400Error extends Record<string, string> {
+// 	email?: string
+// 	password?: string
+// }

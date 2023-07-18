@@ -11,8 +11,5 @@ export const getUserType = (type: ICustomUserType): IUserType => {
 			return 'teacher'
 		case '4':
 			return 'student'
-
-		default:
-			return null
 	}
 }

@@ -22,8 +22,8 @@ export const AboutStudentList = ({ styles, data, isColumnNames }: IAboutStudentL
 			is_active: 'Статус',
 		},
 		name: 'Имя',
-		surname: null,
-		patronymic: null,
+		surname: '',
+		patronymic: '',
 		grade: 'Оценка',
 	}
 
@@ -44,17 +44,21 @@ export const AboutStudentList = ({ styles, data, isColumnNames }: IAboutStudentL
 	return (
 		<div className={cn(classes.AboutStudentList, [styles])}>
 			<Avatar
-				image={data.student.avatar}
+				image={data?.student.avatar}
 				size="small"
 			/>
-			<Htag tag={'small'}>{data.student.email}</Htag>
-			<Htag tag={'small'}>{`${data.surname} ${data.name} ${data.patronymic}`}</Htag>
-			<Htag tag={'small'}>{data.student.phone}</Htag>
-			<Htag tag={'small'}>{data.student.is_active && t('aktivnyi')}</Htag>
-			<StarsGroup
-				rating={data.grade}
-				changeable={false}
-			></StarsGroup>
+			<Htag tag={'small'}>{data?.student.email}</Htag>
+			<Htag tag={'small'}>{`${data?.surname} ${data?.name} ${data?.patronymic}`}</Htag>
+			<Htag tag={'small'}>{data?.student.phone}</Htag>
+			<Htag tag={'small'}>{data?.student.is_active && t('aktivnyi')}</Htag>
+			<div>
+				{data?.grade && (
+					<StarsGroup
+						rating={data?.grade}
+						changeable={false}
+					/>
+				)}
+			</div>
 			<Button
 				variation="primary"
 				styles={classes.button}

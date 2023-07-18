@@ -1,4 +1,5 @@
 import { BaseSyntheticEvent, useCallback, useEffect } from 'react'
+import { SubmitHandler } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
@@ -20,12 +21,11 @@ export const LoginForm = ({ styles }: ILoginFormProps) => {
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
 	const { error, isLoading } = useSelector(getLoginState)
-	const { token, userType } = useSelector(getFullUserState)
-	const userInfo = useSelector(getUserInfo)
+	const { userType } = useSelector(getFullUserState)
 
-	const onSubmit = useCallback(
-		(formData: ICreateLoginData, event: BaseSyntheticEvent) => {
-			event.preventDefault()
+	const onSubmit: SubmitHandler<ICreateLoginData> = useCallback(
+		(formData: ICreateLoginData, event) => {
+			event?.preventDefault()
 			dispatch(loginByEmail(formData))
 		},
 		[dispatch],
@@ -70,7 +70,7 @@ export const LoginForm = ({ styles }: ILoginFormProps) => {
 		<div className={cn(classes.LoginForm, [styles])}>
 			{isLoading && <LoadingDiv />}
 			<div className={classes.main}>
-				<FormConstructor
+				<FormConstructor<ICreateLoginData>
 					disabled={isLoading}
 					onSubmit={onSubmit}
 					data={loginForm}

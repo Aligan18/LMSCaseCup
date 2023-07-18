@@ -32,7 +32,7 @@ describe('classnames', () => {
 	test('with undefined mods ', () => {
 		expect(
 			classnames('someClass', ['additional1', 'additional2'], {
-				mode1: undefined,
+				mode1: false,
 				mode2: true,
 			}),
 		).toBe('someClass additional1 additional2 mode2')
