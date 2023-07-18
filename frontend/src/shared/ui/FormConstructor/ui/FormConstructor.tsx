@@ -1,5 +1,5 @@
-import { BaseSyntheticEvent, ReactNode } from 'react'
-import { useForm } from 'react-hook-form'
+import { ReactNode } from 'react'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 import { IConbineFormConstructor } from '../types/FormConstructor'
 import classes from './FormConstructor.module.scss'
@@ -8,13 +8,13 @@ import { RenderFormItem } from './RenderFormItem/RenderFormItem'
 import { classnames as cn } from 'shared/lib'
 import { Button, ErrorText, Htag, List } from 'shared/ui'
 
-export function FormConstructor({
+export function FormConstructor<T extends FieldValues>({
 	styles,
 	data,
 	onSubmit,
 	button,
 	disabled,
-}: IFormConstructorProps) {
+}: IFormConstructorProps<T>) {
 	const {
 		register,
 		handleSubmit,
@@ -22,7 +22,7 @@ export function FormConstructor({
 		getValues,
 		watch,
 		formState: { errors },
-	} = useForm({ mode: 'onChange' })
+	} = useForm<T>({ mode: 'onChange' })
 
 	return (
 		<form className={cn(classes.FormConstructor, [styles])}>
@@ -30,10 +30,10 @@ export function FormConstructor({
 				styles={classes.list}
 				variation={'list'}
 				items={data}
-				renderItem={(formItem: IConbineFormConstructor) => (
+				renderItem={(formItem: IConbineFormConstructor<T>) => (
 					<div
 						className={classes.form_item}
-						key={formItem.key}
+						key={String(formItem.key)}
 					>
 						<div className={classes.form_description}>
 							<div>
@@ -43,12 +43,12 @@ export function FormConstructor({
 								)}
 							</div>
 							{errors[formItem.key] && (
-								<ErrorText>{String(errors[formItem.key].message)}</ErrorText>
+								<ErrorText>{String(errors[formItem.key]?.message)}</ErrorText>
 							)}
 						</div>
 
 						{
-							<RenderFormItem
+							<RenderFormItem<T>
 								watch={watch}
 								getValues={getValues}
 								formItem={formItem}
@@ -75,10 +75,10 @@ export function FormConstructor({
 	)
 }
 
-interface IFormConstructorProps {
+interface IFormConstructorProps<T extends FieldValues> {
 	styles?: string
-	data: IConbineFormConstructor[]
-	onSubmit: (formData: any, event: BaseSyntheticEvent) => void
+	data: IConbineFormConstructor<T>[]
+	onSubmit: SubmitHandler<T>
 	button: string | ReactNode
 	disabled?: boolean
 }

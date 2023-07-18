@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent } from 'react'
+import { SubmitHandler } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import classes from './CreateTicketForm.module.scss'
@@ -11,8 +11,8 @@ import { FormConstructor } from 'shared/ui'
 export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 	const { t } = useTranslation('ticket')
 
-	const onSubmit = (formData: ICreateTicketData, event: BaseSyntheticEvent) => {
-		event.preventDefault()
+	const onSubmit: SubmitHandler<ICreateTicketData> = (formData: ICreateTicketData, event) => {
+		event?.preventDefault()
 
 		console.log(formData)
 	}
@@ -62,7 +62,7 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 	]
 	return (
 		<div className={cn(classes.CreateTicketForm, [styles])}>
-			<FormConstructor
+			<FormConstructor<ICreateTicketData>
 				onSubmit={onSubmit}
 				data={data}
 				button={`${t('otpravit-zayavku-0')}`}

@@ -6,7 +6,7 @@ import { USER_LOCALSTORAGE_KEY } from 'shared/const'
 
 const version = '/api/v1'
 const host_url = process.env.REACT_APP_API_URL + version
-const user: ICustomUserSchema = JSON.parse(localStorage.getItem(USER_LOCALSTORAGE_KEY))
+const user: ICustomUserSchema = JSON.parse(String(localStorage.getItem(USER_LOCALSTORAGE_KEY)))
 const token = user.token.access
 
 console.log('token', token)

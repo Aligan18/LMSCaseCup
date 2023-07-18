@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-import { ICustomUserSchema } from '../types/CustomUserSchema'
+import { ICustomUserSchema, IUserType } from '../types/CustomUserSchema'
 
 import { IToken } from 'entities/Authorization/types'
 import { IStudentData } from 'entities/Users/Student/types'
@@ -11,14 +11,14 @@ const initialState: ICustomUserSchema = {
 		about: '',
 		age: null,
 		country: null,
-		name: null,
+		name: '',
 		patronymic: null,
 		sex: null,
 		student: null,
-		surname: null,
+		surname: '',
 		university: null,
 	},
-	userType: null,
+	userType: 'student',
 }
 
 export const CustomUserSlice = createSlice({
@@ -29,10 +29,7 @@ export const CustomUserSlice = createSlice({
 			state.token.access = payload.access
 			state.token.refresh = payload.refresh
 		},
-		userType: (
-			state: ICustomUserSchema,
-			{ payload }: PayloadAction<'student' | 'teacher' | 'admin' | 'super-admin'>,
-		) => {
+		userType: (state: ICustomUserSchema, { payload }: PayloadAction<IUserType>) => {
 			state.userType = payload
 		},
 		userInfo: (state: ICustomUserSchema, { payload }: PayloadAction<IStudentData>) => {

@@ -19,7 +19,7 @@ export interface ICreateLectureData {
 	description: string
 
 	title: string
-	video: string
+	video?: string
 	lesson: number[]
 	additions: number[]
 }

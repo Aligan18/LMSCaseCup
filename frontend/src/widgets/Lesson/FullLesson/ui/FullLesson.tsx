@@ -2,10 +2,10 @@ import classes from './FullLesson.module.scss'
 
 import { LessonContentList } from 'features/Lesson/LessonContentList'
 
-import { ILectureData, ILessonContentData } from 'entities/Lesson/types'
+import { ILectureData } from 'entities/Lesson/types'
 
 import { classnames as cn } from 'shared/lib'
-import { Header, Htag, YouTubeVideo } from 'shared/ui'
+import { Header, YouTubeVideo } from 'shared/ui'
 
 export const FullLesson = ({ styles }: IFullLessonProps) => {
 	const data: ILectureData = {
@@ -40,7 +40,7 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 			{
 				id: 2,
 				order: 2,
-				title: null,
+				title: '',
 				type: 'text',
 				content:
 					'Many PCs and Macs will have python already installed.To check if you have python installed on a Windows PC, search in the start bar for Python or run the following on the Command Line (cmd.exe):',
@@ -48,7 +48,7 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 			{
 				id: 3,
 				order: 3,
-				title: null,
+				title: '',
 				type: 'text',
 				content:
 					'Many PCs and Macs will have python already installed.To check if you have python installed on a Windows PC, search in the start bar for Python or run the following on the Command Line (cmd.exe):',
@@ -64,7 +64,7 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 			{
 				id: 5,
 				order: 5,
-				title: null,
+				title: '',
 				type: 'code',
 				content: 'C:UsersYour Name>python --version',
 			},
