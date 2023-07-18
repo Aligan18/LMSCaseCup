@@ -22,7 +22,21 @@ export const createLessonAdditionRequest = createAsyncThunk<
 			},
 		)
 		return response.data
-	} catch (error) {
-		return rejectWithValue('Ошибка')
+	} catch (error: any) {
+		switch (error.request.status) {
+			case 400: {
+				const errorData = error.response.data
+				let errorMessage = ''
+				for (const key in errorData) {
+					errorMessage = errorData[key]
+				}
+				return rejectWithValue(errorMessage)
+			}
+			case 0:
+				return rejectWithValue('Сервер не отвечает попробуйте позже')
+
+			default:
+				return rejectWithValue('Что то пошло не так попробуйте позже')
+		}
 	}
 })

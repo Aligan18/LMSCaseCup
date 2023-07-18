@@ -79,7 +79,6 @@ export const RegistrationForm = ({ styles }: IRegistrationFormProps) => {
 
 	return (
 		<div className={cn(classes.RegistrationForm, [styles])}>
-			{isLoading && <LoadingDiv />}
 			<div className={classes.main}>
 				<div className={classes.top}>
 					<Htag tag="small">Зарегистрироваться как :</Htag>
@@ -98,8 +97,10 @@ export const RegistrationForm = ({ styles }: IRegistrationFormProps) => {
 						</Button>
 					</div>
 				</div>
-				{error && <ErrorText>{error}</ErrorText>}
+
 				<FormConstructor
+					isLoading={isLoading}
+					serverError={error}
 					onSubmit={onSubmit}
 					data={registrationForm}
 					button={'Регистрация'}

@@ -1,7 +1,11 @@
 import { useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 
+import { getCreateCourseError } from '../model/selectors/getCreateCourseError'
+import { getCreateCourseLoading } from '../model/selectors/getCreateCourseLoading'
+import { getCreateCourseSuccessful } from '../model/selectors/getCreateCourseSuccessful'
 import { createCourseRequest } from '../services/CreateCourseRequest'
 import classes from './CreateCourseForm.module.scss'
 
@@ -13,19 +17,19 @@ import { FormConstructor, Icon } from 'shared/ui'
 
 export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 	const { t } = useTranslation('course')
+	const isLoading = useSelector(getCreateCourseLoading)
+	const error = useSelector(getCreateCourseError)
+	const successful = useSelector(getCreateCourseSuccessful)
 	const dispatch = useAppDispatch()
-	const [image, setImage] = useState<File | null>(null)
-	const [imageError, setImageError] = useState<boolean>(false)
+	const [image, setImage] = useState<File | undefined>(undefined)
+
 	const onSubmit: SubmitHandler<ICreateCourseData> = (formData: ICreateCourseData, event) => {
-		if (image) {
-			setImageError(false)
+		if (image !== undefined) {
 			event?.preventDefault()
 			formData.image = image
+			console.log(formData)
 			dispatch(createCourseRequest(formData))
-		} else {
-			setImageError(true)
 		}
-		console.log(formData)
 	}
 
 	const data: ICourseFormConstructor[] = [
@@ -79,6 +83,9 @@ export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 		<div className={cn(classes.CreateCourseForm, [styles])}>
 			<div className={classes.left_block}>
 				<FormConstructor<ICreateCourseData>
+					successful={successful}
+					serverError={error}
+					isLoading={isLoading}
 					onSubmit={onSubmit}
 					data={data}
 					button={
@@ -94,8 +101,8 @@ export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 			</div>
 			<div>
 				<FileUploader
-					error={imageError}
 					setImage={setImage}
+					image={image}
 				/>
 			</div>
 		</div>

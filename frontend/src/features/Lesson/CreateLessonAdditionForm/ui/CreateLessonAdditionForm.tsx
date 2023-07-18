@@ -43,13 +43,13 @@ export const CreateLessonAdditionForm = ({ styles }: ICreateLessonAdditionFormPr
 
 	return (
 		<div className={cn(classes.CreateLessonAdditionForm, [styles])}>
-			{isLoading && <LoadingDiv />}
 			<FormConstructor
+				isLoading={isLoading}
+				serverError={error}
 				button={'Добавить файл'}
 				data={addition}
 				onSubmit={onSubmit}
 			/>
-			{error && <ErrorText>{error}</ErrorText>}
 		</div>
 	)
 }
