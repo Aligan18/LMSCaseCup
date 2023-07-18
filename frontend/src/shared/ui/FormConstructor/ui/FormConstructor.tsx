@@ -6,7 +6,7 @@ import classes from './FormConstructor.module.scss'
 import { RenderFormItem } from './RenderFormItem/RenderFormItem'
 
 import { classnames as cn } from 'shared/lib'
-import { Button, ErrorText, Htag, List } from 'shared/ui'
+import { Button, ErrorText, Htag, Icon, List, LoadingDiv } from 'shared/ui'
 
 export function FormConstructor<T extends FieldValues>({
 	styles,
@@ -14,6 +14,9 @@ export function FormConstructor<T extends FieldValues>({
 	onSubmit,
 	button,
 	disabled,
+	isLoading,
+	serverError,
+	successful,
 }: IFormConstructorProps<T>) {
 	const {
 		register,
@@ -26,6 +29,7 @@ export function FormConstructor<T extends FieldValues>({
 
 	return (
 		<form className={cn(classes.FormConstructor, [styles])}>
+			{isLoading && <LoadingDiv />}
 			<List
 				styles={classes.list}
 				variation={'list'}
@@ -59,6 +63,18 @@ export function FormConstructor<T extends FieldValues>({
 					</div>
 				)}
 			/>
+			{serverError && <ErrorText>{serverError}</ErrorText>}
+			{successful && (
+				<Htag tag={'small'}>
+					<div className={classes.success}>
+						Ваш запрос успешно обработан
+						<Icon
+							variation={'primary'}
+							icon={'done'}
+						/>
+					</div>
+				</Htag>
+			)}
 
 			<div className={classes.submit_wrapper}>
 				{
@@ -81,4 +97,7 @@ interface IFormConstructorProps<T extends FieldValues> {
 	onSubmit: SubmitHandler<T>
 	button: string | ReactNode
 	disabled?: boolean
+	isLoading?: boolean
+	serverError?: string
+	successful?: boolean
 }

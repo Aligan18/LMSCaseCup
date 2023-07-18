@@ -4,6 +4,7 @@
 	display: grid;
 	gap: 20px;
 	width: 100%;
+	position: relative;
 }
 
 .form_item {
@@ -47,4 +48,10 @@
 .submit_wrapper {
 	position: relative;
 	width: 100%;
+}
+.success {
+	font-size: 24px;
+	display: flex;
+	color: var(--primary-color);
+	gap: 15px;
 }

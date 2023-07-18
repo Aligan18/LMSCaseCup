@@ -68,15 +68,16 @@ export const LoginForm = ({ styles }: ILoginFormProps) => {
 
 	return (
 		<div className={cn(classes.LoginForm, [styles])}>
-			{isLoading && <LoadingDiv />}
 			<div className={classes.main}>
 				<FormConstructor<ICreateLoginData>
+					isLoading={isLoading}
+					serverError={error}
 					disabled={isLoading}
 					onSubmit={onSubmit}
 					data={loginForm}
 					button={'Вход'}
 				/>
-				{error && <ErrorText>{error}</ErrorText>}
+
 				<div className={classes.bottom_block}>
 					<Htag tag={'very-small'}>Забыли пароль?</Htag>
 
