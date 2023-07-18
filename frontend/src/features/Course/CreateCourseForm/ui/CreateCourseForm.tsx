@@ -1,18 +1,30 @@
+import { useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
+import { createCourseRequest } from '../services/CreateCourseRequest'
 import classes from './CreateCourseForm.module.scss'
 
 import { ICourseFormConstructor, ICreateCourseData } from 'entities/Course/types/Course.types'
+import { FileUploader } from 'entities/FileUploader'
 
-import { classnames as cn } from 'shared/lib'
+import { classnames as cn, useAppDispatch } from 'shared/lib'
 import { FormConstructor, Icon } from 'shared/ui'
 
 export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 	const { t } = useTranslation('course')
-
+	const dispatch = useAppDispatch()
+	const [image, setImage] = useState<File | null>(null)
+	const [imageError, setImageError] = useState<boolean>(false)
 	const onSubmit: SubmitHandler<ICreateCourseData> = (formData: ICreateCourseData, event) => {
-		event?.preventDefault()
+		if (image) {
+			setImageError(false)
+			event?.preventDefault()
+			formData.image = image
+			dispatch(createCourseRequest(formData))
+		} else {
+			setImageError(true)
+		}
 		console.log(formData)
 	}
 
@@ -65,19 +77,27 @@ export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 
 	return (
 		<div className={cn(classes.CreateCourseForm, [styles])}>
-			<FormConstructor<ICreateCourseData>
-				onSubmit={onSubmit}
-				data={data}
-				button={
-					<>
-						{t('sokhranit')}
-						<Icon
-							variation={'secondary'}
-							icon={'save'}
-						/>
-					</>
-				}
-			/>
+			<div className={classes.left_block}>
+				<FormConstructor<ICreateCourseData>
+					onSubmit={onSubmit}
+					data={data}
+					button={
+						<>
+							{t('sokhranit')}
+							<Icon
+								variation={'secondary'}
+								icon={'save'}
+							/>
+						</>
+					}
+				/>
+			</div>
+			<div>
+				<FileUploader
+					error={imageError}
+					setImage={setImage}
+				/>
+			</div>
 		</div>
 	)
 }

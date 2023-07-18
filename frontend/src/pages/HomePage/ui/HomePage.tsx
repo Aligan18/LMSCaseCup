@@ -2,10 +2,9 @@ import { useTranslation } from 'react-i18next'
 
 import classes from './HomePage.module.scss'
 
-import { FileUploader } from 'widgets/FileUploader/ui/FileUploader'
-
 import { GoogleAuthButton } from 'features/GoogleAuthButton'
 
+import { FileUploader } from 'entities/FileUploader/ui/FileUploader'
 import { Grade } from 'entities/Grade/ui/Grade'
 
 import { DoughnutChart, Loader, VerticalBarChart } from 'shared/ui'
@@ -25,7 +24,6 @@ const HomePage = () => {
 			</div>
 
 			{t('glavnaya-stranica')}
-			<FileUploader />
 		</div>
 	)
 }

@@ -1,12 +1,17 @@
+import { BaseSyntheticEvent, Dispatch, SetStateAction } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import classes from './FileUploader.module.scss'
 
 import { classnames as cn } from 'shared/lib'
-import { Button, Htag, Icon, UploadFile } from 'shared/ui'
+import { Button, ErrorText, Htag, Icon, UploadFile } from 'shared/ui'
 
-export const FileUploader = ({ styles }: IFileUploaderProps) => {
+export const FileUploader = ({ styles, setImage, error }: IFileUploaderProps) => {
 	const { t } = useTranslation('course')
+	const handleClick = (event: BaseSyntheticEvent) => {
+		console.log(event.target.files)
+		setImage && setImage(event.target.files[0])
+	}
 	return (
 		<div className={cn(classes.FileUploader, [styles])}>
 			<div className={classes.top_block}>
@@ -27,9 +32,10 @@ export const FileUploader = ({ styles }: IFileUploaderProps) => {
 					/>
 				</div>
 
-				<UploadFile />
+				<UploadFile onClick={handleClick} />
 				<div className={classes.text}>
 					<Htag tag={'very-small'}>{t('ili-peretashite-fail')}</Htag>
+					{error && <ErrorText>Выберети</ErrorText>}
 				</div>
 			</div>
 		</div>
@@ -38,4 +44,6 @@ export const FileUploader = ({ styles }: IFileUploaderProps) => {
 
 interface IFileUploaderProps {
 	styles?: string
+	setImage?: Dispatch<SetStateAction<File | null>>
+	error?: boolean
 }
