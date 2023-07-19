@@ -4,9 +4,10 @@ from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
 from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsTeacherHasAccessCreate, \
     IsStudentHasAccessCreate
-from lectures.models import Lectures
+from lectures.models import Lectures, Additions, LessonContent
 
-from lectures.serializers import LecturesSerializers, CreateLecturesSerializers, AboutLecturesSerializers
+from lectures.serializers import LecturesSerializers, CreateLecturesSerializers, AboutLecturesSerializers, \
+    CreateAdditionsSerializers, CreateLessonContentSerializers
 from mysite.pagination import ListPagination
 
 
@@ -38,3 +39,14 @@ class LecturesViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CreateLecturesSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess]
 
+
+class AdditionsViewCreate(generics.CreateAPIView):
+    queryset = Additions.objects.all()
+    serializer_class = CreateAdditionsSerializers
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
+
+
+class LessonContentViewCreate(generics.CreateAPIView):
+    queryset = LessonContent.objects.all()
+    serializer_class = CreateLessonContentSerializers
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
