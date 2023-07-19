@@ -1,30 +1,38 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
+import { ILessonContentScheme } from '../type/LessonContentScheme'
+
 import { ILessonContentData } from 'entities/Lesson/types'
 
-const initialState: Array<ILessonContentData | undefined> = []
+const initialState: ILessonContentScheme = { lesson_data: [] }
 
 export const LessonContentSlice = createSlice({
 	name: 'lessonContentSlice',
 	initialState: initialState,
 	reducers: {
 		delete_content: (
-			state: Array<ILessonContentData | undefined>,
+			state: ILessonContentScheme,
 			{ payload }: PayloadAction<ILessonContentData>,
 		) => {
-			if (state.length !== 0) {
-				const index = state.findIndex((content) => content?.id === payload.id)
-				state.splice(index, 1)
+			if (state.lesson_data.length !== 0) {
+				const index = state.lesson_data.findIndex((content) => content?.id === payload.id)
+				state.lesson_data.splice(index, 1)
 			}
 		},
 		add_content: (
-			state: Array<ILessonContentData | undefined>,
+			state: ILessonContentScheme,
 			{ payload }: PayloadAction<ILessonContentData>,
 		) => {
-			state.push(payload)
+			state.lesson_data.push(payload)
+		},
+		initial_lesson: (
+			state: ILessonContentScheme,
+			{ payload }: PayloadAction<ILessonContentData[]>,
+		) => {
+			state.lesson_data = payload
 		},
 		change_sort_content: (
-			state: Array<ILessonContentData | undefined>,
+			state: ILessonContentScheme,
 			{ payload }: PayloadAction<ILessonContentData[]>,
 		) => {
 			const sortedPayload = payload.sort((a: ILessonContentData, b: ILessonContentData) => {
@@ -35,13 +43,7 @@ export const LessonContentSlice = createSlice({
 				}
 			})
 
-			// Очистка текущего состояния state
-			state.splice(0, state.length)
-
-			// Добавление отсортированных элементов в состояние state
-			sortedPayload.forEach((item: ILessonContentData) => {
-				state.push(item)
-			})
+			state.lesson_data = sortedPayload
 		},
 	},
 })

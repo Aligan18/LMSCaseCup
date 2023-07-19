@@ -5,6 +5,7 @@ import { ILoginSchema } from 'features/Authorization/LoginForm'
 import { IRegistrationSchema } from 'features/Authorization/RegistrationForm'
 import { ICreateCourseSchema } from 'features/Course/CreateCourseForm'
 import { ICreateAdditionSchema } from 'features/Lesson/CreateLessonAdditionForm'
+import { ILessonContentScheme } from 'features/Lesson/CreateLessonContentForm'
 
 import { ICreateLessonAboutData, ILessonContentData } from 'entities/Lesson/types'
 import { ICustomUserSchema } from 'entities/Users/CustomUser'
@@ -12,7 +13,7 @@ import { ICustomUserSchema } from 'entities/Users/CustomUser'
 import { IAPI } from 'shared/api/api'
 
 export interface IStateSchema {
-	createLessonContent: ILessonContentData[]
+	createLessonContent: ILessonContentScheme
 	createLessonAbout: ICreateLessonAboutData
 	createLessonAddition: ICreateAdditionSchema
 	loginForm: ILoginSchema

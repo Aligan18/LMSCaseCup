@@ -12,6 +12,7 @@ import { LessonFormSteps } from 'widgets/Lesson/LessonFormSteps'
 
 import { BackButton } from 'features/BackButton'
 import { createLessonAboutActions } from 'features/Lesson/CreateLessonAboutForm'
+import { createLessonAdditionActions } from 'features/Lesson/CreateLessonAdditionForm'
 import { CreateLessonButton } from 'features/Lesson/CreateLessonButton'
 import { lessonContentActions } from 'features/Lesson/CreateLessonContentForm'
 
@@ -33,6 +34,8 @@ const CreateLessonPage = ({ styles }: ICreateLessonPageProps) => {
 			setIsEditor(true)
 			// dispatch(lessonContentActions.change_sort_content(data.lesson))
 			// dispatch(createLessonAboutActions.change_about_lesson(data))
+			//dispatch(createLessonAdditionActions.)
+
 			const id = Number(location.pathname.split('/').pop())
 
 			dispatch(getLectureRequest(id))

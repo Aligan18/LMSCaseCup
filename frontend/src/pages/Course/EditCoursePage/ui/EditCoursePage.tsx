@@ -39,9 +39,7 @@ export const EditCoursePage = ({ styles }: IEditCoursePageProps) => {
 				<div className={classes.left_block}>
 					<CreateCourseForm />
 				</div>
-				<div className={classes.right_block}>
-					<FileUploader />
-				</div>
+				<div className={classes.right_block}></div>
 			</div>
 		</div>
 	)
