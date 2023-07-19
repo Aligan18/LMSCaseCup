@@ -19,20 +19,7 @@ const CreateCoursePage = ({ styles }: ICreateCoursePageProps) => {
 			<BackButton />
 			<div className={classes.main}>
 				<div className={classes.wrapper}>
-					<Header
-						title={`${t('sozdanie-kursa')}`}
-						buttons={
-							<Link to={ERoutePath.CREATE_LESSON}>
-								<Button
-									variation="primary"
-									styles={classes.button}
-									format={'small'}
-								>
-									{t('dobavit-urok-0')}
-								</Button>
-							</Link>
-						}
-					/>
+					<Header title={`${t('sozdanie-kursa')}`} />
 				</div>
 				<div className={classes.left_block}>
 					<CreateCourseForm />

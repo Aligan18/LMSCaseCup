@@ -11,19 +11,22 @@ export interface ICreateCourseData {
 	image: File
 	title: string
 	description: string
-	course_duration: string
-	category: string
+	course_duration: number
+	category: number
 }
 
+export type IUpdateCourseData = Partial<ICreateCourseData>
+
 export interface ICourseData {
-	image: File
+	id: number
+	image: string
 	title: string
 	time_create: string
 	time_update: string
 	is_published: boolean
 	description: string
-	course_duration: string
-	category: string
+	course_duration: number
+	category: number
 	rating: number
 }
 

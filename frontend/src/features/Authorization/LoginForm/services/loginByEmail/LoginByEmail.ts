@@ -8,6 +8,7 @@ import { getUserType } from 'entities/Users/CustomUser/lib/getUserType'
 import { IStudentData } from 'entities/Users/Student/types'
 
 import { TOKEN_LOCALSTORAGE_KEY, USER_LOCALSTORAGE_KEY } from 'shared/const'
+import { serverErrors } from 'shared/lib'
 
 export const loginByEmail = createAsyncThunk<
 	void,
@@ -22,7 +23,9 @@ export const loginByEmail = createAsyncThunk<
 		}
 		localStorage.setItem(TOKEN_LOCALSTORAGE_KEY, JSON.stringify(token.data))
 
-		const customUser = await extra.$axios.get<ICustomUser>(extra.API.auth.users.me)
+		const customUser = await extra.$axios.get<ICustomUser>(extra.API.auth.users.me, {
+			headers: { Authorization: `Bearer ${token?.data.access}` },
+		})
 		if (!customUser.data) {
 			throw new Error()
 		}
@@ -31,6 +34,9 @@ export const loginByEmail = createAsyncThunk<
 			case '4': {
 				const studentInfo = await extra.$axios.get<IStudentData>(
 					extra.API.students.id + customUser.data.id,
+					{
+						headers: { Authorization: `Bearer ${token?.data.access}` },
+					},
 				)
 				userInfo = studentInfo.data
 			}
@@ -50,20 +56,6 @@ export const loginByEmail = createAsyncThunk<
 		}
 		localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(localCustomUser))
 	} catch (error: any) {
-		switch (error.request.status) {
-			case 400: {
-				const errorData = error.response.data
-				let errorMessage = ''
-				for (const key in errorData) {
-					errorMessage = errorData[key]
-				}
-				return rejectWithValue(errorMessage)
-			}
-			case 0:
-				return rejectWithValue('Сервер не отвечает попробуйте позже')
-
-			default:
-				return rejectWithValue('Что то пошло не так попробуйте позже')
-		}
+		return rejectWithValue(serverErrors(error))
 	}
 })
