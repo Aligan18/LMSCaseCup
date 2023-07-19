@@ -5,8 +5,9 @@ import classes from './LessonContentList.module.scss'
 
 import { IStateSchema } from 'app/providers/StoreProvider/config/StateSchema'
 
-import { lessonContentActions } from 'features/Lesson/CreateLessonContentForm'
+import { getLessonContents, lessonContentActions } from 'features/Lesson/CreateLessonContentForm'
 
+import { getLectureRequest } from 'entities/Lecture'
 import { ILessonContentData } from 'entities/Lesson/types'
 
 import { classnames as cn } from 'shared/lib'
@@ -29,7 +30,7 @@ export const LessonContentList = ({ styles, data, editor = false }: ILessonConte
 		)
 	}
 	const dispatch = useDispatch()
-	const contentData = useSelector((state: IStateSchema) => state.createLessonContent)
+	const contentData = useSelector(getLessonContents)
 
 	const [currentContent, setCurrentContent] = useState<ILessonContentData | undefined>(undefined)
 
@@ -54,7 +55,7 @@ export const LessonContentList = ({ styles, data, editor = false }: ILessonConte
 		e.preventDefault()
 		e.target.style.background = 'none'
 		if (currentContent) {
-			const chengedContent = contentData.map((oldContent) => {
+			const changedContent = contentData.map((oldContent) => {
 				if (oldContent.id === content.id) {
 					return { ...oldContent, order: currentContent.order }
 				}
@@ -63,9 +64,9 @@ export const LessonContentList = ({ styles, data, editor = false }: ILessonConte
 				}
 				return oldContent
 			})
-			console.log('chengedContent', chengedContent)
+			console.log('changedContent', changedContent)
 
-			dispatch(lessonContentActions.change_sort_content(chengedContent))
+			dispatch(lessonContentActions.change_sort_content(changedContent))
 		}
 	}
 
