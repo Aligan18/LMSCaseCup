@@ -7,6 +7,7 @@ import classes from './LessonConstructor.module.scss'
 import { IStateSchema } from 'app/providers/StoreProvider/config/StateSchema'
 
 import { createLessonAboutActions } from 'features/Lesson/CreateLessonAboutForm'
+import { getLessonContents } from 'features/Lesson/CreateLessonContentForm'
 import { LessonContentList } from 'features/Lesson/LessonContentList'
 
 import { ICreateLessonAboutData } from 'entities/Lesson/types'
@@ -16,7 +17,7 @@ import { DeleteZone, Header, YouTubeVideo } from 'shared/ui'
 
 export const LessonConstructor = ({ styles }: ILessonConstructorProps) => {
 	const about_lesson = useSelector((state: IStateSchema) => state.createLessonAbout)
-	const lesson = useSelector((state: IStateSchema) => state.createLessonContent)
+	const lesson = useSelector(getLessonContents)
 
 	const dispatch = useDispatch()
 	const [isVisible, setIsVisible] = useState(false)
