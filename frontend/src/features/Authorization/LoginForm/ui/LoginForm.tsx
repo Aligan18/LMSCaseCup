@@ -31,11 +31,11 @@ export const LoginForm = ({ styles }: ILoginFormProps) => {
 		[dispatch],
 	)
 
-	useEffect(() => {
-		if (userType) {
-			navigate(-1)
-		}
-	}, [userType])
+	// useEffect(() => {
+	// 	if (userType) {
+	// 		navigate(-1)
+	// 	}
+	// }, [userType])
 
 	const loginForm: ILoginFormConstructor[] = [
 		{

@@ -7,7 +7,7 @@ import { ICustomUser, ICustomUserSchema, customUserSliceActions } from 'entities
 import { getUserType } from 'entities/Users/CustomUser/lib/getUserType'
 import { IStudentData } from 'entities/Users/Student/types'
 
-import { USER_LOCALSTORAGE_KEY } from 'shared/const'
+import { TOKEN_LOCALSTORAGE_KEY, USER_LOCALSTORAGE_KEY } from 'shared/const'
 
 export const loginByEmail = createAsyncThunk<
 	void,
@@ -20,6 +20,7 @@ export const loginByEmail = createAsyncThunk<
 		if (!token.data) {
 			throw new Error()
 		}
+		localStorage.setItem(TOKEN_LOCALSTORAGE_KEY, JSON.stringify(token.data))
 
 		const customUser = await extra.$axios.get<ICustomUser>(extra.API.auth.users.me)
 		if (!customUser.data) {

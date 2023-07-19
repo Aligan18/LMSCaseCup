@@ -1,27 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-
-import { IAdditionsDataSchema } from '../model/type/CreateAdditionSchema'
+import axios from 'axios'
 
 import { IThunkExtraArg } from 'app/providers/StoreProvider'
 
-import { IAdditionData, ICreateAdditionData } from 'entities/Lesson/types'
+import { ICreateRegistrationData } from 'entities/Authorization/types'
+import { ILectureData } from 'entities/Lesson/types'
+import { ICustomUser } from 'entities/Users/CustomUser'
 
-export const createLessonAdditionRequest = createAsyncThunk<
-	IAdditionData,
-	IAdditionsDataSchema,
+export const getLectureRequest = createAsyncThunk<
+	void,
+	number,
 	{ rejectValue: string; extra: IThunkExtraArg }
->('createLessonAdditionRequest', async (addition, { extra, dispatch, rejectWithValue }) => {
+>('GetLecture', async (id, { extra, rejectWithValue, dispatch }) => {
 	try {
-		const response = await extra.$axios.post<IAdditionData>(
-			extra.API.lectures.additions.create,
-			addition,
-			{
-				headers: {
-					'Content-Type': 'multipart/form-data',
-				},
-			},
-		)
-		return response.data
+		const response = await extra.$axios.get<ILectureData>(extra.API.lectures.retrieve + id)
+		console.log(response.data)
 	} catch (error: any) {
 		switch (error.request.status) {
 			case 400: {
@@ -34,6 +27,8 @@ export const createLessonAdditionRequest = createAsyncThunk<
 			}
 			case 0:
 				return rejectWithValue('Сервер не отвечает, попробуйте позже')
+			case 401:
+				return rejectWithValue('Вы не авторизованы')
 
 			default:
 				return rejectWithValue('Что то пошло не так, попробуйте позже')
