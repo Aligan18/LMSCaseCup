@@ -21,10 +21,10 @@ export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 	const error = useSelector(getCreateCourseError)
 	const successful = useSelector(getCreateCourseSuccessful)
 	const dispatch = useAppDispatch()
-	const [image, setImage] = useState<File | undefined>(undefined)
+	const [image, setImage] = useState<File | undefined | null>(undefined)
 
 	const onSubmit: SubmitHandler<ICreateCourseData> = (formData: ICreateCourseData, event) => {
-		if (image !== undefined) {
+		if (image) {
 			event?.preventDefault()
 			formData.image = image
 			console.log(formData)
@@ -53,18 +53,18 @@ export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 				maxLength: 80,
 			},
 		},
-		{
-			type: 'selector',
-			options: [
-				{ title: '1 ' + `${t('mesyac')}`, value: '1' },
-				{ title: '2 ' + `${t('mesyaca-0')}`, value: '2' },
-			],
-			title: `${t('dlitelnost-kursa')}`,
-			key: 'course_duration',
-			rules: {
-				required: true,
-			},
-		},
+		// {
+		// 	type: 'selector',
+		// 	options: [
+		// 		{ title: '1 ' + `${t('mesyac')}`, value: '1' },
+		// 		{ title: '2 ' + `${t('mesyaca-0')}`, value: '2' },
+		// 	],
+		// 	title: `${t('dlitelnost-kursa')}`,
+		// 	key: 'course_duration',
+		// 	rules: {
+		// 		required: true,
+		// 	},
+		// },
 		{
 			type: 'selector',
 			options: [

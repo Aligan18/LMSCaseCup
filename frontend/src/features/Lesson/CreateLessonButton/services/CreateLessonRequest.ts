@@ -10,6 +10,8 @@ import {
 	ILessonContentData,
 } from 'entities/Lesson/types'
 
+import { serverErrors } from 'shared/lib'
+
 interface ICreateLessonProps {
 	about: ICreateLessonAboutData
 	contents: ICreateLessonContentData[]
@@ -41,6 +43,6 @@ export const createLessonRequest = createAsyncThunk<
 
 		await extra.$axios.post<ILessonContentData>(extra.API.lectures.create, lectureData)
 	} catch (error) {
-		rejectWithValue('Ошибка ')
+		return rejectWithValue(serverErrors(error))
 	}
 })

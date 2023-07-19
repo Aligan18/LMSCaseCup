@@ -10,8 +10,10 @@ import { lessonContentActions } from 'features/Lesson/CreateLessonContentForm'
 import { ICreateRegistrationData } from 'entities/Authorization/types'
 import { ILectureData } from 'entities/Lesson/types'
 import { ICustomUser } from 'entities/Users/CustomUser'
+import { serverErrors } from 'shared/lib'
 
 import { data } from 'shared/ui/VerticalBarChart/VerticalBarChart'
+
 
 export const getLectureRequest = createAsyncThunk<
 	void,
@@ -25,22 +27,6 @@ export const getLectureRequest = createAsyncThunk<
 		//dispatch(createLessonAboutActions.change_about_lesson(about))
 		dispatch(createLessonAdditionActions.initial_addition(response.data.additions))
 	} catch (error: any) {
-		switch (error.request.status) {
-			case 400: {
-				const errorData = error.response.data
-				let errorMessage = ''
-				for (const key in errorData) {
-					errorMessage = errorData[key]
-				}
-				return rejectWithValue(errorMessage)
-			}
-			case 0:
-				return rejectWithValue('Сервер не отвечает, попробуйте позже')
-			case 401:
-				return rejectWithValue('Вы не авторизованы')
-
-			default:
-				return rejectWithValue('Что то пошло не так, попробуйте позже')
-		}
+		return rejectWithValue(serverErrors(error))
 	}
 })

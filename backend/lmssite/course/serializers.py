@@ -13,7 +13,6 @@ class CreateCourseSerializers(serializers.ModelSerializer):
 
 
 class CourseSerializers(serializers.ModelSerializer):
-    category = CategorySerializers(read_only=True)
     teacher = AboutTeachersSerializers(many=True, read_only=True)
 
     class Meta:

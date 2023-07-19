@@ -12,6 +12,7 @@ export interface IFormConstructorData {
 	title?: string
 	description?: string
 	rules?: IRegisterRules
+	defaultValue?: string | number
 }
 
 export interface IRegisterRules {

@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Controller } from 'react-hook-form'
+import { useEffect, useState } from 'react'
+import { Controller, DefaultValues, FieldValues, UseFormReset } from 'react-hook-form'
 
 import { rulesConstructor } from '../../lib/rulesConstructor/rulesConstructor'
 import { IConbineFormConstructor } from '../../types/FormConstructor'
@@ -13,9 +13,22 @@ export function RenderFormItem<T>({
 	register,
 	getValues,
 	watch,
+	reset,
 }: IRenderFormProps<T>) {
 	const [file, setFile] = useState<string>()
 	const rules = rulesConstructor(formItem.rules, watch)
+
+	useEffect(() => {
+		const defaultValue: Record<any, string | number | boolean | undefined> = {}
+
+		defaultValue[formItem.key] = formItem.defaultValue
+
+		console.log('defaultValue', defaultValue)
+		reset((formValues: any) => ({
+			...formValues,
+			...defaultValue,
+		}))
+	}, [formItem.defaultValue])
 
 	switch (formItem.type) {
 		case 'input':
@@ -86,4 +99,5 @@ interface IRenderFormProps<T> {
 	register: any
 	getValues: any
 	watch: any
+	reset: any
 }
