@@ -16,6 +16,7 @@ export const API = {
 			create: '/lectures-lesson/create/',
 		},
 		create: '/lectures/create/',
+		retrieve: '/lectures/id/',
 	},
 	students: {
 		id: '/students/id/',
