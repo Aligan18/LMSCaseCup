@@ -21,7 +21,8 @@ from file_tasks.views import FileTasksViewCreate, FileTasksViewList, FileTasksVi
     FileTasksAnswerViewRetrieve, FileTasksAnswerViewRetrieveUpdateDestroy
 from grades.views import GradesViewList, GradesOneStudentViewList, GradesViewRetrieve, GradesViewDestroy, \
     AttendanceForLecturesViewCreate, ChangeGradesForTaskViewUpdate
-from lectures.views import LecturesViewCreate, LecturesViewList, LecturesViewRetrieve, LecturesViewRetrieveUpdateDestroy
+from lectures.views import LecturesViewCreate, LecturesViewList, LecturesViewRetrieve, \
+    LecturesViewRetrieveUpdateDestroy, AdditionsViewCreate, LessonContentViewCreate
 from list_modules.views import ListModulesViewCreate, ListModulesViewList, ListModulesViewRetrieve, \
     ListModulesViewRetrieveUpdateDestroy, OnlyTasksListModulesViewList
 from students.views import StudentsViewAll, StudentsViewRetrieve, \
@@ -104,6 +105,8 @@ urlpatterns = [
     path('api/v1/grades/update/<int:pk>', ChangeGradesForTaskViewUpdate.as_view(), name="grades-update"),
     path('api/v1/grades/delete/<int:pk>', GradesViewDestroy.as_view(), name="grades-delete"),
 
+    path('api/v1/lectures-additions/create/', AdditionsViewCreate.as_view()),
+    path('api/v1/lectures-lesson/create/', LessonContentViewCreate.as_view()),
     path('api/v1/lectures/create/', LecturesViewCreate.as_view(), name="lectures-create"),
     path('api/v1/lectures/list/', LecturesViewList.as_view(), name="lectures-list"),  # нужно передавать /?course=<id>
     path('api/v1/lectures/id/<int:pk>', LecturesViewRetrieve.as_view(), name="lectures-id"),
