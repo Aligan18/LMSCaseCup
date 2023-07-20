@@ -11,6 +11,7 @@ import { updateCourseRequest } from 'features/Course/EditCourseForm/services/Upd
 import { createLessonAboutReducer } from 'features/Lesson/CreateLessonAboutForm'
 import { createLessonAdditionReducer } from 'features/Lesson/CreateLessonAdditionForm'
 import { lessonContentReducer } from 'features/Lesson/CreateLessonContentForm'
+import { CreateTicketReducer } from 'features/Ticket/CreateTicketForm'
 
 import { retrieveCourseDataReducer } from 'entities/Course/CourseData'
 import { customUserSliceReducer } from 'entities/Users/CustomUser'
@@ -31,8 +32,10 @@ export function createReduxStore(
 			customUser: customUserSliceReducer,
 			registrationForm: registrationFormSliceReducer,
 			createCourseForm: createCourseReducer,
+			createTicketForm: CreateTicketReducer,
 			retrieveCourseData: retrieveCourseDataReducer,
 			updateCourseData: UpdateCourseReducer,
+
 		},
 
 		devTools: __IS_DEV__,
