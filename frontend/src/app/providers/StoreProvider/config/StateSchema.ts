@@ -29,7 +29,6 @@ export interface IStateSchema {
 	listCourseData: IListCourseDataSchema
 	updateCourseData: IUpdateCourseSchema
 	createLesson: ICreateLessonSchema
-
 }
 
 export interface IThunkExtraArg {
