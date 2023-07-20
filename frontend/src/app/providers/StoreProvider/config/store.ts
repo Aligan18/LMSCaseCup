@@ -7,7 +7,6 @@ import { loginSliceReducer } from 'features/Authorization/LoginForm'
 import { registrationFormSliceReducer } from 'features/Authorization/RegistrationForm'
 import { createCourseReducer } from 'features/Course/CreateCourseForm'
 import { UpdateCourseReducer } from 'features/Course/EditCourseForm'
-import { updateCourseRequest } from 'features/Course/EditCourseForm/services/UpdateCourseRequest'
 import { createLessonAboutReducer } from 'features/Lesson/CreateLessonAboutForm'
 import { createLessonAdditionReducer } from 'features/Lesson/CreateLessonAdditionForm'
 import { createLessonSliceReducer } from 'features/Lesson/CreateLessonButton'
@@ -37,6 +36,7 @@ export function createReduxStore(
 			retrieveCourseData: retrieveCourseDataReducer,
 			updateCourseData: UpdateCourseReducer,
 			createLesson: createLessonSliceReducer,
+			listCourseData: listCourseDataReducer,
 		},
 
 		devTools: __IS_DEV__,
