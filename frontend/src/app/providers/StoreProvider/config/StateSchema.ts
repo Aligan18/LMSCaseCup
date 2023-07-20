@@ -6,6 +6,7 @@ import { IRegistrationSchema } from 'features/Authorization/RegistrationForm'
 import { ICreateCourseSchema } from 'features/Course/CreateCourseForm'
 import { IUpdateCourseSchema } from 'features/Course/EditCourseForm'
 import { ICreateAdditionSchema } from 'features/Lesson/CreateLessonAdditionForm'
+import { ICreateLessonSchema } from 'features/Lesson/CreateLessonButton'
 import { ILessonContentScheme } from 'features/Lesson/CreateLessonContentForm'
 
 import { IRetrieveCourseDataSchema } from 'entities/Course/CourseData'
@@ -24,6 +25,7 @@ export interface IStateSchema {
 	createCourseForm: ICreateCourseSchema
 	retrieveCourseData: IRetrieveCourseDataSchema
 	updateCourseData: IUpdateCourseSchema
+	createLesson: ICreateLessonSchema
 }
 
 export interface IThunkExtraArg {

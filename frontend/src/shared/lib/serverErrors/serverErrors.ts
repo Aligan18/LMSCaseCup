@@ -4,7 +4,7 @@ export const serverErrors = (error: any): string => {
 			const errorData = error.response.data
 			let errorMessage = ''
 			for (const key in errorData) {
-				errorMessage = errorData[key]
+				errorMessage = [String(key).toUpperCase(), errorData[key]].join(' : ')
 			}
 			return errorMessage
 		}

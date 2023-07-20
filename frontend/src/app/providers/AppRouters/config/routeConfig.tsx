@@ -4,6 +4,7 @@ import { GroupListPage } from 'pages/Admin/GroupListPage'
 import { TeacherRoomPage } from 'pages/Admin/TeacherRoomPage'
 import { ViewAnswerPage } from 'pages/Admin/ViewAnswerPage'
 import { ActivationPage } from 'pages/Authorization/ActivationPage'
+import { AfterRegistrationPage } from 'pages/Authorization/AfterRegistrationPage'
 import { AuthorizationPage } from 'pages/Authorization/AuthorizationPage'
 import { AboutCoursePage } from 'pages/Course/AboutCoursePage'
 import { CoursesPage } from 'pages/Course/CoursesPage'
@@ -16,7 +17,6 @@ import { NotFoundPage } from 'pages/NotFoundPage'
 import { CreateAnswerPage } from 'pages/Task/CreateAnswerPage'
 import { CreateTicketPage } from 'pages/Ticket/CreateTicketPage'
 import { TicketsPage } from 'pages/Ticket/TicketsPage'
-import { AfterRegistrationPage } from 'pages/Authorization/AfterRegistrationPage'
 
 export enum ERoutePath {
 	HOME = '/',
@@ -27,16 +27,25 @@ export enum ERoutePath {
 	LESSON = '/lesson/:id',
 	CREATE_COURSE = '/create_course',
 	CREATE_TICKET = '/create_ticket',
-	CREATE_LESSON = '/create_lesson',
+	CREATE_LESSON = '/course/:course_id/create_lesson',
 	EDIT_COURSE = '/edit_course/:id',
 	TEACHER_ROOM = '/teacher_room',
 	VIEW_ANSWER = '/view_answer/:id',
-	EDIT_LESSON = '/edit_lesson/:id',
+	EDIT_LESSON = '/course/:course_id/edit_lesson/:lesson_id',
 	GROUP_LIST = '/group_list/:id',
 	CREATE_ANSWER = '/create_answer/:id',
 	AUTHORIZATION = '/authorization',
 	ACTIVATION = '/activation',
 	AFTER_REGISTRATION = '/after_registration',
+}
+
+export type IEDIT_LESSON_Params = {
+	course_id: string
+	lesson_id: string
+}
+
+export type ICREATE_LESSON_Params = {
+	course_id: string
 }
 
 export const RouteConfig: Array<RouteProps> = [
