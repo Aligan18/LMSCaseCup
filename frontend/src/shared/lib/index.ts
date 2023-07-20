@@ -5,3 +5,5 @@ export { customCanvasBackgroundColor } from './pluginForChart/customCanvasBackgr
 export { doughnutBorderRadius } from './pluginForChart/doughnutBorderRadius'
 export { useAppDispatch } from './useAppDispatch/useAppDispatch'
 export { serverErrors } from './serverErrors/serverErrors'
+export { useBasePath } from './useBasePath/useBasePath'
+export { setParamsInPath } from './setParamsInPath/setParamsInPath'

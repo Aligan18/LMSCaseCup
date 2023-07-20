@@ -25,6 +25,7 @@ export const API = {
 		create: '/course/create/',
 		retrieve: '/course/id/',
 		update: '/course/update/',
+		list: '/course/list/',
 	},
 	ticket: {
 		create: '/student_ticket/create/',

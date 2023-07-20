@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import 'react-redux'
 import { Link, useParams } from 'react-router-dom'
@@ -6,23 +6,30 @@ import { Link, useParams } from 'react-router-dom'
 import classes from './EditCoursePage.module.scss'
 
 import { ERoutePath } from 'app/providers/AppRouters'
+import { ICREATE_LESSON_Params } from 'app/providers/AppRouters/config/routeConfig'
 
 import { BackButton } from 'features/BackButton'
 import { EditCourseForm } from 'features/Course/EditCourseForm'
 
 import { retrieveCourseRequest } from 'entities/Course/CourseData'
 
-import { classnames as cn, useAppDispatch } from 'shared/lib'
+import { classnames as cn, setParamsInPath, useAppDispatch } from 'shared/lib'
 import { Button, Header } from 'shared/ui'
 
 export const EditCoursePage = ({ styles }: IEditCoursePageProps) => {
 	const { t } = useTranslation('course')
 	const dispatch = useAppDispatch()
 	const { id } = useParams()
+	const [linkParams, setLinkParams] = useState<ICREATE_LESSON_Params>({ course_id: 'null' })
 
 	useEffect(() => {
 		console.log(location)
 		dispatch(retrieveCourseRequest(Number(id)))
+		if (id) {
+			setLinkParams({
+				course_id: id,
+			})
+		}
 	}, [])
 
 	return (
@@ -33,7 +40,7 @@ export const EditCoursePage = ({ styles }: IEditCoursePageProps) => {
 					<Header
 						title={`${t('redaktirovanie-kursa')}`}
 						buttons={
-							<Link to={ERoutePath.CREATE_LESSON}>
+							<Link to={setParamsInPath(ERoutePath.CREATE_LESSON, linkParams)}>
 								<Button
 									variation="primary"
 									styles={classes.button}
@@ -46,10 +53,8 @@ export const EditCoursePage = ({ styles }: IEditCoursePageProps) => {
 					/>
 				</div>
 				<div className={classes.left_block}>
-
 					<EditCourseForm />
 				</div>
-
 			</div>
 		</div>
 	)

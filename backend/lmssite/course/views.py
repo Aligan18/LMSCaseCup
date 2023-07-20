@@ -29,7 +29,7 @@ class CourseViewList(generics.ListAPIView):  # все  курсы
     filter_backends = (DjangoFilterBackend, OrderingFilter)
     filterset_class = Filter
     ordering_fields = ["rating"]
-    permission_classes = [AllowAny]
+
     pagination_class = ListPagination
 
 

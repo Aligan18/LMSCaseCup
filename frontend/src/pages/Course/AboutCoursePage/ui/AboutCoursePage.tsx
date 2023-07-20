@@ -9,6 +9,7 @@ import { Htag, TextBox } from 'shared/ui'
 const AboutCoursePage = ({ styles }: IAboutCoursePageProps) => {
 	const data = {
 		id: 1,
+		image: 'sdfsd',
 		title: 'Python-разработчик с нуля  ',
 		description:
 			'Разработчик на Python создает сайты и приложения, которыми вы пользуетесь каждый день.',

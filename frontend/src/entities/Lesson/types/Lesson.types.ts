@@ -14,6 +14,7 @@ export interface ILectureData {
 	video: string
 	lesson: ILessonContentData[]
 	additions: IAdditionData[]
+	course: number
 }
 export interface ICreateLectureData {
 	description: string

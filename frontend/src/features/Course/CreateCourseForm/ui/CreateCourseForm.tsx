@@ -40,7 +40,7 @@ export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 			key: 'title',
 			rules: {
 				required: true,
-				maxLength: 20,
+				maxLength: 35,
 			},
 		},
 		{
@@ -50,7 +50,7 @@ export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 			key: 'description',
 			rules: {
 				required: true,
-				maxLength: 80,
+				maxLength: 120,
 			},
 		},
 		// {
@@ -75,6 +75,15 @@ export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 			key: 'category',
 			rules: {
 				required: true,
+			},
+		},
+		{
+			type: 'input',
+			title: 'Цена',
+			key: 'price',
+			rules: {
+				required: true,
+				pattern: 'number',
 			},
 		},
 	]

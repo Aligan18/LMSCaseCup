@@ -10,6 +10,7 @@ import { Header, YouTubeVideo } from 'shared/ui'
 export const FullLesson = ({ styles }: IFullLessonProps) => {
 	const data: ILectureData = {
 		id: 1,
+		course: 1,
 		number: 5,
 		description: 'Введение в программирование',
 		title: 'Введение в программирование',
@@ -26,7 +27,7 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 				order: 1,
 				title: 'Python Install',
 				type: 'text',
-				content: `Many PCs and Macs will have python already installed.To check if you have python installed on a Windows PC, 
+				content: `Many PCs and Macs will have python already installed.To check if you have python installed on a Windows PC,
 					search in the start bar for Python or run the following on the Command Line (cmd.exe):
 					To play your video on a web page, do the following:
 
