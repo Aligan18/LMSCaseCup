@@ -9,6 +9,7 @@ import { createCourseReducer } from 'features/Course/CreateCourseForm'
 import { createLessonAboutReducer } from 'features/Lesson/CreateLessonAboutForm'
 import { createLessonAdditionReducer } from 'features/Lesson/CreateLessonAdditionForm'
 import { lessonContentReducer } from 'features/Lesson/CreateLessonContentForm'
+import { CreateTicketReducer } from 'features/Ticket/CreateTicketForm'
 
 import { customUserSliceReducer } from 'entities/Users/CustomUser'
 
@@ -27,6 +28,7 @@ export function createReduxStore(
 			customUser: customUserSliceReducer,
 			registrationForm: registrationFormSliceReducer,
 			createCourseForm: createCourseReducer,
+			createTicketForm: CreateTicketReducer,
 		},
 
 		devTools: __IS_DEV__,

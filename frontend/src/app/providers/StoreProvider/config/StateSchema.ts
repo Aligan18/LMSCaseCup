@@ -6,6 +6,7 @@ import { IRegistrationSchema } from 'features/Authorization/RegistrationForm'
 import { ICreateCourseSchema } from 'features/Course/CreateCourseForm'
 import { ICreateAdditionSchema } from 'features/Lesson/CreateLessonAdditionForm'
 import { ILessonContentScheme } from 'features/Lesson/CreateLessonContentForm'
+import { ICreateTicketSchema } from 'features/Ticket/CreateTicketForm/model/type/CreateTicketSchema'
 
 import { ICreateLessonAboutData, ILessonContentData } from 'entities/Lesson/types'
 import { ICustomUserSchema } from 'entities/Users/CustomUser'
@@ -20,6 +21,7 @@ export interface IStateSchema {
 	customUser: ICustomUserSchema
 	registrationForm: IRegistrationSchema
 	createCourseForm: ICreateCourseSchema
+	createTicketForm: ICreateTicketSchema
 }
 
 export interface IThunkExtraArg {
