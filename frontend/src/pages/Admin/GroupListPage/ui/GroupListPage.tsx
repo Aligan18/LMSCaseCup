@@ -41,6 +41,7 @@ const GroupListPage = ({ styles }: IGroupListPageProps) => {
 	const courseData: IAboutCourseData = {
 		id: 1,
 		description: '',
+		image: 'asdfsd',
 		price: 1,
 		title: 'Название Курса',
 	}

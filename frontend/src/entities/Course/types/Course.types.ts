@@ -5,6 +5,7 @@ export interface IAboutCourseData {
 	title: string
 	description: string
 	price: number
+	image: string
 }
 
 export interface ICreateCourseData {
@@ -13,6 +14,7 @@ export interface ICreateCourseData {
 	description: string
 	course_duration: number
 	category: number
+	price: number
 }
 
 export type IUpdateCourseData = Partial<ICreateCourseData>
@@ -28,6 +30,7 @@ export interface ICourseData {
 	course_duration: number
 	category: number
 	rating: number
+	price: number
 }
 
 interface ICreateCourseKeys {

@@ -18,7 +18,7 @@ export interface IFormConstructorData {
 export interface IRegisterRules {
 	required?: boolean
 	maxLength?: number
-	pattern?: 'email'
+	pattern?: 'email' | 'number'
 	minLength?: number
 	validate?: string
 }

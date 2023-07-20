@@ -13,6 +13,7 @@ class Course(models.Model):
     category = models.ForeignKey("categories.Category", on_delete=models.PROTECT, null=True, blank=True)
     rating = models.IntegerField(default=0)
     image = models.ImageField(upload_to='images/', null=True, blank=True)
+    price = models.IntegerField(default=0)
     student = models.ManyToManyField("students.Students", through="students.CourseStudent")
     teacher = models.ManyToManyField("teachers.Teachers", through="teachers.CourseTeacher")
 

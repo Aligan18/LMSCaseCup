@@ -18,7 +18,11 @@ export const CourseCard = ({ styles, data, buttons, price_view = true }: ICourse
 	return (
 		<div className={cn(classes.Card, [styles])}>
 			<div className={classes.image}>
-				<img />
+				<img
+					className={classes.image}
+					src={data.image}
+					alt={data.title}
+				/>
 			</div>
 
 			<div className={classes.title}>
