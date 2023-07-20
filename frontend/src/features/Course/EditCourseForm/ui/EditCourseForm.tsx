@@ -44,7 +44,7 @@ export const EditCourseForm = ({ styles }: IEditCourseFormProps) => {
 			key: 'title',
 			rules: {
 				required: true,
-				maxLength: 20,
+				maxLength: 35,
 			},
 			defaultValue: courseData?.title,
 		},
@@ -55,7 +55,7 @@ export const EditCourseForm = ({ styles }: IEditCourseFormProps) => {
 			key: 'description',
 			rules: {
 				required: true,
-				maxLength: 80,
+				maxLength: 120,
 			},
 			defaultValue: courseData?.description,
 		},
@@ -72,6 +72,16 @@ export const EditCourseForm = ({ styles }: IEditCourseFormProps) => {
 				required: true,
 			},
 			defaultValue: courseData?.category,
+		},
+		{
+			type: 'input',
+			title: 'Цена',
+			key: 'price',
+			rules: {
+				required: true,
+				pattern: 'number',
+			},
+			defaultValue: courseData?.price,
 		},
 	]
 

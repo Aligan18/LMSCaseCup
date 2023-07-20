@@ -10,7 +10,7 @@ import { ICreateLessonSchema } from 'features/Lesson/CreateLessonButton'
 import { ILessonContentScheme } from 'features/Lesson/CreateLessonContentForm'
 import { ICreateTicketSchema } from 'features/Ticket/CreateTicketForm/model/type/CreateTicketSchema'
 
-import { IRetrieveCourseDataSchema } from 'entities/Course/CourseData'
+import { IListCourseDataSchema, IRetrieveCourseDataSchema } from 'entities/Course/CourseData'
 import { ICreateLessonAboutData, ILessonContentData } from 'entities/Lesson/types'
 import { ICustomUserSchema } from 'entities/Users/CustomUser'
 
@@ -26,6 +26,7 @@ export interface IStateSchema {
 	createCourseForm: ICreateCourseSchema
 	createTicketForm: ICreateTicketSchema
 	retrieveCourseData: IRetrieveCourseDataSchema
+	listCourseData: IListCourseDataSchema
 	updateCourseData: IUpdateCourseSchema
 	createLesson: ICreateLessonSchema
 

@@ -20,6 +20,11 @@ export const rulesConstructor = (
 					value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
 					message: 'Не верный Email адрес',
 				}
+			case 'number':
+				return {
+					value: /^(0|[1-9]\d*)(\.\d+)?$/,
+					message: 'Поле должно содержать только цифры',
+				}
 		}
 	}
 
