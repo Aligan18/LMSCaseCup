@@ -27,6 +27,9 @@ export const API = {
 		update: '/course/update/',
 		list: '/course/list/',
 	},
+	ticket: {
+		create: '/student_ticket/create/',
+	},
 }
 
 export type IAPI = typeof API

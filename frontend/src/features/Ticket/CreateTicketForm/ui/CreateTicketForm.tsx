@@ -1,20 +1,29 @@
 import { SubmitHandler } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 
+import { getCreateTicketError } from '../model/selectors/getCreateTicketError'
+import { getCreateTicketLoading } from '../model/selectors/getCreateTicketLoading'
+import { getCreateTicketSuccessful } from '../model/selectors/getCreateTicketSuccessful'
+import { createTicketRequest } from '../services/CreateTicketRequest'
 import classes from './CreateTicketForm.module.scss'
 
 import { ICreateTicketData, ITicketFormConstructor } from 'entities/Ticket/types'
 
-import { classnames as cn } from 'shared/lib'
+import { classnames as cn, useAppDispatch } from 'shared/lib'
 import { FormConstructor } from 'shared/ui'
 
 export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 	const { t } = useTranslation('ticket')
+	const isLoading = useSelector(getCreateTicketLoading)
+	const error = useSelector(getCreateTicketError)
+	const successful = useSelector(getCreateTicketSuccessful)
+	const dispatch = useAppDispatch()
 
 	const onSubmit: SubmitHandler<ICreateTicketData> = (formData: ICreateTicketData, event) => {
 		event?.preventDefault()
-
 		console.log(formData)
+		dispatch(createTicketRequest(formData))
 	}
 
 	const data: ITicketFormConstructor[] = [
@@ -55,14 +64,13 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 		{
 			type: 'file-input',
 			key: 'file',
-			rules: {
-				required: true,
-			},
 		},
 	]
 	return (
 		<div className={cn(classes.CreateTicketForm, [styles])}>
 			<FormConstructor<ICreateTicketData>
+				serverError={error}
+				isLoading={isLoading}
 				onSubmit={onSubmit}
 				data={data}
 				button={`${t('otpravit-zayavku-0')}`}

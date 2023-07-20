@@ -81,8 +81,8 @@
 			"  },\r",
 			"});\r",
 			"\r",
-			"export const { actions: ${TM_FILENAME_BASE}SliceActions } = ${TM_FILENAME_BASE};\r",
-			"export const { reducer: ${TM_FILENAME_BASE}SliceReducer } = ${TM_FILENAME_BASE};\r",
+			"export const { actions: ${TM_FILENAME_BASE}Actions } = ${TM_FILENAME_BASE};\r",
+			"export const { reducer: ${TM_FILENAME_BASE}Reducer } = ${TM_FILENAME_BASE};\r",
 			""
 		]
 	},
