@@ -1,5 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
+import { ERoutePath } from 'app/providers/AppRouters'
+import { IEDIT_LESSON_Params } from 'app/providers/AppRouters/config/routeConfig'
 import { IThunkExtraArg } from 'app/providers/StoreProvider'
 
 import {
@@ -7,10 +9,11 @@ import {
 	ICreateLectureData,
 	ICreateLessonAboutData,
 	ICreateLessonContentData,
+	ILectureData,
 	ILessonContentData,
 } from 'entities/Lesson/types'
 
-import { serverErrors } from 'shared/lib'
+import { serverErrors, setParamsInPath } from 'shared/lib'
 
 interface ICreateLessonProps {
 	about: ICreateLessonAboutData
@@ -41,7 +44,15 @@ export const createLessonRequest = createAsyncThunk<
 			lesson: contents_id,
 		}
 
-		await extra.$axios.post<ILessonContentData>(extra.API.lectures.create, lectureData)
+		const response = await extra.$axios.post<ILectureData>(
+			extra.API.lectures.create,
+			lectureData,
+		)
+		const params: IEDIT_LESSON_Params = {
+			course_id: String(response.data.course),
+			lesson_id: String(response.data.id),
+		}
+		extra.navigate && extra.navigate(setParamsInPath(ERoutePath.EDIT_LESSON, params))
 	} catch (error) {
 		return rejectWithValue(serverErrors(error))
 	}

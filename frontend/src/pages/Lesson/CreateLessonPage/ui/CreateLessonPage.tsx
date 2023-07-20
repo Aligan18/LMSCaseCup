@@ -1,46 +1,42 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
 import classes from './CreateLessonPage.module.scss'
 
-import { ERoutePath } from 'app/providers/AppRouters'
+import { IEDIT_LESSON_Params } from 'app/providers/AppRouters/config/routeConfig'
 
 import { LessonConstructor } from 'widgets/Lesson/LessonConstructor'
 import { LessonFormSteps } from 'widgets/Lesson/LessonFormSteps'
 
 import { BackButton } from 'features/BackButton'
-import { createLessonAboutActions } from 'features/Lesson/CreateLessonAboutForm'
-import { createLessonAdditionActions } from 'features/Lesson/CreateLessonAdditionForm'
-import { CreateLessonButton } from 'features/Lesson/CreateLessonButton'
-import { lessonContentActions } from 'features/Lesson/CreateLessonContentForm'
+import {
+	CreateLessonButton,
+	getCreateLessonError,
+	getCreateLessonLoading,
+} from 'features/Lesson/CreateLessonButton'
 
 import { getLectureRequest } from 'entities/Lecture'
-import { ILectureData } from 'entities/Lesson/types'
 
-import { classnames as cn, deleteRouteId, useAppDispatch } from 'shared/lib'
-import { Header } from 'shared/ui'
+import { classnames as cn, useAppDispatch } from 'shared/lib'
+import { ErrorText, Header } from 'shared/ui'
 
 const CreateLessonPage = ({ styles }: ICreateLessonPageProps) => {
 	const { t } = useTranslation('admin')
 	const [isEditor, setIsEditor] = useState(false)
+	const error = useSelector(getCreateLessonError)
+	const isLoading = useSelector(getCreateLessonLoading)
 	//const data = useSelector()
+	const { course_id, lesson_id } = useParams<IEDIT_LESSON_Params>()
 	const dispatch = useAppDispatch()
-	const location = useLocation()
 
 	useEffect(() => {
-		if (deleteRouteId(location.pathname) === deleteRouteId(ERoutePath.EDIT_LESSON)) {
+		if (course_id && lesson_id) {
 			setIsEditor(true)
-			// dispatch(lessonContentActions.change_sort_content(data.lesson))
-			// dispatch(createLessonAboutActions.change_about_lesson(data))
-			//dispatch(createLessonAdditionActions.)
-
-			const id = Number(location.pathname.split('/').pop())
-
-			dispatch(getLectureRequest(id))
+			dispatch(getLectureRequest(Number(lesson_id)))
 		}
-	}, [])
+	}, [course_id, lesson_id])
 
 	return (
 		<div className={cn(classes.CreateLessonPage, [styles])}>
@@ -57,6 +53,7 @@ const CreateLessonPage = ({ styles }: ICreateLessonPageProps) => {
 						buttons={<CreateLessonButton />}
 					/>
 				)}
+				{error && <ErrorText>{error}</ErrorText>}
 				<LessonFormSteps />
 			</div>
 			<div className={classes.lesson}>

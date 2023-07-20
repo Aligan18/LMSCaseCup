@@ -10,6 +10,7 @@ import { UpdateCourseReducer } from 'features/Course/EditCourseForm'
 import { updateCourseRequest } from 'features/Course/EditCourseForm/services/UpdateCourseRequest'
 import { createLessonAboutReducer } from 'features/Lesson/CreateLessonAboutForm'
 import { createLessonAdditionReducer } from 'features/Lesson/CreateLessonAdditionForm'
+import { createLessonSliceReducer } from 'features/Lesson/CreateLessonButton'
 import { lessonContentReducer } from 'features/Lesson/CreateLessonContentForm'
 import { CreateTicketReducer } from 'features/Ticket/CreateTicketForm'
 
@@ -35,6 +36,7 @@ export function createReduxStore(
 			createTicketForm: CreateTicketReducer,
 			retrieveCourseData: retrieveCourseDataReducer,
 			updateCourseData: UpdateCourseReducer,
+			createLesson: createLessonSliceReducer,
 
 		},
 
