@@ -26,6 +26,9 @@ export const API = {
 		retrieve: '/course/id/',
 		update: '/course/update/',
 	},
+	ticket: {
+		create: '/student_ticket/create/',
+	},
 }
 
 export type IAPI = typeof API
