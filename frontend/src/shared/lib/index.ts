@@ -4,3 +4,4 @@ export { getRightLinkForYouTube } from './getYouTubeLinkForPlayer/getRightLinkFo
 export { customCanvasBackgroundColor } from './pluginForChart/customCanvasBackgroundColor'
 export { doughnutBorderRadius } from './pluginForChart/doughnutBorderRadius'
 export { useAppDispatch } from './useAppDispatch/useAppDispatch'
+export { serverErrors } from './serverErrors/serverErrors'

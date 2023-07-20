@@ -23,6 +23,8 @@ export const API = {
 	},
 	course: {
 		create: '/course/create/',
+		retrieve: '/course/id/',
+		update: '/course/update/',
 	},
 	ticket: {
 		create: '/student_ticket/create/',

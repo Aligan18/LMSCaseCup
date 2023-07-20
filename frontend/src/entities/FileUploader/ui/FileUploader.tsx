@@ -6,18 +6,27 @@ import classes from './FileUploader.module.scss'
 import { classnames as cn } from 'shared/lib'
 import { ErrorText, Htag, Icon, UploadFile } from 'shared/ui'
 
-export const FileUploader = ({ styles, setImage, image }: IFileUploaderProps) => {
+export const FileUploader = ({ styles, setImage, image, initialImage }: IFileUploaderProps) => {
 	const [error, setImageError] = useState<boolean>(false)
 	const [imageSrc, setImageScr] = useState('')
 	const { t } = useTranslation('course')
 	const handleClick = (event: BaseSyntheticEvent) => {
+		event.preventDefault()
 		setImage && setImage(event.target.files[0])
 	}
 
 	useEffect(() => {
+		if (initialImage) {
+			setImageScr(initialImage)
+			setImageError(false)
+			setImage && setImage(null)
+		}
+	}, [initialImage])
+
+	useEffect(() => {
 		if (image !== undefined) {
 			setImageError(false)
-			setImageScr(URL.createObjectURL(image))
+			image && setImageScr(URL.createObjectURL(image))
 		} else {
 			setImageError(true)
 		}
@@ -35,7 +44,7 @@ export const FileUploader = ({ styles, setImage, image }: IFileUploaderProps) =>
 				</Htag>
 			</div>
 			<div className={classes.bottom_block}>
-				{image && (
+				{imageSrc && (
 					<div className={classes.img_wrapper}>
 						<img
 							className={classes.img}
@@ -44,7 +53,7 @@ export const FileUploader = ({ styles, setImage, image }: IFileUploaderProps) =>
 					</div>
 				)}
 				<div></div>
-				{!image && (
+				{!imageSrc && (
 					<div className={classes.file_icon}>
 						<Icon
 							variation={'inverted-secondary'}
@@ -65,7 +74,8 @@ export const FileUploader = ({ styles, setImage, image }: IFileUploaderProps) =>
 
 interface IFileUploaderProps {
 	styles?: string
-	setImage?: Dispatch<SetStateAction<File | undefined>>
+	setImage?: Dispatch<SetStateAction<File | undefined | null>>
 	error?: boolean
-	image?: File | undefined
+	image?: File | undefined | null
+	initialImage?: string
 }

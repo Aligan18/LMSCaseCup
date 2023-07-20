@@ -6,6 +6,8 @@ import { IThunkExtraArg } from 'app/providers/StoreProvider'
 
 import { IAdditionData, ICreateAdditionData } from 'entities/Lesson/types'
 
+import { serverErrors } from 'shared/lib'
+
 export const createLessonAdditionRequest = createAsyncThunk<
 	IAdditionData,
 	IAdditionsDataSchema,
@@ -23,20 +25,6 @@ export const createLessonAdditionRequest = createAsyncThunk<
 		)
 		return response.data
 	} catch (error: any) {
-		switch (error.request.status) {
-			case 400: {
-				const errorData = error.response.data
-				let errorMessage = ''
-				for (const key in errorData) {
-					errorMessage = errorData[key]
-				}
-				return rejectWithValue(errorMessage)
-			}
-			case 0:
-				return rejectWithValue('Сервер не отвечает, попробуйте позже')
-
-			default:
-				return rejectWithValue('Что то пошло не так, попробуйте позже')
-		}
+		return rejectWithValue(serverErrors(error))
 	}
 })

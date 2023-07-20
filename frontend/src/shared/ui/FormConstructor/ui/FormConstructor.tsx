@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 import { IConbineFormConstructor } from '../types/FormConstructor'
@@ -16,6 +16,7 @@ export function FormConstructor<T extends FieldValues>({
 	disabled,
 	isLoading,
 	serverError,
+
 	successful,
 }: IFormConstructorProps<T>) {
 	const {
@@ -23,6 +24,7 @@ export function FormConstructor<T extends FieldValues>({
 		handleSubmit,
 		control,
 		getValues,
+		reset,
 		watch,
 		formState: { errors },
 	} = useForm<T>({ mode: 'onChange' })
@@ -53,6 +55,7 @@ export function FormConstructor<T extends FieldValues>({
 
 						{
 							<RenderFormItem<T>
+								reset={reset}
 								watch={watch}
 								getValues={getValues}
 								formItem={formItem}

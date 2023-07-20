@@ -7,7 +7,7 @@ import { classnames as cn } from 'shared/lib'
 
 export const SelectOption = forwardRef(
 	(
-		{ styles, options = [], ...props }: ISelectOptionProps,
+		{ styles, defaultVal, options = [], ...props }: ISelectOptionProps,
 		ref: ForwardedRef<HTMLSelectElement>,
 	) => {
 		return (
@@ -20,9 +20,7 @@ export const SelectOption = forwardRef(
 					className={classes.option}
 					key={'empty'}
 					value={''}
-				>
-					{''}
-				</option>
+				></option>
 				{options.map((option) => (
 					<option
 						className={classes.option}
@@ -41,4 +39,5 @@ interface ISelectOptionProps
 	extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
 	styles?: string
 	options: IOptions[]
+	defaultVal?: string | number
 }

@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 import { IToken } from 'entities/Authorization/types'
-import { ICustomUserSchema } from 'entities/Users/CustomUser'
 
 import { TOKEN_LOCALSTORAGE_KEY } from 'shared/const'
 

@@ -1,20 +1,29 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import 'react-redux'
+import { Link, useParams } from 'react-router-dom'
 
 import classes from './EditCoursePage.module.scss'
 
 import { ERoutePath } from 'app/providers/AppRouters'
 
 import { BackButton } from 'features/BackButton'
-import { CreateCourseForm } from 'features/Course/CreateCourseForm'
+import { EditCourseForm } from 'features/Course/EditCourseForm'
 
-import { FileUploader } from 'entities/FileUploader'
+import { retrieveCourseRequest } from 'entities/Course/CourseData'
 
-import { classnames as cn } from 'shared/lib'
+import { classnames as cn, useAppDispatch } from 'shared/lib'
 import { Button, Header } from 'shared/ui'
 
 export const EditCoursePage = ({ styles }: IEditCoursePageProps) => {
 	const { t } = useTranslation('course')
+	const dispatch = useAppDispatch()
+	const { id } = useParams()
+
+	useEffect(() => {
+		console.log(location)
+		dispatch(retrieveCourseRequest(Number(id)))
+	}, [])
 
 	return (
 		<div className={cn(classes.EditCoursePage, [styles])}>
@@ -37,9 +46,10 @@ export const EditCoursePage = ({ styles }: IEditCoursePageProps) => {
 					/>
 				</div>
 				<div className={classes.left_block}>
-					<CreateCourseForm />
+
+					<EditCourseForm />
 				</div>
-				<div className={classes.right_block}></div>
+
 			</div>
 		</div>
 	)
