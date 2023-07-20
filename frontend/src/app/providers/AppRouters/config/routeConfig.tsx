@@ -17,6 +17,7 @@ import { CreateAnswerPage } from 'pages/Task/CreateAnswerPage'
 import { CreateTicketPage } from 'pages/Ticket/CreateTicketPage'
 import { TicketsPage } from 'pages/Ticket/TicketsPage'
 import { AfterRegistrationPage } from 'pages/Authorization/AfterRegistrationPage'
+import { CreateTicketAnswerPage } from 'pages/Ticket/CreateTicketAnswerPage'
 
 export enum ERoutePath {
 	HOME = '/',
@@ -27,6 +28,7 @@ export enum ERoutePath {
 	LESSON = '/lesson/:id',
 	CREATE_COURSE = '/create_course',
 	CREATE_TICKET = '/create_ticket',
+	CREATE_TICKET_ANSWER = '/create_ticket_answer',
 	CREATE_LESSON = '/create_lesson',
 	EDIT_COURSE = '/edit_course/:id',
 	TEACHER_ROOM = '/teacher_room',
@@ -71,6 +73,10 @@ export const RouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.CREATE_TICKET,
 		element: <CreateTicketPage />,
+	},
+	{
+		path: ERoutePath.CREATE_TICKET_ANSWER,
+		element: <CreateTicketAnswerPage />,
 	},
 	{
 		path: ERoutePath.CREATE_LESSON,

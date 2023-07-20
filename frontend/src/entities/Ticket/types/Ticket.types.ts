@@ -20,3 +20,15 @@ interface ICreateTicketKeys {
 }
 
 export interface ITicketFormConstructor extends IFormConstructorData, ICreateTicketKeys {}
+
+export interface ICreateTicketAnswerData {
+	answer: string
+}
+
+interface ICreateTicketAnswerKeys {
+	key: keyof ICreateTicketAnswerData
+}
+
+export interface ITicketAnswerFormConstructor
+	extends IFormConstructorData,
+		ICreateTicketAnswerKeys {}
