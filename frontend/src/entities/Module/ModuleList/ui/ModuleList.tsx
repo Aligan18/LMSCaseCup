@@ -14,9 +14,8 @@ import { IAboutLessonData } from 'entities/Lesson/types'
 import { ModuleListItem } from 'entities/Module/ModuleListItem'
 import { IModuleData } from 'entities/Module/types'
 
-import variables from 'shared/const/ScssVariables/variables.module.scss'
 import { classnames as cn, swapOrderForDragAndDrop, useDragAndDropOrdering } from 'shared/lib'
-import { DeleteZone, DragAndDropDiv, List } from 'shared/ui'
+import { AnimatedButton, Button, DeleteZone, DragAndDropDiv, List } from 'shared/ui'
 import { AccordionWrapper } from 'shared/ui'
 
 export const ModuleList = ({
@@ -117,20 +116,37 @@ export const ModuleList = ({
 								items={module.lesson}
 								variation={'list'}
 								renderItem={(data: IAboutLessonData) => (
-									<DragAndDropDiv
-										dropHandler={lessonDrag.dropHandler}
-										endHandler={lessonDrag.endHandler}
-										leaveHandler={lessonDrag.leaveHandler}
-										overHandler={lessonDrag.overHandler}
-										startHandler={lessonDrag.startHandler}
-										childrenId={lesson_id}
-										item={data}
-									>
-										<LessonListItem
-											data={data}
-											key={data.id}
-										/>
-									</DragAndDropDiv>
+									<div className={classes.list_wrapper}>
+										<DragAndDropDiv
+											dropHandler={lessonDrag.dropHandler}
+											endHandler={lessonDrag.endHandler}
+											leaveHandler={lessonDrag.leaveHandler}
+											overHandler={lessonDrag.overHandler}
+											startHandler={lessonDrag.startHandler}
+											childrenId={lesson_id}
+											item={data}
+										>
+											<LessonListItem
+												hasButton={false}
+												data={data}
+												key={data.id}
+											/>
+										</DragAndDropDiv>
+										<div className={classes.buttons}>
+											<AnimatedButton
+												variation="clear"
+												icon={'right'}
+											>
+												Пререйти
+											</AnimatedButton>
+											<AnimatedButton
+												variation="clear"
+												icon={'edit'}
+											>
+												Редактировать
+											</AnimatedButton>
+										</div>
+									</div>
 								)}
 							/>
 						}
