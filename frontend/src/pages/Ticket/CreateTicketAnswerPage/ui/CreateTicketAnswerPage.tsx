@@ -10,33 +10,56 @@ import { Button, CircleForIcon, Header, Hr, Htag, Icon, TextBox } from 'shared/u
 
 export const CreateTicketAnswerPage = ({ styles }: ICreateTicketAnswerPageProps) => {
 	const { t } = useTranslation('ticket')
+	const status = false
+	const data = [
+		{
+			title: 'Мне надоели все твои тупые вопросы',
+			description: 'Не грузите меня, это класс первый',
+		},
+	]
 
 	return (
 		<div className={cn(classes.CreateTicketAnswerPage, [styles])}>
 			<BackButton />
 			<div className={classes.main}>
 				<div className={classes.wrapper}>
-					<Header
-						title={`${t('otvet')}`}
-						buttons={
-							<CircleForIcon variation="red">
-								<Icon
-									icon={'close'}
-									variation={'red'}
-								/>
-							</CircleForIcon>
-						}
-					/>
+					<Header title={`${t('otvet')}`} />
+					<div className={classes.grid_block}>
+						<div className={classes.indicator_block}>
+							{status ? (
+								<CircleForIcon
+									variation="primary"
+									styles={classes.indicator}
+								>
+									<Icon
+										icon={'done'}
+										variation={'primary'}
+										styles={classes.indicator}
+									/>
+								</CircleForIcon>
+							) : (
+								<CircleForIcon
+									variation="red"
+									styles={classes.indicator}
+								>
+									<Icon
+										icon={'close'}
+										variation={'red'}
+										styles={classes.indicator}
+									/>
+								</CircleForIcon>
+							)}
+						</div>
 
-					<div className={classes.title}>
-						<Htag tag={'medium'}>Материал не открывается</Htag>
+						<div className={classes.title}>
+							<Htag tag={'medium'}>{data[0].title}</Htag>
+						</div>
+						<div className={classes.message}>
+							<TextBox size={'medium'}>{data[0].description}
+							</TextBox>
+						</div>
 					</div>
-					<div className={classes.message}>
-						<TextBox size={'medium'}>
-							Это 008 помни памятную дату, мы вас разносим словно в цирке сахарную
-							вату
-						</TextBox>
-					</div>
+
 					<div className={classes.download}>
 						<Button
 							variation="primary"
