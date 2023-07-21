@@ -2,8 +2,6 @@ export interface IAboutLessonData {
 	id: number
 	title: string
 	description: string
-	number: number
-	status: boolean
 }
 
 export interface ILectureData {

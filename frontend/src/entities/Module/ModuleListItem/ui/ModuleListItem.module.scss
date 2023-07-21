@@ -12,6 +12,7 @@
 	padding: 20px;
 }
 .left_block {
+	pointer-events: none;
 	display: grid;
 	gap: 10px;
 	color: var(--gray-color);

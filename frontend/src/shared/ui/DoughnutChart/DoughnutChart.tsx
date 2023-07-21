@@ -6,7 +6,7 @@ import {
 } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
 
-import variables from 'shared/config/ScssVariables/variables.module.scss'
+import variables from 'shared/const/ScssVariables/variables.module.scss'
 import { doughnutBorderRadius } from 'shared/lib'
 
 ChartJS.register(ChartJSArcElement)

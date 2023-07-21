@@ -9,10 +9,12 @@ export const Tag = ({ styles, size = 'medium', variation = 'primary', children }
 		<div
 			className={cn(classes.Tag, [styles], {
 				[classes.medium]: size === 'medium',
+
 				[classes.small]: size === 'small',
 				[classes.large]: size === 'large',
 				[classes.primary]: variation === 'primary',
 				[classes.secondary]: variation === 'secondary',
+				[classes.clear]: variation === 'clear',
 			})}
 		>
 			{children}
@@ -23,5 +25,5 @@ export const Tag = ({ styles, size = 'medium', variation = 'primary', children }
 interface ITagProps extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	styles?: string
 	size: 'small' | 'medium' | 'large'
-	variation: 'primary' | 'secondary'
+	variation: 'primary' | 'secondary' | 'clear'
 }

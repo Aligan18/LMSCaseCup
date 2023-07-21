@@ -18,6 +18,12 @@
 	color: var(--primary-color);
 }
 
+.clear {
+	border: 1px solid var(--border-gray);
+	background-color: var(--light-gray-color);
+	color: var(--primary-color);
+}
+
 .medium {
 	height: 30px;
 	font: var(--font-s);
