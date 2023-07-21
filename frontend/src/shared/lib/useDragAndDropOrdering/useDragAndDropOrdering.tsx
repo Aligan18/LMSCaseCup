@@ -10,10 +10,11 @@ export function useDragAndDropOrdering<T>({
 	drop,
 	currentId,
 	setCurrentId,
+	setIsVisible,
 }: IUseDragAndDropOrdering<T>) {
 	function startHandler(e: BaseSyntheticEvent, content: T): void {
-		console.log('start', e.target.id)
 		setCurrentId && setCurrentId(e.target.id)
+		setIsVisible && setIsVisible(true)
 		start && start(e, content)
 	}
 	function endHandler(e: BaseSyntheticEvent): void {
@@ -21,33 +22,26 @@ export function useDragAndDropOrdering<T>({
 	}
 	function leaveHandler(e: BaseSyntheticEvent): void {
 		if (e.target.id === currentId) {
-			// e.target.style.backgroundColor = 'var(--background)'
 			e.target.classList.remove(classes.primary)
 			leave && leave(e)
 		}
 	}
 	function overHandler(e: BaseSyntheticEvent): void {
 		e.preventDefault()
-
 		if (e.target.id === currentId) {
-			// e.target.style.backgroundColor = 'red'
-
 			e.target.classList.add(classes.primary)
-			console.log(e.target.classList)
 			over && over(e)
 		}
 	}
 
 	function dropHandler(e: BaseSyntheticEvent, content: T): void {
 		e.preventDefault()
-
+		setIsVisible && setIsVisible(false)
 		if (e.target.id === currentId) {
-			// e.target.style.backgroundColor = 'var(--background)'
 			e.target.classList.remove(classes.primary)
+			console.log('step1')
 			drop && drop(e, content)
 		}
-
-		console.log('changedContent')
 	}
 
 	return { startHandler, endHandler, leaveHandler, overHandler, dropHandler }
@@ -61,4 +55,5 @@ interface IUseDragAndDropOrdering<T> {
 	drop?: (e: BaseSyntheticEvent, content: T) => void
 	currentId: string | undefined
 	setCurrentId: Dispatch<SetStateAction<string | undefined>> | undefined
+	setIsVisible?: Dispatch<SetStateAction<boolean>>
 }

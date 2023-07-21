@@ -15,7 +15,7 @@ import { ModuleListItem } from 'entities/Module/ModuleListItem'
 import { IModuleData } from 'entities/Module/types'
 
 import variables from 'shared/const/ScssVariables/variables.module.scss'
-import { classnames as cn, useDragAndDropOrdering } from 'shared/lib'
+import { classnames as cn, swapOrderForDragAndDrop, useDragAndDropOrdering } from 'shared/lib'
 import { DeleteZone, DragAndDropDiv, List } from 'shared/ui'
 import { AccordionWrapper } from 'shared/ui'
 
@@ -25,13 +25,47 @@ export const ModuleList = ({
 	editor = false,
 	currentId,
 	setCurrentId,
+	setCurrentContent,
+	currentContent,
+	moduledata,
 }: IModuleListProps) => {
+	const lesson_id = classes.lesson_Id
+	const module_id = classes.module_Id
 	const [isVisible, setIsVisible] = useState(false)
+	function lessonDropHandler(e: BaseSyntheticEvent, content: IAboutLessonData): void {
+		swapOrderForDragAndDrop(module.lesson, content, currentContent)
+	}
 
-	const modelDrag = useDragAndDropOrdering({ currentId, setCurrentId })
-	const lessonDrag = useDragAndDropOrdering({ currentId, setCurrentId })
+	function lessonStartHandler(e: BaseSyntheticEvent, content: IAboutLessonData): void {
+		console.log(content)
 
-	const [currentContent, setCurrentContent] = useState<IModuleData | undefined>(undefined)
+		setCurrentContent && setCurrentContent(content)
+	}
+
+	function moduleDropHandler(e: BaseSyntheticEvent, content: IModuleData): void {
+		console.log('step2')
+		moduledata && swapOrderForDragAndDrop(moduledata, content, currentContent)
+	}
+	const lessonDrag = useDragAndDropOrdering<IAboutLessonData>({
+		currentId,
+		setCurrentId,
+		drop: lessonDropHandler,
+		start: lessonStartHandler,
+		setIsVisible,
+	})
+
+	function moduleStartHandler(e: BaseSyntheticEvent, content: IModuleData): void {
+		console.log(content)
+
+		setCurrentContent && setCurrentContent(content)
+	}
+	const modelDrag = useDragAndDropOrdering({
+		currentId,
+		setCurrentId,
+		drop: moduleDropHandler,
+		start: moduleStartHandler,
+		setIsVisible,
+	})
 
 	function dragOverForDeleteHandler(e: BaseSyntheticEvent): void {
 		e.preventDefault()
@@ -41,10 +75,16 @@ export const ModuleList = ({
 		e.preventDefault()
 		setIsVisible(false)
 		if (currentContent) {
-			console.log('Deleted')
+			if (currentId === lesson_id) {
+				console.log('Deleted lesson')
+			} else if (currentId === module_id) {
+				console.log('Deleted module')
+			}
+
 			// dispatch(lessonContentActions.delete_content(currentContent))
 		}
 	}
+
 	return (
 		<>
 			{editor ? (
@@ -65,7 +105,7 @@ export const ModuleList = ({
 								leaveHandler={modelDrag.leaveHandler}
 								overHandler={modelDrag.overHandler}
 								startHandler={modelDrag.startHandler}
-								childrenId={classes.module_Id}
+								childrenId={module_id}
 								item={module}
 							>
 								<ModuleListItem data={module} />
@@ -83,7 +123,7 @@ export const ModuleList = ({
 										leaveHandler={lessonDrag.leaveHandler}
 										overHandler={lessonDrag.overHandler}
 										startHandler={lessonDrag.startHandler}
-										childrenId={classes.lesson_Id}
+										childrenId={lesson_id}
 										item={data}
 									>
 										<LessonListItem
@@ -129,5 +169,12 @@ interface IModuleListProps
 	module: IModuleData
 	editor?: boolean
 	currentId?: string
+	moduledata?: IModuleData[]
 	setCurrentId?: Dispatch<SetStateAction<string | undefined>>
+	setCurrentContent?: Dispatch<SetStateAction<IModuleData | IAboutLessonData | undefined>>
+	currentContent?: IModuleData | IAboutLessonData | undefined
+	DataOrdering?: <T extends { id?: number | undefined; order?: number | undefined }>(
+		contentData: T[],
+		content: T,
+	) => void
 }
