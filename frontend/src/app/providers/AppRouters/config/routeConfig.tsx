@@ -15,13 +15,9 @@ import { CreateLessonPage } from 'pages/Lesson/CreateLessonPage'
 import { LessonPage } from 'pages/Lesson/LessonPage'
 import { NotFoundPage } from 'pages/NotFoundPage'
 import { CreateAnswerPage } from 'pages/Task/CreateAnswerPage'
+import { CreateTicketAnswerPage } from 'pages/Ticket/CreateTicketAnswerPage'
 import { CreateTicketPage } from 'pages/Ticket/CreateTicketPage'
 import { TicketsPage } from 'pages/Ticket/TicketsPage'
-<<<<<<< HEAD
-import { AfterRegistrationPage } from 'pages/Authorization/AfterRegistrationPage'
-import { CreateTicketAnswerPage } from 'pages/Ticket/CreateTicketAnswerPage'
-=======
->>>>>>> a6d794a4457fdcc1b31d8cc83595fbcaa073e188
 
 export enum ERoutePath {
 	HOME = '/',
@@ -32,12 +28,8 @@ export enum ERoutePath {
 	LESSON = '/lesson/:id',
 	CREATE_COURSE = '/create_course',
 	CREATE_TICKET = '/create_ticket',
-<<<<<<< HEAD
-	CREATE_TICKET_ANSWER = '/create_ticket_answer',
-	CREATE_LESSON = '/create_lesson',
-=======
+	CREATE_TICKET_ANSWER = '/create_ticket_answer/:id',
 	CREATE_LESSON = '/course/:course_id/create_lesson',
->>>>>>> a6d794a4457fdcc1b31d8cc83595fbcaa073e188
 	EDIT_COURSE = '/edit_course/:id',
 	TEACHER_ROOM = '/teacher_room',
 	VIEW_ANSWER = '/view_answer/:id',
