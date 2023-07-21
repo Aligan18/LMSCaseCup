@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from list_modules.models import ListModules
+from list_modules.models import ListModules, Modules
 
 
 class CreateListModulesSerializers(serializers.ModelSerializer):
@@ -23,3 +23,7 @@ class AboutListModulesSerializers(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class CreateModulesSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Modules
+        fields = '__all__'

@@ -8,10 +8,11 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsTeacherHasAccessCreate, \
     IsStudentHasAccessCreate
-from list_modules.models import ListModules
-from list_modules.serializers import ListModulesSerializers, CreateListModulesSerializers, AboutListModulesSerializers
+from list_modules.models import ListModules, Modules
+from list_modules.serializers import ListModulesSerializers, CreateListModulesSerializers, AboutListModulesSerializers, \
+    CreateModulesSerializers
 
-from list_modules.service import Filter
+from list_modules.service import Filter, FilterForModules
 from mysite.pagination import ListPagination
 
 
@@ -22,7 +23,7 @@ class ListModulesViewCreate(generics.CreateAPIView):
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
 
 
-# Admin , Teacher с доступом к курсу, Student которые прооходят этот курс
+# Admin , Teacher с доступом к курсу, Student которые проходят этот курс
 class ListModulesViewList(generics.ListAPIView):  # все модули курса
     queryset = ListModules.objects.all()
     serializer_class = AboutListModulesSerializers
@@ -33,7 +34,7 @@ class ListModulesViewList(generics.ListAPIView):  # все модули курс
     pagination_class = ListPagination
 
 
-# Admin , Teacher с доступом к курсу, Student которые прооходят этот курс
+# Admin , Teacher с доступом к курсу, Student которые проходят этот курс
 class OnlyTasksListModulesViewList(generics.ListAPIView): #только задания
     queryset = ListModules.objects.all()
     serializer_class = AboutListModulesSerializers
@@ -50,7 +51,7 @@ class OnlyTasksListModulesViewList(generics.ListAPIView): #только зада
     pagination_class = ListPagination
 
 
-# Admin , Teacher с доступом к курсу, Student которые прооходят этот курс
+# Admin , Teacher с доступом к курсу, Student которые проходят этот курс
 class ListModulesViewRetrieve(generics.RetrieveAPIView):
     queryset = ListModules.objects.all()
     serializer_class = ListModulesSerializers
@@ -63,3 +64,32 @@ class ListModulesViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView
     serializer_class = CreateListModulesSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess]
 
+# Module
+# Admin , Teacher с доступом к курсу
+class ModulesViewCreate(generics.CreateAPIView):
+    queryset = Modules.objects.all()
+    serializer_class = CreateModulesSerializers
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
+
+
+# Admin , Teacher с доступом к курсу, Student которые проходят этот курс
+class ModulesViewList(generics.ListAPIView):
+    queryset = Modules.objects.all()
+    serializer_class = CreateModulesSerializers
+    filter_backends = (DjangoFilterBackend, OrderingFilter)
+    filterset_class = FilterForModules
+    ordering_fields = ["order"]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccessCreate]
+    pagination_class = ListPagination
+
+# Admin , Teacher с доступом к курсу, Student которые проходят этот курс
+class ModulesViewRetrieve(generics.RetrieveAPIView):
+    queryset = Modules.objects.all()
+    serializer_class = CreateModulesSerializers
+    permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]
+
+# Admin , Teacher с доступом к курсу
+class ModulesViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Modules.objects.all()
+    serializer_class = CreateModulesSerializers
+    permission_classes = [IsAdminUser | IsTeacherHasAccess]
