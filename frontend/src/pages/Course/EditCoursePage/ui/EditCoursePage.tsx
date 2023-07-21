@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router-dom'
 import classes from './EditCoursePage.module.scss'
 
 import { ERoutePath } from 'app/providers/AppRouters'
-import { ICREATE_LESSON_Params } from 'app/providers/AppRouters/config/routeConfig'
+import { ICREATE_MODULE_Params } from 'app/providers/AppRouters/config/routeConfig'
 
 import { BackButton } from 'features/BackButton'
 import { EditCourseForm } from 'features/Course/EditCourseForm'
@@ -20,7 +20,7 @@ export const EditCoursePage = ({ styles }: IEditCoursePageProps) => {
 	const { t } = useTranslation('course')
 	const dispatch = useAppDispatch()
 	const { id } = useParams()
-	const [linkParams, setLinkParams] = useState<ICREATE_LESSON_Params>({ course_id: 'null' })
+	const [linkParams, setLinkParams] = useState<ICREATE_MODULE_Params>({ course_id: 'null' })
 
 	useEffect(() => {
 		console.log(location)
@@ -40,13 +40,13 @@ export const EditCoursePage = ({ styles }: IEditCoursePageProps) => {
 					<Header
 						title={`${t('redaktirovanie-kursa')}`}
 						buttons={
-							<Link to={setParamsInPath(ERoutePath.CREATE_LESSON, linkParams)}>
+							<Link to={setParamsInPath(ERoutePath.CREATE_MODULE, linkParams)}>
 								<Button
 									variation="primary"
 									styles={classes.button}
 									format={'small'}
 								>
-									{t('dobavit-urok-0')}
+									Добавить модуль
 								</Button>
 							</Link>
 						}

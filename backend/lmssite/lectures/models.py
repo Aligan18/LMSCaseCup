@@ -15,6 +15,7 @@ class Lectures(models.Model):
 
 
 class Additions(models.Model):
+    
     file = models.FileField(upload_to="files/",blank=True)
     title = models.CharField(max_length=100)
 

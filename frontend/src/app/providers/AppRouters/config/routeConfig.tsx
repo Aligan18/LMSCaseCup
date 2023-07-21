@@ -13,6 +13,7 @@ import { EditCoursePage } from 'pages/Course/EditCoursePage'
 import { HomePage } from 'pages/HomePage'
 import { CreateLessonPage } from 'pages/Lesson/CreateLessonPage'
 import { LessonPage } from 'pages/Lesson/LessonPage'
+import { CreateModulePage } from 'pages/Module/CreateModulePage'
 import { NotFoundPage } from 'pages/NotFoundPage'
 import { CreateAnswerPage } from 'pages/Task/CreateAnswerPage'
 import { CreateTicketAnswerPage } from 'pages/Ticket/CreateTicketAnswerPage'
@@ -39,6 +40,7 @@ export enum ERoutePath {
 	AUTHORIZATION = '/authorization',
 	ACTIVATION = '/activation',
 	AFTER_REGISTRATION = '/after_registration',
+	CREATE_MODULE = '/course/:course_id/create_module',
 }
 
 export type IEDIT_LESSON_Params = {
@@ -47,6 +49,10 @@ export type IEDIT_LESSON_Params = {
 }
 
 export type ICREATE_LESSON_Params = {
+	course_id: string
+}
+
+export type ICREATE_MODULE_Params = {
 	course_id: string
 }
 
@@ -126,5 +132,9 @@ export const RouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.AFTER_REGISTRATION,
 		element: <AfterRegistrationPage />,
+	},
+	{
+		path: ERoutePath.CREATE_MODULE,
+		element: <CreateModulePage />,
 	},
 ]

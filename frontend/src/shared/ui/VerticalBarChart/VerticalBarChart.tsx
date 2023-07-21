@@ -12,7 +12,7 @@ import { Bar } from 'react-chartjs-2'
 
 import classes from './VerticalBarChart.module.scss'
 
-import variables from 'shared/config/ScssVariables/variables.module.scss'
+import variables from 'shared/const/ScssVariables/variables.module.scss'
 import { classnames as cn, customCanvasBackgroundColor } from 'shared/lib'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)

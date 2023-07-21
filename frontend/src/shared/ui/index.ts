@@ -26,6 +26,7 @@ export { AccordionButton } from './AccordionButton/AccordionButton'
 export { VerticalBarChart } from './VerticalBarChart/VerticalBarChart'
 export { DoughnutChart } from './DoughnutChart/DoughnutChart'
 export { LoadingDiv } from './LoadingDiv/LoadingDiv'
+export { DragAndDropDiv } from './DragAndDropDiv/DragAndDropDiv'
 
 export { IOptions } from './SelectOption/types/Options'
 export { IFormConstructorData } from './FormConstructor/types/FormConstructor'

@@ -1,3 +1,20 @@
 .lesson_list {
 	gap: 0px;
 }
+
+.primary {
+	&:hover {
+		border: 2px solid var(--primary-color);
+		background: var(--primary-color);
+	}
+}
+.lesson_Id {
+	grid-area: lesson_Id;
+}
+.module_Id {
+	grid-area: module_Id;
+}
+
+.event_none {
+	pointer-events: none;
+}

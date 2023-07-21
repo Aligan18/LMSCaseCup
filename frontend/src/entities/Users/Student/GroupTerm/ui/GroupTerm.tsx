@@ -34,7 +34,7 @@ export const GroupTerm = ({ styles, data }: IGroupTermProps) => {
 						></Tag>
 						<Tag
 							size="small"
-							variation={'secondary'}
+							variation={'clear'}
 						></Tag>
 					</div>
 				}

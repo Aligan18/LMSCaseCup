@@ -29,13 +29,13 @@ export const LessonList = ({ styles }: ILessonListProps) => {
 					<ListItem
 						variation={'inverted-secondary'}
 						hover={'hover_primary'}
-						mid_up={`${t('urok')}` + ' №' + lesson.number}
-						left={
-							<Icon
-								icon={lesson.status ? 'circle_filled' : 'circle'}
-								variation={'primary'}
-							/>
-						}
+						mid_up={`${t('urok')}` + ' №'}
+						// left={
+						// 	<Icon
+						// 		icon={lesson.status ? 'circle_filled' : 'circle'}
+						// 		variation={'primary'}
+						// 	/>
+						// }
 					>
 						{lesson.title}
 					</ListItem>
