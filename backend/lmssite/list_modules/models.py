@@ -27,6 +27,11 @@ class ListModules(models.Model):
     def __str__(self):
         return self.title
 
+class Modules(models.Model):
+    title = models.CharField(max_length=150, null=True)
+    order = models.IntegerField(default=1, blank=True)
+    list_module = models.OneToOneField("list_modules.ListModules", on_delete=models.CASCADE, null=True, blank=True)
+    course = models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
 
 @receiver(post_save, sender=FileTasksAnswer)
 def update_date_complete(sender, instance, created, **kwargs):
