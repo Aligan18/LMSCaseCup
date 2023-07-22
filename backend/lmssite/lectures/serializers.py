@@ -35,4 +35,4 @@ class CreateLecturesSerializers(serializers.ModelSerializer):
 class AboutLecturesSerializers(serializers.ModelSerializer):
     class Meta:
         model = Lectures
-        fields = '__all__'
+        fields = ['title' , 'description','id']

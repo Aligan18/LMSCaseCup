@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom'
 
 import classes from './LessonListItem.module.scss'
 
-import { ERoutePath } from 'app/providers/AppRouters'
+import { ERoutePath, ILAST_ID_Params } from 'app/providers/AppRouters'
 
 import { IAboutLessonData } from 'entities/Lesson/types'
 import { EListModuleType, IListModule } from 'entities/Module/types'
 
-import { classnames as cn, deleteRouteId } from 'shared/lib'
+import { classnames as cn, deleteRouteId, setParamsInPath } from 'shared/lib'
 import { AnimatedButton, Button, Htag, Icon, TextBox } from 'shared/ui'
 
 export const LessonListItem = ({ styles, data, hasButton = true }: ILessonListItemProps) => {
@@ -25,7 +25,11 @@ export const LessonListItem = ({ styles, data, hasButton = true }: ILessonListIt
 							<Htag tag={'very-small'}>{data.lecture_id?.description}</Htag>
 						</div>
 						{hasButton && (
-							<Link to={deleteRouteId(ERoutePath.LESSON) + data.lecture_id?.id}>
+							<Link
+								to={setParamsInPath<ILAST_ID_Params>(ERoutePath.LESSON, {
+									id: String(data.lecture_id?.id),
+								})}
+							>
 								<AnimatedButton icon={'right'}>Пререйти</AnimatedButton>
 							</Link>
 						)}

@@ -5,6 +5,7 @@ export interface ICreateLessonAboutData {
 	title: string
 	video?: string
 	module_id?: number
+	course_id?: number
 }
 
 interface ICreateLessonAboutKeys {

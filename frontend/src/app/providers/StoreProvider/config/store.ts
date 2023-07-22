@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { NavigateOptions, To } from 'react-router-dom'
+import { NavigateFunction, NavigateOptions, To } from 'react-router-dom'
 
 import { IStateSchema } from './StateSchema'
 
@@ -15,15 +15,13 @@ import { createModuleSliceReducer } from 'features/Module/CreateModuleForm'
 import { CreateTicketReducer } from 'features/Ticket/CreateTicketForm'
 
 import { listCourseDataReducer, retrieveCourseDataReducer } from 'entities/Course/CourseData'
+import { allModuleDataReducer } from 'entities/Module/ModuleData'
 import { customUserSliceReducer } from 'entities/Users/CustomUser'
 
 import { $api, API } from 'shared/api'
 import { serverErrors } from 'shared/lib'
 
-export function createReduxStore(
-	initialState?: IStateSchema,
-	navigate?: (to: To, options?: NavigateOptions) => void,
-) {
+export function createReduxStore(initialState?: IStateSchema, navigate?: NavigateFunction) {
 	return configureStore({
 		reducer: {
 			createLessonContent: lessonContentReducer,
@@ -39,6 +37,7 @@ export function createReduxStore(
 			createLesson: createLessonSliceReducer,
 			listCourseData: listCourseDataReducer,
 			createModuleData: createModuleSliceReducer,
+			getAllModules: allModuleDataReducer,
 		},
 
 		devTools: __IS_DEV__,

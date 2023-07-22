@@ -25,7 +25,7 @@ export enum ERoutePath {
 	NOT_FOUND = '*',
 	COURSES = '/courses',
 	TICKETS = '/tickets',
-	ABOUT_COURSE = '/about_course/:id',
+	ABOUT_COURSE = '/course/:course_id/about/',
 	LESSON = '/lesson/:id',
 	CREATE_COURSE = '/create_course',
 	CREATE_TICKET = '/create_ticket',
@@ -57,6 +57,9 @@ export type ICREATE_LESSON_Params = {
 }
 
 export type ICREATE_MODULE_Params = {
+	course_id: string
+}
+export type IABOUT_COURSE_Params = {
 	course_id: string
 }
 

@@ -1,113 +1,119 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
 import classes from './ModuleProgram.module.scss'
 
-import { ModuleList } from 'entities/Module/ModuleList'
-import { EListModuleType, IListModule, IModuleData } from 'entities/Module/types'
+import { IABOUT_COURSE_Params } from 'app/providers/AppRouters'
 
-import { classnames as cn } from 'shared/lib'
+import { getAllListModulesRequest, getAllModuleData } from 'entities/Module/ModuleData'
+import { ModuleList } from 'entities/Module/ModuleList'
+import { IModuleData } from 'entities/Module/types'
+
+import { classnames as cn, useAppDispatch } from 'shared/lib'
 import { Htag, List } from 'shared/ui'
 
 export const ModuleProgram = ({ styles }: IModuleProgramProps) => {
-	const data: IModuleData[] = [
-		{
-			id: 1,
-			order: 1,
-			title: 'Первый модуль ',
-			description: 'Введение ',
-			number: 1,
-			list_modules: [
-				{
-					id: 1,
-					order: 1,
-					lecture_id: {
-						id: 1,
-						title: 'Введение в программирование',
-						description:
-							'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
-					},
-					file_task_id: null,
-					module_type: EListModuleType.LECTURE,
-					test_task_id: null,
-				},
-				{
-					id: 2,
-					order: 2,
-					lecture_id: {
-						id: 1,
-						title: 'Введение в программирование',
-						description:
-							'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
-					},
-					file_task_id: null,
-					module_type: EListModuleType.LECTURE,
-					test_task_id: null,
-				},
-				{
-					id: 3,
-					order: 3,
-					lecture_id: {
-						id: 1,
-						title: 'Введение в программирование',
-						description:
-							'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
-					},
-					file_task_id: null,
-					module_type: EListModuleType.LECTURE,
-					test_task_id: null,
-				},
-			],
-		},
-		{
-			id: 2,
-			order: 2,
-			title: 'Второй модуль ',
-			description: 'Введение ',
-			number: 1,
-			list_modules: [
-				{
-					id: 1,
-					order: 1,
-					lecture_id: {
-						id: 1,
-						title: 'Введение в программирование',
-						description:
-							'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
-					},
-					file_task_id: null,
-					module_type: EListModuleType.LECTURE,
-					test_task_id: null,
-				},
-				{
-					id: 2,
-					order: 2,
-					lecture_id: {
-						id: 1,
-						title: 'Введение в программирование',
-						description:
-							'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
-					},
-					file_task_id: null,
-					module_type: EListModuleType.LECTURE,
-					test_task_id: null,
-				},
-				{
-					id: 3,
-					order: 3,
-					lecture_id: {
-						id: 1,
-						title: 'Введение в программирование',
-						description:
-							'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
-					},
-					file_task_id: null,
-					module_type: EListModuleType.LECTURE,
-					test_task_id: null,
-				},
-			],
-		},
-	]
+	// const data: IModuleData[] = [
+	// 	{
+	// 		id: 1,
+	// 		order: 1,
+	// 		title: 'Первый модуль ',
+	// 		description: 'Введение ',
+	// 		number: 1,
+	// 		list_modules: [
+	// 			{
+	// 				id: 1,
+	// 				order: 1,
+	// 				lecture_id: {
+	// 					id: 1,
+	// 					title: 'Введение в программирование',
+	// 					description: 'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
+	// 				},
+	// 				file_task_id: null,
+	// 				module_type: EListModuleType.LECTURE,
+	// 				test_task_id: null,
+	// 			},
+	// 			{
+	// 				id: 2,
+	// 				order: 2,
+	// 				lecture_id: {
+	// 					id: 1,
+	// 					title: 'Введение в программирование',
+	// 					description: 'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
+	// 				},
+	// 				file_task_id: null,
+	// 				module_type: EListModuleType.LECTURE,
+	// 				test_task_id: null,
+	// 			},
+	// 			{
+	// 				id: 3,
+	// 				order: 3,
+	// 				lecture_id: {
+	// 					id: 1,
+	// 					title: 'Введение в программирование',
+	// 					description: 'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
+	// 				},
+	// 				file_task_id: null,
+	// 				module_type: EListModuleType.LECTURE,
+	// 				test_task_id: null,
+	// 			},
+	// 		],
+	// 	},
+	// 	{
+	// 		id: 2,
+	// 		order: 2,
+	// 		title: 'Второй модуль ',
+	// 		description: 'Введение ',
+	// 		number: 1,
+	// 		list_modules: [
+	// 			{
+	// 				id: 1,
+	// 				order: 1,
+	// 				lecture_id: {
+	// 					id: 1,
+	// 					title: 'Введение в программирование',
+	// 					description: 'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
+	// 				},
+	// 				file_task_id: null,
+	// 				module_type: EListModuleType.LECTURE,
+	// 				test_task_id: null,
+	// 			},
+	// 			{
+	// 				id: 2,
+	// 				order: 2,
+	// 				lecture_id: {
+	// 					id: 1,
+	// 					title: 'Введение в программирование',
+	// 					description: 'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
+	// 				},
+	// 				file_task_id: null,
+	// 				module_type: EListModuleType.LECTURE,
+	// 				test_task_id: null,
+	// 			},
+	// 			{
+	// 				id: 3,
+	// 				order: 3,
+	// 				lecture_id: {
+	// 					id: 1,
+	// 					title: 'Введение в программирование',
+	// 					description: 'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
+	// 				},
+	// 				file_task_id: null,
+	// 				module_type: EListModuleType.LECTURE,
+	// 				test_task_id: null,
+	// 			},
+	// 		],
+	// 	},
+	// ]
+	const { course_id } = useParams<IABOUT_COURSE_Params>()
 	const { t } = useTranslation('course')
+	const module_data = useSelector(getAllModuleData)
+	const dispatch = useAppDispatch()
+	useEffect(() => {
+		dispatch(getAllListModulesRequest(Number(course_id)))
+	}, [])
 
 	return (
 		<div className={cn(classes.CourseProgram, [styles])}>
@@ -118,7 +124,7 @@ export const ModuleProgram = ({ styles }: IModuleProgramProps) => {
 				{t('programma-kursa')}
 			</Htag>
 			<List
-				items={data}
+				items={module_data}
 				renderItem={(module: IModuleData) => (
 					<ModuleList
 						key={module.id}

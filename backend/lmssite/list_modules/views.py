@@ -77,7 +77,7 @@ class ModulesViewCreate(generics.CreateAPIView):
 # Admin , Teacher с доступом к курсу, Student которые проходят этот курс
 class ModulesViewList(generics.ListAPIView):
     queryset = Modules.objects.all()
-    serializer_class = CreateModulesSerializers
+    serializer_class = ModulesSerializers
     filter_backends = (DjangoFilterBackend, OrderingFilter)
     filterset_class = FilterForModules
     ordering_fields = ["order"]

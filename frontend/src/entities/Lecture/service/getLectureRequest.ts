@@ -14,19 +14,18 @@ import { ICustomUser } from 'entities/Users/CustomUser'
 import { serverErrors } from 'shared/lib'
 import { data } from 'shared/ui/VerticalBarChart/VerticalBarChart'
 
-export const getLectureRequest = createAsyncThunk<
-	void,
-	number,
-	{ rejectValue: string; extra: IThunkExtraArg }
->('GetLecture', async (id, { extra, rejectWithValue, dispatch }) => {
-	try {
-		const response = await extra.$axios.get<ILectureData>(extra.API.lectures.retrieve + id)
-		console.log(response.data)
-		const { lesson, additions, description, title, video } = response.data
-		dispatch(lessonContentActions.initial_lesson(lesson))
-		dispatch(createLessonAboutActions.change_about_lesson({ description, title, video }))
-		dispatch(createLessonAdditionActions.initial_addition(additions))
-	} catch (error: any) {
-		return rejectWithValue(serverErrors(error))
-	}
-})
+export const getLectureRequest = createAsyncThunk<void, number, { rejectValue: string; extra: IThunkExtraArg }>(
+	'GetLecture',
+	async (id, { extra, rejectWithValue, dispatch }) => {
+		try {
+			const response = await extra.$axios.get<ILectureData>(extra.API.lectures.retrieve + id)
+			console.log(response.data)
+			const { lesson, additions, description, title, video } = response.data
+			dispatch(lessonContentActions.initial_lesson(lesson))
+			dispatch(createLessonAboutActions.change_about_lesson({ description, title, video }))
+			dispatch(createLessonAdditionActions.initial_addition(additions))
+		} catch (error: any) {
+			return rejectWithValue(serverErrors(error))
+		}
+	},
+)

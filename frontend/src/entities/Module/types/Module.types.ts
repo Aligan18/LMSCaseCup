@@ -11,6 +11,7 @@ export interface IModuleData {
 	number: number
 	list_modules: IListModule[]
 	order: number
+	course: number
 }
 
 export interface ICreateModuleData {

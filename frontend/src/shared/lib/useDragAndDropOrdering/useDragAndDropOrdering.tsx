@@ -18,6 +18,7 @@ export function useDragAndDropOrdering<T>({
 		start && start(e, content)
 	}
 	function endHandler(e: BaseSyntheticEvent): void {
+		setIsVisible && setIsVisible(false)
 		end && end(e)
 	}
 	function leaveHandler(e: BaseSyntheticEvent): void {

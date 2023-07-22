@@ -23,12 +23,12 @@ class ListModules(models.Model):
 
 
     def __str__(self):
-        return self.title
+        return self.module_type
 
 
 class Modules(models.Model):
     title = models.CharField(max_length=150, null=True)
-    description = models.TextField()
+    description = models.TextField(blank=True)
     order = models.IntegerField(default=1, blank=True)
     course = models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
     list_modules = models.ManyToManyField("list_modules.ListModules", blank=True)

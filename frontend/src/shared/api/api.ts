@@ -31,9 +31,10 @@ export const API = {
 		create: '/student_ticket/create/',
 	},
 	modules: {
+		list: '/modules/list/',
 		retrieve: '/modules/id/',
 		create: '/modules/create/',
-		update: '/modules/rud/',
+		rud: '/modules/rud/',
 	},
 	list_modules: {
 		create: '/list_modules/create/',

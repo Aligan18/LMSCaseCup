@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios'
-import { NavigateOptions, To } from 'react-router-dom'
+import { NavigateFunction, NavigateOptions, To } from 'react-router-dom'
 
 import { ILoginSchema } from 'features/Authorization/LoginForm'
 import { IRegistrationSchema } from 'features/Authorization/RegistrationForm'
@@ -13,6 +13,7 @@ import { ICreateTicketSchema } from 'features/Ticket/CreateTicketForm/model/type
 
 import { IListCourseDataSchema, IRetrieveCourseDataSchema } from 'entities/Course/CourseData'
 import { ICreateLessonAboutData, ILessonContentData } from 'entities/Lesson/types'
+import { IAllModuleDataSchema } from 'entities/Module/ModuleData'
 import { ICustomUserSchema } from 'entities/Users/CustomUser'
 
 import { IAPI } from 'shared/api/api'
@@ -31,11 +32,12 @@ export interface IStateSchema {
 	updateCourseData: IUpdateCourseSchema
 	createLesson: ICreateLessonSchema
 	createModuleData: ICreateModuleSchema
+	getAllModules: IAllModuleDataSchema
 }
 
 export interface IThunkExtraArg {
 	$axios: AxiosInstance
-	navigate?: (to: To, options?: NavigateOptions) => void
+	navigate?: NavigateFunction
 	API: IAPI
 	serverErrors: (error: any) => string
 }

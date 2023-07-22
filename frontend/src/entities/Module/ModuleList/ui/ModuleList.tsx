@@ -1,9 +1,23 @@
-import { BaseSyntheticEvent, DetailedHTMLProps, Dispatch, HtmlHTMLAttributes, SetStateAction, useState } from 'react'
-import { Link } from 'react-router-dom'
+import {
+	BaseSyntheticEvent,
+	DetailedHTMLProps,
+	Dispatch,
+	HtmlHTMLAttributes,
+	SetStateAction,
+	useEffect,
+	useState,
+} from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 import classes from './ModuleList.module.scss'
 
-import { ERoutePath, ICREATE_LESSON_Params, IEDIT_LESSON_Params, ILAST_ID_Params } from 'app/providers/AppRouters'
+import {
+	ERoutePath,
+	ICREATE_LESSON_Params,
+	ICREATE_MODULE_Params,
+	IEDIT_LESSON_Params,
+	ILAST_ID_Params,
+} from 'app/providers/AppRouters'
 
 import { LessonListItem } from 'entities/Lesson/LessonListItem'
 import { ModuleListItem } from 'entities/Module/ModuleListItem'
@@ -79,10 +93,6 @@ export const ModuleList = ({
 		}
 	}
 
-	const createLessonParams: ICREATE_LESSON_Params = {
-		module_id: String(module.id),
-	}
-
 	return (
 		<>
 			{editor ? (
@@ -135,7 +145,7 @@ export const ModuleList = ({
 											<div className={classes.buttons}>
 												<Link
 													to={setParamsInPath<ILAST_ID_Params>(ERoutePath.LESSON, {
-														id: String(data.id),
+														id: String(data.lecture_id?.id),
 													})}
 												>
 													<AnimatedButton
@@ -147,7 +157,7 @@ export const ModuleList = ({
 												</Link>
 												<Link
 													to={setParamsInPath<IEDIT_LESSON_Params>(ERoutePath.EDIT_LESSON, {
-														lesson_id: String(data.id),
+														lesson_id: String(data.lecture_id?.id),
 														module_id: String(module.id),
 													})}
 												>
@@ -164,7 +174,11 @@ export const ModuleList = ({
 								/>
 								<div className={classes.add_buttons}>
 									<Htag tag={'medium'}>Добавить :</Htag>
-									<Link to={setParamsInPath(ERoutePath.CREATE_LESSON, createLessonParams)}>
+									<Link
+										to={setParamsInPath<ICREATE_LESSON_Params>(ERoutePath.CREATE_LESSON, {
+											module_id: String(module.id),
+										})}
+									>
 										<Button format={'small'}>
 											Лекцию
 											<Icon
