@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 import classes from './ActivationPage.module.scss'
@@ -8,15 +9,17 @@ import { classnames as cn } from 'shared/lib'
 import { Button, Header, Htag, Icon } from 'shared/ui'
 
 export const ActivationPage = ({ styles }: IActivationPageProps) => {
+	const { t } = useTranslation('admin')
+
 	return (
 		<div className={cn(classes.ActivationPage, [styles])}>
 			<div className={classes.text}>
-				<Htag tag={'very-large'}>Регистрация завершена</Htag>
+				<Htag tag={'very-large'}>{t('registraciya-zavershena')}</Htag>
 				<Htag
-					tag={'medium'}
+					tag={'large'}
 					styles={classes.small_text}
 				>
-					Вы успешно активировали аккаунт
+					{t('vy-uspeshno-aktivirovali-akkaunt')}
 				</Htag>
 			</div>
 			<div className={classes.buttons}>
@@ -26,7 +29,7 @@ export const ActivationPage = ({ styles }: IActivationPageProps) => {
 						styles={classes.button}
 						format={'small'}
 					>
-						Войти
+						{t('voiti')}
 						<Icon
 							icon={'lock'}
 							variation={'primary'}

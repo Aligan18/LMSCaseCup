@@ -1,6 +1,6 @@
 .AfterRegistrationPage {
 	display: grid;
-	justify-content: center;
+	//justify-content: center;
 	height: fit-content;
 	gap: 30px;
 }
@@ -8,8 +8,14 @@
 	display: grid;
 	justify-content: center;
 	align-items: center;
-	margin-top: 50%;
+	margin-top: 25%;
 }
 .small_text {
 	color: var(--gray-color);
+    margin-top: 10px;
+
 }
+// .bottom{
+// 	margin-bottom: 50%;
+
+// }

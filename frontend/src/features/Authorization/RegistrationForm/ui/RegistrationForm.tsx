@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
 import { getRegistrationErrors } from '../model/selectors/getRegistrationErrors'
@@ -30,12 +31,13 @@ export const RegistrationForm = ({ styles }: IRegistrationFormProps) => {
 	const isLoading = useSelector(getRegistrationLoading)
 	const error = useSelector(getRegistrationErrors)
 	const [userType, setUserType] = useState<ICustomUserType>('4')
+	const { t } = useTranslation('admin')
 
 	const registrationForm: IRegistrationFormConstructor[] = [
 		{
 			type: 'input',
 			key: 'name',
-			title: 'Введите имя ',
+			title: `${t('vvedite-imya')}`,
 			rules: {
 				required: true,
 			},
@@ -43,7 +45,7 @@ export const RegistrationForm = ({ styles }: IRegistrationFormProps) => {
 		{
 			type: 'input',
 			key: 'surname',
-			title: 'Введите фамилию',
+			title: `${t('vvedite-familiyu')}`,
 			rules: {
 				required: true,
 			},
@@ -51,7 +53,7 @@ export const RegistrationForm = ({ styles }: IRegistrationFormProps) => {
 		{
 			type: 'input',
 			key: 'email',
-			title: 'Введите Email',
+			title: `${t('vvedite-email')}`,
 			rules: {
 				required: true,
 			},
@@ -59,7 +61,7 @@ export const RegistrationForm = ({ styles }: IRegistrationFormProps) => {
 		{
 			type: 'input',
 			key: 'password',
-			title: 'Введите пароль',
+			title: `${t('vvedite-parol')}`,
 			rules: {
 				required: true,
 				minLength: 8,
@@ -68,7 +70,7 @@ export const RegistrationForm = ({ styles }: IRegistrationFormProps) => {
 		{
 			type: 'input',
 			key: 're_password',
-			title: 'Повторите пароль',
+			title: `${t('povtorite-parol')}`,
 			rules: {
 				required: true,
 				minLength: 8,
@@ -81,19 +83,19 @@ export const RegistrationForm = ({ styles }: IRegistrationFormProps) => {
 		<div className={cn(classes.RegistrationForm, [styles])}>
 			<div className={classes.main}>
 				<div className={classes.top}>
-					<Htag tag="small">Зарегистрироваться как :</Htag>
+					<Htag tag="small">{t('zaregistrirovatsya-kak')}</Htag>
 					<div>
 						<Button
 							onClick={() => setUserType('4')}
 							variation={userType === '4' ? 'primary' : 'clear'}
 						>
-							Студент
+							{t('student')}
 						</Button>
 						<Button
 							onClick={() => setUserType('3')}
 							variation={userType === '3' ? 'primary' : 'clear'}
 						>
-							Учитель
+							{t('uchitel')}
 						</Button>
 					</div>
 				</div>
@@ -103,7 +105,7 @@ export const RegistrationForm = ({ styles }: IRegistrationFormProps) => {
 					serverError={error}
 					onSubmit={onSubmit}
 					data={registrationForm}
-					button={'Регистрация'}
+					button={`${t('registraciya')}`}
 				/>
 			</div>
 		</div>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import classes from './AuthTabs.module.scss'
 
@@ -11,6 +12,7 @@ import { Icon, ListItem } from 'shared/ui'
 
 export const AuthTabs = ({ styles }: IAuthTabsProps) => {
 	const [selectedTab, setSelectedTab] = useState<'login' | 'registration'>('login')
+	const { t } = useTranslation('admin')
 
 	const renderForm = () => {
 		switch (selectedTab) {
@@ -35,7 +37,7 @@ export const AuthTabs = ({ styles }: IAuthTabsProps) => {
 						left={<Icon icon="lock" />}
 						styles={classes.top_button}
 					>
-						Вход
+						{t('vkhod')}
 					</ListItem>
 					<ListItem
 						onClick={() => setSelectedTab('registration')}
@@ -44,7 +46,7 @@ export const AuthTabs = ({ styles }: IAuthTabsProps) => {
 						left={<Icon icon="registration" />}
 						styles={classes.top_button}
 					>
-						Регистрация
+						{t('registraciya-0')}
 					</ListItem>
 				</div>
 				{renderForm()}

@@ -1,5 +1,6 @@
 import { BaseSyntheticEvent, useCallback, useEffect } from 'react'
 import { SubmitHandler } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
@@ -22,6 +23,7 @@ export const LoginForm = ({ styles }: ILoginFormProps) => {
 	const navigate = useNavigate()
 	const { error, isLoading } = useSelector(getLoginState)
 	const { userType } = useSelector(getFullUserState)
+	const { t } = useTranslation('admin')
 
 	const onSubmit: SubmitHandler<ICreateLoginData> = useCallback(
 		(formData: ICreateLoginData, event) => {
@@ -41,7 +43,7 @@ export const LoginForm = ({ styles }: ILoginFormProps) => {
 		{
 			type: 'input',
 			key: 'email',
-			title: 'Введите Email',
+			title: `${t('vvedite-email')}`,
 			rules: {
 				required: true,
 				pattern: 'email',
@@ -50,7 +52,7 @@ export const LoginForm = ({ styles }: ILoginFormProps) => {
 		{
 			type: 'input',
 			key: 'password',
-			title: 'Введите пароль',
+			title: `${t('vvedite-parol')}`,
 			rules: {
 				required: true,
 				minLength: 8,
@@ -59,7 +61,7 @@ export const LoginForm = ({ styles }: ILoginFormProps) => {
 		{
 			type: 'check-box',
 			key: 'rememberMe',
-			description: 'Запомнить меня',
+			description: `${t('zapomnit-menya')}`,
 			rules: {
 				required: false,
 			},
@@ -75,11 +77,11 @@ export const LoginForm = ({ styles }: ILoginFormProps) => {
 					disabled={isLoading}
 					onSubmit={onSubmit}
 					data={loginForm}
-					button={'Вход'}
+					button={`${t('vkhod')}`}
 				/>
 
 				<div className={classes.bottom_block}>
-					<Htag tag={'very-small'}>Забыли пароль?</Htag>
+					<Htag tag={'very-small'}>{t('zabyli-parol')}</Htag>
 
 					<GoogleAuthButton />
 				</div>
