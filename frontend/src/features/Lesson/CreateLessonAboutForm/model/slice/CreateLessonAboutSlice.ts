@@ -6,6 +6,7 @@ const initialState: ICreateLessonAboutData = {
 	title: '',
 	description: '',
 	video: undefined,
+	module_id: -1,
 }
 
 export const CreateLessonAboutSlice = createSlice({

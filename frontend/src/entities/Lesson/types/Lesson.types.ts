@@ -2,13 +2,11 @@ export interface IAboutLessonData {
 	id: number
 	title: string
 	description: string
-	order: number
 }
 
 export interface ILectureData {
 	id?: number
 	description: string
-	order: number
 	title: string
 	video: string
 	lesson: ILessonContentData[]

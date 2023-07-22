@@ -8,6 +8,7 @@ import { IUpdateCourseSchema } from 'features/Course/EditCourseForm'
 import { ICreateAdditionSchema } from 'features/Lesson/CreateLessonAdditionForm'
 import { ICreateLessonSchema } from 'features/Lesson/CreateLessonButton'
 import { ILessonContentScheme } from 'features/Lesson/CreateLessonContentForm'
+import { ICreateModuleSchema } from 'features/Module/CreateModuleForm'
 import { ICreateTicketSchema } from 'features/Ticket/CreateTicketForm/model/type/CreateTicketSchema'
 
 import { IListCourseDataSchema, IRetrieveCourseDataSchema } from 'entities/Course/CourseData'
@@ -29,6 +30,7 @@ export interface IStateSchema {
 	listCourseData: IListCourseDataSchema
 	updateCourseData: IUpdateCourseSchema
 	createLesson: ICreateLessonSchema
+	createModuleData: ICreateModuleSchema
 }
 
 export interface IThunkExtraArg {

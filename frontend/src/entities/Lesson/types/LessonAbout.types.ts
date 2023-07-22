@@ -1,10 +1,10 @@
 import { IFormConstructorData } from 'shared/ui'
 
 export interface ICreateLessonAboutData {
-	course?: string
 	description: string
 	title: string
 	video?: string
+	module_id?: number
 }
 
 interface ICreateLessonAboutKeys {

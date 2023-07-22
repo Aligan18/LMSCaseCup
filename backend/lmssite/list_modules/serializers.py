@@ -18,12 +18,20 @@ class ListModulesSerializers(serializers.ModelSerializer):
 
 
 class AboutListModulesSerializers(serializers.ModelSerializer):
+
     class Meta:
         model = ListModules
         fields = '__all__'
 
 
 class CreateModulesSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Modules
+        fields = '__all__'
+
+
+class ModulesSerializers(serializers.ModelSerializer):
+    list_module = AboutListModulesSerializers()
     class Meta:
         model = Modules
         fields = '__all__'

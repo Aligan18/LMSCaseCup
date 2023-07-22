@@ -2,9 +2,8 @@ import { useState } from 'react'
 
 import classes from './EditModuleList.module.scss'
 
-import { IAboutLessonData } from 'entities/Lesson/types'
 import { ModuleList } from 'entities/Module/ModuleList'
-import { IModuleData } from 'entities/Module/types'
+import { EListModuleType, IListModule, IModuleData } from 'entities/Module/types'
 
 import { classnames as cn } from 'shared/lib'
 import { List } from 'shared/ui'
@@ -17,27 +16,42 @@ export const EditModuleList = ({ styles }: IEditModuleListProps) => {
 			title: 'Первый модуль ',
 			description: 'Введение ',
 			number: 1,
-			lesson: [
+			list_modules: [
 				{
 					id: 1,
 					order: 1,
-					title: 'Введение в программирование',
-					description:
-						'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
+					lecture_id: {
+						id: 1,
+						title: 'Введение в программирование',
+						description: 'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
+					},
+					file_task_id: null,
+					module_type: EListModuleType.LECTURE,
+					test_task_id: null,
 				},
 				{
 					id: 2,
 					order: 2,
-					title: 'Основы программирования',
-					description:
-						'IDE и установка Python, файлы. Погружение: коллекции и вложенность, JSON, requests ',
+					lecture_id: {
+						id: 1,
+						title: 'Введение в программирование',
+						description: 'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
+					},
+					file_task_id: null,
+					module_type: EListModuleType.LECTURE,
+					test_task_id: null,
 				},
 				{
 					id: 3,
 					order: 3,
-					title: 'Основы backend-разработки',
-					description:
-						'Введение в работу с командной строкой. Командная строка и Linux. Введение в работу с Git. Работа с ветками в Git. Настройка окружения. Тестирование. ',
+					lecture_id: {
+						id: 1,
+						title: 'Введение в программирование',
+						description: 'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
+					},
+					file_task_id: null,
+					module_type: EListModuleType.LECTURE,
+					test_task_id: null,
 				},
 			],
 		},
@@ -47,66 +61,49 @@ export const EditModuleList = ({ styles }: IEditModuleListProps) => {
 			title: 'Второй модуль ',
 			description: 'Введение ',
 			number: 1,
-			lesson: [
+			list_modules: [
 				{
 					id: 1,
 					order: 1,
-					title: 'Введение в программирование',
-					description:
-						'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
+					lecture_id: {
+						id: 1,
+						title: 'Введение в программирование',
+						description: 'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
+					},
+					file_task_id: null,
+					module_type: EListModuleType.LECTURE,
+					test_task_id: null,
 				},
 				{
 					id: 2,
 					order: 2,
-					title: 'Основы программирования',
-					description:
-						'IDE и установка Python, файлы. Погружение: коллекции и вложенность, JSON, requests ',
+					lecture_id: {
+						id: 1,
+						title: 'Введение в программирование',
+						description: 'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
+					},
+					file_task_id: null,
+					module_type: EListModuleType.LECTURE,
+					test_task_id: null,
 				},
 				{
 					id: 3,
 					order: 3,
-					title: 'Основы backend-разработки',
-					description:
-						'Введение в работу с командной строкой. Командная строка и Linux. Введение в работу с Git. Работа с ветками в Git. Настройка окружения. Тестирование. ',
-				},
-			],
-		},
-		{
-			id: 3,
-			order: 3,
-			title: 'Третий модуль ',
-			description: 'Введение ',
-			number: 1,
-			lesson: [
-				{
-					id: 1,
-					order: 1,
-					title: 'Введение в программирование',
-					description:
-						'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
-				},
-				{
-					id: 2,
-					order: 2,
-					title: 'Основы программирования',
-					description:
-						'IDE и установка Python, файлы. Погружение: коллекции и вложенность, JSON, requests ',
-				},
-				{
-					id: 3,
-					order: 3,
-					title: 'Основы backend-разработки',
-					description:
-						'Введение в работу с командной строкой. Командная строка и Linux. Введение в работу с Git. Работа с ветками в Git. Настройка окружения. Тестирование. ',
+					lecture_id: {
+						id: 1,
+						title: 'Введение в программирование',
+						description: 'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
+					},
+					file_task_id: null,
+					module_type: EListModuleType.LECTURE,
+					test_task_id: null,
 				},
 			],
 		},
 	]
 	const [currentId, setCurrentId] = useState<string | undefined>(undefined)
 
-	const [currentContent, setCurrentContent] = useState<
-		IModuleData | IAboutLessonData | undefined
-	>(undefined)
+	const [currentContent, setCurrentContent] = useState<IModuleData | IListModule | undefined>(undefined)
 
 	return (
 		<div className={cn(classes.EditModuleList, [styles])}>

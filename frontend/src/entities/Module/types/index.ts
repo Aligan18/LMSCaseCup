@@ -1,3 +1,6 @@
 export { IModuleData } from './Module.types'
 export { IModuleFormConstructor } from './Module.types'
 export { ICreateModuleData } from './Module.types'
+export { IListModule } from './ListModule.types'
+export { EListModuleType } from './ListModule.types'
+export { ICreateListModule } from './ListModule.types'

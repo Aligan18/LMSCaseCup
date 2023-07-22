@@ -11,7 +11,6 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 	const data: ILectureData = {
 		id: 1,
 		course: 1,
-		order: 5,
 		description: 'Введение в программирование',
 		title: 'Введение в программирование',
 		video: 'https://www.youtube.com/embed/i-uvtDKeFgE',

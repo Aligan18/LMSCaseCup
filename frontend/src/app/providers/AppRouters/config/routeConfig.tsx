@@ -30,11 +30,11 @@ export enum ERoutePath {
 	CREATE_COURSE = '/create_course',
 	CREATE_TICKET = '/create_ticket',
 	CREATE_TICKET_ANSWER = '/create_ticket_answer/:id',
-	CREATE_LESSON = '/course/:course_id/create_lesson',
+	CREATE_LESSON = '/module/:module_id/create_lesson',
+	EDIT_LESSON = '/module/:module_id/edit_lesson/:lesson_id',
 	EDIT_COURSE = '/edit_course/:id',
 	TEACHER_ROOM = '/teacher_room',
 	VIEW_ANSWER = '/view_answer/:id',
-	EDIT_LESSON = '/course/:course_id/edit_lesson/:lesson_id',
 	GROUP_LIST = '/group_list/:id',
 	CREATE_ANSWER = '/create_answer/:id',
 	AUTHORIZATION = '/authorization',
@@ -43,13 +43,17 @@ export enum ERoutePath {
 	CREATE_MODULE = '/course/:course_id/create_module',
 }
 
+export type ILAST_ID_Params = {
+	id: string
+}
+
 export type IEDIT_LESSON_Params = {
-	course_id: string
+	module_id: string
 	lesson_id: string
 }
 
 export type ICREATE_LESSON_Params = {
-	course_id: string
+	module_id: string
 }
 
 export type ICREATE_MODULE_Params = {
