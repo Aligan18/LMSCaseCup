@@ -1,4 +1,6 @@
-import { IAboutLessonData } from 'entities/Lesson/types'
+import { IListModule } from './ListModule.types'
+
+import { IAboutLessonData, ILectureData } from 'entities/Lesson/types'
 
 import { IFormConstructorData } from 'shared/ui'
 
@@ -7,8 +9,9 @@ export interface IModuleData {
 	title: string
 	description: string
 	number: number
-	lesson: IAboutLessonData[]
+	list_modules: IListModule[]
 	order: number
+	course: number
 }
 
 export interface ICreateModuleData {
@@ -16,6 +19,7 @@ export interface ICreateModuleData {
 	title: string
 	description: string
 	order: number
+	list_modules: number[]
 }
 
 interface ICreateModuleKeys {

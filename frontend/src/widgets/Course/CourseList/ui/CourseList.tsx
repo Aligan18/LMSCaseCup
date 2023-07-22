@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom'
 
 import classes from './CourseList.module.scss'
 
-import { ERoutePath } from 'app/providers/AppRouters'
+import { ERoutePath, IABOUT_COURSE_Params } from 'app/providers/AppRouters'
 
 import { CourseCard } from 'entities/Course/CourseCard'
 import { getListCourseData, listCourseRequest } from 'entities/Course/CourseData'
 import { IAboutCourseData } from 'entities/Course/types'
 
-import { classnames as cn, deleteRouteId, useAppDispatch } from 'shared/lib'
+import { classnames as cn, deleteRouteId, setParamsInPath, useAppDispatch } from 'shared/lib'
 import { Button, Icon, List } from 'shared/ui'
 
 export const CourseList = ({ styles }: ICourseListProps) => {
@@ -70,7 +70,11 @@ export const CourseList = ({ styles }: ICourseListProps) => {
 							key={info.id}
 							data={info}
 							buttons={
-								<Link to={deleteRouteId(ERoutePath.ABOUT_COURSE) + info.id}>
+								<Link
+									to={setParamsInPath<IABOUT_COURSE_Params>(ERoutePath.ABOUT_COURSE, {
+										course_id: String(info.id),
+									})}
+								>
 									<Button
 										variation="clear"
 										styles={classes.button}

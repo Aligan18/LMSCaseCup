@@ -18,11 +18,11 @@ export const CreateLessonButton = ({ styles }: ICreateLessonButtonProps) => {
 	const about = useSelector(getLessonAbout)
 	const additions = useSelector(getAdditionsData)
 	const contents = useSelector(getLessonContents)
-	const { course_id, lesson_id } = useParams<IEDIT_LESSON_Params>()
+	const { module_id, lesson_id } = useParams<IEDIT_LESSON_Params>()
 
 	const handleClick = () => {
-		if (course_id) {
-			const fullAbout = { ...about, course: course_id }
+		if (module_id) {
+			const fullAbout = { ...about, module_id: Number(module_id) }
 			dispatch(createLessonRequest({ about: fullAbout, additions, contents }))
 		}
 	}

@@ -10,7 +10,7 @@ from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsTe
     IsStudentHasAccessCreate
 from list_modules.models import ListModules, Modules
 from list_modules.serializers import ListModulesSerializers, CreateListModulesSerializers, AboutListModulesSerializers, \
-    CreateModulesSerializers
+    CreateModulesSerializers, ModulesSerializers
 
 from list_modules.service import Filter, FilterForModules
 from mysite.pagination import ListPagination
@@ -72,10 +72,12 @@ class ModulesViewCreate(generics.CreateAPIView):
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
 
 
+
+
 # Admin , Teacher с доступом к курсу, Student которые проходят этот курс
 class ModulesViewList(generics.ListAPIView):
     queryset = Modules.objects.all()
-    serializer_class = CreateModulesSerializers
+    serializer_class = ModulesSerializers
     filter_backends = (DjangoFilterBackend, OrderingFilter)
     filterset_class = FilterForModules
     ordering_fields = ["order"]
@@ -85,8 +87,8 @@ class ModulesViewList(generics.ListAPIView):
 # Admin , Teacher с доступом к курсу, Student которые проходят этот курс
 class ModulesViewRetrieve(generics.RetrieveAPIView):
     queryset = Modules.objects.all()
-    serializer_class = CreateModulesSerializers
-    permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]
+    serializer_class = ModulesSerializers
+    # permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]
 
 # Admin , Teacher с доступом к курсу
 class ModulesViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):

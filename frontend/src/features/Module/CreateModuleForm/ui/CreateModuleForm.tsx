@@ -1,17 +1,32 @@
 import { SubmitHandler } from 'react-hook-form'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
+import { getCreateModuleError } from '../models/selectors/getCreateModuleError'
+import { getCreateModuleIsLoading } from '../models/selectors/getCreateModuleIsLoading'
+import { getCreateModuleSuccessful } from '../models/selectors/getCreateModuleSuccessful'
+import { createModuleRequest } from '../services/CreateModuleRequest'
 import classes from './CreateModuleForm.module.scss'
+
+import { ICREATE_MODULE_Params } from 'app/providers/AppRouters'
 
 import { ICreateModuleData, IModuleFormConstructor } from 'entities/Module/types'
 
-import { classnames as cn } from 'shared/lib'
+import { classnames as cn, useAppDispatch } from 'shared/lib'
 import { Button, FormConstructor, Header } from 'shared/ui'
 
 export const CreateModuleForm = ({ styles }: ICreateModuleFormProps) => {
+	const dispatch = useAppDispatch()
+	const { course_id } = useParams<ICREATE_MODULE_Params>()
+	const serverError = useSelector(getCreateModuleError)
+	const isLoading = useSelector(getCreateModuleIsLoading)
+	const successful = useSelector(getCreateModuleSuccessful)
 	const onSubmit: SubmitHandler<ICreateModuleData> = (formData: ICreateModuleData, event) => {
 		event?.preventDefault()
-
 		console.log(formData)
+		formData.course = Number(course_id)
+
+		dispatch(createModuleRequest(formData))
 	}
 
 	const form: IModuleFormConstructor[] = [
@@ -46,6 +61,9 @@ export const CreateModuleForm = ({ styles }: ICreateModuleFormProps) => {
 				button={'Добавить модуль'}
 				data={form}
 				onSubmit={onSubmit}
+				isLoading={isLoading}
+				serverError={serverError}
+				successful={successful}
 			/>
 		</div>
 	)

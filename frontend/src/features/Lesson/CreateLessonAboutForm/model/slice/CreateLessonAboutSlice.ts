@@ -6,16 +6,14 @@ const initialState: ICreateLessonAboutData = {
 	title: '',
 	description: '',
 	video: undefined,
+	module_id: -1,
 }
 
 export const CreateLessonAboutSlice = createSlice({
 	name: 'createLessonAboutSlice',
 	initialState: initialState,
 	reducers: {
-		change_about_lesson: (
-			state: ICreateLessonAboutData,
-			{ payload }: PayloadAction<ICreateLessonAboutData>,
-		) => {
+		change_about_lesson: (state: ICreateLessonAboutData, { payload }: PayloadAction<ICreateLessonAboutData>) => {
 			state.title = payload.title ? payload.title : ''
 			state.description = payload.description ? payload.description : ''
 			state.video = payload.video ? payload.video : undefined

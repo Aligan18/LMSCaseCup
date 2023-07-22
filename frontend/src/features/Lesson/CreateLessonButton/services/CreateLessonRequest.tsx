@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { useNavigate } from 'react-router-dom'
 
 import { ERoutePath } from 'app/providers/AppRouters'
-import { IEDIT_LESSON_Params } from 'app/providers/AppRouters/config/routeConfig'
+import { ICREATE_MODULE_Params, IEDIT_LESSON_Params } from 'app/providers/AppRouters/config/routeConfig'
 import { IThunkExtraArg } from 'app/providers/StoreProvider'
 
 import {
@@ -12,6 +13,9 @@ import {
 	ILectureData,
 	ILessonContentData,
 } from 'entities/Lesson/types'
+import { createListModuleRequest } from 'entities/Module/CreateListModule/services/createListModuleRequest'
+import { IListModule } from 'entities/Module/types'
+import { EListModuleType, ICreateListModule } from 'entities/Module/types/'
 
 import { serverErrors, setParamsInPath } from 'shared/lib'
 
@@ -25,14 +29,11 @@ export const createLessonRequest = createAsyncThunk<
 	void,
 	ICreateLessonProps,
 	{ rejectValue: string; extra: IThunkExtraArg }
->('createLessonRequest', async ({ about, contents, additions }, { rejectWithValue, extra }) => {
+>('createLessonRequest', async ({ about, contents, additions }, { rejectWithValue, extra, dispatch }) => {
 	try {
 		const contents_id = []
 		for (const content of contents) {
-			const response = await extra.$axios.post<ILessonContentData>(
-				extra.API.lectures.lesson.create,
-				content,
-			)
+			const response = await extra.$axios.post<ILessonContentData>(extra.API.lectures.lesson.create, content)
 			contents_id.push(response.data.id)
 		}
 
@@ -44,15 +45,18 @@ export const createLessonRequest = createAsyncThunk<
 			lesson: contents_id,
 		}
 
-		const response = await extra.$axios.post<ILectureData>(
-			extra.API.lectures.create,
-			lectureData,
-		)
-		const params: IEDIT_LESSON_Params = {
-			course_id: String(response.data.course),
-			lesson_id: String(response.data.id),
+		const lectureResponse = await extra.$axios.post<ILectureData>(extra.API.lectures.create, lectureData)
+
+		if (about.module_id) {
+			const listModuelData: ICreateListModule = {
+				lecture_id: lectureResponse.data.id,
+				module_type: EListModuleType.LECTURE,
+				module: about.module_id,
+			}
+			dispatch(createListModuleRequest(listModuelData))
+		} else {
+			throw new Error()
 		}
-		extra.navigate && extra.navigate(setParamsInPath(ERoutePath.EDIT_LESSON, params))
 	} catch (error) {
 		return rejectWithValue(serverErrors(error))
 	}

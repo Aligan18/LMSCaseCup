@@ -30,6 +30,15 @@ export const API = {
 	ticket: {
 		create: '/student_ticket/create/',
 	},
+	modules: {
+		list: '/modules/list/',
+		retrieve: '/modules/id/',
+		create: '/modules/create/',
+		rud: '/modules/rud/',
+	},
+	list_modules: {
+		create: '/list_modules/create/',
+	},
 }
 
 export type IAPI = typeof API

@@ -11,8 +11,7 @@ const AboutCoursePage = ({ styles }: IAboutCoursePageProps) => {
 		id: 1,
 		image: 'sdfsd',
 		title: 'Python-разработчик с нуля  ',
-		description:
-			'Разработчик на Python создает сайты и приложения, которыми вы пользуетесь каждый день.',
+		description: 'Разработчик на Python создает сайты и приложения, которыми вы пользуетесь каждый день.',
 		price: 100000,
 	}
 	return (

@@ -4,18 +4,27 @@ import {
 	Dispatch,
 	HtmlHTMLAttributes,
 	SetStateAction,
+	useEffect,
 	useState,
 } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 import classes from './ModuleList.module.scss'
 
-import { LessonListItem } from 'entities/Lesson/LessonListItem'
-import { IAboutLessonData } from 'entities/Lesson/types'
-import { ModuleListItem } from 'entities/Module/ModuleListItem'
-import { IModuleData } from 'entities/Module/types'
+import {
+	ERoutePath,
+	ICREATE_LESSON_Params,
+	ICREATE_MODULE_Params,
+	IEDIT_LESSON_Params,
+	ILAST_ID_Params,
+} from 'app/providers/AppRouters'
 
-import { classnames as cn, swapOrderForDragAndDrop, useDragAndDropOrdering } from 'shared/lib'
-import { AnimatedButton, Button, DeleteZone, DragAndDropDiv, List } from 'shared/ui'
+import { LessonListItem } from 'entities/Lesson/LessonListItem'
+import { ModuleListItem } from 'entities/Module/ModuleListItem'
+import { IListModule, IModuleData } from 'entities/Module/types'
+
+import { classnames as cn, setParamsInPath, swapOrderForDragAndDrop, useDragAndDropOrdering } from 'shared/lib'
+import { AnimatedButton, Button, DeleteZone, DragAndDropDiv, Htag, Icon, List } from 'shared/ui'
 import { AccordionWrapper } from 'shared/ui'
 
 export const ModuleList = ({
@@ -31,11 +40,11 @@ export const ModuleList = ({
 	const lesson_id = classes.lesson_Id
 	const module_id = classes.module_Id
 	const [isVisible, setIsVisible] = useState(false)
-	function lessonDropHandler(e: BaseSyntheticEvent, content: IAboutLessonData): void {
-		swapOrderForDragAndDrop(module.lesson, content, currentContent)
+	function lessonDropHandler(e: BaseSyntheticEvent, content: IListModule): void {
+		swapOrderForDragAndDrop(module.list_modules, content, currentContent)
 	}
 
-	function lessonStartHandler(e: BaseSyntheticEvent, content: IAboutLessonData): void {
+	function lessonStartHandler(e: BaseSyntheticEvent, content: IListModule): void {
 		console.log(content)
 
 		setCurrentContent && setCurrentContent(content)
@@ -45,7 +54,7 @@ export const ModuleList = ({
 		console.log('step2')
 		moduledata && swapOrderForDragAndDrop(moduledata, content, currentContent)
 	}
-	const lessonDrag = useDragAndDropOrdering<IAboutLessonData>({
+	const lessonDrag = useDragAndDropOrdering<IListModule>({
 		currentId,
 		setCurrentId,
 		drop: lessonDropHandler,
@@ -111,44 +120,89 @@ export const ModuleList = ({
 							</DragAndDropDiv>
 						}
 						renderItems={
-							<List
-								styles={classes.lesson_list}
-								items={module.lesson}
-								variation={'list'}
-								renderItem={(data: IAboutLessonData) => (
-									<div className={classes.list_wrapper}>
-										<DragAndDropDiv
-											dropHandler={lessonDrag.dropHandler}
-											endHandler={lessonDrag.endHandler}
-											leaveHandler={lessonDrag.leaveHandler}
-											overHandler={lessonDrag.overHandler}
-											startHandler={lessonDrag.startHandler}
-											childrenId={lesson_id}
-											item={data}
-										>
-											<LessonListItem
-												hasButton={false}
-												data={data}
-												key={data.id}
-											/>
-										</DragAndDropDiv>
-										<div className={classes.buttons}>
-											<AnimatedButton
-												variation="clear"
-												icon={'right'}
+							<>
+								<List
+									styles={classes.lesson_list}
+									items={module.list_modules}
+									variation={'list'}
+									renderItem={(data: IListModule) => (
+										<div className={classes.list_wrapper}>
+											<DragAndDropDiv
+												dropHandler={lessonDrag.dropHandler}
+												endHandler={lessonDrag.endHandler}
+												leaveHandler={lessonDrag.leaveHandler}
+												overHandler={lessonDrag.overHandler}
+												startHandler={lessonDrag.startHandler}
+												childrenId={lesson_id}
+												item={data}
 											>
-												Пререйти
-											</AnimatedButton>
-											<AnimatedButton
-												variation="clear"
-												icon={'edit'}
-											>
-												Редактировать
-											</AnimatedButton>
+												<LessonListItem
+													hasButton={false}
+													data={data}
+													key={data.id}
+												/>
+											</DragAndDropDiv>
+											<div className={classes.buttons}>
+												<Link
+													to={setParamsInPath<ILAST_ID_Params>(ERoutePath.LESSON, {
+														id: String(data.lecture_id?.id),
+													})}
+												>
+													<AnimatedButton
+														variation="clear"
+														icon={'right'}
+													>
+														Пререйти
+													</AnimatedButton>
+												</Link>
+												<Link
+													to={setParamsInPath<IEDIT_LESSON_Params>(ERoutePath.EDIT_LESSON, {
+														lesson_id: String(data.lecture_id?.id),
+														module_id: String(module.id),
+													})}
+												>
+													<AnimatedButton
+														variation="clear"
+														icon={'edit'}
+													>
+														Редактировать
+													</AnimatedButton>
+												</Link>
+											</div>
 										</div>
-									</div>
-								)}
-							/>
+									)}
+								/>
+								<div className={classes.add_buttons}>
+									<Htag tag={'medium'}>Добавить :</Htag>
+									<Link
+										to={setParamsInPath<ICREATE_LESSON_Params>(ERoutePath.CREATE_LESSON, {
+											module_id: String(module.id),
+										})}
+									>
+										<Button format={'small'}>
+											Лекцию
+											<Icon
+												variation={'secondary'}
+												icon={'plus'}
+											/>
+										</Button>
+									</Link>
+									<Button format={'small'}>
+										Задание
+										<Icon
+											variation={'secondary'}
+											icon={'plus'}
+										/>
+									</Button>
+									<Button format={'small'}>
+										Тест
+										<Icon
+											variation={'secondary'}
+											icon={'plus'}
+										/>
+									</Button>
+								</div>
+							</>
 						}
 					/>
 				</div>
@@ -162,9 +216,9 @@ export const ModuleList = ({
 						renderItems={
 							<List
 								styles={classes.lesson_list}
-								items={module.lesson}
+								items={module.list_modules}
 								variation={'list'}
-								renderItem={(data: IAboutLessonData) => (
+								renderItem={(data: IListModule) => (
 									<LessonListItem
 										data={data}
 										key={data.id}
@@ -179,16 +233,15 @@ export const ModuleList = ({
 	)
 }
 
-interface IModuleListProps
-	extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+interface IModuleListProps extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	styles?: string
 	module: IModuleData
 	editor?: boolean
 	currentId?: string
 	moduledata?: IModuleData[]
 	setCurrentId?: Dispatch<SetStateAction<string | undefined>>
-	setCurrentContent?: Dispatch<SetStateAction<IModuleData | IAboutLessonData | undefined>>
-	currentContent?: IModuleData | IAboutLessonData | undefined
+	setCurrentContent?: Dispatch<SetStateAction<IModuleData | IListModule | undefined>>
+	currentContent?: IModuleData | IListModule | undefined
 	DataOrdering?: <T extends { id?: number | undefined; order?: number | undefined }>(
 		contentData: T[],
 		content: T,

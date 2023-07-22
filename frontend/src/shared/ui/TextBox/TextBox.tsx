@@ -23,5 +23,5 @@ interface ITextBoxProps
 	extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement> {
 	styles?: string
 	size: 'large' | 'medium' | 'small'
-	children: string | number | string[] | number[]
+	children: string | number | string[] | number[] | undefined
 }

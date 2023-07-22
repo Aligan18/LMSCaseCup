@@ -8,7 +8,6 @@ class Lectures(models.Model):
     video = models.CharField(max_length=150, null=True)
     lesson = models.ManyToManyField('LessonContent', blank=True , null=True)
     additions = models.ManyToManyField('Additions', blank=True , null=True)
-    course = models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.title

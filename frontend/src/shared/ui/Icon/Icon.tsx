@@ -61,7 +61,10 @@ export const Icon = ({
 	}
 
 	return (
-		<div {...props}>
+		<div
+			className={classes.wrapper}
+			{...props}
+		>
 			{icon === 'home' && <HomeIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'book' && <BookIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'calendar' && (
