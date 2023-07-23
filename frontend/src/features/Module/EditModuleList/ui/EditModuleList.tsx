@@ -10,6 +10,8 @@ import {
 import { useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 
+import { EditModuleCurrentId } from '../const/currentId/dragAndDropCurrentId'
+import { getEditModuleCurrentId } from '../models/selectors/getEditModuleCurrentId'
 import { getEditModuleTrashCurrent } from '../models/selectors/getEditModuleTrashCurrent'
 import { editModuleSliceActions } from '../models/slice/EditModuleSlice'
 import classes from './EditModuleList.module.scss'
@@ -39,16 +41,16 @@ import { AccordionWrapper } from 'shared/ui'
 export const EditModuleList = ({
 	styles,
 	module,
-	currentId,
-	setCurrentId,
+
 	setCurrentContent,
 	currentContent,
 	moduledata,
 	moduleIndex,
 }: IEditModuleListProps) => {
 	const dispatch = useAppDispatch()
-	const lesson_id = classes.lesson_Id
-	const module_id = classes.module_Id
+	const currentId = useSelector(getEditModuleCurrentId)
+	const lesson_id = EditModuleCurrentId.LISTMODULE_id
+	const module_id = EditModuleCurrentId.MODULE_ID
 
 	const [isVisible, setIsVisible] = useState(false)
 	const trashCurrent = useSelector(getEditModuleTrashCurrent)
@@ -74,7 +76,7 @@ export const EditModuleList = ({
 
 	function lessonStartHandler(e: BaseSyntheticEvent, content: IListModule): void {
 		console.log(content)
-
+		dispatch(editModuleSliceActions.set_current_id('listModule_id'))
 		setCurrentContent && setCurrentContent(content)
 	}
 
@@ -97,8 +99,7 @@ export const EditModuleList = ({
 		}
 	}
 	const lessonDrag = useDragAndDropOrdering<IListModule>({
-		currentId,
-		setCurrentId,
+		currentId: currentId,
 		drop: lessonDropHandler,
 		start: lessonStartHandler,
 		setIsVisible,
@@ -106,12 +107,11 @@ export const EditModuleList = ({
 
 	function moduleStartHandler(e: BaseSyntheticEvent, content: IModuleData): void {
 		console.log(content)
-
+		dispatch(editModuleSliceActions.set_current_id('module_id'))
 		setCurrentContent && setCurrentContent(content)
 	}
 	const modelDrag = useDragAndDropOrdering({
-		currentId,
-		setCurrentId,
+		currentId: currentId,
 		drop: moduleDropHandler,
 		start: moduleStartHandler,
 		setIsVisible,

@@ -9,9 +9,7 @@ export const AccordionWrapper = ({ styles, main, renderItems }: IAccordionWrappe
 	return (
 		<div className={cn(classes.AccordionWrapper, [styles])}>
 			<div onClick={() => setIsOpen(!isOpen)}>{main}</div>
-			<div className={cn(classes.render_item, [], { [classes.is_open]: isOpen === true })}>
-				{renderItems}
-			</div>
+			<div className={cn(classes.render_item, [], { [classes.is_open]: isOpen === true })}>{renderItems}</div>
 		</div>
 	)
 }

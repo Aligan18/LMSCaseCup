@@ -9,11 +9,10 @@ export function useDragAndDropOrdering<T>({
 	over,
 	drop,
 	currentId,
-	setCurrentId,
+
 	setIsVisible,
 }: IUseDragAndDropOrdering<T>) {
 	function startHandler(e: BaseSyntheticEvent, content: T): void {
-		setCurrentId && setCurrentId(e.target.id)
 		setIsVisible && setIsVisible(true)
 		start && start(e, content)
 	}
@@ -55,6 +54,6 @@ interface IUseDragAndDropOrdering<T> {
 	over?: (e: BaseSyntheticEvent) => void
 	drop?: (e: BaseSyntheticEvent, content: T) => void
 	currentId: string | undefined
-	setCurrentId: Dispatch<SetStateAction<string | undefined>> | undefined
+
 	setIsVisible?: Dispatch<SetStateAction<boolean>>
 }

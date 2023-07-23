@@ -113,7 +113,6 @@ export const EditModuleProgram = ({ styles }: IEditModuleProgramProps) => {
 	useEffect(() => {
 		dispatch(getAllListModulesRequest(Number(course_id)))
 	}, [course_id])
-	const [currentId, setCurrentId] = useState<string | undefined>(undefined)
 
 	const [currentContent, setCurrentContent] = useState<IModuleData | IListModule | undefined>(undefined)
 
@@ -129,8 +128,6 @@ export const EditModuleProgram = ({ styles }: IEditModuleProgramProps) => {
 						key={module.id}
 						module={module}
 						currentContent={currentContent}
-						currentId={currentId}
-						setCurrentId={setCurrentId}
 					/>
 				)}
 				variation={'list'}

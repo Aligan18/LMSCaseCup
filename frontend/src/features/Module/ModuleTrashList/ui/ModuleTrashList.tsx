@@ -15,6 +15,7 @@ export const ModuleTrashList = ({ styles }: IModuleTrashListProps) => {
 	const trashData = useSelector(getEditModuleTrash)
 	const dispatch = useAppDispatch()
 	const startHandler = (e: BaseSyntheticEvent, content: IListModule) => {
+		dispatch(editModuleSliceActions.set_current_id('module_id'))
 		dispatch(editModuleSliceActions.set_trash_current(content))
 	}
 
