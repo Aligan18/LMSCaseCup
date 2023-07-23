@@ -37,6 +37,7 @@ export const API = {
 		rud: '/modules/rud/',
 	},
 	list_modules: {
+		rud: '/list_modules/rud/',
 		create: '/list_modules/create/',
 	},
 }

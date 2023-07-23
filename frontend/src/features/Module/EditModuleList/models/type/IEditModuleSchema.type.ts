@@ -8,6 +8,7 @@ export interface IEditModuleSchema {
 	changed_listModule: IChangedLesson
 	changed_module: IChangedModule
 	trash_listModule: IListModule[]
+	trash_module: number[]
 	trash_current?: IListModule
 	current_id: string | undefined
 }

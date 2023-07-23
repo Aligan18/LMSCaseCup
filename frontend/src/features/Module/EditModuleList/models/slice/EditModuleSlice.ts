@@ -10,6 +10,7 @@ import { IListModule, IModuleData } from 'entities/Module/types'
 import { StarFilled } from 'shared/ui/Icon/Icon.stories'
 
 const initialState: IEditModuleSchema = {
+	trash_module: [],
 	current_id: undefined,
 	trash_current: undefined,
 	isLoading: false,
@@ -89,6 +90,8 @@ export const editModuleSlice = createSlice({
 			state.module_data[payload.moduleIndex].list_modules.map((lesson) => {
 				state.trash_listModule.push(lesson)
 			})
+			//Добавление модуля в корзину
+			state.trash_module.push(state.module_data[payload.moduleIndex].id)
 			// Удаление модуля
 			state.module_data.splice(payload.moduleIndex, 1)
 		},

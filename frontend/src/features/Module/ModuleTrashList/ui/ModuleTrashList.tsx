@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 import classes from './ModuleTrashList.module.scss'
 
-import { getEditModuleTrash } from 'features/Module/EditModuleList'
+import { getEditModuleTrashList } from 'features/Module/EditModuleList'
 import { editModuleSliceActions } from 'features/Module/EditModuleList/models/slice/EditModuleSlice'
 
 import { IListModule } from 'entities/Module/types'
@@ -12,7 +12,7 @@ import { classnames as cn, useAppDispatch } from 'shared/lib'
 import { DragAndDropDiv, Htag, Icon, List, ListItem } from 'shared/ui'
 
 export const ModuleTrashList = ({ styles }: IModuleTrashListProps) => {
-	const trashData = useSelector(getEditModuleTrash)
+	const trashData = useSelector(getEditModuleTrashList)
 	const dispatch = useAppDispatch()
 	const startHandler = (e: BaseSyntheticEvent, content: IListModule) => {
 		dispatch(editModuleSliceActions.set_current_id('module_id'))

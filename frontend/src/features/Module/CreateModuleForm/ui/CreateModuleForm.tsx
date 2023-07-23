@@ -7,6 +7,7 @@ import { getCreateModuleIsLoading } from '../models/selectors/getCreateModuleIsL
 import { getCreateModuleSuccessful } from '../models/selectors/getCreateModuleSuccessful'
 import { createModuleRequest } from '../services/CreateModuleRequest'
 import classes from './CreateModuleForm.module.scss'
+import { UpdateModuleDataButton } from './UpdateModuleDataButton'
 
 import { ICREATE_MODULE_Params } from 'app/providers/AppRouters'
 
@@ -55,7 +56,7 @@ export const CreateModuleForm = ({ styles }: ICreateModuleFormProps) => {
 			<Header
 				styles={classes.header}
 				title="Добавить модуль"
-				buttons={<Button>Сохранить изменения</Button>}
+				buttons={<UpdateModuleDataButton />}
 			></Header>
 			<FormConstructor<ICreateModuleData>
 				button={'Добавить модуль'}
