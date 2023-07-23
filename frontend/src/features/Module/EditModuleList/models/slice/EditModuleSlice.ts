@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { start } from 'repl'
 
+import { EditModuleCurrentId } from '../../const/currentId/dragAndDropCurrentId'
 import { IChangedLesson, IChangedModule, IEditModuleSchema } from '../type/IEditModuleSchema.type'
 
 import { getAllListModulesRequest } from 'entities/Module/ModuleData'
@@ -9,6 +10,8 @@ import { IListModule, IModuleData } from 'entities/Module/types'
 import { StarFilled } from 'shared/ui/Icon/Icon.stories'
 
 const initialState: IEditModuleSchema = {
+	trash_module: [],
+	current_id: undefined,
 	trash_current: undefined,
 	isLoading: false,
 	module_data: [],
@@ -87,6 +90,8 @@ export const editModuleSlice = createSlice({
 			state.module_data[payload.moduleIndex].list_modules.map((lesson) => {
 				state.trash_listModule.push(lesson)
 			})
+			//Добавление модуля в корзину
+			state.trash_module.push(state.module_data[payload.moduleIndex].id)
 			// Удаление модуля
 			state.module_data.splice(payload.moduleIndex, 1)
 		},
@@ -106,6 +111,20 @@ export const editModuleSlice = createSlice({
 			state.trash_current && state.module_data[payload.module_index].list_modules.push(state.trash_current)
 			//Сбрасываем trash_current
 			state.trash_current = undefined
+		},
+
+		set_current_id: (state: IEditModuleSchema, { payload }: PayloadAction<'module_id' | 'listModule_id'>) => {
+			switch (payload) {
+				case 'module_id':
+					state.current_id = EditModuleCurrentId.MODULE_ID
+					break
+				case 'listModule_id':
+					state.current_id = EditModuleCurrentId.LISTMODULE_id
+					break
+
+				default:
+					break
+			}
 		},
 	},
 	extraReducers: (builder) => {

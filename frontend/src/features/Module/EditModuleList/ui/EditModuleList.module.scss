@@ -8,12 +8,6 @@
 		background: var(--primary-color);
 	}
 }
-.lesson_Id {
-	grid-area: lesson_Id;
-}
-.module_Id {
-	grid-area: module_Id;
-}
 
 .event_none {
 	pointer-events: none;
@@ -24,7 +18,7 @@
 }
 .buttons {
 	padding: 20px;
-	z-index: 25;
+	z-index: 3;
 	position: absolute;
 	right: 0px;
 	top: 0px;
