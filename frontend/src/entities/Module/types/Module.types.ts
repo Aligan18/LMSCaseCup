@@ -14,6 +14,10 @@ export interface IModuleData {
 	course: number
 }
 
+export function instanceOfIModuleData(object: any): object is IModuleData {
+	return 'list_modules' in object
+}
+
 export interface ICreateModuleData {
 	course: number
 	title: string

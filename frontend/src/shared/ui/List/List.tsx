@@ -21,5 +21,5 @@ interface IListProps<T> {
 	variation: 'card' | 'list'
 	styles?: string
 	items: any[]
-	renderItem: (item: T) => React.ReactNode
+	renderItem: (item: T, index: number) => React.ReactNode
 }

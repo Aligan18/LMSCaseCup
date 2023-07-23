@@ -1,143 +1,273 @@
-import { useEffect, useState } from 'react'
+import {
+	BaseSyntheticEvent,
+	DetailedHTMLProps,
+	Dispatch,
+	HtmlHTMLAttributes,
+	SetStateAction,
+	useEffect,
+	useState,
+} from 'react'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
+import { getEditModuleTrashCurrent } from '../models/selectors/getEditModuleTrashCurrent'
+import { editModuleSliceActions } from '../models/slice/EditModuleSlice'
 import classes from './EditModuleList.module.scss'
 
-import { ICREATE_MODULE_Params } from 'app/providers/AppRouters'
+import {
+	ERoutePath,
+	ICREATE_LESSON_Params,
+	ICREATE_MODULE_Params,
+	IEDIT_LESSON_Params,
+	ILAST_ID_Params,
+} from 'app/providers/AppRouters'
 
-import { getAllListModulesRequest, getAllModuleData } from 'entities/Module/ModuleData'
-import { ModuleList } from 'entities/Module/ModuleList'
-import { EListModuleType, IListModule, IModuleData } from 'entities/Module/types'
+import { LessonListItem } from 'entities/Lesson/LessonListItem'
+import { ModuleListItem } from 'entities/Module/ModuleListItem'
+import { IListModule, IModuleData, instanceOfIModuleData, instanceOfListModule } from 'entities/Module/types'
 
-import { classnames as cn, useAppDispatch } from 'shared/lib'
-import { List } from 'shared/ui'
+import {
+	classnames as cn,
+	setParamsInPath,
+	swapOrderForDragAndDrop,
+	useAppDispatch,
+	useDragAndDropOrdering,
+} from 'shared/lib'
+import { AnimatedButton, Button, DeleteZone, DragAndDropDiv, Htag, Icon, List } from 'shared/ui'
+import { AccordionWrapper } from 'shared/ui'
 
-export const EditModuleList = ({ styles }: IEditModuleListProps) => {
-	// const moduledata: IModuleData[] = [
-	// 	{
-	// 		id: 1,
-	// 		order: 1,
-	// 		title: 'Первый модуль ',
-	// 		description: 'Введение ',
-	// 		number: 1,
-	// 		list_modules: [
-	// 			{
-	// 				id: 1,
-	// 				order: 1,
-	// 				lecture_id: {
-	// 					id: 1,
-	// 					title: 'Введение в программирование',
-	// 					description: 'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
-	// 				},
-	// 				file_task_id: null,
-	// 				module_type: EListModuleType.LECTURE,
-	// 				test_task_id: null,
-	// 			},
-	// 			{
-	// 				id: 2,
-	// 				order: 2,
-	// 				lecture_id: {
-	// 					id: 1,
-	// 					title: 'Введение в программирование',
-	// 					description: 'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
-	// 				},
-	// 				file_task_id: null,
-	// 				module_type: EListModuleType.LECTURE,
-	// 				test_task_id: null,
-	// 			},
-	// 			{
-	// 				id: 3,
-	// 				order: 3,
-	// 				lecture_id: {
-	// 					id: 1,
-	// 					title: 'Введение в программирование',
-	// 					description: 'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
-	// 				},
-	// 				file_task_id: null,
-	// 				module_type: EListModuleType.LECTURE,
-	// 				test_task_id: null,
-	// 			},
-	// 		],
-	// 	},
-	// 	{
-	// 		id: 2,
-	// 		order: 2,
-	// 		title: 'Второй модуль ',
-	// 		description: 'Введение ',
-	// 		number: 1,
-	// 		list_modules: [
-	// 			{
-	// 				id: 1,
-	// 				order: 1,
-	// 				lecture_id: {
-	// 					id: 1,
-	// 					title: 'Введение в программирование',
-	// 					description: 'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
-	// 				},
-	// 				file_task_id: null,
-	// 				module_type: EListModuleType.LECTURE,
-	// 				test_task_id: null,
-	// 			},
-	// 			{
-	// 				id: 2,
-	// 				order: 2,
-	// 				lecture_id: {
-	// 					id: 1,
-	// 					title: 'Введение в программирование',
-	// 					description: 'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
-	// 				},
-	// 				file_task_id: null,
-	// 				module_type: EListModuleType.LECTURE,
-	// 				test_task_id: null,
-	// 			},
-	// 			{
-	// 				id: 3,
-	// 				order: 3,
-	// 				lecture_id: {
-	// 					id: 1,
-	// 					title: 'Введение в программирование',
-	// 					description: 'Введение в профессию и основы алгоритмизации Основы синтаксиса Списки и циклы ',
-	// 				},
-	// 				file_task_id: null,
-	// 				module_type: EListModuleType.LECTURE,
-	// 				test_task_id: null,
-	// 			},
-	// 		],
-	// 	},
-	// ]
-	const { course_id } = useParams<ICREATE_MODULE_Params>()
-	const moduledata = useSelector(getAllModuleData)
+export const EditModuleList = ({
+	styles,
+	module,
+	currentId,
+	setCurrentId,
+	setCurrentContent,
+	currentContent,
+	moduledata,
+	moduleIndex,
+}: IEditModuleListProps) => {
 	const dispatch = useAppDispatch()
-	useEffect(() => {
-		dispatch(getAllListModulesRequest(Number(course_id)))
-	}, [course_id])
-	const [currentId, setCurrentId] = useState<string | undefined>(undefined)
+	const lesson_id = classes.lesson_Id
+	const module_id = classes.module_Id
 
-	const [currentContent, setCurrentContent] = useState<IModuleData | IListModule | undefined>(undefined)
+	const [isVisible, setIsVisible] = useState(false)
+	const trashCurrent = useSelector(getEditModuleTrashCurrent)
+
+	function lessonDropHandler(e: BaseSyntheticEvent, content: IListModule): void {
+		if (instanceOfListModule(currentContent)) {
+			const { status, changedContent, changedItems } = swapOrderForDragAndDrop<IListModule>(
+				module.list_modules,
+				content,
+				currentContent,
+			)
+
+			status &&
+				dispatch(
+					editModuleSliceActions.change_listModule({
+						changedContent: changedContent,
+						listModule: changedItems,
+						module_index: moduleIndex,
+					}),
+				)
+		}
+	}
+
+	function lessonStartHandler(e: BaseSyntheticEvent, content: IListModule): void {
+		console.log(content)
+
+		setCurrentContent && setCurrentContent(content)
+	}
+
+	function moduleDropHandler(e: BaseSyntheticEvent, content: IModuleData): void {
+		console.log('step2')
+		if (trashCurrent) {
+			dispatch(editModuleSliceActions.remove_trash_current({ module_index: moduleIndex }))
+		} else if (moduledata) {
+			if (instanceOfIModuleData(currentContent)) {
+				const { status, changedContent, changedItems } = swapOrderForDragAndDrop<IModuleData>(
+					moduledata,
+					content,
+					currentContent,
+				)
+				status &&
+					dispatch(
+						editModuleSliceActions.change_module({ changedContent: changedContent, module: changedItems }),
+					)
+			}
+		}
+	}
+	const lessonDrag = useDragAndDropOrdering<IListModule>({
+		currentId,
+		setCurrentId,
+		drop: lessonDropHandler,
+		start: lessonStartHandler,
+		setIsVisible,
+	})
+
+	function moduleStartHandler(e: BaseSyntheticEvent, content: IModuleData): void {
+		console.log(content)
+
+		setCurrentContent && setCurrentContent(content)
+	}
+	const modelDrag = useDragAndDropOrdering({
+		currentId,
+		setCurrentId,
+		drop: moduleDropHandler,
+		start: moduleStartHandler,
+		setIsVisible,
+	})
+
+	function dragOverForDeleteHandler(e: BaseSyntheticEvent): void {
+		e.preventDefault()
+	}
+
+	function dropDeleteHandler(e: BaseSyntheticEvent) {
+		e.preventDefault()
+		setIsVisible(false)
+		if (currentContent) {
+			if (currentId === lesson_id) {
+				console.log('Deleted lesson')
+				dispatch(
+					editModuleSliceActions.delete_lesson({
+						list_modules_id: currentContent.id,
+						moduleIndex: moduleIndex,
+					}),
+				)
+			} else if (currentId === module_id) {
+				console.log('Deleted module')
+				dispatch(editModuleSliceActions.delete_module({ moduleIndex: moduleIndex }))
+			}
+		}
+	}
 
 	return (
-		<div className={cn(classes.EditModuleList, [styles])}>
-			<List
-				items={moduledata}
-				renderItem={(module: IModuleData) => (
-					<ModuleList
-						moduledata={moduledata}
-						setCurrentContent={setCurrentContent}
-						editor={true}
-						key={module.id}
-						module={module}
-						currentContent={currentContent}
-						currentId={currentId}
-						setCurrentId={setCurrentId}
-					/>
-				)}
-				variation={'list'}
+		<div
+			className={cn(classes.EditModuleList, [styles])}
+			key={module.id}
+		>
+			<DeleteZone
+				onDragOver={(e) => dragOverForDeleteHandler(e)}
+				onDrop={(e) => dropDeleteHandler(e)}
+				isVisible={isVisible}
+			/>
+			<AccordionWrapper
+				main={
+					<DragAndDropDiv
+						dropHandler={modelDrag.dropHandler}
+						endHandler={modelDrag.endHandler}
+						leaveHandler={modelDrag.leaveHandler}
+						overHandler={modelDrag.overHandler}
+						startHandler={modelDrag.startHandler}
+						childrenId={module_id}
+						item={module}
+					>
+						<ModuleListItem data={module} />
+					</DragAndDropDiv>
+				}
+				renderItems={
+					<>
+						<List
+							styles={classes.lesson_list}
+							items={module.list_modules}
+							variation={'list'}
+							renderItem={(data: IListModule) => (
+								<div
+									key={data.id}
+									className={classes.list_wrapper}
+								>
+									<DragAndDropDiv
+										dropHandler={lessonDrag.dropHandler}
+										endHandler={lessonDrag.endHandler}
+										leaveHandler={lessonDrag.leaveHandler}
+										overHandler={lessonDrag.overHandler}
+										startHandler={lessonDrag.startHandler}
+										childrenId={lesson_id}
+										item={data}
+									>
+										<LessonListItem
+											hasButton={false}
+											data={data}
+											key={data.id}
+										/>
+									</DragAndDropDiv>
+									<div className={classes.buttons}>
+										<Link
+											to={setParamsInPath<ILAST_ID_Params>(ERoutePath.LESSON, {
+												id: String(data.lecture_id?.id),
+											})}
+										>
+											<AnimatedButton
+												variation="clear"
+												icon={'right'}
+											>
+												Пререйти
+											</AnimatedButton>
+										</Link>
+										<Link
+											to={setParamsInPath<IEDIT_LESSON_Params>(ERoutePath.EDIT_LESSON, {
+												lesson_id: String(data.lecture_id?.id),
+												module_id: String(module.id),
+											})}
+										>
+											<AnimatedButton
+												variation="clear"
+												icon={'edit'}
+											>
+												Редактировать
+											</AnimatedButton>
+										</Link>
+									</div>
+								</div>
+							)}
+						/>
+						<div className={classes.add_buttons}>
+							<Htag tag={'medium'}>Добавить :</Htag>
+							<Link
+								to={setParamsInPath<ICREATE_LESSON_Params>(ERoutePath.CREATE_LESSON, {
+									module_id: String(module.id),
+								})}
+							>
+								<Button format={'small'}>
+									Лекцию
+									<Icon
+										variation={'secondary'}
+										icon={'plus'}
+									/>
+								</Button>
+							</Link>
+							<Button format={'small'}>
+								Задание
+								<Icon
+									variation={'secondary'}
+									icon={'plus'}
+								/>
+							</Button>
+							<Button format={'small'}>
+								Тест
+								<Icon
+									variation={'secondary'}
+									icon={'plus'}
+								/>
+							</Button>
+						</div>
+					</>
+				}
 			/>
 		</div>
 	)
 }
 
-interface IEditModuleListProps {
+interface IEditModuleListProps extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	styles?: string
+	module: IModuleData
+	currentId?: string
+	moduledata?: IModuleData[]
+	setCurrentId?: Dispatch<SetStateAction<string | undefined>>
+	setCurrentContent?: Dispatch<SetStateAction<IModuleData | IListModule | undefined>>
+	currentContent?: IModuleData | IListModule | undefined
+	moduleIndex: number
+	DataOrdering?: <T extends { id?: number | undefined; order?: number | undefined }>(
+		contentData: T[],
+		content: T,
+	) => void
 }

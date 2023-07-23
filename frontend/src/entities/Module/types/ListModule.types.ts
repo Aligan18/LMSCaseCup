@@ -9,7 +9,9 @@ export interface IListModule {
 	order: number
 	deadline?: Date
 }
-
+export function instanceOfListModule(object: any): object is IListModule {
+	return 'lecture_id' in object
+}
 export interface ICreateListModule {
 	lecture_id?: number
 	file_task_id?: number
