@@ -1,1 +1,7 @@
 export { EditModuleList } from './ui/EditModuleList'
+export { editModuleSliceReducer } from './models/slice/EditModuleSlice'
+export { IEditModuleSchema } from './models/type/IEditModuleSchema.type'
+export { getEditModuleData } from './models/selectors/getEditModuleData'
+export { getEditModuleError } from './models/selectors/getEditModuleError'
+export { getEditModuleLoading } from './models/selectors/getEditModuleLoading'
+export { getEditModuleTrash } from './models/selectors/getEditModuleTrash'

@@ -85,9 +85,7 @@ export const LessonContentList = ({ styles, data, editor = false }: ILessonConte
 					styles={classes.list}
 					variation={'list'}
 					items={data}
-					renderItem={(content: ILessonContentData) => (
-						<div key={content.id}>{renderContent(content)}</div>
-					)}
+					renderItem={(content: ILessonContentData) => <div key={content.id}>{renderContent(content)}</div>}
 				/>
 			</div>
 		)

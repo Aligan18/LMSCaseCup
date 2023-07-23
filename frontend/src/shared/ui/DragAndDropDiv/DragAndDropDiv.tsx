@@ -1,10 +1,4 @@
-import {
-	BaseSyntheticEvent,
-	DetailedHTMLProps,
-	HTMLAttributes,
-	HtmlHTMLAttributes,
-	useState,
-} from 'react'
+import { BaseSyntheticEvent, DetailedHTMLProps, HTMLAttributes, HtmlHTMLAttributes, useState } from 'react'
 
 import classes from './DragAndDropDiv.module.scss'
 
@@ -26,11 +20,11 @@ export function DragAndDropDiv<T>({
 			<div
 				className={classes.drag}
 				id={childrenId}
-				onDragStart={(e) => startHandler(e, item)}
-				onDragLeave={(e) => leaveHandler(e)}
-				onDragEnd={(e) => endHandler(e)}
-				onDragOver={(e) => overHandler(e)}
-				onDrop={(e) => dropHandler(e, item)}
+				onDragStart={(e) => startHandler && startHandler(e, item)}
+				onDragLeave={(e) => leaveHandler && leaveHandler(e)}
+				onDragEnd={(e) => endHandler && endHandler(e)}
+				onDragOver={(e) => overHandler && overHandler(e)}
+				onDrop={(e) => dropHandler && dropHandler(e, item)}
 				draggable={true}
 			></div>
 			<div className={classes.event_none}>{children}</div>
@@ -38,14 +32,13 @@ export function DragAndDropDiv<T>({
 	)
 }
 
-interface IDragAndDropDivProps<T>
-	extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+interface IDragAndDropDivProps<T> extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	styles?: string
 	item: T
 	childrenId: string
-	startHandler: (e: BaseSyntheticEvent, content: T) => void
-	leaveHandler: (e: BaseSyntheticEvent) => void
-	overHandler: (e: BaseSyntheticEvent) => void
-	endHandler: (e: BaseSyntheticEvent) => void
-	dropHandler: (e: BaseSyntheticEvent, content: T) => void
+	startHandler?: (e: BaseSyntheticEvent, content: T) => void
+	leaveHandler?: (e: BaseSyntheticEvent) => void
+	overHandler?: (e: BaseSyntheticEvent) => void
+	endHandler?: (e: BaseSyntheticEvent) => void
+	dropHandler?: (e: BaseSyntheticEvent, content: T) => void
 }

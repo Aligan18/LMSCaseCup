@@ -1,13 +1,4 @@
 .CreateModuleForm {
-	padding: 20px;
-	background: var(--background);
-	border-radius: 8px;
-	width: 100%;
-	height: fit-content;
-
-	position: sticky;
-	top: calc(var(--navbar-height) + var(--layout-padding));
-	left: 0;
 }
 .header h1 {
 	font: var(--font-m);
