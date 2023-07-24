@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { getCreateModuleError } from '../models/selectors/getCreateModuleError'
 import { getCreateModuleIsLoading } from '../models/selectors/getCreateModuleIsLoading'
 import { getCreateModuleSuccessful } from '../models/selectors/getCreateModuleSuccessful'
+import { createModuleSliceReducer } from '../models/slice/CreateModuleSlice'
 import { createModuleRequest } from '../services/CreateModuleRequest'
 import classes from './CreateModuleForm.module.scss'
 import { UpdateModuleDataButton } from './UpdateModuleDataButton'
@@ -13,7 +14,7 @@ import { ICREATE_MODULE_Params } from 'app/providers/AppRouters'
 
 import { ICreateModuleData, IModuleFormConstructor } from 'entities/Module/types'
 
-import { classnames as cn, useAppDispatch } from 'shared/lib'
+import { DynamicModuleLoader, classnames as cn, useAppDispatch } from 'shared/lib'
 import { Button, FormConstructor, Header } from 'shared/ui'
 
 export const CreateModuleForm = ({ styles }: ICreateModuleFormProps) => {
@@ -52,21 +53,26 @@ export const CreateModuleForm = ({ styles }: ICreateModuleFormProps) => {
 	]
 
 	return (
-		<div className={cn(classes.CreateModuleForm, [styles])}>
-			<Header
-				styles={classes.header}
-				title="Добавить модуль"
-				buttons={<UpdateModuleDataButton />}
-			></Header>
-			<FormConstructor<ICreateModuleData>
-				button={'Добавить модуль'}
-				data={form}
-				onSubmit={onSubmit}
-				isLoading={isLoading}
-				serverError={serverError}
-				successful={successful}
-			/>
-		</div>
+		<DynamicModuleLoader
+			reducer={createModuleSliceReducer}
+			reducerKey={'createModuleData'}
+		>
+			<div className={cn(classes.CreateModuleForm, [styles])}>
+				<Header
+					styles={classes.header}
+					title="Добавить модуль"
+					buttons={<UpdateModuleDataButton />}
+				></Header>
+				<FormConstructor<ICreateModuleData>
+					button={'Добавить модуль'}
+					data={form}
+					onSubmit={onSubmit}
+					isLoading={isLoading}
+					serverError={serverError}
+					successful={successful}
+				/>
+			</div>
+		</DynamicModuleLoader>
 	)
 }
 

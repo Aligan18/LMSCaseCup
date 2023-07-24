@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 import { getUpdateCourseError } from '../models/selectors/getUpdateCourseError'
 import { getUpdateCourseIsLoading } from '../models/selectors/getUpdateCourseIsLoading'
 import { getUpdateCourseSuccessful } from '../models/selectors/getUpdateCourseSuccessful'
+import { UpdateCourseReducer } from '../models/slice/UpdateCourseSlice'
 import { updateCourseRequest } from '../services/UpdateCourseRequest'
 import classes from './EditCourseForm.module.scss'
 
@@ -14,7 +15,7 @@ import { getRetrieveCourseData } from 'entities/Course/CourseData'
 import { ICourseFormConstructor, ICreateCourseData } from 'entities/Course/types/Course.types'
 import { FileUploader } from 'entities/FileUploader'
 
-import { classnames as cn, useAppDispatch } from 'shared/lib'
+import { DynamicModuleLoader, classnames as cn, useAppDispatch } from 'shared/lib'
 import { FormConstructor, Icon } from 'shared/ui'
 
 export const EditCourseForm = ({ styles }: IEditCourseFormProps) => {
@@ -86,33 +87,38 @@ export const EditCourseForm = ({ styles }: IEditCourseFormProps) => {
 	]
 
 	return (
-		<div className={cn(classes.EditCourseForm, [styles])}>
-			<div className={classes.left_block}>
-				<FormConstructor<ICreateCourseData>
-					successful={successful}
-					serverError={error}
-					isLoading={isLoading}
-					onSubmit={onSubmit}
-					data={data}
-					button={
-						<>
-							{t('primenit-izmeneniya')}
-							<Icon
-								variation={'secondary'}
-								icon={'save'}
-							/>
-						</>
-					}
-				/>
+		<DynamicModuleLoader
+			reducer={UpdateCourseReducer}
+			reducerKey="updateCourseData"
+		>
+			<div className={cn(classes.EditCourseForm, [styles])}>
+				<div className={classes.left_block}>
+					<FormConstructor<ICreateCourseData>
+						successful={successful}
+						serverError={error}
+						isLoading={isLoading}
+						onSubmit={onSubmit}
+						data={data}
+						button={
+							<>
+								{t('primenit-izmeneniya')}
+								<Icon
+									variation={'secondary'}
+									icon={'save'}
+								/>
+							</>
+						}
+					/>
+				</div>
+				<div>
+					<FileUploader
+						initialImage={courseData?.image}
+						setImage={setImage}
+						image={image}
+					/>
+				</div>
 			</div>
-			<div>
-				<FileUploader
-					initialImage={courseData?.image}
-					setImage={setImage}
-					image={image}
-				/>
-			</div>
-		</div>
+		</DynamicModuleLoader>
 	)
 }
 

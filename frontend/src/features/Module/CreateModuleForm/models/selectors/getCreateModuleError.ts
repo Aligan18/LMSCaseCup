@@ -1,3 +1,3 @@
 import { IStateSchema } from 'app/providers/StoreProvider'
 
-export const getCreateModuleError = (state: IStateSchema) => state?.createModuleData.error
+export const getCreateModuleError = (state: IStateSchema) => state?.createModuleData?.error

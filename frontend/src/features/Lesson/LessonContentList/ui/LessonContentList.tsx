@@ -55,18 +55,20 @@ export const LessonContentList = ({ styles, data, editor = false }: ILessonConte
 		e.preventDefault()
 		e.target.style.background = 'none'
 		if (currentContent) {
-			const changedContent = contentData.map((oldContent) => {
-				if (oldContent.id === content.id) {
-					return { ...oldContent, order: currentContent.order }
-				}
-				if (oldContent.id === currentContent.id) {
-					return { ...oldContent, order: content.order }
-				}
-				return oldContent
-			})
+			const changedContent =
+				contentData &&
+				contentData.map((oldContent) => {
+					if (oldContent.id === content.id) {
+						return { ...oldContent, order: currentContent.order }
+					}
+					if (oldContent.id === currentContent.id) {
+						return { ...oldContent, order: content.order }
+					}
+					return oldContent
+				})
 			console.log('changedContent', changedContent)
 
-			dispatch(lessonContentActions.change_sort_content(changedContent))
+			changedContent && dispatch(lessonContentActions.change_sort_content(changedContent))
 		}
 	}
 

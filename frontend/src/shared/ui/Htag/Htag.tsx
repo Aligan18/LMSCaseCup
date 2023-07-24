@@ -16,7 +16,7 @@ export const Htag = ({ styles, tag = 'medium', children, variation, ...props }: 
 					className={cn(classes.very_large, [styles, classes.cursor], styleMod)}
 					{...props}
 				>
-					{children}
+					{children && children}
 				</h1>
 			)
 

@@ -6,13 +6,14 @@ import { useSelector } from 'react-redux'
 import { getCreateCourseError } from '../model/selectors/getCreateCourseError'
 import { getCreateCourseLoading } from '../model/selectors/getCreateCourseLoading'
 import { getCreateCourseSuccessful } from '../model/selectors/getCreateCourseSuccessful'
+import { createCourseReducer } from '../model/slice/CreateCourseSlice'
 import { createCourseRequest } from '../services/CreateCourseRequest'
 import classes from './CreateCourseForm.module.scss'
 
 import { ICourseFormConstructor, ICreateCourseData } from 'entities/Course/types/Course.types'
 import { FileUploader } from 'entities/FileUploader'
 
-import { classnames as cn, useAppDispatch } from 'shared/lib'
+import { DynamicModuleLoader, classnames as cn, useAppDispatch } from 'shared/lib'
 import { FormConstructor, Icon } from 'shared/ui'
 
 export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
@@ -89,32 +90,37 @@ export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 	]
 
 	return (
-		<div className={cn(classes.CreateCourseForm, [styles])}>
-			<div className={classes.left_block}>
-				<FormConstructor<ICreateCourseData>
-					successful={successful}
-					serverError={error}
-					isLoading={isLoading}
-					onSubmit={onSubmit}
-					data={data}
-					button={
-						<>
-							{t('sokhranit')}
-							<Icon
-								variation={'secondary'}
-								icon={'save'}
-							/>
-						</>
-					}
-				/>
+		<DynamicModuleLoader
+			reducer={createCourseReducer}
+			reducerKey={'createCourseForm'}
+		>
+			<div className={cn(classes.CreateCourseForm, [styles])}>
+				<div className={classes.left_block}>
+					<FormConstructor<ICreateCourseData>
+						successful={successful}
+						serverError={error}
+						isLoading={isLoading}
+						onSubmit={onSubmit}
+						data={data}
+						button={
+							<>
+								{t('sokhranit')}
+								<Icon
+									variation={'secondary'}
+									icon={'save'}
+								/>
+							</>
+						}
+					/>
+				</div>
+				<div>
+					<FileUploader
+						setImage={setImage}
+						image={image}
+					/>
+				</div>
 			</div>
-			<div>
-				<FileUploader
-					setImage={setImage}
-					image={image}
-				/>
-			</div>
-		</div>
+		</DynamicModuleLoader>
 	)
 }
 

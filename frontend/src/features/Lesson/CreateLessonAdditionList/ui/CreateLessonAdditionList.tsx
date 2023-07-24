@@ -14,23 +14,25 @@ export const CreateLessonAdditionList = ({ styles }: ICreateLessonAdditionListPr
 
 	return (
 		<div className={cn(classes.CreateLessonAdditionList, [styles])}>
-			<List
-				variation={'list'}
-				items={additionsData}
-				renderItem={(addition: IAdditionData) => (
-					<div className={classes.list_item}>
-						<ListItem
-							styles={classes.item}
-							key={addition.id}
-							variation={'clear'}
-							hover={'hover_inverted-secondary'}
-							right={<Icon icon={'file'} />}
-						>
-							{addition.title}
-						</ListItem>
-					</div>
-				)}
-			/>
+			{additionsData && (
+				<List
+					variation={'list'}
+					items={additionsData}
+					renderItem={(addition: IAdditionData) => (
+						<div className={classes.list_item}>
+							<ListItem
+								styles={classes.item}
+								key={addition.id}
+								variation={'clear'}
+								hover={'hover_inverted-secondary'}
+								right={<Icon icon={'file'} />}
+							>
+								{addition.title}
+							</ListItem>
+						</div>
+					)}
+				/>
+			)}
 		</div>
 	)
 }

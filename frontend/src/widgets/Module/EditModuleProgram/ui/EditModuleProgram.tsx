@@ -6,12 +6,12 @@ import classes from './EditModuleProgram.module.scss'
 
 import { ICREATE_MODULE_Params } from 'app/providers/AppRouters'
 
-import { EditModuleList, getEditModuleData } from 'features/Module/EditModuleList'
+import { EditModuleList, editModuleSliceReducer, getEditModuleData } from 'features/Module/EditModuleList'
 
 import { getAllListModulesRequest, getAllModuleData } from 'entities/Module/ModuleData'
 import { IListModule, IModuleData } from 'entities/Module/types'
 
-import { classnames as cn, useAppDispatch } from 'shared/lib'
+import { DynamicModuleLoader, classnames as cn, useAppDispatch } from 'shared/lib'
 import { List } from 'shared/ui'
 
 export const EditModuleProgram = ({ styles }: IEditModuleProgramProps) => {
@@ -117,22 +117,29 @@ export const EditModuleProgram = ({ styles }: IEditModuleProgramProps) => {
 	const [currentContent, setCurrentContent] = useState<IModuleData | IListModule | undefined>(undefined)
 
 	return (
-		<div className={cn(classes.EditModuleProgram, [styles])}>
-			<List
-				items={moduledata}
-				renderItem={(module: IModuleData, index) => (
-					<EditModuleList
-						moduleIndex={index}
-						moduledata={moduledata}
-						setCurrentContent={setCurrentContent}
-						key={module.id}
-						module={module}
-						currentContent={currentContent}
+		<DynamicModuleLoader
+			reducer={editModuleSliceReducer}
+			reducerKey={'editModuleList'}
+		>
+			<div className={cn(classes.EditModuleProgram, [styles])}>
+				{moduledata && (
+					<List
+						items={moduledata}
+						renderItem={(module: IModuleData, index) => (
+							<EditModuleList
+								moduleIndex={index}
+								moduledata={moduledata}
+								setCurrentContent={setCurrentContent}
+								key={module.id}
+								module={module}
+								currentContent={currentContent}
+							/>
+						)}
+						variation={'list'}
 					/>
 				)}
-				variation={'list'}
-			/>
-		</div>
+			</div>
+		</DynamicModuleLoader>
 	)
 }
 

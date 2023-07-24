@@ -13,7 +13,7 @@ import { Link, useParams } from 'react-router-dom'
 import { EditModuleCurrentId } from '../const/currentId/dragAndDropCurrentId'
 import { getEditModuleCurrentId } from '../models/selectors/getEditModuleCurrentId'
 import { getEditModuleTrashCurrent } from '../models/selectors/getEditModuleTrashCurrent'
-import { editModuleSliceActions } from '../models/slice/EditModuleSlice'
+import { editModuleSliceActions, editModuleSliceReducer } from '../models/slice/EditModuleSlice'
 import classes from './EditModuleList.module.scss'
 
 import {
@@ -29,6 +29,7 @@ import { ModuleListItem } from 'entities/Module/ModuleListItem'
 import { IListModule, IModuleData, instanceOfIModuleData, instanceOfListModule } from 'entities/Module/types'
 
 import {
+	DynamicModuleLoader,
 	classnames as cn,
 	setParamsInPath,
 	swapOrderForDragAndDrop,

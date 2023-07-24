@@ -5,12 +5,13 @@ import { useSelector } from 'react-redux'
 import { getCreateTicketError } from '../model/selectors/getCreateTicketError'
 import { getCreateTicketLoading } from '../model/selectors/getCreateTicketLoading'
 import { getCreateTicketSuccessful } from '../model/selectors/getCreateTicketSuccessful'
+import { CreateTicketReducer } from '../model/slice/CreateTicketSlice'
 import { createTicketRequest } from '../services/CreateTicketRequest'
 import classes from './CreateTicketForm.module.scss'
 
 import { ICreateTicketData, ITicketFormConstructor } from 'entities/Ticket/types'
 
-import { classnames as cn, useAppDispatch } from 'shared/lib'
+import { DynamicModuleLoader, classnames as cn, useAppDispatch } from 'shared/lib'
 import { FormConstructor } from 'shared/ui'
 
 export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
@@ -67,15 +68,20 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 		},
 	]
 	return (
-		<div className={cn(classes.CreateTicketForm, [styles])}>
-			<FormConstructor<ICreateTicketData>
-				serverError={error}
-				isLoading={isLoading}
-				onSubmit={onSubmit}
-				data={data}
-				button={`${t('otpravit-zayavku-0')}`}
-			/>
-		</div>
+		<DynamicModuleLoader
+			reducer={CreateTicketReducer}
+			reducerKey={'createTicketForm'}
+		>
+			<div className={cn(classes.CreateTicketForm, [styles])}>
+				<FormConstructor<ICreateTicketData>
+					serverError={error}
+					isLoading={isLoading}
+					onSubmit={onSubmit}
+					data={data}
+					button={`${t('otpravit-zayavku-0')}`}
+				/>
+			</div>
+		</DynamicModuleLoader>
 	)
 }
 
