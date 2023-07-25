@@ -9,15 +9,15 @@ import { StoreProvider } from 'app/providers/StoreProvider'
 import { ThemeProvider } from 'app/providers/ThemeProvider'
 
 render(
-	<BrowserRouter>
-		<StoreProvider>
+	<StoreProvider>
+		<BrowserRouter>
 			<ErrorBoundary>
 				<ThemeProvider>
 					<App />
 				</ThemeProvider>
 			</ErrorBoundary>
-		</StoreProvider>
-	</BrowserRouter>,
+		</BrowserRouter>
+	</StoreProvider>,
 
 	document.getElementById('root'),
 )

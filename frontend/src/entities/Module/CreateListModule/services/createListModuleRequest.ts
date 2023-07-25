@@ -1,8 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { NavigateFunction } from 'react-router-dom'
 
 import { IThunkExtraArg } from 'app/providers/StoreProvider'
 
 import { ICreateListModule, ICreateModuleData, IListModule, IModuleData } from 'entities/Module/types'
+
+// interface IRequestProps {
+// 	listData: ICreateListModule
+// 	navigate: NavigateFunction
+// }
 
 export const createListModuleRequest = createAsyncThunk<
 	IModuleData,
@@ -21,7 +27,6 @@ export const createListModuleRequest = createAsyncThunk<
 			list_modules: moduleUpdateData,
 		})
 
-		extra.navigate && extra.navigate(-1)
 		return moduleResponse.data
 	} catch (error: any) {
 		return rejectWithValue(extra.serverErrors(error))

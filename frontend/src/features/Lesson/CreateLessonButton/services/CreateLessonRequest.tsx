@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { useNavigate } from 'react-router-dom'
+import { NavigateFunction } from 'react-router-dom'
 
 import { ERoutePath } from 'app/providers/AppRouters'
 import { ICREATE_MODULE_Params, IEDIT_LESSON_Params } from 'app/providers/AppRouters/config/routeConfig'
@@ -23,13 +23,14 @@ interface ICreateLessonProps {
 	about: ICreateLessonAboutData
 	contents: ICreateLessonContentData[]
 	additions: IAdditionData[]
+	navigate: NavigateFunction
 }
 
 export const createLessonRequest = createAsyncThunk<
 	void,
 	ICreateLessonProps,
 	{ rejectValue: string; extra: IThunkExtraArg }
->('createLessonRequest', async ({ about, contents, additions }, { rejectWithValue, extra, dispatch }) => {
+>('createLessonRequest', async ({ about, contents, additions, navigate }, { rejectWithValue, extra, dispatch }) => {
 	try {
 		const contents_id = []
 		for (const content of contents) {
@@ -53,7 +54,8 @@ export const createLessonRequest = createAsyncThunk<
 				module_type: EListModuleType.LECTURE,
 				module: about.module_id,
 			}
-			dispatch(createListModuleRequest(listModuelData))
+			await dispatch(createListModuleRequest(listModuelData))
+			navigate && navigate(-1)
 		} else {
 			throw new Error()
 		}

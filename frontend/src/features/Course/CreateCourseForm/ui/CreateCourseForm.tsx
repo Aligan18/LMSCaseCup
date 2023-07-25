@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import { getCreateCourseError } from '../model/selectors/getCreateCourseError'
 import { getCreateCourseLoading } from '../model/selectors/getCreateCourseLoading'
@@ -23,13 +24,14 @@ export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 	const successful = useSelector(getCreateCourseSuccessful)
 	const dispatch = useAppDispatch()
 	const [image, setImage] = useState<File | undefined | null>(undefined)
+	const navigate = useNavigate()
 
 	const onSubmit: SubmitHandler<ICreateCourseData> = (formData: ICreateCourseData, event) => {
 		if (image) {
 			event?.preventDefault()
 			formData.image = image
 			console.log(formData)
-			dispatch(createCourseRequest(formData))
+			dispatch(createCourseRequest({ courseData: formData, navigate }))
 		}
 	}
 

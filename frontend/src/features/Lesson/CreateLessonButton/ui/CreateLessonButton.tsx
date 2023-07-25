@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { createLessonSliceReducer } from '../model/slice/CreateLessonSlice'
 import { createLessonRequest } from '../services/CreateLessonRequest'
@@ -16,6 +16,7 @@ import { Button } from 'shared/ui'
 
 export const CreateLessonButton = ({ styles }: ICreateLessonButtonProps) => {
 	const dispatch = useAppDispatch()
+	const navigate = useNavigate()
 	const about = useSelector(getLessonAbout)
 	const additions = useSelector(getAdditionsData)
 	const contents = useSelector(getLessonContents)
@@ -24,7 +25,7 @@ export const CreateLessonButton = ({ styles }: ICreateLessonButtonProps) => {
 	const handleClick = () => {
 		if (module_id && about && additions && contents) {
 			const fullAbout = { ...about, module_id: Number(module_id) }
-			dispatch(createLessonRequest({ about: fullAbout, additions, contents }))
+			dispatch(createLessonRequest({ about: fullAbout, additions, contents, navigate }))
 		}
 	}
 

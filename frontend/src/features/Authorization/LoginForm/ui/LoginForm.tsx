@@ -2,13 +2,12 @@ import { useCallback, useEffect } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useSelector, useStore } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import { getLoginState } from '../model/selectors/getLoginState/getLoginState'
 import { loginSliceReducer } from '../model/slice/loginSlice'
 import { loginByEmail } from '../services/loginByEmail/LoginByEmail'
 import classes from './LoginForm.module.scss'
-
-import { IStoreWithManager } from 'app/providers/StoreProvider'
 
 import { GoogleAuthButton } from 'features/GoogleAuthButton'
 
@@ -20,7 +19,7 @@ import { FormConstructor, Htag } from 'shared/ui'
 
 export const LoginForm = ({ styles }: ILoginFormProps) => {
 	const dispatch = useAppDispatch()
-
+	const navigate = useNavigate()
 	const loginState = useSelector(getLoginState)
 
 	const { t } = useTranslation('admin')
@@ -28,7 +27,7 @@ export const LoginForm = ({ styles }: ILoginFormProps) => {
 	const onSubmit: SubmitHandler<ICreateLoginData> = useCallback(
 		(formData: ICreateLoginData, event) => {
 			event?.preventDefault()
-			dispatch(loginByEmail(formData))
+			dispatch(loginByEmail({ ...formData, navigate }))
 		},
 		[dispatch],
 	)

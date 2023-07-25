@@ -6,8 +6,7 @@ import { IStateSchema } from '../config/StateSchema'
 import { createReduxStore } from '../config/store'
 
 export const StoreProvider = ({ children, initialState }: IStoreProviderProps) => {
-	const navigate = useNavigate()
-	const store = createReduxStore(initialState, navigate)
+	const store = createReduxStore(initialState)
 
 	return <Provider store={store}>{children}</Provider>
 }

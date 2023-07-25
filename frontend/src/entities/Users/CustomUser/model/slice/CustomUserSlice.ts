@@ -18,7 +18,7 @@ const initialState: ICustomUserSchema = {
 		surname: '',
 		university: null,
 	},
-	userType: 'student',
+	userType: null,
 }
 
 export const CustomUserSlice = createSlice({

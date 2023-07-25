@@ -43,7 +43,6 @@ export interface IStateSchema {
 
 export interface IThunkExtraArg {
 	$axios: AxiosInstance
-	navigate?: NavigateFunction
 	API: IAPI
 	serverErrors: (error: any) => string
 }

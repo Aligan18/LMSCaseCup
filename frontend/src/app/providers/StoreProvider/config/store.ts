@@ -15,7 +15,7 @@ import { customUserSliceReducer } from 'entities/Users/CustomUser'
 import { $api, API } from 'shared/api'
 import { serverErrors } from 'shared/lib'
 
-export function createReduxStore(initialState?: IStateSchema, navigate?: NavigateFunction) {
+export function createReduxStore(initialState?: IStateSchema) {
 	const rootReducers: ReducersMapObject<IStateSchema> = {
 		customUser: customUserSliceReducer,
 		listCourseData: listCourseDataReducer,
@@ -38,7 +38,6 @@ export function createReduxStore(initialState?: IStateSchema, navigate?: Navigat
 					extraArgument: {
 						$axios: $api,
 						API: API,
-						navigate: navigate,
 						serverErrors: serverErrors,
 					},
 				},
