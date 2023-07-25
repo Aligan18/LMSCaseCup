@@ -63,15 +63,161 @@ export type IABOUT_COURSE_Params = {
 	course_id: string
 }
 
-export const RouteConfig: Array<RouteProps> = [
+export const NotAuthRouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.HOME,
 		element: <HomePage />,
 	},
+	// {
+	// 	path: ERoutePath.NOT_FOUND,
+	// 	element: <NotFoundPage />,
+	// },
 	{
-		path: ERoutePath.NOT_FOUND,
-		element: <NotFoundPage />,
+		path: ERoutePath.COURSES,
+		element: <CoursesPage />,
 	},
+	{
+		path: ERoutePath.TICKETS,
+		element: <TicketsPage />,
+	},
+	{
+		path: ERoutePath.ABOUT_COURSE,
+		element: <AboutCoursePage />,
+	},
+	{
+		path: ERoutePath.CREATE_TICKET,
+		element: <CreateTicketPage />,
+	},
+
+	{
+		path: ERoutePath.VIEW_ANSWER,
+		element: <ViewAnswerPage />,
+	},
+	{
+		path: ERoutePath.AUTHORIZATION,
+		element: <AuthorizationPage />,
+	},
+	{
+		path: ERoutePath.ACTIVATION,
+		element: <ActivationPage />,
+	},
+	{
+		path: ERoutePath.AFTER_REGISTRATION,
+		element: <AfterRegistrationPage />,
+	},
+]
+
+export const StudentRouteConfig: Array<RouteProps> = [
+	{
+		path: ERoutePath.HOME,
+		element: <HomePage />,
+	},
+	// {
+	// 	path: ERoutePath.NOT_FOUND,
+	// 	element: <NotFoundPage />,
+	// },
+	{
+		path: ERoutePath.COURSES,
+		element: <CoursesPage />,
+	},
+	{
+		path: ERoutePath.TICKETS,
+		element: <TicketsPage />,
+	},
+	{
+		path: ERoutePath.ABOUT_COURSE,
+		element: <AboutCoursePage />,
+	},
+	{
+		path: ERoutePath.LESSON,
+		element: <LessonPage />,
+	},
+	{
+		path: ERoutePath.CREATE_TICKET,
+		element: <CreateTicketPage />,
+	},
+	{
+		path: ERoutePath.VIEW_ANSWER,
+		element: <ViewAnswerPage />,
+	},
+	{
+		path: ERoutePath.CREATE_ANSWER,
+		element: <CreateAnswerPage />,
+	},
+]
+
+export const TeacherRouteConfig: Array<RouteProps> = [
+	{
+		path: ERoutePath.HOME,
+		element: <HomePage />,
+	},
+	// {
+	// 	path: ERoutePath.NOT_FOUND,
+	// 	element: <NotFoundPage />,
+	// },
+	{
+		path: ERoutePath.COURSES,
+		element: <CoursesPage />,
+	},
+	{
+		path: ERoutePath.TICKETS,
+		element: <TicketsPage />,
+	},
+	{
+		path: ERoutePath.ABOUT_COURSE,
+		element: <AboutCoursePage />,
+	},
+	{
+		path: ERoutePath.LESSON,
+		element: <LessonPage />,
+	},
+	{
+		path: ERoutePath.CREATE_COURSE,
+		element: <CreateCoursePage />,
+	},
+	{
+		path: ERoutePath.CREATE_TICKET,
+		element: <CreateTicketPage />,
+	},
+	{
+		path: ERoutePath.CREATE_LESSON,
+		element: <CreateLessonPage />,
+	},
+	{
+		path: ERoutePath.EDIT_COURSE,
+		element: <EditCoursePage />,
+	},
+	{
+		path: ERoutePath.TEACHER_ROOM,
+		element: <TeacherRoomPage />,
+	},
+	{
+		path: ERoutePath.VIEW_ANSWER,
+		element: <ViewAnswerPage />,
+	},
+	{
+		path: ERoutePath.EDIT_LESSON,
+		element: <CreateLessonPage />,
+	},
+	{
+		path: ERoutePath.GROUP_LIST,
+		element: <GroupListPage />,
+	},
+	{
+		path: ERoutePath.CREATE_MODULE,
+		element: <CreateModulePage />,
+	},
+]
+
+export const AdminRouteConfig: Array<RouteProps> = [
+	{
+		path: ERoutePath.HOME,
+		element: <HomePage />,
+	},
+	// {
+	// 	path: ERoutePath.NOT_FOUND,
+	// 	element: <NotFoundPage />,
+	// },
 	{
 		path: ERoutePath.COURSES,
 		element: <CoursesPage />,

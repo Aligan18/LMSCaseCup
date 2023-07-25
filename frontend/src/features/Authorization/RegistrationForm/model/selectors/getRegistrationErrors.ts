@@ -1,3 +1,3 @@
 import { IStateSchema } from 'app/providers/StoreProvider'
 
-export const getRegistrationErrors = (state: IStateSchema) => state.registrationForm.error
+export const getRegistrationErrors = (state: IStateSchema) => state.registrationForm?.error

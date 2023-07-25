@@ -8,7 +8,7 @@ const initialState: ILoginSchema = {
 }
 
 export const loginSlice = createSlice({
-	name: 'loginSlice',
+	name: 'loginForm',
 	initialState: initialState,
 	reducers: {},
 	extraReducers: (builder) => {

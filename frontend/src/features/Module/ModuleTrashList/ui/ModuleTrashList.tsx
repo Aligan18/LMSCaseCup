@@ -26,27 +26,29 @@ export const ModuleTrashList = ({ styles }: IModuleTrashListProps) => {
 				<Htag tag="medium">Корзина </Htag> <Icon icon={'trash'} />
 			</div>
 			<div className={classes.trashItems}>
-				<List
-					styles={classes.list}
-					variation={'list'}
-					items={trashData}
-					renderItem={(item: IListModule) => (
-						<DragAndDropDiv
-							startHandler={startHandler}
-							item={item}
-							childrenId={classes.item}
-						>
-							<ListItem
-								styles={classes.item}
-								key={item.id}
-								variation="clear"
-								hover="none"
+				{trashData && (
+					<List
+						styles={classes.list}
+						variation={'list'}
+						items={trashData}
+						renderItem={(item: IListModule) => (
+							<DragAndDropDiv
+								startHandler={startHandler}
+								item={item}
+								childrenId={classes.item}
 							>
-								{item.lecture_id && item.lecture_id.title}
-							</ListItem>
-						</DragAndDropDiv>
-					)}
-				/>
+								<ListItem
+									styles={classes.item}
+									key={item.id}
+									variation="clear"
+									hover="none"
+								>
+									{item.lecture_id && item.lecture_id.title}
+								</ListItem>
+							</DragAndDropDiv>
+						)}
+					/>
+				)}
 			</div>
 		</div>
 	)

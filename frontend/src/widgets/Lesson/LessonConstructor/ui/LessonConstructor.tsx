@@ -1,6 +1,5 @@
 import { BaseSyntheticEvent, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
 
 import classes from './LessonConstructor.module.scss'
 
@@ -51,7 +50,7 @@ export const LessonConstructor = ({ styles }: ILessonConstructorProps) => {
 
 	return (
 		<div className={cn(classes.Lesson, [styles])}>
-			{about_lesson.title && (
+			{about_lesson?.title && (
 				<div
 					className={classes.title_wrapper}
 					draggable={true}
@@ -65,7 +64,7 @@ export const LessonConstructor = ({ styles }: ILessonConstructorProps) => {
 					/>
 				</div>
 			)}
-			{about_lesson.video && (
+			{about_lesson?.video && (
 				<div
 					className={classes.video_wrapper}
 					draggable={true}
@@ -85,10 +84,12 @@ export const LessonConstructor = ({ styles }: ILessonConstructorProps) => {
 				isVisible={isVisible}
 			/>
 
-			<LessonContentList
-				editor={true}
-				data={lesson}
-			/>
+			{lesson && (
+				<LessonContentList
+					editor={true}
+					data={lesson}
+				/>
+			)}
 		</div>
 	)
 }

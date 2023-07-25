@@ -1,4 +1,5 @@
 from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
 
 from custom_user.permissions import IsSuperAdmin
 from mysite.pagination import ListPagination
@@ -19,4 +20,4 @@ class AdminsViewList(generics.ListAPIView):
 class AdminsRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Admins.objects.all()
     serializer_class = AdminsSerializers
-    permission_classes = [IsSuperAdmin]
+    permission_classes = [IsSuperAdmin| IsAdminUser]

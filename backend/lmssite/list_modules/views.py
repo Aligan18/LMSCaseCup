@@ -81,7 +81,6 @@ class ModulesViewList(generics.ListAPIView):
     filter_backends = (DjangoFilterBackend, OrderingFilter)
     filterset_class = FilterForModules
     ordering_fields = ["order"]
-    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentHasAccessCreate]
     pagination_class = ListPagination
 
 # Admin , Teacher с доступом к курсу, Student которые проходят этот курс

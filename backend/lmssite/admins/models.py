@@ -25,12 +25,16 @@ def create_profile(sender, user, request, **kwargs):
     data = request.data
 
     if data.get("type") == "2" and request.user.is_superuser:
+        User.objects.filter(pk=user.id).update(
+            is_active = True,
+            is_staff = True
+        )
+
         Admins.objects.create(
             user=user,
             name=data.get("name", ""),
             surname=data.get("surname", ""),
             patronymic=data.get("patronymic", ""),
-            admin_type=1,
         )
     elif data.get("type") == "3" and request.user.is_staff:
         Teachers.objects.create(

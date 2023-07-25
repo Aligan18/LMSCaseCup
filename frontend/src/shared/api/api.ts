@@ -18,6 +18,12 @@ export const API = {
 		create: '/lectures/create/',
 		retrieve: '/lectures/id/',
 	},
+	teachers: {
+		id: '/teachers/id/',
+	},
+	admin: {
+		rud: '/admins/rud/',
+	},
 	students: {
 		id: '/students/id/',
 	},

@@ -1,3 +1,3 @@
 import { IStateSchema } from 'app/providers/StoreProvider'
 
-export const getUpdateCourseSuccessful = (state: IStateSchema) => state.updateCourseData.successful
+export const getUpdateCourseSuccessful = (state: IStateSchema) => state.updateCourseData?.successful

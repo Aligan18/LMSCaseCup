@@ -3,13 +3,14 @@ import { useSelector } from 'react-redux'
 
 import { getError } from '../model/selectors/getAdditionError'
 import { getIsLoading } from '../model/selectors/getIsLoading'
+import { createLessonAdditionReducer } from '../model/slice/CreateLessonAdditionSlice'
 import { IAdditionsDataSchema } from '../model/type/CreateAdditionSchema'
 import { createLessonAdditionRequest } from '../services/CreateLessonAdditionRequest'
 import classes from './CreateLessonAdditionForm.module.scss'
 
 import { ICreateAdditionData, ILessonAdditionFormConstructor } from 'entities/Lesson/types'
 
-import { classnames as cn, useAppDispatch } from 'shared/lib'
+import { DynamicModuleLoader, classnames as cn, useAppDispatch } from 'shared/lib'
 import { ErrorText, FormConstructor, LoadingDiv } from 'shared/ui'
 
 export const CreateLessonAdditionForm = ({ styles }: ICreateLessonAdditionFormProps) => {

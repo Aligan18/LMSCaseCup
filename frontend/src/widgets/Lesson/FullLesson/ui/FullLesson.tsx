@@ -11,7 +11,6 @@ import { getLessonContents } from 'features/Lesson/CreateLessonContentForm'
 import { LessonContentList } from 'features/Lesson/LessonContentList'
 
 import { getLectureRequest } from 'entities/Lecture'
-import { ILectureData } from 'entities/Lesson/types'
 
 import { classnames as cn, useAppDispatch } from 'shared/lib'
 import { Header, YouTubeVideo } from 'shared/ui'
@@ -88,14 +87,19 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 	}, [id])
 
 	return (
-		<div className={cn(classes.Lesson, [styles])}>
-			<Header
-				line={false}
-				title={about.title}
-			/>
-			{about.video && <YouTubeVideo video_link={about.video} />}
-			<LessonContentList data={lesson} />
-		</div>
+		<>
+			{about && (
+				<div className={cn(classes.Lesson, [styles])}>
+					<Header
+						line={false}
+						title={about.title}
+					/>
+
+					{about.video && <YouTubeVideo video_link={about.video} />}
+					{lesson && <LessonContentList data={lesson} />}
+				</div>
+			)}
+		</>
 	)
 }
 

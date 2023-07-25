@@ -14,10 +14,7 @@ export const CreateLessonContentForm = ({ styles }: ICreateLessonContentFormProp
 	const [counter, setConter] = useState(0)
 	const dispatch = useDispatch()
 
-	const onSubmit: SubmitHandler<ICreateLessonContentData> = (
-		formData: ICreateLessonContentData,
-		event,
-	) => {
+	const onSubmit: SubmitHandler<ICreateLessonContentData> = (formData: ICreateLessonContentData, event) => {
 		event?.preventDefault()
 		formData.id = counter
 		formData.order = counter

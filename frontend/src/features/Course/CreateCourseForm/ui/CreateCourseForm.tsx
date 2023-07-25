@@ -2,17 +2,19 @@ import { useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import { getCreateCourseError } from '../model/selectors/getCreateCourseError'
 import { getCreateCourseLoading } from '../model/selectors/getCreateCourseLoading'
 import { getCreateCourseSuccessful } from '../model/selectors/getCreateCourseSuccessful'
+import { createCourseReducer } from '../model/slice/CreateCourseSlice'
 import { createCourseRequest } from '../services/CreateCourseRequest'
 import classes from './CreateCourseForm.module.scss'
 
 import { ICourseFormConstructor, ICreateCourseData } from 'entities/Course/types/Course.types'
 import { FileUploader } from 'entities/FileUploader'
 
-import { classnames as cn, useAppDispatch } from 'shared/lib'
+import { DynamicModuleLoader, classnames as cn, useAppDispatch } from 'shared/lib'
 import { FormConstructor, Icon } from 'shared/ui'
 
 export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
@@ -22,13 +24,14 @@ export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 	const successful = useSelector(getCreateCourseSuccessful)
 	const dispatch = useAppDispatch()
 	const [image, setImage] = useState<File | undefined | null>(undefined)
+	const navigate = useNavigate()
 
 	const onSubmit: SubmitHandler<ICreateCourseData> = (formData: ICreateCourseData, event) => {
 		if (image) {
 			event?.preventDefault()
 			formData.image = image
 			console.log(formData)
-			dispatch(createCourseRequest(formData))
+			dispatch(createCourseRequest({ courseData: formData, navigate }))
 		}
 	}
 
@@ -89,32 +92,37 @@ export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 	]
 
 	return (
-		<div className={cn(classes.CreateCourseForm, [styles])}>
-			<div className={classes.left_block}>
-				<FormConstructor<ICreateCourseData>
-					successful={successful}
-					serverError={error}
-					isLoading={isLoading}
-					onSubmit={onSubmit}
-					data={data}
-					button={
-						<>
-							{t('sokhranit')}
-							<Icon
-								variation={'secondary'}
-								icon={'save'}
-							/>
-						</>
-					}
-				/>
+		<DynamicModuleLoader
+			reducer={createCourseReducer}
+			reducerKey={'createCourseForm'}
+		>
+			<div className={cn(classes.CreateCourseForm, [styles])}>
+				<div className={classes.left_block}>
+					<FormConstructor<ICreateCourseData>
+						successful={successful}
+						serverError={error}
+						isLoading={isLoading}
+						onSubmit={onSubmit}
+						data={data}
+						button={
+							<>
+								{t('sokhranit')}
+								<Icon
+									variation={'secondary'}
+									icon={'save'}
+								/>
+							</>
+						}
+					/>
+				</div>
+				<div>
+					<FileUploader
+						setImage={setImage}
+						image={image}
+					/>
+				</div>
 			</div>
-			<div>
-				<FileUploader
-					setImage={setImage}
-					image={image}
-				/>
-			</div>
-		</div>
+		</DynamicModuleLoader>
 	)
 }
 

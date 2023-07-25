@@ -9,7 +9,7 @@ import {
 	getEditModuleTrashModule,
 } from 'features/Module/EditModuleList'
 
-import { classnames as cn, useAppDispatch } from 'shared/lib'
+import { DynamicModuleLoader, classnames as cn, useAppDispatch } from 'shared/lib'
 import { Button } from 'shared/ui'
 
 export const UpdateModuleDataButton = ({ styles }: IUpdateModuleDataButtonProps) => {
@@ -20,7 +20,9 @@ export const UpdateModuleDataButton = ({ styles }: IUpdateModuleDataButtonProps)
 	const trash_module = useSelector(getEditModuleTrashModule)
 
 	const handleClick = () => {
-		dispatch(updateModuleRequest({ trash_listModule, changed_listModule, changed_module, trash_module }))
+		if (trash_listModule && changed_listModule && changed_module && trash_module) {
+			dispatch(updateModuleRequest({ trash_listModule, changed_listModule, changed_module, trash_module }))
+		}
 	}
 
 	return (

@@ -9,7 +9,16 @@ export const serverErrors = (error: any): string => {
 			return errorMessage
 		}
 		case 401: {
-			return 'Вы не авторизованы'
+			if (error.response.data) {
+				const errorData = error.response.data
+				let errorMessage = ''
+				for (const key in errorData) {
+					errorMessage = [String(key).toUpperCase(), errorData[key]].join(' : ')
+				}
+				return errorMessage
+			} else {
+				return 'Вы не авторизованы'
+			}
 		}
 		case 403: {
 			return 'У Вас нет доступа '
