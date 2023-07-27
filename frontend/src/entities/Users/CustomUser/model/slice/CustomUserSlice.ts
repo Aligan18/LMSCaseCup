@@ -1,9 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { access } from 'fs'
 
 import { ICustomUserSchema, IUserType } from '../types/CustomUserSchema'
 
 import { IToken } from 'entities/Authorization/types'
 import { IStudentData } from 'entities/Users/Student/types'
+
+import { TOKEN_LOCALSTORAGE_KEY } from 'shared/const'
 
 const initialState: ICustomUserSchema = {
 	token: { access: '', refresh: '' },
@@ -42,6 +45,22 @@ export const CustomUserSlice = createSlice({
 			state.userInfo.student = payload.student
 			state.userInfo.surname = payload.surname
 			state.userInfo.university = payload.university
+		},
+		signOut: (state: ICustomUserSchema, { payload }: PayloadAction<void>) => {
+			state.token.access = ''
+			state.token.refresh = ''
+			state.userType = 'not-auth'
+			state.userInfo.about = ''
+			state.userInfo.age = null
+			state.userInfo.country = null
+			state.userInfo.name = ''
+			state.userInfo.patronymic = null
+			state.userInfo.sex = null
+			state.userInfo.student = null
+			state.userInfo.surname = ''
+			state.userInfo.university = null
+
+			localStorage.removeItem(TOKEN_LOCALSTORAGE_KEY)
 		},
 	},
 })

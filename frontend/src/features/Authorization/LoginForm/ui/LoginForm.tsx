@@ -43,7 +43,7 @@ export const LoginForm = ({ styles }: ILoginFormProps) => {
 			},
 		},
 		{
-			type: 'input',
+			type: 'password',
 			key: 'password',
 			title: `${t('vvedite-parol')}`,
 			rules: {

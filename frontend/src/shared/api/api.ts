@@ -8,6 +8,7 @@ export const API = {
 			me: process.env.REACT_APP_API_URL + '/auth/users/me/',
 		},
 	},
+	accounts: { activate: process.env.REACT_APP_API_URL + '/accounts/activate/' },
 	lectures: {
 		additions: {
 			create: '/lectures-additions/create/',

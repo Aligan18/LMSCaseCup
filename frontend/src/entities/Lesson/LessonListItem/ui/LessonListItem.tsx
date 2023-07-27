@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import classes from './LessonListItem.module.scss'
@@ -8,12 +9,14 @@ import { ERoutePath, ILAST_ID_Params } from 'app/providers/AppRouters'
 
 import { IAboutLessonData } from 'entities/Lesson/types'
 import { EListModuleType, IListModule } from 'entities/Module/types'
+import { getUserType } from 'entities/Users/CustomUser'
 
 import { classnames as cn, deleteRouteId, setParamsInPath } from 'shared/lib'
 import { AnimatedButton, Button, Htag, Icon, TextBox } from 'shared/ui'
 
 export const LessonListItem = ({ styles, data, hasButton = true }: ILessonListItemProps) => {
 	const { t } = useTranslation('course')
+	const user = useSelector(getUserType)
 
 	const renderContent = () => {
 		switch (data.module_type) {
@@ -25,13 +28,17 @@ export const LessonListItem = ({ styles, data, hasButton = true }: ILessonListIt
 							<Htag tag={'very-small'}>{data.lecture_id?.description}</Htag>
 						</div>
 						{hasButton && (
-							<Link
-								to={setParamsInPath<ILAST_ID_Params>(ERoutePath.LESSON, {
-									id: String(data.lecture_id?.id),
-								})}
-							>
-								<AnimatedButton icon={'right'}>Пререйти</AnimatedButton>
-							</Link>
+							<>
+								{(user === 'admin' || user === 'super-admin') && (
+									<Link
+										to={setParamsInPath<ILAST_ID_Params>(ERoutePath.LESSON, {
+											id: String(data.lecture_id?.id),
+										})}
+									>
+										<AnimatedButton icon={'right'}>Пререйти</AnimatedButton>
+									</Link>
+								)}
+							</>
 						)}
 					</>
 				)

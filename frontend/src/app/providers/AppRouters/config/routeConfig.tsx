@@ -35,16 +35,20 @@ export enum ERoutePath {
 	EDIT_COURSE = '/edit_course/:id',
 	TEACHER_ROOM = '/teacher_room',
 	VIEW_ANSWER = '/view_answer/:id',
-	GROUP_LIST = '/group_list/:id',
 	CREATE_ANSWER = '/create_answer/:id',
+	GROUP_LIST = '/group_list/:id',
 	AUTHORIZATION = '/authorization',
-	ACTIVATION = '/activation',
+	ACTIVATION = '/activation/:uid/:token',
 	AFTER_REGISTRATION = '/after_registration',
 	CREATE_MODULE = '/course/:course_id/create_module',
 }
 
 export type ILAST_ID_Params = {
 	id: string
+}
+export type IActivationParams = {
+	uid: string
+	token: string
 }
 
 export type IEDIT_LESSON_Params = {

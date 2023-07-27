@@ -38,7 +38,7 @@ class StudentsViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 
 
 # Admin
-class CourseStudentViewCreate(generics.CreateAPIView):  # Вообще все студенты
+class CourseStudentViewCreate(generics.CreateAPIView):
     queryset = CourseStudent.objects.all()
     serializer_class = CourseStudentSerializers
     permission_classes = [IsAdminUser]

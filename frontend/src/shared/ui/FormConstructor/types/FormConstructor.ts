@@ -7,7 +7,7 @@ export interface IConbineFormConstructor<T> extends IFormConstructorData {
 }
 
 export interface IFormConstructorData {
-	type: 'selector' | 'text-input' | 'check-box' | 'input' | 'file-input'
+	type: 'selector' | 'text-input' | 'check-box' | 'input' | 'file-input' | 'password'
 	options?: IOptions[]
 	title?: string
 	description?: string
