@@ -34,7 +34,7 @@ class StudentsViewRetrieve(generics.RetrieveAPIView):
 class StudentsViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Students.objects.all()
     serializer_class = CreateStudentsSerializers
-    permission_classes = [ IsStudentOwner]
+    permission_classes = [IsStudentOwner]
 
 
 # Admin
@@ -48,7 +48,7 @@ class CourseStudentViewCreate(generics.CreateAPIView):
 class CourseStudentViewAll(generics.ListAPIView):  # Вообще все студенты
     queryset = CourseStudent.objects.all()
     serializer_class = CourseStudentSerializers
-    filter_backends = (DjangoFilterBackend)
+    filter_backends = (DjangoFilterBackend,)
     filterset_class = Filter
     permission_classes = [IsAdminUser | IsTeacherOwnerForList | IsStudentOwnerForList]
     pagination_class = ListPagination
