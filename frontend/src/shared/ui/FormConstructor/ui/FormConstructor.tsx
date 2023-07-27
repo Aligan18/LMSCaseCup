@@ -48,9 +48,7 @@ export function FormConstructor<T extends FieldValues>({
 									<Htag tag={'very-small'}>{formItem.description}</Htag>
 								)}
 							</div>
-							{errors[formItem.key] && (
-								<ErrorText>{String(errors[formItem.key]?.message)}</ErrorText>
-							)}
+							{errors[formItem.key] && <ErrorText>{String(errors[formItem.key]?.message)}</ErrorText>}
 						</div>
 
 						{

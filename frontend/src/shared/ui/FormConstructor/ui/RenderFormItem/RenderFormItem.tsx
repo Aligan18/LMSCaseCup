@@ -7,14 +7,7 @@ import classes from './RenderFormItem.module.scss'
 
 import { CheckBox, Input, SelectOption, TextInput, UploadFile } from 'shared/ui'
 
-export function RenderFormItem<T>({
-	formItem,
-	control,
-	register,
-	getValues,
-	watch,
-	reset,
-}: IRenderFormProps<T>) {
+export function RenderFormItem<T>({ formItem, control, register, getValues, watch, reset }: IRenderFormProps<T>) {
 	const [file, setFile] = useState<string>()
 	const rules = rulesConstructor(formItem.rules, watch)
 
@@ -31,6 +24,15 @@ export function RenderFormItem<T>({
 	}, [formItem.defaultValue])
 
 	switch (formItem.type) {
+		case 'password':
+			return (
+				<Input
+					type={'password'}
+					format={'large'}
+					variation={'clear'}
+					{...register(formItem.key, rules)}
+				></Input>
+			)
 		case 'input':
 			return (
 				<Input

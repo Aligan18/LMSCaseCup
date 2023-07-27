@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-import { registartionByEmail } from '../../services/RegistrationByEmail'
+import { registrationByEmail } from '../../services/RegistrationByEmail'
 import { IRegistrationSchema } from '../type/RegistrationFormSchema'
 
 const initialState: IRegistrationSchema = {
@@ -22,14 +22,14 @@ const RegistrationFormSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(registartionByEmail.pending, (state: IRegistrationSchema) => {
+			.addCase(registrationByEmail.pending, (state: IRegistrationSchema) => {
 				state.isLoading = true
 				state.error = undefined
 			})
-			.addCase(registartionByEmail.fulfilled, (state: IRegistrationSchema, action) => {
+			.addCase(registrationByEmail.fulfilled, (state: IRegistrationSchema, action) => {
 				state.isLoading = false
 			})
-			.addCase(registartionByEmail.rejected, (state: IRegistrationSchema, action) => {
+			.addCase(registrationByEmail.rejected, (state: IRegistrationSchema, action) => {
 				state.error = action.payload
 				state.isLoading = false
 			})

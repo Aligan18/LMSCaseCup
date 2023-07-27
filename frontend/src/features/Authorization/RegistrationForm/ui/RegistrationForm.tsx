@@ -2,11 +2,12 @@ import { useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import { getRegistrationErrors } from '../model/selectors/getRegistrationErrors'
 import { getRegistrationLoading } from '../model/selectors/getRegistrationLoading'
 import { registrationFormSliceActions, registrationFormSliceReducer } from '../model/slice/RegistrationFormSlice'
-import { registartionByEmail } from '../services/RegistrationByEmail'
+import { registrationByEmail } from '../services/RegistrationByEmail'
 import classes from './RegistrationForm.module.scss'
 
 import { ICreateRegistrationData, IRegistrationFormConstructor } from 'entities/Authorization/types'
@@ -17,12 +18,13 @@ import { Button, ErrorText, FormConstructor, Htag, LoadingDiv } from 'shared/ui'
 
 export const RegistrationForm = ({ styles }: IRegistrationFormProps) => {
 	const dispatch = useAppDispatch()
+	const navigate = useNavigate()
 	const onSubmit: SubmitHandler<ICreateRegistrationData> = (formData: ICreateRegistrationData, event) => {
 		event?.preventDefault()
 		dispatch(registrationFormSliceActions.setName(formData.name))
 		dispatch(registrationFormSliceActions.setName(formData.surname))
 		formData.type = userType
-		dispatch(registartionByEmail(formData))
+		dispatch(registrationByEmail({ registrationData: formData, navigate }))
 	}
 
 	const isLoading = useSelector(getRegistrationLoading)
@@ -56,7 +58,7 @@ export const RegistrationForm = ({ styles }: IRegistrationFormProps) => {
 			},
 		},
 		{
-			type: 'input',
+			type: 'password',
 			key: 'password',
 			title: `${t('vvedite-parol')}`,
 			rules: {
@@ -65,7 +67,7 @@ export const RegistrationForm = ({ styles }: IRegistrationFormProps) => {
 			},
 		},
 		{
-			type: 'input',
+			type: 'password',
 			key: 're_password',
 			title: `${t('povtorite-parol')}`,
 			rules: {

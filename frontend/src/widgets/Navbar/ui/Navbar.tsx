@@ -1,14 +1,19 @@
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import classes from './Navbar.module.scss'
 
+import { ERoutePath } from 'app/providers/AppRouters'
+
+import { SignOutButton } from 'features/Authorization/SignOutButton'
 import { ChangeThemeButton } from 'features/ChangeTheme'
 import { NotificationIcon } from 'features/NotificationIcon'
 import { TranslateButton } from 'features/Translate'
 
 import { Avatar } from 'entities/Avatar'
 import { LanguageCard } from 'entities/LanguageCard'
+import { getUserType } from 'entities/Users/CustomUser'
 
 import { classnames as cn } from 'shared/lib'
 import { Button, Icon, Input, ListItem } from 'shared/ui'
@@ -16,31 +21,12 @@ import { Logo } from 'shared/ui/Logo/Logo'
 
 export const Navbar = ({ styles }: INavbarProps) => {
 	const { t } = useTranslation()
-	const userType: 'student' | 'teacher' | 'admin' = 'student'
+	const userType = useSelector(getUserType)
 
-	return (
-		<div className={cn(classes.Navbar, [styles])}>
-			<div className={classes.left}>
-				<Link to={'/'}>
-					<Logo />
-				</Link>
-				<Input variation={'clear'}>Найти</Input>
-			</div>
-			<div className={classes.right}>
-				{userType == 'student' && (
-					<Button
-						variation={'clear'}
-						format={'small'}
-					>
-						{t('kurator')}
-						<Icon
-							variation={'primary'}
-							icon={'edit'}
-							size={'small'}
-						/>
-					</Button>
-				)}
-				{userType && (
+	const renderButtonForUser = () => {
+		switch (userType) {
+			case 'teacher':
+				return (
 					<Button
 						variation={'clear'}
 						format={'small'}
@@ -52,26 +38,50 @@ export const Navbar = ({ styles }: INavbarProps) => {
 							size={'small'}
 						/>
 					</Button>
-				)}
+				)
 
-				{userType && (
+			case 'admin' || 'super-admin':
+				return (
 					<Button
 						variation={'clear'}
 						format={'small'}
 					>
-						{t('admin')}
+						Админ панель
 						<Icon
 							variation={'primary'}
 							icon={'tool'}
 							size={'small'}
 						/>
 					</Button>
-				)}
+				)
+
+			default:
+				break
+		}
+	}
+
+	return (
+		<div className={cn(classes.Navbar, [styles])}>
+			<div className={classes.left}>
+				<Link to={'/'}>
+					<Logo />
+				</Link>
+				<Input variation={'clear'}>Найти</Input>
+			</div>
+			<div className={classes.right}>
+				{renderButtonForUser()}
+				<SignOutButton />
 				<ChangeThemeButton />
 				<TranslateButton />
-				<NotificationIcon />
+				{/* <NotificationIcon /> */}
 
-				<Avatar size="medium" />
+				{userType === 'not-auth' ? (
+					<Link to={ERoutePath.AUTHORIZATION}>
+						<Button>Вход</Button>
+					</Link>
+				) : (
+					<Avatar size="medium" />
+				)}
 			</div>
 		</div>
 	)

@@ -2,6 +2,8 @@ import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } f
 import { AxiosInstance } from 'axios'
 import { NavigateFunction } from 'react-router-dom'
 
+import { IActivationSchema } from 'pages/Authorization/ActivationPage'
+
 import { ILoginSchema } from 'features/Authorization/LoginForm'
 import { IRegistrationSchema } from 'features/Authorization/RegistrationForm'
 import { ICreateCourseSchema } from 'features/Course/CreateCourseForm'
@@ -39,6 +41,7 @@ export interface IStateSchema {
 	createLesson?: ICreateLessonSchema
 	createModuleData?: ICreateModuleSchema
 	editModuleList?: IEditModuleSchema
+	activateAccount?: IActivationSchema
 }
 
 export interface IThunkExtraArg {

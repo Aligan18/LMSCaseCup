@@ -219,12 +219,13 @@ SIMPLE_JWT = {
     ),
 }
 
+DOMAIN = 'localhost:3000'
 DJOSER = {
     'USER_CREATE_PASSWORD_RETYPE': True,
     'SEND_ACTIVATION_EMAIL': True,
     'SET_PASSWORD_RETYPE': True,
     'TOKEN_MODEL': None,  # We use only JWT
-    'ACTIVATION_URL': 'accounts/activate/{uid}/{token}',
+    'ACTIVATION_URL': 'activation/{uid}/{token}',
     'PASSWORD_RESET_CONFIRM_URL': 'lmscasecup/reset_password/{uid}/{token}',
     ##'SERIALIZERS': {'user_create': 'custom_user.serializers.CreateCustomUserSerializer'},
     'SOCIAL_AUTH_TOKEN_STRATEGY': 'djoser.social.token.jwt.TokenStrategy',

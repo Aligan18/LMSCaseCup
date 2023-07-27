@@ -67,13 +67,9 @@ export const Icon = ({
 		>
 			{icon === 'home' && <HomeIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'book' && <BookIcon className={cn(classes.Icon, [styles], styleMod)} />}
-			{icon === 'calendar' && (
-				<CalendarIconIcon className={cn(classes.Icon, [styles], styleMod)} />
-			)}
+			{icon === 'calendar' && <CalendarIconIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'chat' && <ChatIcon className={cn(classes.Icon, [styles], styleMod)} />}
-			{icon === 'circle_filled' && (
-				<CircleFilledIcon className={cn(classes.Icon, [styles], styleMod)} />
-			)}
+			{icon === 'circle_filled' && <CircleFilledIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'circle' && <CircleIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'clock' && <ClockIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'close' && <CloseIcon className={cn(classes.Icon, [styles], styleMod)} />}
@@ -82,27 +78,19 @@ export const Icon = ({
 			{icon === 'down' && <DownIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'edit' && <EditIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'file' && <FileIcon className={cn(classes.Icon, [styles], styleMod)} />}
-			{icon === 'language' && (
-				<LanguageIcon className={cn(classes.Icon, [styles], styleMod)} />
-			)}
+			{icon === 'language' && <LanguageIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'left' && <LeftIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'link' && <LinkIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'lock' && <LockIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'mail' && <MailIcon className={cn(classes.Icon, [styles], styleMod)} />}
-			{icon === 'notification' && (
-				<NotificationIcon className={cn(classes.Icon, [styles], styleMod)} />
-			)}
+			{icon === 'notification' && <NotificationIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'plus' && <PlusIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'right' && <RightIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'save' && <SaveIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'search' && <SearchIcon className={cn(classes.Icon, [styles], styleMod)} />}
-			{icon === 'settings' && (
-				<SettingsIcon className={cn(classes.Icon, [styles], styleMod)} />
-			)}
+			{icon === 'settings' && <SettingsIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'shield' && <ShieldIcon className={cn(classes.Icon, [styles], styleMod)} />}
-			{icon === 'star_filled' && (
-				<StarFilledIcon className={cn(classes.Icon, [styles], styleMod)} />
-			)}
+			{icon === 'star_filled' && <StarFilledIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'star' && <StarIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'teacher' && <TeacherIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'tool' && <ToolIcon className={cn(classes.Icon, [styles], styleMod)} />}
@@ -111,9 +99,7 @@ export const Icon = ({
 			{icon === 'moon' && <MoonIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'sun' && <SunIcon className={cn(classes.Icon, [styles], styleMod)} />}
 			{icon === 'trash' && <TrashIcon className={cn(classes.Icon, [styles], styleMod)} />}
-			{icon === 'registration' && (
-				<RegistrationIcon className={cn(classes.Icon, [styles], styleMod)} />
-			)}
+			{icon === 'registration' && <RegistrationIcon className={cn(classes.Icon, [styles], styleMod)} />}
 		</div>
 	)
 }
