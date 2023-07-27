@@ -6,7 +6,7 @@ from rest_framework import generics
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
 from custom_user.permissions import IsTeacherHasAccess, IsStudentOwner, IsTeacherHasAccessCreate, IsTeacher, \
-    IsTeacherOwnerForList, IsStudentOwnerForList
+    IsTeacherOwnerForList, IsStudentOwnerForList, IsStudent
 from mysite.pagination import ListPagination
 
 from students.models import Students, CourseStudent
@@ -34,24 +34,21 @@ class StudentsViewRetrieve(generics.RetrieveAPIView):
 class StudentsViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Students.objects.all()
     serializer_class = CreateStudentsSerializers
-    permission_classes = [ IsStudentOwner]
+    permission_classes = [IsStudentOwner]
 
 
 # Admin
 class CourseStudentViewCreate(generics.CreateAPIView):
     queryset = CourseStudent.objects.all()
     serializer_class = CourseStudentSerializers
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAdminUser | IsStudent]
 
 
 # Admin , Teacher имеющий доступ , Student имеющий доступ
-class CourseStudentViewAll(generics.ListAPIView):  # Вообще все студенты
+class CourseStudentViewAll(generics.ListAPIView):
     queryset = CourseStudent.objects.all()
     serializer_class = CourseStudentSerializers
     filter_backends = (DjangoFilterBackend)
     filterset_class = Filter
-    permission_classes = [IsAdminUser | IsTeacherOwnerForList | IsStudentOwnerForList]
-    pagination_class = ListPagination
-
-
-
+    # permission_classes = [IsAdminUser | IsTeacherOwnerForList | IsStudentOwnerForList]
+    # pagination_class = ListPagination

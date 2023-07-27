@@ -76,7 +76,7 @@ urlpatterns = [
     path('api/v1/course/delete/<int:pk>', CourseViewDestroy.as_view(), name="course-delete"),
     path('api/v1/course_students/list/', CourseStudentsListViewRetrieve.as_view()),  # ????????
 
-    path('api/v1/course_student/create/', CourseStudentViewAll.as_view()),
+    path('api/v1/course_student/list/', CourseStudentViewAll.as_view()),
 
     path('api/v1/file_tasks/create/', FileTasksViewCreate.as_view(), name="file_tasks-create"),
     path('api/v1/file_tasks/list/', FileTasksViewList.as_view(), name="file_tasks-list"),

@@ -8,6 +8,8 @@ import { ILoginSchema } from 'features/Authorization/LoginForm'
 import { IRegistrationSchema } from 'features/Authorization/RegistrationForm'
 import { ICreateCourseSchema } from 'features/Course/CreateCourseForm'
 import { IUpdateCourseSchema } from 'features/Course/EditCourseForm'
+import { IEnrollCourseStudentSchema } from 'features/Course/EnrollCourseButton/'
+import { ICourseStudentSchema } from 'features/CustomUsers/Student'
 import { ICreateAdditionSchema } from 'features/Lesson/CreateLessonAdditionForm'
 import { ICreateLessonSchema } from 'features/Lesson/CreateLessonButton'
 import { ILessonContentScheme } from 'features/Lesson/CreateLessonContentForm'
@@ -30,10 +32,11 @@ export interface IStateSchema {
 	createLessonContent: ILessonContentScheme
 	createLessonAbout: ICreateLessonAboutData
 	createLessonAddition: ICreateAdditionSchema
+	getCourseStudentList: ICourseStudentSchema
 
 	//Асинхронные редьюсеры
 	loginForm?: ILoginSchema
-
+	enrollCouseStudent?: IEnrollCourseStudentSchema
 	registrationForm?: IRegistrationSchema
 	createCourseForm?: ICreateCourseSchema
 	createTicketForm?: ICreateTicketSchema
