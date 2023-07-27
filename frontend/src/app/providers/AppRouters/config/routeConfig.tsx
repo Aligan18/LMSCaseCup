@@ -15,6 +15,7 @@ import { CreateLessonPage } from 'pages/Lesson/CreateLessonPage'
 import { LessonPage } from 'pages/Lesson/LessonPage'
 import { CreateModulePage } from 'pages/Module/CreateModulePage'
 import { NotFoundPage } from 'pages/NotFoundPage'
+import { ProfilePage } from 'pages/ProfilePage'
 import { CreateAnswerPage } from 'pages/Task/CreateAnswerPage'
 import { CreateTicketAnswerPage } from 'pages/Ticket/CreateTicketAnswerPage'
 import { CreateTicketPage } from 'pages/Ticket/CreateTicketPage'
@@ -41,6 +42,7 @@ export enum ERoutePath {
 	ACTIVATION = '/activation/:uid/:token',
 	AFTER_REGISTRATION = '/after_registration',
 	CREATE_MODULE = '/course/:course_id/create_module',
+	PROFILE = '/profile/:id',
 }
 
 export type ILAST_ID_Params = {
@@ -109,6 +111,10 @@ export const NotAuthRouteConfig: Array<RouteProps> = [
 		path: ERoutePath.AFTER_REGISTRATION,
 		element: <AfterRegistrationPage />,
 	},
+	{
+		path: ERoutePath.PROFILE,
+		element: <ProfilePage />,
+	},
 ]
 
 export const StudentRouteConfig: Array<RouteProps> = [
@@ -147,6 +153,10 @@ export const StudentRouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.CREATE_ANSWER,
 		element: <CreateAnswerPage />,
+	},
+	{
+		path: ERoutePath.PROFILE,
+		element: <ProfilePage />,
 	},
 ]
 
@@ -210,6 +220,10 @@ export const TeacherRouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.CREATE_MODULE,
 		element: <CreateModulePage />,
+	},
+	{
+		path: ERoutePath.PROFILE,
+		element: <ProfilePage />,
 	},
 ]
 
@@ -293,5 +307,9 @@ export const AdminRouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.CREATE_MODULE,
 		element: <CreateModulePage />,
+	},
+	{
+		path: ERoutePath.PROFILE,
+		element: <ProfilePage />,
 	},
 ]
