@@ -48,7 +48,7 @@ class CourseStudentViewCreate(generics.CreateAPIView):
 class CourseStudentViewAll(generics.ListAPIView):
     queryset = CourseStudent.objects.all()
     serializer_class = CourseStudentSerializers
-    filter_backends = (DjangoFilterBackend)
+    filter_backends = (DjangoFilterBackend,)
     filterset_class = Filter
     # permission_classes = [IsAdminUser | IsTeacherOwnerForList | IsStudentOwnerForList]
     # pagination_class = ListPagination
