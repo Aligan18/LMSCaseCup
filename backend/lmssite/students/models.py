@@ -28,7 +28,7 @@ class Students(models.Model):
 
 
 class CourseStudent(models.Model):
-    number = models.IntegerField(null=True)
+    number = models.IntegerField(null=True , blank=True)
     student = models.ForeignKey(Students, on_delete=models.CASCADE)
     course = models.ForeignKey("course.Course", on_delete=models.CASCADE)
     group = models.CharField(max_length=10, blank=True, null=True)

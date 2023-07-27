@@ -28,6 +28,10 @@ export const API = {
 	students: {
 		id: '/students/id/',
 	},
+	course_students: {
+		list: '/course_student/list/',
+		create: '/students_course/create/',
+	},
 	course: {
 		create: '/course/create/',
 		retrieve: '/course/id/',

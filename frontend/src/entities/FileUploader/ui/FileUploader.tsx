@@ -14,7 +14,6 @@ export const FileUploader = ({ styles, setImage, image, initialImage }: IFileUpl
 		event.preventDefault()
 		setImage && setImage(event.target.files[0])
 	}
-
 	useEffect(() => {
 		if (initialImage) {
 			setImageScr(initialImage)
@@ -22,7 +21,6 @@ export const FileUploader = ({ styles, setImage, image, initialImage }: IFileUpl
 			setImage && setImage(null)
 		}
 	}, [initialImage])
-
 	useEffect(() => {
 		if (image !== undefined) {
 			setImageError(false)
@@ -32,6 +30,15 @@ export const FileUploader = ({ styles, setImage, image, initialImage }: IFileUpl
 		}
 	}, [image])
 
+	const handleDragOver = (event: BaseSyntheticEvent) => {
+		event.preventDefault()
+	}
+
+	const handleDrop = (event: any) => {
+		event.preventDefault()
+		console.log('event', event)
+		setImage && event.dataTransfer && setImage(event.dataTransfer.files[0])
+	}
 	return (
 		<div className={cn(classes.FileUploader, [styles])}>
 			<div className={classes.top_block}>
@@ -43,7 +50,11 @@ export const FileUploader = ({ styles, setImage, image, initialImage }: IFileUpl
 					{t('jpeg-do-5-mb')}
 				</Htag>
 			</div>
-			<div className={classes.bottom_block}>
+			<div
+				onDrop={handleDrop}
+				onDragOver={handleDragOver}
+				className={classes.bottom_block}
+			>
 				{imageSrc && (
 					<div className={classes.img_wrapper}>
 						<img
@@ -67,11 +78,11 @@ export const FileUploader = ({ styles, setImage, image, initialImage }: IFileUpl
 					<Htag tag={'very-small'}>{t('ili-peretashite-fail')}</Htag>
 				</div>
 			</div>
+
 			{error && <ErrorText>Выберите обложку </ErrorText>}
 		</div>
 	)
 }
-
 interface IFileUploaderProps {
 	styles?: string
 	setImage?: Dispatch<SetStateAction<File | undefined | null>>

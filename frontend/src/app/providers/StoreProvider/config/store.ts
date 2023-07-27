@@ -4,6 +4,7 @@ import { NavigateFunction } from 'react-router-dom'
 import { createReducerManager } from './ReducerManager'
 import { IStateSchema } from './StateSchema'
 
+import { courseStudentReducer } from 'features/CustomUsers/Student'
 import { createLessonAboutReducer } from 'features/Lesson/CreateLessonAboutForm'
 import { createLessonAdditionReducer } from 'features/Lesson/CreateLessonAdditionForm'
 import { lessonContentReducer } from 'features/Lesson/CreateLessonContentForm'
@@ -24,6 +25,7 @@ export function createReduxStore(initialState?: IStateSchema) {
 		createLessonAbout: createLessonAboutReducer,
 		createLessonContent: lessonContentReducer,
 		createLessonAddition: createLessonAdditionReducer,
+		getCourseStudentList: courseStudentReducer,
 	}
 
 	const reducerManager = createReducerManager(rootReducers)
