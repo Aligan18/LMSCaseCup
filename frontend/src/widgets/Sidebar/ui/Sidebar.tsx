@@ -37,6 +37,19 @@ export const Sidebar = ({ styles }: ISidebarProps) => {
 						</ListItem>
 					</>
 				)
+			case 'admin':
+				return (
+					<Link to={ERoutePath.ALL_TICKETS}>
+						<ListItem
+							hover={'hover_inverted-secondary'}
+							variation={'clear'}
+							left={<Icon icon="shield" />}
+							styles={classes.top_button}
+						>
+							Тикеты
+						</ListItem>
+					</Link>
+				)
 
 			default:
 				break
@@ -76,18 +89,20 @@ export const Sidebar = ({ styles }: ISidebarProps) => {
 				</ListItem> */}
 			</div>
 
-			<div className={classes.bottom_button}>
-				<Link to={ERoutePath.TICKETS}>
-					<ListItem
-						hover={'hover_inverted-secondary'}
-						variation={'clear'}
-						left={<Icon icon="shield" />}
-						styles={classes.bottom_button}
-					>
-						{t('podderzhka')}
-					</ListItem>
-				</Link>
-			</div>
+			{user === 'student' && (
+				<div className={classes.bottom_button}>
+					<Link to={ERoutePath.TICKETS}>
+						<ListItem
+							hover={'hover_inverted-secondary'}
+							variation={'clear'}
+							left={<Icon icon="shield" />}
+							styles={classes.bottom_button}
+						>
+							{t('podderzhka')}
+						</ListItem>
+					</Link>
+				</div>
+			)}
 		</div>
 	)
 }

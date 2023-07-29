@@ -8,6 +8,17 @@ export interface IAboutTicketData {
 	student: string
 }
 
+export interface ITicketData {
+	id: number
+	description: string
+	answer: string
+	file: string
+	date: Date
+	title: string
+	completed: boolean
+	student: string
+}
+
 export interface ICreateTicketData {
 	title: string
 	theme: string
@@ -23,12 +34,11 @@ export interface ITicketFormConstructor extends IFormConstructorData, ICreateTic
 
 export interface ICreateTicketAnswerData {
 	answer: string
+	completed: boolean
 }
 
 interface ICreateTicketAnswerKeys {
 	key: keyof ICreateTicketAnswerData
 }
 
-export interface ITicketAnswerFormConstructor
-	extends IFormConstructorData,
-		ICreateTicketAnswerKeys {}
+export interface ITicketAnswerFormConstructor extends IFormConstructorData, ICreateTicketAnswerKeys {}

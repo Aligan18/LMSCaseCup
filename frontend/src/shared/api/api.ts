@@ -39,7 +39,11 @@ export const API = {
 		list: '/course/list/',
 	},
 	ticket: {
+		list: '/student_ticket/list/',
 		create: '/student_ticket/create/',
+		one_student: '/one_student_ticket/list/', // требует /?student=<id>
+		retrieve: '/student_ticket/id/',
+		rud: '/student_ticket/rud/',
 	},
 	modules: {
 		list: '/modules/list/',
