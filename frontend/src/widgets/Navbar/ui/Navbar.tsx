@@ -42,17 +42,19 @@ export const Navbar = ({ styles }: INavbarProps) => {
 
 			case 'admin' || 'super-admin':
 				return (
-					<Button
-						variation={'clear'}
-						format={'small'}
-					>
-						Админ панель
-						<Icon
-							variation={'primary'}
-							icon={'tool'}
-							size={'small'}
-						/>
-					</Button>
+					<Link to={ERoutePath.TEACHER_ROOM}>
+						<Button
+							variation={'clear'}
+							format={'small'}
+						>
+							Админ панель
+							<Icon
+								variation={'primary'}
+								icon={'tool'}
+								size={'small'}
+							/>
+						</Button>
+					</Link>
 				)
 
 			default:

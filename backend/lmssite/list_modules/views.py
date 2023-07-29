@@ -87,7 +87,7 @@ class ModulesViewList(generics.ListAPIView):
 class ModulesViewRetrieve(generics.RetrieveAPIView):
     queryset = Modules.objects.all()
     serializer_class = ModulesSerializers
-    # permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]
+    permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]
 
 # Admin , Teacher с доступом к курсу
 class ModulesViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):

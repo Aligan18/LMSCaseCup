@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from categories.serializers import CategorySerializers
-from students.serializers import AboutStudentsSerializers
+from students.serializers import AboutStudentsSerializers, StudentsSerializers
 from teachers.serializers import AboutTeachersSerializers
 from .models import Course
 
@@ -21,8 +21,8 @@ class CourseSerializers(serializers.ModelSerializer):
 
 
 class OnlyStudentsCourseSerializers(serializers.ModelSerializer):
-    student = AboutStudentsSerializers(read_only=True)
+    student = AboutStudentsSerializers(many=True)
 
     class Meta:
         model = Course
-        fields = ['student']
+        fields = ['student', 'id']

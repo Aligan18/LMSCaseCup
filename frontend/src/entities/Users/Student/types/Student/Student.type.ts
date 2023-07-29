@@ -1,7 +1,6 @@
 import { IAboutCustomUser, ICustomUser } from 'entities/Users/CustomUser'
 
 export interface IStudentAboutData {
-	id: number
 	student: IAboutCustomUser
 	name: string
 	surname: string
@@ -9,6 +8,17 @@ export interface IStudentAboutData {
 	grade: number
 }
 
+export interface IFullStudentData {
+	sex: string | null
+	age: number | null
+	country: string | null
+	student: ICustomUser
+	name: string
+	surname: string
+	patronymic: string | null
+	about: string | null
+	university: string | null
+}
 export interface IStudentData {
 	sex: string | null
 	age: number | null
@@ -27,7 +37,7 @@ export interface IColumnNames extends Record<keyof IStudentAboutData, string | I
 }
 
 export interface IOnlyStudentsInGroupData {
-	students: IStudentAboutData[]
+	student: IFullStudentData[]
 }
 export interface IAboutGroupData {
 	course: number

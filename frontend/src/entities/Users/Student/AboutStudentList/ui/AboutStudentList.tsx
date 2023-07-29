@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
+import { IFullStudentData } from '../../types/Student/Student.type'
 import classes from './AboutStudentList.module.scss'
 
 import { Avatar } from 'entities/Avatar'
@@ -13,7 +14,6 @@ export const AboutStudentList = ({ styles, data, isColumnNames }: IAboutStudentL
 	const { t } = useTranslation('admin')
 
 	const columnNames: IColumnNames = {
-		id: '1',
 		student: {
 			id: 1,
 			avatar: null,
@@ -51,14 +51,14 @@ export const AboutStudentList = ({ styles, data, isColumnNames }: IAboutStudentL
 			<Htag tag={'small'}>{`${data?.surname} ${data?.name} ${data?.patronymic}`}</Htag>
 			<Htag tag={'small'}>{data?.student.phone}</Htag>
 			<Htag tag={'small'}>{data?.student.is_active && t('aktivnyi')}</Htag>
-			<div>
+			{/* <div>
 				{data?.grade && (
 					<StarsGroup
 						rating={data?.grade}
 						changeable={false}
 					/>
 				)}
-			</div>
+			</div> */}
 			<Button
 				variation="primary"
 				styles={classes.button}

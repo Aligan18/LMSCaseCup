@@ -54,13 +54,14 @@ const GroupListPage = ({ styles }: IGroupListPageProps) => {
 					line={false}
 					title={courseData.title}
 				/>
-				<List
+				{/* <List
 					items={data}
 					variation={'list'}
 					renderItem={(group: IAboutGroupData) => (
 						<ListStudentsInGroup groupData={group} />
 					)}
-				/>
+				/> */}
+				<ListStudentsInGroup />
 			</div>
 		</div>
 	)

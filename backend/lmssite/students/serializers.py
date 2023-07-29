@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from course.about_serializers import AboutCourseSerializers
+from custom_user.serializers import CreateCustomUserSerializer
 from students.models import Students, CourseStudent
 
 
@@ -13,7 +14,7 @@ class CreateStudentsSerializers(serializers.ModelSerializer):
 
 
 class StudentsSerializers(serializers.ModelSerializer):
-    courses = AboutCourseSerializers(many=True)
+
 
     class Meta:
         model = Students
@@ -21,9 +22,10 @@ class StudentsSerializers(serializers.ModelSerializer):
 
 
 class AboutStudentsSerializers(serializers.ModelSerializer):
+    student = CreateCustomUserSerializer()
     class Meta:
         model = Students
-        fields = ('name', 'surname', 'patronymic')
+        fields = ('name', 'surname', 'patronymic', 'student')
 
 
 class CourseStudentSerializers(serializers.ModelSerializer):

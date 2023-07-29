@@ -40,7 +40,7 @@ export enum ERoutePath {
 	TEACHER_ROOM = '/teacher_room',
 	VIEW_ANSWER = '/view_answer/:id',
 	CREATE_ANSWER = '/create_answer/:id',
-	GROUP_LIST = '/group_list/:id',
+	GROUP_LIST = '/course/:course_id/group_list',
 	AUTHORIZATION = '/authorization',
 	ACTIVATION = '/activation/:uid/:token',
 	AFTER_REGISTRATION = '/after_registration',
@@ -53,6 +53,9 @@ export enum ERoutePath {
 	ABOUT_TICKET = '/about_ticket/:id',
 }
 
+export type IGROUP_LIST_Params = {
+	course_id: string
+}
 export type ILAST_ID_Params = {
 	id: string
 }
