@@ -37,6 +37,7 @@ export const API = {
 		retrieve: '/course/id/',
 		update: '/course/update/',
 		list: '/course/list/',
+		only_students: '/course_students/list/',
 	},
 	ticket: {
 		list: '/student_ticket/list/',

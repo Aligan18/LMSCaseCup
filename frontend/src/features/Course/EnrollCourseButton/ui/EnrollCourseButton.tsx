@@ -23,7 +23,9 @@ export const EnrollCourseButton = ({ styles }: IEnrollCourseButtonProps) => {
 	const dispatch = useAppDispatch()
 	console.log('Id', student)
 	const handleClick = () => {
-		student && course_id && dispatch(enrollCourseStudentRequest({ course: course_id, student: String(student) }))
+		student &&
+			course_id &&
+			dispatch(enrollCourseStudentRequest({ course: Number(course_id), student: Number(student) }))
 	}
 
 	return (

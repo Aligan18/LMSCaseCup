@@ -46,6 +46,8 @@ class CourseStudentsListViewRetrieve(generics.ListAPIView): # Список ст�
     queryset = Course.objects.all()
     serializer_class = OnlyStudentsCourseSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]
+    filter_backends = (DjangoFilterBackend, OrderingFilter)
+    filterset_class = Filter
     pagination_class = ListPagination
 
 

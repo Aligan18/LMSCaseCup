@@ -4,6 +4,8 @@ import { NavigateFunction } from 'react-router-dom'
 
 import { IActivationSchema } from 'pages/Authorization/ActivationPage'
 
+import { IListStudentsInGroupSchema } from 'widgets/Student/ListStudentsInGroup'
+
 import { ILoginSchema } from 'features/Authorization/LoginForm'
 import { IRegistrationSchema } from 'features/Authorization/RegistrationForm'
 import { ICreateCourseSchema } from 'features/Course/CreateCourseForm'
@@ -53,6 +55,7 @@ export interface IStateSchema {
 	listTicketStudent?: IListTicketStudentSchema
 	retrieveTicketData?: IRetrieveTicketSchema
 	createTicketAnswer?: ICreateTicketAnswerSchema
+	listAllStudentInCourse?: IListStudentsInGroupSchema
 }
 
 export interface IThunkExtraArg {

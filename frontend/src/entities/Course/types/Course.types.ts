@@ -1,3 +1,6 @@
+import { IStudentData } from 'entities/Users/Student/types'
+import { IFullStudentData } from 'entities/Users/Student/types/Student/Student.type'
+
 import { IFormConstructorData } from 'shared/ui'
 
 export interface IAboutCourseData {
@@ -28,6 +31,7 @@ export interface ICourseData {
 	is_published: boolean
 	description: string
 	course_duration: number
+	student: IFullStudentData
 	category: number
 	rating: number
 	price: number

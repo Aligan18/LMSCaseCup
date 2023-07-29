@@ -11,6 +11,9 @@ class Filter(filters.FilterSet):
     category = CharFilterInFilter(field_name='category__title')
     publish = filters.BooleanFilter(field_name='is_published')
     teacher = CharFilterInFilter(field_name='teacher')
+    id = CharFilterInFilter(field_name='id')
+
+
     class Meta:
         model = Course
-        fields = ['category', 'publish', 'teacher']
+        fields = ['category', 'publish', 'teacher', 'id']
