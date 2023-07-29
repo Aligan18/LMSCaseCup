@@ -4,12 +4,8 @@ from custom_user.models import User
 
 
 class StudentTickets(models.Model):
-    Theme = [
-        ("1", "Забыл пароль"),
-        ("2", "Смена обучения"),
-        ("3", "Не работает"),
-    ]
-    theme = models.CharField(choices=Theme, default="3", max_length=1)
+
+    theme = models.CharField(max_length=100)
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=150, null=True)
     description = models.TextField( blank=True)

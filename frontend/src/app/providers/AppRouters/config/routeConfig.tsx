@@ -17,6 +17,8 @@ import { CreateModulePage } from 'pages/Module/CreateModulePage'
 import { NotFoundPage } from 'pages/NotFoundPage'
 import { ProfilePage } from 'pages/ProfilePage'
 import { CreateAnswerPage } from 'pages/Task/CreateAnswerPage'
+import { AboutTicketPage } from 'pages/Ticket/AboutTicketPage'
+import { AllTicketsPage } from 'pages/Ticket/AllTicketsPage'
 import { CreateTicketAnswerPage } from 'pages/Ticket/CreateTicketAnswerPage'
 import { CreateTicketPage } from 'pages/Ticket/CreateTicketPage'
 import { TicketsPage } from 'pages/Ticket/TicketsPage'
@@ -25,7 +27,6 @@ export enum ERoutePath {
 	HOME = '/',
 	NOT_FOUND = '*',
 	COURSES = '/courses',
-	TICKETS = '/tickets',
 	ABOUT_COURSE = '/course/:course_id/about/',
 	LESSON = '/lesson/:id',
 
@@ -45,8 +46,11 @@ export enum ERoutePath {
 	AFTER_REGISTRATION = '/after_registration',
 
 	PROFILE = '/profile/:id',
+	TICKETS = '/tickets',
 	CREATE_TICKET = '/create_ticket',
 	CREATE_TICKET_ANSWER = '/create_ticket_answer/:id',
+	ALL_TICKETS = '/all_tickets',
+	ABOUT_TICKET = '/about_ticket/:id',
 }
 
 export type ILAST_ID_Params = {
@@ -162,6 +166,10 @@ export const StudentRouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.PROFILE,
 		element: <ProfilePage />,
+	},
+	{
+		path: ERoutePath.ABOUT_TICKET,
+		element: <AboutTicketPage />,
 	},
 ]
 
@@ -316,5 +324,9 @@ export const AdminRouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.PROFILE,
 		element: <ProfilePage />,
+	},
+	{
+		path: ERoutePath.ALL_TICKETS,
+		element: <AllTicketsPage />,
 	},
 ]

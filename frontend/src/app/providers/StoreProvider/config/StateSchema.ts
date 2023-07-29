@@ -15,12 +15,15 @@ import { ICreateLessonSchema } from 'features/Lesson/CreateLessonButton'
 import { ILessonContentScheme } from 'features/Lesson/CreateLessonContentForm'
 import { ICreateModuleSchema } from 'features/Module/CreateModuleForm'
 import { IEditModuleSchema } from 'features/Module/EditModuleList'
+import { ICreateTicketAnswerSchema } from 'features/Ticket/CreateTicketAnswerForm'
 import { ICreateTicketSchema } from 'features/Ticket/CreateTicketForm/model/type/CreateTicketSchema'
 
 import { IListCourseDataSchema, IRetrieveCourseDataSchema } from 'entities/Course/CourseData'
 import { IGetLecturesSchema } from 'entities/Lecture'
 import { ICreateLessonAboutData } from 'entities/Lesson/types'
 import { IAllModuleDataSchema } from 'entities/Module/ModuleData'
+import { IRetrieveTicketSchema } from 'entities/Ticket/AboutTicket'
+import { IListTicketStudentSchema } from 'entities/Ticket/TicketStudentData'
 import { ICustomUserSchema } from 'entities/Users/CustomUser'
 
 import { IAPI } from 'shared/api/api'
@@ -47,6 +50,9 @@ export interface IStateSchema {
 	createModuleData?: ICreateModuleSchema
 	editModuleList?: IEditModuleSchema
 	activateAccount?: IActivationSchema
+	listTicketStudent?: IListTicketStudentSchema
+	retrieveTicketData?: IRetrieveTicketSchema
+	createTicketAnswer?: ICreateTicketAnswerSchema
 }
 
 export interface IThunkExtraArg {

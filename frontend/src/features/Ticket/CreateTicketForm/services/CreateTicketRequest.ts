@@ -7,6 +7,8 @@ import { ICreateRegistrationData } from 'entities/Authorization/types'
 import { ICreateTicketData } from 'entities/Ticket/types'
 import { ICustomUser } from 'entities/Users/CustomUser'
 
+import { serverErrors } from 'shared/lib'
+
 export const createTicketRequest = createAsyncThunk<
 	void,
 	ICreateTicketData,
@@ -19,20 +21,6 @@ export const createTicketRequest = createAsyncThunk<
 			},
 		})
 	} catch (error: any) {
-		switch (error.request.status) {
-			case 400: {
-				const errorData = error.response.data
-				let errorMessage = 'Ошибка'
-				for (const key in errorData) {
-					errorMessage = errorData[key]
-				}
-				return rejectWithValue(errorMessage)
-			}
-			case 0:
-				return rejectWithValue('Сервер не отвечает, попробуйте позже')
-
-			default:
-				return rejectWithValue('Что то пошло не так, попробуйте позже')
-		}
+		return rejectWithValue(serverErrors(error))
 	}
 })

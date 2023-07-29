@@ -74,6 +74,7 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 		>
 			<div className={cn(classes.CreateTicketForm, [styles])}>
 				<FormConstructor<ICreateTicketData>
+					successful={successful}
 					serverError={error}
 					isLoading={isLoading}
 					onSubmit={onSubmit}

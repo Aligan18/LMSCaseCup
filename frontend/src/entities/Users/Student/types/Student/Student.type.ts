@@ -13,7 +13,7 @@ export interface IStudentData {
 	sex: string | null
 	age: number | null
 	country: string | null
-	student: ICustomUser | null
+	student: number | null
 	name: string
 	surname: string
 	patronymic: string | null
