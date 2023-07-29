@@ -36,8 +36,7 @@ export const ModuleListItem = ({ styles, data, ...props }: IModuleListItemProps)
 	)
 }
 
-interface IModuleListItemProps
-	extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+interface IModuleListItemProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	styles?: string
 	data: IModuleData
 }

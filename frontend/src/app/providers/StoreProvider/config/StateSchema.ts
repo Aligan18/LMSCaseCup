@@ -18,6 +18,7 @@ import { IEditModuleSchema } from 'features/Module/EditModuleList'
 import { ICreateTicketSchema } from 'features/Ticket/CreateTicketForm/model/type/CreateTicketSchema'
 
 import { IListCourseDataSchema, IRetrieveCourseDataSchema } from 'entities/Course/CourseData'
+import { IGetLecturesSchema } from 'entities/Lecture'
 import { ICreateLessonAboutData } from 'entities/Lesson/types'
 import { IAllModuleDataSchema } from 'entities/Module/ModuleData'
 import { ICustomUserSchema } from 'entities/Users/CustomUser'
@@ -33,6 +34,7 @@ export interface IStateSchema {
 	createLessonAbout: ICreateLessonAboutData
 	createLessonAddition: ICreateAdditionSchema
 	getCourseStudentList: ICourseStudentSchema
+	getLecture: IGetLecturesSchema
 
 	//Асинхронные редьюсеры
 	loginForm?: ILoginSchema

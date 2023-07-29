@@ -11,11 +11,7 @@ import { LessonConstructor } from 'widgets/Lesson/LessonConstructor'
 import { LessonFormSteps } from 'widgets/Lesson/LessonFormSteps'
 
 import { BackButton } from 'features/BackButton'
-import {
-	CreateLessonButton,
-	getCreateLessonError,
-	getCreateLessonLoading,
-} from 'features/Lesson/CreateLessonButton'
+import { CreateLessonButton, getCreateLessonError, getCreateLessonLoading } from 'features/Lesson/CreateLessonButton'
 
 import { getLectureRequest } from 'entities/Lecture'
 

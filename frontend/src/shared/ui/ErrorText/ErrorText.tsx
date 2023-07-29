@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import { FieldError } from 'react-hook-form'
 
 import classes from './ErrorText.module.scss'
@@ -10,5 +11,5 @@ export const ErrorText = ({ styles, children }: IErrorTextProps) => {
 
 interface IErrorTextProps {
 	styles?: string
-	children: string
+	children: string | ReactNode
 }

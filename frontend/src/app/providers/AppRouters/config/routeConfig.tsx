@@ -28,12 +28,14 @@ export enum ERoutePath {
 	TICKETS = '/tickets',
 	ABOUT_COURSE = '/course/:course_id/about/',
 	LESSON = '/lesson/:id',
+
 	CREATE_COURSE = '/create_course',
-	CREATE_TICKET = '/create_ticket',
-	CREATE_TICKET_ANSWER = '/create_ticket_answer/:id',
-	CREATE_LESSON = '/module/:module_id/create_lesson',
-	EDIT_LESSON = '/module/:module_id/edit_lesson/:lesson_id',
 	EDIT_COURSE = '/edit_course/:id',
+
+	CREATE_MODULE = '/course/:course_id/create_module',
+	CREATE_LESSON = '/course/:course_id/module/:module_id/create_lesson',
+	EDIT_LESSON = '/module/:module_id/edit_lesson/:lesson_id',
+
 	TEACHER_ROOM = '/teacher_room',
 	VIEW_ANSWER = '/view_answer/:id',
 	CREATE_ANSWER = '/create_answer/:id',
@@ -41,8 +43,10 @@ export enum ERoutePath {
 	AUTHORIZATION = '/authorization',
 	ACTIVATION = '/activation/:uid/:token',
 	AFTER_REGISTRATION = '/after_registration',
-	CREATE_MODULE = '/course/:course_id/create_module',
+
 	PROFILE = '/profile/:id',
+	CREATE_TICKET = '/create_ticket',
+	CREATE_TICKET_ANSWER = '/create_ticket_answer/:id',
 }
 
 export type ILAST_ID_Params = {
@@ -59,6 +63,7 @@ export type IEDIT_LESSON_Params = {
 }
 
 export type ICREATE_LESSON_Params = {
+	course_id: string
 	module_id: string
 }
 

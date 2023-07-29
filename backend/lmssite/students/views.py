@@ -50,5 +50,5 @@ class CourseStudentViewAll(generics.ListAPIView):
     serializer_class = CourseStudentSerializers
     filter_backends = (DjangoFilterBackend,)
     filterset_class = Filter
-    # permission_classes = [IsAdminUser | IsTeacherOwnerForList | IsStudentOwnerForList]
-    # pagination_class = ListPagination
+    permission_classes = [IsAdminUser | IsTeacherOwnerForList | IsStudentOwnerForList]
+    pagination_class = ListPagination

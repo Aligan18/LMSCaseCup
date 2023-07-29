@@ -2,6 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { IThunkExtraArg } from 'app/providers/StoreProvider'
 
+import { getCourseStudentRequest } from 'features/CustomUsers/Student'
+
 import { ICreateLoginData, IToken } from 'entities/Authorization/types'
 import { ICustomUser, customUserSliceActions } from 'entities/Users/CustomUser'
 import { getUserType } from 'entities/Users/CustomUser/lib/getUserType'
@@ -47,6 +49,7 @@ export const loginByToken = createAsyncThunk<void, void, { rejectValue: string; 
 							},
 						)
 						userInfo = studentInfo.data
+						dispatch(getCourseStudentRequest({ studentId: customUser.data.id }))
 						break
 					}
 				}
