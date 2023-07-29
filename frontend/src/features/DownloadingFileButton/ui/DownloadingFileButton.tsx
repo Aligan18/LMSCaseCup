@@ -6,16 +6,21 @@ import { Button, Icon } from 'shared/ui'
 
 export const DownloadingFileButton = ({ styles, data }: IDownloadingFileButtonProps) => {
 	return (
-		<Button
-			format={'small'}
-			styles={[styles, classes.button].join(' ')}
+		<a
+			className={classes.link}
+			href={data.file}
 		>
-			{data.title}
-			<Icon
-				variation={'secondary'}
-				icon={'file'}
-			/>
-		</Button>
+			<Button
+				format={'small'}
+				styles={[styles, classes.button].join(' ')}
+			>
+				{data.title}
+				<Icon
+					variation={'secondary'}
+					icon={'file'}
+				/>
+			</Button>
+		</a>
 	)
 }
 

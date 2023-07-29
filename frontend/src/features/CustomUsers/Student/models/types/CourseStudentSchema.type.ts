@@ -1,5 +1,5 @@
-import { ICourseData } from 'entities/Course/types'
+import { ICourseStudentData } from 'entities/Course/types'
 
 export interface ICourseStudentSchema {
-	courseStudentList: ICourseData[]
+	courseStudentList: ICourseStudentData[]
 }

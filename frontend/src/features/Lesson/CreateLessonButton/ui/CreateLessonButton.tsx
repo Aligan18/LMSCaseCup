@@ -5,7 +5,7 @@ import { createLessonSliceReducer } from '../model/slice/CreateLessonSlice'
 import { createLessonRequest } from '../services/CreateLessonRequest'
 import classes from './CreateLessonButton.module.scss'
 
-import { IEDIT_LESSON_Params } from 'app/providers/AppRouters/config/routeConfig'
+import { ICREATE_LESSON_Params, IEDIT_LESSON_Params } from 'app/providers/AppRouters/config/routeConfig'
 
 import { getLessonAbout } from 'features/Lesson/CreateLessonAboutForm'
 import { getAdditionsData } from 'features/Lesson/CreateLessonAdditionForm'
@@ -20,11 +20,11 @@ export const CreateLessonButton = ({ styles }: ICreateLessonButtonProps) => {
 	const about = useSelector(getLessonAbout)
 	const additions = useSelector(getAdditionsData)
 	const contents = useSelector(getLessonContents)
-	const { module_id, lesson_id } = useParams<IEDIT_LESSON_Params>()
+	const { module_id, course_id } = useParams<ICREATE_LESSON_Params>()
 
 	const handleClick = () => {
 		if (module_id && about && additions && contents) {
-			const fullAbout = { ...about, module_id: Number(module_id) }
+			const fullAbout = { ...about, module_id: Number(module_id), course: Number(course_id) }
 			dispatch(createLessonRequest({ about: fullAbout, additions, contents, navigate }))
 		}
 	}

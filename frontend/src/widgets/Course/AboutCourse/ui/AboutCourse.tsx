@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 
 import classes from './AboutCourse.module.scss'
 
-import { ILAST_ID_Params } from 'app/providers/AppRouters'
+import { IABOUT_COURSE_Params, ILAST_ID_Params } from 'app/providers/AppRouters'
 
 import { EnrollCourseButton } from 'features/Course/EnrollCourseButton'
 import { useStudentHasAccess } from 'features/CustomUsers/Student'
@@ -16,12 +16,12 @@ import { classnames as cn } from 'shared/lib'
 
 export const AboutCourse = ({ styles, data }: IAboutCourseProps) => {
 	const user = useSelector(getUserType)
-	const { id } = useParams<ILAST_ID_Params>()
-	const studetnHasAccess = id ? useStudentHasAccess(id) : false
+	const { course_id } = useParams<IABOUT_COURSE_Params>()
+	const access = course_id ? useStudentHasAccess(course_id) : false
 	return (
 		<div className={cn(classes.AboutCourse, [styles])}>
 			<CourseMiniCard data={data} />
-			{((!studetnHasAccess && user === 'student') || user === 'not-auth') && <EnrollCourseButton />}
+			{((!access && user === 'student') || user === 'not-auth') && <EnrollCourseButton />}
 		</div>
 	)
 }

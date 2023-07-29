@@ -226,6 +226,7 @@ export const EditModuleList = ({
 							<Link
 								to={setParamsInPath<ICREATE_LESSON_Params>(ERoutePath.CREATE_LESSON, {
 									module_id: String(module.id),
+									course_id: String(module.course),
 								})}
 							>
 								<Button format={'small'}>

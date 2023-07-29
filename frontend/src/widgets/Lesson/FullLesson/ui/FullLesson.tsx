@@ -10,10 +10,10 @@ import { getLessonAbout } from 'features/Lesson/CreateLessonAboutForm'
 import { getLessonContents } from 'features/Lesson/CreateLessonContentForm'
 import { LessonContentList } from 'features/Lesson/LessonContentList'
 
-import { getLectureRequest } from 'entities/Lecture'
+import { getLectureRequest, getLecturesError } from 'entities/Lecture'
 
 import { classnames as cn, useAppDispatch } from 'shared/lib'
-import { Header, YouTubeVideo } from 'shared/ui'
+import { ErrorText, Header, Htag, YouTubeVideo } from 'shared/ui'
 
 export const FullLesson = ({ styles }: IFullLessonProps) => {
 	// const data: ILectureData = {
@@ -81,13 +81,16 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 	const { id } = useParams<ILAST_ID_Params>()
 	const lesson = useSelector(getLessonContents)
 	const about = useSelector(getLessonAbout)
+	const error = useSelector(getLecturesError)
 	const dispatch = useAppDispatch()
 	useEffect(() => {
 		dispatch(getLectureRequest(Number(id)))
 	}, [id])
+	console.log(error)
 
 	return (
 		<>
+			{error && <Htag tag={'large'}> {error}</Htag>}
 			{about && (
 				<div className={cn(classes.Lesson, [styles])}>
 					<Header

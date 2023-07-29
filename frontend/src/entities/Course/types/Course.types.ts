@@ -33,6 +33,14 @@ export interface ICourseData {
 	price: number
 }
 
+export interface ICourseStudentData {
+	course: number
+	group: null
+	is_completed: false
+	number: null
+	student: number
+}
+
 interface ICreateCourseKeys {
 	key: keyof ICreateCourseData
 }

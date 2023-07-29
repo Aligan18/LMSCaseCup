@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Lectures(models.Model):
+    course =models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=150, null=True)
     description = models.TextField(blank=True , null=True)
     number = models.IntegerField(blank=True , null=True)

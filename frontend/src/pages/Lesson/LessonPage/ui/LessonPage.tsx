@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux'
+
 import classes from './LessonPage.module.scss'
 
 import { FullLesson } from 'widgets/Lesson/FullLesson'
