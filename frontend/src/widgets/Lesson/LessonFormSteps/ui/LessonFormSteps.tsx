@@ -8,7 +8,7 @@ import { CreateLessonAdditionList } from 'features/Lesson/CreateLessonAdditionLi
 import { CreateLessonContentForm } from 'features/Lesson/CreateLessonContentForm'
 
 import { classnames as cn } from 'shared/lib'
-import { Button, Hr, Icon, Step, Tag } from 'shared/ui'
+import { Hr, Step } from 'shared/ui'
 
 export const LessonFormSteps = ({ styles }: ILessonFormStepsProps) => {
 	const [step, setStep] = useState<1 | 2 | 3>(1)

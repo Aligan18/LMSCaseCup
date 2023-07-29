@@ -1,6 +1,7 @@
 import { SubmitHandler } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { getLessonAbout } from '../model/selectors/getLessonAbout'
 import { createLessonAboutActions, createLessonAboutReducer } from '../model/slice/CreateLessonAboutSlice'
 import classes from './CreateLessonAboutForm.module.scss'
 
@@ -11,7 +12,7 @@ import { FormConstructor } from 'shared/ui'
 
 export const CreateLessonAboutForm = ({ styles }: ICreateLessonAboutFormProps) => {
 	const dispatch = useDispatch()
-
+	const about = useSelector(getLessonAbout)
 	const onSubmit: SubmitHandler<ICreateLessonAboutData> = (formData: ICreateLessonAboutData, event) => {
 		event?.preventDefault()
 		console.log(formData)
@@ -28,6 +29,7 @@ export const CreateLessonAboutForm = ({ styles }: ICreateLessonAboutFormProps) =
 				required: true,
 				maxLength: 50,
 			},
+			defaultValue: about.title,
 		},
 		{
 			title: 'Описание урока',
@@ -38,12 +40,14 @@ export const CreateLessonAboutForm = ({ styles }: ICreateLessonAboutFormProps) =
 				required: true,
 				maxLength: 80,
 			},
+			defaultValue: about.description,
 		},
 		{
 			title: 'Видео урока',
 			description: 'Введите ссылку на YouTube',
 			key: 'video',
 			type: 'input',
+			defaultValue: about.video,
 		},
 	]
 

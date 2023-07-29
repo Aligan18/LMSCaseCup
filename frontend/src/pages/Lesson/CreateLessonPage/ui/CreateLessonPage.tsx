@@ -11,7 +11,12 @@ import { LessonConstructor } from 'widgets/Lesson/LessonConstructor'
 import { LessonFormSteps } from 'widgets/Lesson/LessonFormSteps'
 
 import { BackButton } from 'features/BackButton'
-import { CreateLessonButton, getCreateLessonError, getCreateLessonLoading } from 'features/Lesson/CreateLessonButton'
+import {
+	CreateLessonButton,
+	UpdateLessonButton,
+	getCreateLessonError,
+	getCreateLessonLoading,
+} from 'features/Lesson/CreateLessonButton'
 
 import { getLectureRequest } from 'entities/Lecture'
 
@@ -41,7 +46,7 @@ const CreateLessonPage = ({ styles }: ICreateLessonPageProps) => {
 					<Header
 						styles={classes.header}
 						title={'Редактирование лекции'}
-						buttons={<CreateLessonButton />}
+						buttons={<UpdateLessonButton />}
 					/>
 				) : (
 					<Header
