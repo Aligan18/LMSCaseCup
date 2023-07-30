@@ -7,9 +7,11 @@ import classes from './ModuleProgram.module.scss'
 
 import { IABOUT_COURSE_Params } from 'app/providers/AppRouters'
 
+import { listGradesForStudent, useLastAttendance } from 'entities/Grade'
 import { getAllListModulesRequest, getAllModuleData } from 'entities/Module/ModuleData'
 import { ModuleList } from 'entities/Module/ModuleList'
 import { IModuleData } from 'entities/Module/types'
+import { getUserInfo } from 'entities/Users/CustomUser'
 
 import { classnames as cn, useAppDispatch } from 'shared/lib'
 import { Htag, List } from 'shared/ui'
@@ -108,22 +110,19 @@ export const ModuleProgram = ({ styles }: IModuleProgramProps) => {
 	// 	},
 	// ]
 	const { course_id } = useParams<IABOUT_COURSE_Params>()
-	const { t } = useTranslation('course')
+	const { student } = useSelector(getUserInfo)
 	const module_data = useSelector(getAllModuleData)
 	const dispatch = useAppDispatch()
+
 	useEffect(() => {
 		dispatch(getAllListModulesRequest(Number(course_id)))
+		student && dispatch(listGradesForStudent({ courseId: Number(course_id), studentId: student }))
 	}, [])
 
 	return (
-		<div className={cn(classes.CourseProgram, [styles])}>
-			<Htag
-				styles={classes.title}
-				tag={'large'}
-			>
-				{t('programma-kursa')}
-			</Htag>
+		<div className={cn(classes.CourseProgram)}>
 			<List
+				styles={styles}
 				items={module_data}
 				renderItem={(module: IModuleData) => (
 					<ModuleList

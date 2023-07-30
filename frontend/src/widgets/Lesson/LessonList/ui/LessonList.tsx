@@ -1,46 +1,25 @@
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 
 import classes from './LessonList.module.scss'
 
+import { ModuleProgram } from 'widgets/Module/ModuleProgram'
+
 import { IAboutLessonData } from 'entities/Lesson/types'
+import { getAllModuleData } from 'entities/Module/ModuleData'
+import { ModuleListItem } from 'entities/Module/ModuleListItem'
 
 import { classnames as cn } from 'shared/lib'
-import { Htag, Icon, List, ListItem } from 'shared/ui'
+import { AccordionWrapper, Htag, Icon, List, ListItem } from 'shared/ui'
 
 export const LessonList = ({ styles }: ILessonListProps) => {
 	const { t } = useTranslation('course')
 
-	const data = [
-		{ id: 1, title: 'Название урока', number: 1, status: true },
-		{ id: 2, title: 'Название урока', number: 2, status: false },
-		{ id: 3, title: 'Название урока', number: 3, status: false },
-		{ id: 1, title: 'Название урока', number: 1, status: true },
-		{ id: 2, title: 'Название урока', number: 2, status: false },
-		{ id: 3, title: 'Название урока', number: 3, status: false },
-	]
+	const data = useSelector(getAllModuleData)
 	return (
 		<div className={cn(classes.LessonList, [styles])}>
-			<Htag tag={'medium'}>{t('raspisanie')}</Htag>
-			<List
-				styles={classes.list}
-				variation={'list'}
-				items={data}
-				renderItem={(lesson: IAboutLessonData) => (
-					<ListItem
-						variation={'inverted-secondary'}
-						hover={'hover_primary'}
-						mid_up={`${t('urok')}` + ' №'}
-						// left={
-						// 	<Icon
-						// 		icon={lesson.status ? 'circle_filled' : 'circle'}
-						// 		variation={'primary'}
-						// 	/>
-						// }
-					>
-						{lesson.title}
-					</ListItem>
-				)}
-			/>
+			<Htag tag={'medium'}>Программа курса</Htag>
+			<ModuleProgram styles={classes.module} />
 		</div>
 	)
 }

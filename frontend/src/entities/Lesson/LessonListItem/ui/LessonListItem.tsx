@@ -6,6 +6,7 @@ import { Link, useParams } from 'react-router-dom'
 import classes from './LessonListItem.module.scss'
 
 import { ERoutePath, IABOUT_COURSE_Params, ILAST_ID_Params } from 'app/providers/AppRouters'
+import { ILESSON_Params } from 'app/providers/AppRouters/config/routeConfig'
 
 import { useStudentHasAccess } from 'features/CustomUsers/Student'
 
@@ -16,7 +17,7 @@ import { getUserType } from 'entities/Users/CustomUser'
 import { classnames as cn, deleteRouteId, setParamsInPath } from 'shared/lib'
 import { AnimatedButton, Button, Htag, Icon, TextBox } from 'shared/ui'
 
-export const LessonListItem = ({ styles, data, hasButton = true }: ILessonListItemProps) => {
+export const LessonListItem = ({ styles, data, hasButton = true, disabled }: ILessonListItemProps) => {
 	const { t } = useTranslation('course')
 	const user = useSelector(getUserType)
 	const { course_id } = useParams<IABOUT_COURSE_Params>()
@@ -36,17 +37,21 @@ export const LessonListItem = ({ styles, data, hasButton = true }: ILessonListIt
 							<>
 								{(user === 'admin' || user === 'super-admin') && (
 									<Link
-										to={setParamsInPath<ILAST_ID_Params>(ERoutePath.LESSON, {
-											id: String(data.lecture_id?.id),
+										to={setParamsInPath<ILESSON_Params>(ERoutePath.LESSON, {
+											lesson_id: String(data.lecture_id?.id),
+											list_modules: String(data.id),
+											course_id: String(course_id),
 										})}
 									>
 										<AnimatedButton icon={'right'}>Пререйти</AnimatedButton>
 									</Link>
 								)}
-								{user === 'student' && access && (
+								{user === 'student' && access && !disabled && (
 									<Link
-										to={setParamsInPath<ILAST_ID_Params>(ERoutePath.LESSON, {
-											id: String(data.lecture_id?.id),
+										to={setParamsInPath<ILESSON_Params>(ERoutePath.LESSON, {
+											lesson_id: String(data.lecture_id?.id),
+											list_modules: String(data.id),
+											course_id: String(course_id),
 										})}
 									>
 										<AnimatedButton icon={'right'}>Пререйти</AnimatedButton>
@@ -69,4 +74,5 @@ interface ILessonListItemProps {
 	styles?: string
 	data: IListModule
 	hasButton?: boolean
+	disabled: boolean
 }

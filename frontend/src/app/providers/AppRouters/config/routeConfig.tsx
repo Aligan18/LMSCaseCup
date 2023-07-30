@@ -28,7 +28,7 @@ export enum ERoutePath {
 	NOT_FOUND = '*',
 	COURSES = '/courses',
 	ABOUT_COURSE = '/course/:course_id/about/',
-	LESSON = '/lesson/:id',
+	LESSON = '/course/:course_id/list_modules/:list_module_id/lesson/:lesson_id',
 
 	CREATE_COURSE = '/create_course',
 	EDIT_COURSE = '/edit_course/:id',
@@ -53,6 +53,11 @@ export enum ERoutePath {
 	ABOUT_TICKET = '/about_ticket/:id',
 }
 
+export type ILESSON_Params = {
+	list_module_id: string
+	course_id: string
+	lesson_id: string
+}
 export type IGROUP_LIST_Params = {
 	course_id: string
 }

@@ -5,12 +5,15 @@ import { useParams } from 'react-router-dom'
 import classes from './FullLesson.module.scss'
 
 import { ILAST_ID_Params } from 'app/providers/AppRouters'
+import { ILESSON_Params } from 'app/providers/AppRouters/config/routeConfig'
 
+import { CreateAttendanceButton } from 'features/Lesson/CreateAttendanceButton'
 import { getLessonAbout } from 'features/Lesson/CreateLessonAboutForm'
 import { getLessonContents } from 'features/Lesson/CreateLessonContentForm'
 import { LessonContentList } from 'features/Lesson/LessonContentList'
 
 import { getLectureRequest, getLecturesError } from 'entities/Lecture'
+import { getUserType } from 'entities/Users/CustomUser'
 
 import { classnames as cn, useAppDispatch } from 'shared/lib'
 import { ErrorText, Header, Htag, YouTubeVideo } from 'shared/ui'
@@ -78,14 +81,15 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 	// 		},
 	// 	],
 	// }
-	const { id } = useParams<ILAST_ID_Params>()
+	const { lesson_id } = useParams<ILESSON_Params>()
 	const lesson = useSelector(getLessonContents)
 	const about = useSelector(getLessonAbout)
 	const error = useSelector(getLecturesError)
+	const userType = useSelector(getUserType)
 	const dispatch = useAppDispatch()
 	useEffect(() => {
-		dispatch(getLectureRequest(Number(id)))
-	}, [id])
+		dispatch(getLectureRequest(Number(lesson_id)))
+	}, [lesson_id])
 	console.log(error)
 
 	return (
@@ -100,6 +104,7 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 
 					{about.video && <YouTubeVideo video_link={about.video} />}
 					{lesson && <LessonContentList data={lesson} />}
+					{userType === 'student' && <CreateAttendanceButton />}
 				</div>
 			)}
 		</>

@@ -33,7 +33,7 @@ class GradesOneStudentViewList(generics.ListAPIView): # grades с фильтра
     filter_backends = (DjangoFilterBackend,)
     filterset_class = Filter
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentOwnerForList]
-    pagination_class = ListPagination
+
 
 
 # нужно передавать /?course=<id>
