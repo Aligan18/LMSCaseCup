@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics
-from rest_framework.filters import OrderingFilter
+from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.permissions import IsAdminUser, AllowAny, IsAuthenticated
 
 import mysite
@@ -26,10 +26,10 @@ class CourseViewCreate(generics.CreateAPIView):
 class CourseViewList(generics.ListAPIView):  # все  курсы
     queryset = Course.objects.all()
     serializer_class = AboutCourseSerializers
-    filter_backends = (DjangoFilterBackend, OrderingFilter)
+    filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = Filter
     ordering_fields = ["rating"]
-
+    search_fields = ["title", "description"]
     pagination_class = ListPagination
 
 
@@ -47,6 +47,8 @@ class CourseStudentsListViewRetrieve(generics.ListAPIView): # Список ст�
     serializer_class = OnlyStudentsCourseSerializers
     permission_classes = [IsAdminUser | IsTeacherHasAccess | IsStudentHasAccess]
     pagination_class = ListPagination
+    filter_backends = (SearchFilter,)
+    search_fields = ["student"]
 
 
 # Admin , Teacher имеющий доступ
