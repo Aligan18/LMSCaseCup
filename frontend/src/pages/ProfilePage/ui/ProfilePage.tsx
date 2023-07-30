@@ -5,7 +5,7 @@ import { AboutStudentList } from 'entities/Users/Student/AboutStudentList'
 import { IColumnNames, IStudentAboutData } from 'entities/Users/Student/types'
 
 import { classnames as cn } from 'shared/lib'
-import { Header, Htag } from 'shared/ui'
+import { Button, Header, Htag, Icon, TextBox, TextInput } from 'shared/ui'
 
 export const ProfilePage = ({ styles, data, isColumnNames }: IProfilePageProps) => {
 	const columnNames: IColumnNames = {
@@ -13,14 +13,15 @@ export const ProfilePage = ({ styles, data, isColumnNames }: IProfilePageProps) 
 		student: {
 			id: 1,
 			avatar: null,
-			email: 'Email',
-			phone: 'Телефон',
+			email: 'email@gmail.ru',
+			phone: '8 800 555 3535',
 			is_active: 'Статус',
 		},
 		name: 'Имя',
-		surname: '',
-		patronymic: '',
+		surname: 'Фамилия',
+		patronymic: 'Отчество',
 		grade: 'Оценка',
+		about: 'HJHJ ssj',
 	}
 
 	if (isColumnNames) {
@@ -40,14 +41,44 @@ export const ProfilePage = ({ styles, data, isColumnNames }: IProfilePageProps) 
 		<div className={cn(classes.ProfilePage, [styles])}>
 			<div className={classes.main}>
 				<div className={classes.wrapper}>
-					<Header title={'Личный кабинет'} />
+					<Header
+						title={'Личный кабинет'}
+						buttons={
+							<Button
+								variation="primary"
+								styles={classes.button}
+								format={'small'}
+							>
+								Редактировать
+								<Icon
+									icon={'settings'}
+									variation={'white'}
+								></Icon>
+							</Button>
+						}
+					/>
 				</div>
 				<div className={classes.card}>
-					<Avatar
-						image={data?.student.avatar}
-						size="large"
-					/>
-					<AboutStudentList />
+					<div className={classes.ava}>
+						<Avatar
+							image={data?.student.avatar}
+							size="large"
+						/>
+					</div>
+
+					<div className={classes.full_name}>
+						<Htag tag={'large'}>{columnNames.surname}</Htag>
+						<Htag tag={'large'}>{columnNames.name}</Htag>
+						<Htag tag={'large'}>{columnNames.patronymic}</Htag>
+					</div>
+					<div className={classes.contacts}>
+						<Htag tag={'medium'}>{columnNames.student.email}</Htag>
+						<Htag tag={'small'}>{columnNames.student.phone}</Htag>
+					</div>
+					<div className={classes.about}>
+						<Htag tag={'medium'}>О себе</Htag>
+						<Htag tag={'small'}>{columnNames.about}</Htag>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -24,9 +24,9 @@ export const serverErrors = (error: any): string => {
 			return 'У Вас нет доступа '
 		}
 		case 0:
-			return 'Сервер не отвечает попробуйте позже'
+			return 'Сервер не отвечает, попробуйте позже'
 
 		default:
-			return 'Что то пошло не так попробуйте позже'
+			return 'Что то пошло не так, попробуйте позже'
 	}
 }

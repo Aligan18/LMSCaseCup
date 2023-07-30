@@ -10,6 +10,7 @@ import { createTicketRequest } from '../services/CreateTicketRequest'
 import classes from './CreateTicketForm.module.scss'
 
 import { ICreateTicketData, ITicketFormConstructor } from 'entities/Ticket/types'
+import { ICreateTicketDataFileList } from 'entities/Ticket/types/Ticket.types'
 
 import { DynamicModuleLoader, classnames as cn, useAppDispatch } from 'shared/lib'
 import { FormConstructor } from 'shared/ui'
@@ -21,10 +22,11 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 	const successful = useSelector(getCreateTicketSuccessful)
 	const dispatch = useAppDispatch()
 
-	const onSubmit: SubmitHandler<ICreateTicketData> = (formData: ICreateTicketData, event) => {
+	const onSubmit: SubmitHandler<ICreateTicketDataFileList> = (formData: ICreateTicketDataFileList, event) => {
 		event?.preventDefault()
-		console.log(formData)
-		dispatch(createTicketRequest(formData))
+		const ticket_data: ICreateTicketData = { ...formData, file: formData.file[0] }
+		console.log(ticket_data)
+		dispatch(createTicketRequest(ticket_data))
 	}
 
 	const data: ITicketFormConstructor[] = [
@@ -73,7 +75,7 @@ export const CreateTicketForm = ({ styles }: ICreateTicketFormProps) => {
 			reducerKey={'createTicketForm'}
 		>
 			<div className={cn(classes.CreateTicketForm, [styles])}>
-				<FormConstructor<ICreateTicketData>
+				<FormConstructor<ICreateTicketDataFileList>
 					successful={successful}
 					serverError={error}
 					isLoading={isLoading}

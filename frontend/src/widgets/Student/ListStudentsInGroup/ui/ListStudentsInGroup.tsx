@@ -2,11 +2,7 @@ import classes from './ListStudentsInGroup.module.scss'
 
 import { AboutStudentList } from 'entities/Users/Student/AboutStudentList'
 import { GroupTerm } from 'entities/Users/Student/GroupTerm'
-import {
-	IAboutGroupData,
-	IOnlyStudentsInGroupData,
-	IStudentAboutData,
-} from 'entities/Users/Student/types'
+import { IAboutGroupData, IOnlyStudentsInGroupData, IStudentAboutData } from 'entities/Users/Student/types'
 
 import { classnames as cn } from 'shared/lib'
 import { List } from 'shared/ui'
@@ -57,9 +53,7 @@ export const ListStudentsInGroup = ({ styles, groupData }: IListStudentsInGroupP
 							styles={classes.list_styles}
 							variation="list"
 							items={studentsList.students}
-							renderItem={(student: IStudentAboutData) => (
-								<AboutStudentList data={student} />
-							)}
+							renderItem={(student: IStudentAboutData) => <AboutStudentList data={student} />}
 						/>
 					</div>
 				}
