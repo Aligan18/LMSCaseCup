@@ -1,0 +1,47 @@
+.ProfilePage{
+    display: grid;
+	gap: 43px;
+}
+
+.main {
+	border-radius: 4px;
+	display: grid;
+
+	grid-template-areas:
+		'wrapper '
+		'card';
+	background-color: var(--background);
+	padding: 24px;
+}
+
+.wrapper {
+	background-color: var(--background);
+	grid-area: wrapper;
+}
+
+.card{
+    display: grid;
+    gap: 1px;
+    grid-template-areas:
+        'ava full_name'
+		'ava contacts';
+    grid-auto-columns: 150px;
+
+}
+
+.ava{
+    grid-area: ava;
+
+}
+
+.full_name{
+    display: flex;
+    gap: 10px;
+    grid-area: full_name;
+
+}
+
+.contacts{
+    display: grid;
+    grid-area: contacts;
+}

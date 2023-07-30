@@ -33,6 +33,7 @@ export interface IStudentData {
 
 export interface IColumnNames extends Record<keyof IStudentAboutData, string | IAboutCustomUser> {
 	grade: string
+	about?: string
 	student: IAboutCustomUser
 }
 

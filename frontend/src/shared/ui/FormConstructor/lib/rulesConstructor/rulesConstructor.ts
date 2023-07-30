@@ -7,10 +7,7 @@ export const rulesConstructor = (
 	rules: IRegisterRules | undefined,
 	watch: any,
 ):
-	| Omit<
-			RegisterOptions<FieldValues, string>,
-			'disabled' | 'valueAsNumber' | 'valueAsDate' | 'setValueAs'
-	  >
+	| Omit<RegisterOptions<FieldValues, string>, 'disabled' | 'valueAsNumber' | 'valueAsDate' | 'setValueAs'>
 	| undefined => {
 	const { t } = useTranslation()
 	const createPattern = () => {
@@ -37,7 +34,7 @@ export const rulesConstructor = (
 			},
 			minLength: rules.minLength && {
 				value: rules.minLength,
-				message: `Меньше` + `${rules.minLength}` + `${t(' simvolov')}`,
+				message: `${t('menshe')}` + `${rules.minLength}` + `${t(' simvolov')}`,
 			},
 			pattern: rules.pattern && createPattern(),
 			validate: rules.validate

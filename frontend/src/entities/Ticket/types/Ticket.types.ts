@@ -26,6 +26,13 @@ export interface ICreateTicketData {
 	file: File
 }
 
+export interface ICreateTicketDataFileList {
+	title: string
+	theme: string
+	description: string
+	file: FileList
+}
+
 interface ICreateTicketKeys {
 	key: keyof ICreateTicketData
 }

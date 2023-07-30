@@ -11,7 +11,12 @@ import { IGROUP_LIST_Params } from 'app/providers/AppRouters/config/routeConfig'
 
 import { ICourseData } from 'entities/Course/types'
 import { AboutStudentList } from 'entities/Users/Student/AboutStudentList'
+<<<<<<< HEAD
+import { GroupTerm } from 'entities/Users/Student/GroupTerm'
+import { IAboutGroupData, IOnlyStudentsInGroupData, IStudentAboutData } from 'entities/Users/Student/types'
+=======
 import { IOnlyStudentsInGroupData, IStudentAboutData } from 'entities/Users/Student/types'
+>>>>>>> 901e37b891b3579b3ec5296ff7ff27bf00da4f12
 
 import { DynamicModuleLoader, classnames as cn, useAppDispatch } from 'shared/lib'
 import { List } from 'shared/ui'
@@ -70,6 +75,10 @@ export const ListStudentsInGroup = ({ styles }: IListStudentsInGroupProps) => {
 						<List
 							styles={classes.list_styles}
 							variation="list"
+<<<<<<< HEAD
+							items={studentsList.students}
+							renderItem={(student: IStudentAboutData) => <AboutStudentList data={student} />}
+=======
 							items={studentsList}
 							renderItem={(course: IStudentAboutData) => (
 								<>
@@ -81,6 +90,7 @@ export const ListStudentsInGroup = ({ styles }: IListStudentsInGroupProps) => {
 									)}
 								</>
 							)}
+>>>>>>> 901e37b891b3579b3ec5296ff7ff27bf00da4f12
 						/>
 					)}
 				</div>

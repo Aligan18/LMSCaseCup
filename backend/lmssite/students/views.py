@@ -3,6 +3,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 # Create your views here.
 from rest_framework import generics
+from rest_framework.filters import SearchFilter
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
 from custom_user.permissions import IsTeacherHasAccess, IsStudentOwner, IsTeacherHasAccessCreate, IsTeacher, \
@@ -21,7 +22,8 @@ class StudentsViewAll(generics.ListAPIView):  # Вообще все студен
     serializer_class = AboutStudentsSerializers
     permission_classes = [IsAdminUser | IsTeacher]
     pagination_class = ListPagination
-
+    filter_backends = (SearchFilter,)
+    search_fields = ['name', 'surname', 'patronymic']
 
 # Authorized
 class StudentsViewRetrieve(generics.RetrieveAPIView):
@@ -48,7 +50,8 @@ class CourseStudentViewCreate(generics.CreateAPIView):
 class CourseStudentViewAll(generics.ListAPIView):
     queryset = CourseStudent.objects.all()
     serializer_class = CourseStudentSerializers
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend, SearchFilter)
     filterset_class = Filter
     permission_classes = [IsAdminUser | IsTeacherOwnerForList | IsStudentOwnerForList]
     pagination_class = ListPagination
+    search_fields = ['student', 'course']
