@@ -3,6 +3,8 @@ import classes from './AboutCoursePage.module.scss'
 import { AboutCourse } from 'widgets/Course/AboutCourse'
 import { ModuleProgram } from 'widgets/Module/ModuleProgram'
 
+import { BackButton } from 'features/BackButton'
+
 import { classnames as cn } from 'shared/lib'
 import { Htag, TextBox } from 'shared/ui'
 
@@ -17,6 +19,7 @@ const AboutCoursePage = ({ styles }: IAboutCoursePageProps) => {
 	return (
 		<div className={cn(classes.AboutCoursePage, [styles])}>
 			<div className={classes.course_title}>
+				<BackButton />
 				<Htag tag={'very-large'}>{data.title}</Htag>
 				<TextBox
 					styles={classes.description}

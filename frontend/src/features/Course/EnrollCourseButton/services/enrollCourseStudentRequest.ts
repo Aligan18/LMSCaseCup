@@ -6,7 +6,7 @@ import { getCourseStudentRequest } from 'features/CustomUsers/Student'
 
 export const enrollCourseStudentRequest = createAsyncThunk<
 	void,
-	{ course: string; student: string },
+	{ course: number; student: number },
 	{ rejectValue: string; extra: IThunkExtraArg }
 >('enrollCourseStudentRequest', async (inputData, { extra, rejectWithValue, dispatch }) => {
 	try {

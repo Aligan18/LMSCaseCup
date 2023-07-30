@@ -9,7 +9,6 @@ import { Button, Header, Htag, Icon, TextBox, TextInput } from 'shared/ui'
 
 export const ProfilePage = ({ styles, data, isColumnNames }: IProfilePageProps) => {
 	const columnNames: IColumnNames = {
-		id: '1',
 		student: {
 			id: 1,
 			avatar: null,
