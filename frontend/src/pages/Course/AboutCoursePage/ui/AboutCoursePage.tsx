@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import classes from './AboutCoursePage.module.scss'
 
 import { AboutCourse } from 'widgets/Course/AboutCourse'
@@ -9,6 +11,7 @@ import { classnames as cn } from 'shared/lib'
 import { Htag, TextBox } from 'shared/ui'
 
 const AboutCoursePage = ({ styles }: IAboutCoursePageProps) => {
+	const { t } = useTranslation('course')
 	const data = {
 		id: 1,
 		image: 'sdfsd',
@@ -16,6 +19,7 @@ const AboutCoursePage = ({ styles }: IAboutCoursePageProps) => {
 		description: 'Разработчик на Python создает сайты и приложения, которыми вы пользуетесь каждый день.',
 		price: 100000,
 	}
+
 	return (
 		<div className={cn(classes.AboutCoursePage, [styles])}>
 			<div className={classes.course_title}>
@@ -29,6 +33,12 @@ const AboutCoursePage = ({ styles }: IAboutCoursePageProps) => {
 				</TextBox>
 			</div>
 			<div className={classes.module_list}>
+				<Htag
+					styles={classes.title}
+					tag={'large'}
+				>
+					{t('programma-kursa')}
+				</Htag>
 				<ModuleProgram />
 			</div>
 			<div className={classes.course_card}>

@@ -4,13 +4,7 @@ import classes from './Button.module.scss'
 
 import { classnames as cn } from 'shared/lib'
 
-export const Button: FC<IButtonProps> = ({
-	styles,
-	variation = 'primary',
-	format = 'small',
-	children,
-	...props
-}) => {
+export const Button: FC<IButtonProps> = ({ styles, variation = 'primary', format = 'small', children, ...props }) => {
 	return (
 		<button
 			className={cn(classes.Button, [styles], {
@@ -28,8 +22,7 @@ export const Button: FC<IButtonProps> = ({
 	)
 }
 
-export interface IButtonProps
-	extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+export interface IButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
 	styles?: string
 	children: string | React.ReactNode | React.ReactNode[]
 	variation?: 'primary' | 'secondary' | 'clear'

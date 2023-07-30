@@ -8,6 +8,7 @@ import { ERoutePath } from 'app/providers/AppRouters'
 
 import { SignOutButton } from 'features/Authorization/SignOutButton'
 import { ChangeThemeButton } from 'features/ChangeTheme'
+import { SearchCourseInput } from 'features/Course/SearchCourseInput'
 import { NotificationIcon } from 'features/NotificationIcon'
 import { TranslateButton } from 'features/Translate'
 
@@ -17,6 +18,7 @@ import { getUserType } from 'entities/Users/CustomUser'
 
 import { classnames as cn } from 'shared/lib'
 import { Button, Icon, Input, ListItem } from 'shared/ui'
+import { Search } from 'shared/ui/Icon/Icon.stories'
 import { Logo } from 'shared/ui/Logo/Logo'
 
 export const Navbar = ({ styles }: INavbarProps) => {
@@ -68,7 +70,7 @@ export const Navbar = ({ styles }: INavbarProps) => {
 				<Link to={'/'}>
 					<Logo />
 				</Link>
-				<Input variation={'clear'}>Найти</Input>
+				<SearchCourseInput />
 			</div>
 			<div className={classes.right}>
 				{renderButtonForUser()}

@@ -18,9 +18,10 @@ import { ILessonContentScheme } from 'features/Lesson/CreateLessonContentForm'
 import { ICreateModuleSchema } from 'features/Module/CreateModuleForm'
 import { IEditModuleSchema } from 'features/Module/EditModuleList'
 import { ICreateTicketAnswerSchema } from 'features/Ticket/CreateTicketAnswerForm'
-import { ICreateTicketSchema } from 'features/Ticket/CreateTicketForm/model/type/CreateTicketSchema'
+import { ICreateTicketSchema } from 'features/Ticket/CreateTicketForm/'
 
 import { IListCourseDataSchema, IRetrieveCourseDataSchema } from 'entities/Course/CourseData'
+import { IListGradeSchema } from 'entities/Grade/models/types/ListGradeSchema.type'
 import { IGetLecturesSchema } from 'entities/Lecture'
 import { ICreateLessonAboutData } from 'entities/Lesson/types'
 import { IAllModuleDataSchema } from 'entities/Module/ModuleData'
@@ -40,6 +41,7 @@ export interface IStateSchema {
 	createLessonAddition: ICreateAdditionSchema
 	getCourseStudentList: ICourseStudentSchema
 	getLecture: IGetLecturesSchema
+	listGradeData: IListGradeSchema
 
 	//Асинхронные редьюсеры
 	loginForm?: ILoginSchema

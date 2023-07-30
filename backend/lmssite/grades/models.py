@@ -20,7 +20,7 @@ class Grades(models.Model):
     course = models.ForeignKey("course.Course", on_delete=models.CASCADE)
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     attendance = models.BooleanField(default=False)
-    grade = models.IntegerField( null=True, blank=True)
+    grade = models.IntegerField(default=None, null=True, blank=True)
     module_type = models.CharField(choices=MODULE_TYPES, default="1", max_length=1)
     list_modules = models.ForeignKey("list_modules.ListModules", on_delete=models.CASCADE)
 

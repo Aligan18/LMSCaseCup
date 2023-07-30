@@ -23,6 +23,7 @@ import {
 	IEDIT_LESSON_Params,
 	ILAST_ID_Params,
 } from 'app/providers/AppRouters'
+import { ILESSON_Params } from 'app/providers/AppRouters/config/routeConfig'
 
 import { LessonListItem } from 'entities/Lesson/LessonListItem'
 import { ModuleListItem } from 'entities/Module/ModuleListItem'
@@ -189,12 +190,15 @@ export const EditModuleList = ({
 											hasButton={false}
 											data={data}
 											key={data.id}
+											disabled={true}
 										/>
 									</DragAndDropDiv>
 									<div className={classes.buttons}>
 										<Link
-											to={setParamsInPath<ILAST_ID_Params>(ERoutePath.LESSON, {
-												id: String(data.lecture_id?.id),
+											to={setParamsInPath<ILESSON_Params>(ERoutePath.LESSON, {
+												lesson_id: String(data.lecture_id?.id),
+												list_modules: String(data.id),
+												course_id: String(module.course),
 											})}
 										>
 											<AnimatedButton

@@ -32,6 +32,13 @@ export const API = {
 		list: '/course_student/list/',
 		create: '/students_course/create/',
 	},
+	attendance: {
+		create: '/attendance/create/',
+	},
+	grades: {
+		grades_student: '/grades_student/list/',
+	},
+
 	course: {
 		create: '/course/create/',
 		retrieve: '/course/id/',
