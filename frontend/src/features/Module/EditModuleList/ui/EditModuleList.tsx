@@ -187,6 +187,7 @@ export const EditModuleList = ({
 										item={data}
 									>
 										<LessonListItem
+											moduleIndex={moduleIndex}
 											hasButton={false}
 											data={data}
 											key={data.id}
@@ -196,8 +197,8 @@ export const EditModuleList = ({
 									<div className={classes.buttons}>
 										<Link
 											to={setParamsInPath<ILESSON_Params>(ERoutePath.LESSON, {
-												lesson_id: String(data.lecture_id?.id),
-												list_modules: String(data.id),
+												module_index: String(moduleIndex),
+												list_module_id: String(data.id),
 												course_id: String(module.course),
 											})}
 										>

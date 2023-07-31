@@ -17,12 +17,11 @@ import { getUserType } from 'entities/Users/CustomUser'
 import { classnames as cn, deleteRouteId, setParamsInPath } from 'shared/lib'
 import { AnimatedButton, Button, Htag, Icon, TextBox } from 'shared/ui'
 
-export const LessonListItem = ({ styles, data, hasButton = true, disabled }: ILessonListItemProps) => {
+export const LessonListItem = ({ styles, data, hasButton = true, disabled, moduleIndex }: ILessonListItemProps) => {
 	const { t } = useTranslation('course')
 	const user = useSelector(getUserType)
 	const { course_id } = useParams<IABOUT_COURSE_Params>()
 	const access = course_id ? useStudentHasAccess(course_id) : false
-	console.log('access', access)
 
 	const renderContent = () => {
 		switch (data.module_type) {
@@ -38,8 +37,9 @@ export const LessonListItem = ({ styles, data, hasButton = true, disabled }: ILe
 								{(user === 'admin' || user === 'super-admin') && (
 									<Link
 										to={setParamsInPath<ILESSON_Params>(ERoutePath.LESSON, {
-											lesson_id: String(data.lecture_id?.id),
-											list_modules: String(data.id),
+											module_index: String(moduleIndex),
+
+											list_module_id: String(data.id),
 											course_id: String(course_id),
 										})}
 									>
@@ -49,8 +49,9 @@ export const LessonListItem = ({ styles, data, hasButton = true, disabled }: ILe
 								{user === 'student' && access && !disabled && (
 									<Link
 										to={setParamsInPath<ILESSON_Params>(ERoutePath.LESSON, {
-											lesson_id: String(data.lecture_id?.id),
-											list_modules: String(data.id),
+											module_index: String(moduleIndex),
+
+											list_module_id: String(data.id),
 											course_id: String(course_id),
 										})}
 									>
@@ -75,4 +76,5 @@ interface ILessonListItemProps {
 	data: IListModule
 	hasButton?: boolean
 	disabled: boolean
+	moduleIndex: number
 }

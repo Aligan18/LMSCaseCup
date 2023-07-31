@@ -7,13 +7,16 @@ import classes from './FullLesson.module.scss'
 import { ILAST_ID_Params } from 'app/providers/AppRouters'
 import { ILESSON_Params } from 'app/providers/AppRouters/config/routeConfig'
 
+import { listStudentsGroupRequest } from 'widgets/Student/ListStudentsInGroup'
+
 import { CreateAttendanceButton } from 'features/Lesson/CreateAttendanceButton'
-import { getLessonAbout } from 'features/Lesson/CreateLessonAboutForm'
+import { getLessonAbout, getLessonAboutModuleList } from 'features/Lesson/CreateLessonAboutForm'
 import { getLessonContents } from 'features/Lesson/CreateLessonContentForm'
 import { LessonContentList } from 'features/Lesson/LessonContentList'
 
+import { listGradesForStudent, useLastAttendance } from 'entities/Grade'
 import { getLectureRequest, getLecturesError } from 'entities/Lecture'
-import { getUserType } from 'entities/Users/CustomUser'
+import { getUserInfo, getUserType } from 'entities/Users/CustomUser'
 
 import { classnames as cn, useAppDispatch } from 'shared/lib'
 import { ErrorText, Header, Htag, YouTubeVideo } from 'shared/ui'
@@ -81,31 +84,42 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 	// 		},
 	// 	],
 	// }
-	const { lesson_id } = useParams<ILESSON_Params>()
+	const { list_module_id, course_id, module_index } = useParams<ILESSON_Params>()
 	const lesson = useSelector(getLessonContents)
 	const about = useSelector(getLessonAbout)
 	const error = useSelector(getLecturesError)
 	const userType = useSelector(getUserType)
+	const userInfo = useSelector(getUserInfo)
+	const moduleList = useSelector(getLessonAboutModuleList)
+	const { lastAttendance, isDisabled } = useLastAttendance(Number(module_index))
+	console.log('lastAttendance', lastAttendance)
+	console.log('moduleList', moduleList)
+	console.log('isDisabled', moduleList && !isDisabled(moduleList, lastAttendance))
+
 	const dispatch = useAppDispatch()
 	useEffect(() => {
-		dispatch(getLectureRequest(Number(lesson_id)))
-	}, [lesson_id])
-	console.log(error)
+		dispatch(listGradesForStudent({ courseId: Number(course_id), studentId: Number(userInfo.student) }))
+		dispatch(getLectureRequest(Number(list_module_id)))
+	}, [list_module_id])
 
 	return (
 		<>
-			{error && <Htag tag={'large'}> {error}</Htag>}
-			{about && (
-				<div className={cn(classes.Lesson, [styles])}>
-					<Header
-						line={false}
-						title={about.title}
-					/>
+			{moduleList && !isDisabled(moduleList, lastAttendance) && (
+				<>
+					{error && <Htag tag={'large'}> {error}</Htag>}
+					{about && (
+						<div className={cn(classes.Lesson, [styles])}>
+							<Header
+								line={false}
+								title={about.title}
+							/>
 
-					{about.video && <YouTubeVideo video_link={about.video} />}
-					{lesson && <LessonContentList data={lesson} />}
-					{userType === 'student' && <CreateAttendanceButton />}
-				</div>
+							{about.video && <YouTubeVideo video_link={about.video} />}
+							{lesson && <LessonContentList data={lesson} />}
+							{userType === 'student' && <CreateAttendanceButton />}
+						</div>
+					)}
+				</>
 			)}
 		</>
 	)

@@ -60,6 +60,7 @@ export const API = {
 		rud: '/modules/rud/',
 	},
 	list_modules: {
+		retrieve: '/list_modules/id/',
 		rud: '/list_modules/rud/',
 		create: '/list_modules/create/',
 	},

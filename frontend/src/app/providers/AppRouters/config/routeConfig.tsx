@@ -29,7 +29,7 @@ export enum ERoutePath {
 	NOT_FOUND = '*',
 	COURSES = '/courses',
 	ABOUT_COURSE = '/course/:course_id/about/',
-	LESSON = '/course/:course_id/list_modules/:list_module_id/lesson/:lesson_id',
+	LESSON = '/course/:course_id/module/:module_index/list_modules/:list_module_id/',
 
 	CREATE_COURSE = '/create_course',
 	EDIT_COURSE = '/edit_course/:id',
@@ -56,9 +56,9 @@ export enum ERoutePath {
 }
 
 export type ILESSON_Params = {
+	module_index: string
 	list_module_id: string
 	course_id: string
-	lesson_id: string
 }
 export type IGROUP_LIST_Params = {
 	course_id: string

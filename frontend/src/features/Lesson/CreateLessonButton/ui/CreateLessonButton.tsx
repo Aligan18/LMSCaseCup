@@ -24,8 +24,16 @@ export const CreateLessonButton = ({ styles }: ICreateLessonButtonProps) => {
 
 	const handleClick = () => {
 		if (module_id && about && additions && contents) {
-			const fullAbout = { ...about, module_id: Number(module_id), course: Number(course_id) }
-			dispatch(createLessonRequest({ about: fullAbout, additions, contents, navigate }))
+			const fullAbout = { ...about, module_id: Number(module_id) }
+			dispatch(
+				createLessonRequest({
+					about: fullAbout,
+					additions,
+					contents,
+					navigate,
+					props: { course_id: Number(course_id) },
+				}),
+			)
 		}
 	}
 
