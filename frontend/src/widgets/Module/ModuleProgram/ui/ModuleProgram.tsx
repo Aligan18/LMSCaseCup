@@ -124,8 +124,9 @@ export const ModuleProgram = ({ styles }: IModuleProgramProps) => {
 			<List
 				styles={styles}
 				items={module_data}
-				renderItem={(module: IModuleData) => (
+				renderItem={(module: IModuleData, index) => (
 					<ModuleList
+						moduleIndex={index}
 						key={module.id}
 						module={module}
 					/>

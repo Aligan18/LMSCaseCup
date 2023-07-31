@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import { IListGradeSchema } from '../types/ListGradeSchema.type'
 
-import { listGradesForStudent } from 'entities/Grade/services/listGradesForStudent'
+import { listGradesForStudent } from 'entities/Grade/services/listGradesForStudentRequest'
 
 const initialState: IListGradeSchema = {
 	isLoading: false,

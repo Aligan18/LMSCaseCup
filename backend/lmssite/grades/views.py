@@ -29,7 +29,7 @@ class AttendanceForLecturesViewCreate(generics.CreateAPIView):
 # Admin , Teacher имеющий доступ , Student свои оценки
 class GradesOneStudentViewList(generics.ListAPIView): # grades с фильтрацией по course и студенту   , для просмотра   всех оценок определенного студента
     queryset = Grades.objects.all()
-    serializer_class = AboutGradesSerializers
+    serializer_class = GradesSerializers
     filter_backends = (DjangoFilterBackend,)
     filterset_class = Filter
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentOwnerForList]

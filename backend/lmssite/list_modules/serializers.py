@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from lectures.serializers import AboutLecturesSerializers
+from lectures.serializers import AboutLecturesSerializers, LecturesSerializers
 from list_modules.models import ListModules, Modules
 
 
@@ -11,7 +11,8 @@ class CreateListModulesSerializers(serializers.ModelSerializer):
 
 
 class ListModulesSerializers(serializers.ModelSerializer):
-    module_type = serializers.CharField(source='get_module_type_display')
+    lecture_id = LecturesSerializers()
+
 
     class Meta:
         model = ListModules

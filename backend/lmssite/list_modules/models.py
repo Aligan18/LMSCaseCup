@@ -14,6 +14,7 @@ class ListModules(models.Model):
         ("2", "test task"),
         ("3", "file task")
     ]
+    course= models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
     lecture_id = models.OneToOneField("lectures.Lectures", on_delete=models.CASCADE, null=True, blank=True)
     file_task_id = models.OneToOneField("file_tasks.FileTasks", on_delete=models.CASCADE, null=True, blank=True)
     test_task_id = models.OneToOneField("test_tasks.TestTasks", on_delete=models.CASCADE, null=True, blank=True)

@@ -1,3 +1,5 @@
+import { IListModuleLectureData } from 'entities/Module/types/ListModule.types'
+
 import { IFormConstructorData } from 'shared/ui'
 
 export interface ICreateLessonAboutData {
@@ -5,7 +7,7 @@ export interface ICreateLessonAboutData {
 	title: string
 	video?: string
 	module_id?: number
-	course_id?: number
+	module_list?: IListModuleLectureData
 }
 
 interface ICreateLessonAboutKeys {

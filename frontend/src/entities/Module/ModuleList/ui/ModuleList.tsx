@@ -11,15 +11,9 @@ import { classnames as cn } from 'shared/lib'
 import { AccordionWrapper, List } from 'shared/ui'
 import { data } from 'shared/ui/VerticalBarChart/VerticalBarChart'
 
-export const ModuleList = ({ styles, module }: IModuleListProps) => {
-	const lastAttendance = useLastAttendance()
-	const isDisabled = (data: IListModule) => {
-		if (lastAttendance && lastAttendance?.list_modules <= data.id) {
-			return false
-		} else {
-			return true
-		}
-	}
+export const ModuleList = ({ styles, module, moduleIndex }: IModuleListProps) => {
+	const { isDisabled, lastAttendance } = useLastAttendance(moduleIndex)
+	console.log('lastAttendance', lastAttendance)
 
 	return (
 		<div
@@ -33,9 +27,10 @@ export const ModuleList = ({ styles, module }: IModuleListProps) => {
 						styles={classes.lesson_list}
 						items={module.list_modules}
 						variation={'list'}
-						renderItem={(data: IListModule) => (
+						renderItem={(data: IListModule, index) => (
 							<LessonListItem
-								disabled={isDisabled(data)}
+								moduleIndex={moduleIndex}
+								disabled={isDisabled(data, lastAttendance)}
 								data={data}
 								key={data.id}
 							/>
@@ -50,4 +45,5 @@ export const ModuleList = ({ styles, module }: IModuleListProps) => {
 interface IModuleListProps extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	styles?: string
 	module: IModuleData
+	moduleIndex: number
 }

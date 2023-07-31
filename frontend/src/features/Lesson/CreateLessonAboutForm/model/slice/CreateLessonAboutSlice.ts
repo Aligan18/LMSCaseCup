@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 import { ICreateLessonAboutData } from 'entities/Lesson/types'
+import { IListModuleLectureData } from 'entities/Module/types/ListModule.types'
 
 const initialState: ICreateLessonAboutData = {
 	title: '',
@@ -17,6 +18,10 @@ export const CreateLessonAboutSlice = createSlice({
 			state.title = payload.title ? payload.title : ''
 			state.description = payload.description ? payload.description : ''
 			state.video = payload.video ? payload.video : undefined
+		},
+
+		set_module_list: (state: ICreateLessonAboutData, { payload }: PayloadAction<IListModuleLectureData>) => {
+			state.module_list = payload
 		},
 
 		delete_field_about_lesson: (
