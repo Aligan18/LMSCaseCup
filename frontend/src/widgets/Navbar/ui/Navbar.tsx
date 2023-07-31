@@ -84,7 +84,9 @@ export const Navbar = ({ styles }: INavbarProps) => {
 						<Button>Вход</Button>
 					</Link>
 				) : (
-					<Avatar size="medium" />
+					<Link to={ERoutePath.PROFILE}>
+						<Avatar size="medium" />
+					</Link>
 				)}
 			</div>
 		</div>
