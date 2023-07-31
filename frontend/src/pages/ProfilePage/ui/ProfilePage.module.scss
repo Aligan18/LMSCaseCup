@@ -21,10 +21,11 @@
 
 .card{
     display: grid;
-    gap: 1px;
+    gap: 10px;
     grid-template-areas:
         'ava full_name'
-		'ava contacts';
+		'ava contacts'
+        'information information';
     grid-auto-columns: 150px;
 
 }
@@ -44,4 +45,19 @@
 .contacts{
     display: grid;
     grid-area: contacts;
+}
+.information{
+    margin-left: 52%;
+    display: grid;
+    grid-area: information;
+    gap: 10px;
+
+    
+}
+.about_box{
+    background: var(--light-gray-color);
+	min-height: 137px;
+	min-width: 600px;
+	padding: 12px;
+	border-radius: 5px;
 }

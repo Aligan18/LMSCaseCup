@@ -17,6 +17,7 @@ import { CreateModulePage } from 'pages/Module/CreateModulePage'
 import { NotFoundPage } from 'pages/NotFoundPage'
 import { ProfilePage } from 'pages/ProfilePage'
 import { CreateAnswerPage } from 'pages/Task/CreateAnswerPage'
+import { CreateTaskPage } from 'pages/Task/CreateTaskPage'
 import { AboutTicketPage } from 'pages/Ticket/AboutTicketPage'
 import { AllTicketsPage } from 'pages/Ticket/AllTicketsPage'
 import { CreateTicketAnswerPage } from 'pages/Ticket/CreateTicketAnswerPage'
@@ -38,6 +39,7 @@ export enum ERoutePath {
 	EDIT_LESSON = '/module/:module_id/edit_lesson/:lesson_id',
 
 	TEACHER_ROOM = '/teacher_room',
+	CREATE_TASK = '/create_task',
 	VIEW_ANSWER = '/view_answer/:id',
 	CREATE_ANSWER = '/create_answer/:id',
 	GROUP_LIST = '/course/:course_id/group_list',
@@ -127,10 +129,6 @@ export const NotAuthRouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.AFTER_REGISTRATION,
 		element: <AfterRegistrationPage />,
-	},
-	{
-		path: ERoutePath.PROFILE,
-		element: <ProfilePage />,
 	},
 ]
 
@@ -246,6 +244,10 @@ export const TeacherRouteConfig: Array<RouteProps> = [
 		path: ERoutePath.PROFILE,
 		element: <ProfilePage />,
 	},
+	{
+		path: ERoutePath.CREATE_TASK,
+		element: <CreateTaskPage />,
+	},
 ]
 
 export const AdminRouteConfig: Array<RouteProps> = [
@@ -336,5 +338,9 @@ export const AdminRouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.ALL_TICKETS,
 		element: <AllTicketsPage />,
+	},
+	{
+		path: ERoutePath.CREATE_TASK,
+		element: <CreateTaskPage />,
 	},
 ]
