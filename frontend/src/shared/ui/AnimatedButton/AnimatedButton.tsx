@@ -6,12 +6,7 @@ import classes from './AnimatedButton.module.scss'
 
 import { classnames as cn } from 'shared/lib'
 
-export const AnimatedButton = ({
-	styles,
-	children,
-	icon,
-	variation = 'primary',
-}: IAnimatedButtonProps) => {
+export const AnimatedButton = ({ styles, children, icon, variation = 'primary' }: IAnimatedButtonProps) => {
 	const [isHovered, setIsHovered] = useState<boolean>(false)
 
 	const renderIcon = () => {
@@ -55,8 +50,7 @@ export const AnimatedButton = ({
 	)
 }
 
-interface IAnimatedButtonProps
-	extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+interface IAnimatedButtonProps extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	styles?: string
 	icon: IIconType
 	variation?: 'primary' | 'secondary' | 'clear'

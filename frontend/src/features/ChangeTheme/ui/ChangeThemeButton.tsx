@@ -9,7 +9,7 @@ import { Icon } from 'shared/ui'
 export const ChangeThemeButton = ({ styles }: IChangeThemeButtonProps) => {
 	const { changeTheme, theme } = useTheme()
 	return (
-		<>
+		<div className={classes.ChangeThemeButton}>
 			{theme == ETheme.LIGHT && (
 				<Icon
 					icon={'sun'}
@@ -25,7 +25,7 @@ export const ChangeThemeButton = ({ styles }: IChangeThemeButtonProps) => {
 					className={cn(classes.ChangeThemeButton, [styles])}
 				/>
 			)}
-		</>
+		</div>
 	)
 }
 
