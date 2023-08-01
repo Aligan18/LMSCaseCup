@@ -126,7 +126,7 @@ export const ModuleProgram = ({ styles }: IModuleProgramProps) => {
 				items={module_data}
 				renderItem={(module: IModuleData, index) => (
 					<ModuleList
-						moduleIndex={index}
+						module_index={index}
 						key={module.id}
 						module={module}
 					/>

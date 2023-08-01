@@ -7,6 +7,7 @@ export interface IGradeData {
 	grade: number
 	module_type: string
 	list_modules: IListModule
+	module_index: number
 }
 
 export interface ICreateAttendance {

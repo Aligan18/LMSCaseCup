@@ -13,6 +13,7 @@ import { CreateAttendanceButton } from 'features/Lesson/CreateAttendanceButton'
 import { getLessonAbout, getLessonAboutModuleList } from 'features/Lesson/CreateLessonAboutForm'
 import { getLessonContents } from 'features/Lesson/CreateLessonContentForm'
 import { LessonContentList } from 'features/Lesson/LessonContentList'
+import { PreviousButton } from 'features/Lesson/PreviousButton'
 
 import { listGradesForStudent, useLastAttendance } from 'entities/Grade'
 import { getLectureRequest, getLecturesError } from 'entities/Lecture'
@@ -91,10 +92,10 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 	const userType = useSelector(getUserType)
 	const userInfo = useSelector(getUserInfo)
 	const moduleList = useSelector(getLessonAboutModuleList)
-	const { lastAttendance, isDisabled } = useLastAttendance(Number(module_index))
+	const { lastAttendance, isDisabled, lastModuleIndex } = useLastAttendance(Number(module_index))
 	console.log('lastAttendance', lastAttendance)
 	console.log('moduleList', moduleList)
-	console.log('isDisabled', moduleList && !isDisabled(moduleList, lastAttendance))
+	console.log('isDisabled', moduleList && !isDisabled(moduleList, lastAttendance, lastModuleIndex))
 
 	const dispatch = useAppDispatch()
 	useEffect(() => {
@@ -104,7 +105,7 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 
 	return (
 		<>
-			{moduleList && !isDisabled(moduleList, lastAttendance) && (
+			{moduleList && !isDisabled(moduleList, lastAttendance, lastModuleIndex) && (
 				<>
 					{error && <Htag tag={'large'}> {error}</Htag>}
 					{about && (
@@ -116,7 +117,12 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 
 							{about.video && <YouTubeVideo video_link={about.video} />}
 							{lesson && <LessonContentList data={lesson} />}
-							{userType === 'student' && <CreateAttendanceButton />}
+							{userType === 'student' && (
+								<div className={classes.navigateButton}>
+									<PreviousButton />
+									<CreateAttendanceButton />
+								</div>
+							)}
 						</div>
 					)}
 				</>

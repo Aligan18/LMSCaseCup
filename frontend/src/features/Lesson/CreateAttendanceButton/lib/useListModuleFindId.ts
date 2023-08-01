@@ -8,13 +8,15 @@ export const useListModuleFindId = (moduleIndex: number, listModulesId: number):
 	const currentIndex = modules[moduleIndex]?.list_modules.findIndex((list) => list.id === listModulesId)
 
 	if (currentIndex !== -1) {
-		if (currentIndex === modules[moduleIndex]?.list_modules.length - 1) {
-			const next = modules[moduleIndex + 1]?.list_modules[0]
+		if (currentIndex === 0) {
+			const next = modules[moduleIndex]?.list_modules[currentIndex + 1]
+			const previous = false
+			return { next, previous }
+		} else if (currentIndex === modules[moduleIndex]?.list_modules.length - 1) {
+			const next = false
 			const previous = modules[moduleIndex]?.list_modules[currentIndex - 1]
 			return { next, previous }
 		} else {
-			console.log('DOWn')
-			console.log(moduleIndex)
 			const next = modules[moduleIndex]?.list_modules[currentIndex + 1]
 			const previous = modules[moduleIndex]?.list_modules[currentIndex - 1]
 			return { next, previous }
@@ -23,6 +25,6 @@ export const useListModuleFindId = (moduleIndex: number, listModulesId: number):
 }
 
 interface IOutput {
-	next: IListModule
-	previous: IListModule
+	next: IListModule | false
+	previous: IListModule | false
 }
