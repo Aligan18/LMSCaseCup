@@ -7,7 +7,7 @@ import { ERoutePath, ILESSON_Params } from 'app/providers/AppRouters/config/rout
 import { useListModuleFindId } from 'features/Lesson/CreateAttendanceButton'
 
 import { classnames as cn, setParamsInPath } from 'shared/lib'
-import { Button } from 'shared/ui'
+import { Button, Icon } from 'shared/ui'
 
 export const PreviousButton = ({ styles }: IPreviousButtonProps) => {
 	const { course_id, module_index, list_module_id } = useParams<ILESSON_Params>()
@@ -26,7 +26,15 @@ export const PreviousButton = ({ styles }: IPreviousButtonProps) => {
 	}
 	return (
 		<div className={cn(classes.PreviousButton, [styles])}>
-			{nextAndPrevious?.previous && <Button onClick={handleClick}> Предыдущий</Button>}
+			{nextAndPrevious?.previous && (
+				<Button onClick={handleClick}>
+					<Icon
+						icon="left"
+						variation="white"
+					/>
+					Предыдущий
+				</Button>
+			)}
 		</div>
 	)
 }
