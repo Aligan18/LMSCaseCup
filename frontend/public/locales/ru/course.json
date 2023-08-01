@@ -39,5 +39,7 @@
   "sozdanie-zadaniya": "Создание задания",
   "nazvanie-zadaniya": "Название задания",
   "zadanie": "Задание",
-  "fail": "Файл"
+  "fail": "Файл",
+  "do-0": "До ",
+  "simvolov-0": " символов"
 }

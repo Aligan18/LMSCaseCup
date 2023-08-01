@@ -13,6 +13,7 @@ class FileTasks(models.Model):
     title = models.CharField(max_length=200, null=True)
     description = models.TextField(blank=True)
     course = models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
+    file = models.FileField(upload_to='files/', null=True, blank=True)
 
     def __str__(self):
         return str(self.id)
