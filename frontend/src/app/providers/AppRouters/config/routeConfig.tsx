@@ -36,7 +36,7 @@ export enum ERoutePath {
 
 	CREATE_MODULE = '/course/:course_id/create_module',
 	CREATE_LESSON = '/course/:course_id/module/:module_id/create_lesson',
-	EDIT_LESSON = '/module/:module_id/edit_lesson/:lesson_id',
+	EDIT_LESSON = '/module/:module_id/edit_lesson/:list_module_id',
 
 	TEACHER_ROOM = '/teacher_room',
 	CREATE_TASK = '/create_task',
@@ -73,7 +73,7 @@ export type IActivationParams = {
 
 export type IEDIT_LESSON_Params = {
 	module_id: string
-	lesson_id: string
+	list_module_id: string
 }
 
 export type ICREATE_LESSON_Params = {

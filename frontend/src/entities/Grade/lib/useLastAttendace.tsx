@@ -23,7 +23,7 @@ export const useLastAttendance = (module_index: number): IOutput => {
 				return true
 			}
 		} else if (lastAttendance === null) {
-			if (modules[0].list_modules[0].order === data.order) {
+			if (modules[0]?.list_modules[0]?.order === data.order) {
 				return false
 			} else {
 				return true

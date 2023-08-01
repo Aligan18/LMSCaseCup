@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import classes from './CreateProfileForm.module.scss'
 
+import { FileUploader } from 'entities/FileUploader'
 import { IProfileFormConstructor } from 'entities/Profile/types'
 import { ICreateProfileData } from 'entities/Profile/types/Profile.types'
 
@@ -11,6 +13,7 @@ import { FormConstructor, Header, Hr } from 'shared/ui'
 
 export const CreateProfileForm = ({ styles }: ICreateProfileFormProps) => {
 	const { t } = useTranslation('')
+	const [image, setImage] = useState<File | undefined | null>()
 	const onSubmit: SubmitHandler<ICreateProfileData> = (formData: ICreateProfileData, event) => {
 		event?.preventDefault()
 
@@ -19,12 +22,7 @@ export const CreateProfileForm = ({ styles }: ICreateProfileFormProps) => {
 
 	const data: IProfileFormConstructor[] = [
 		{
-			title: `${t('foto')}`,
-			type: 'file-input',
-			key: 'avatar',
-		},
-		{
-			type: 'text-input',
+			type: 'input',
 			title: `${t('familiya')}`,
 			description: `${t('do')}` + 40 + `${t('simvolov')}`,
 			key: 'surname',
@@ -34,7 +32,7 @@ export const CreateProfileForm = ({ styles }: ICreateProfileFormProps) => {
 			},
 		},
 		{
-			type: 'text-input',
+			type: 'input',
 			title: `${t('imya')}`,
 			description: `${t('do')}` + 40 + `${t('simvolov')}`,
 			key: 'name',
@@ -44,23 +42,22 @@ export const CreateProfileForm = ({ styles }: ICreateProfileFormProps) => {
 			},
 		},
 		{
-			type: 'text-input',
+			type: 'input',
 			title: `${t('otchestvo')}`,
 			description: `${t('do')}` + 40 + `${t('simvolov')}`,
 			key: 'patronymic',
 			rules: {
-				required: true,
 				maxLength: 40,
 			},
 		},
 		{
-			type: 'text-input',
+			type: 'input',
 			title: `${t('telefon')}`,
-			description: `${t('do')}` + 30 + `${t('simvolov')}`,
+
 			key: 'phone',
 			rules: {
-				required: true,
-				maxLength: 40,
+				maxLength: 12,
+				pattern: 'number',
 			},
 		},
 		{
@@ -79,36 +76,32 @@ export const CreateProfileForm = ({ styles }: ICreateProfileFormProps) => {
 			],
 			title: `${t('pol-0')}`,
 			key: 'sex',
-			rules: {
-				required: true,
-			},
+			rules: {},
 		},
 		{
-			type: 'text-input',
+			type: 'input',
 			title: `${t('vozrast-0')}`,
 			key: 'age',
 			rules: {
-				required: true,
-				maxLength: 3,
+				maxLength: 2,
+				pattern: 'number',
 			},
 		},
 		{
-			type: 'text-input',
+			type: 'input',
 			title: `${t('strana-0')}`,
 			description: `${t('do')}` + 80 + `${t('simvolov')}`,
 			key: 'country',
 			rules: {
-				required: true,
 				maxLength: 80,
 			},
 		},
 		{
-			type: 'text-input',
+			type: 'input',
 			title: `${t('universitet-0')}`,
 			description: `${t('do')}` + 80 + `${t('simvolov')}`,
 			key: 'university',
 			rules: {
-				required: true,
 				maxLength: 80,
 			},
 		},
@@ -117,13 +110,18 @@ export const CreateProfileForm = ({ styles }: ICreateProfileFormProps) => {
 	return (
 		<div className={cn(classes.CreateProfileForm, [styles])}>
 			<div className={classes.wrapper}>
-				<Hr />
-				<Header title={`${t('redaktirovanie')}`} />
 				<FormConstructor<ICreateProfileData>
 					onSubmit={onSubmit}
 					data={data}
 					button={`${t('sokhranit-0')}`}
 					styles={classes.form}
+				/>
+			</div>
+			<div>
+				<FileUploader
+					title="Фото профиля"
+					setImage={setImage}
+					image={image}
 				/>
 			</div>
 		</div>
