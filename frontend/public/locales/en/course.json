@@ -33,5 +33,10 @@
   "kommentarii-k-zadaniyu": "Task comment",
   "do-300-simvolov": "Up to 300 characters",
   "kommentarii-0": "A comment",
-  "primenit-izmeneniya": "Apply Changes"
+  "primenit-izmeneniya": "Apply Changes",
+  "otpravit-zadanie": "Submit a task",
+  "sozdanie-zadaniya": "Create a task",
+  "nazvanie-zadaniya": "Job name",
+  "zadanie": "Exercise",
+  "fail": "File"
 }
