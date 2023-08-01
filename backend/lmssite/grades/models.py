@@ -23,6 +23,7 @@ class Grades(models.Model):
     grade = models.IntegerField(default=None, null=True, blank=True)
     module_type = models.CharField(choices=MODULE_TYPES, default="1", max_length=1)
     list_modules = models.ForeignKey("list_modules.ListModules", on_delete=models.CASCADE)
+    module_index = models.IntegerField(default=0, null=True)
 
     def __str__(self):
         return str(self.id)

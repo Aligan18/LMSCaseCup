@@ -40,7 +40,7 @@ export const rulesConstructor = (
 			validate: rules.validate
 				? (val: string) => {
 						if (watch(rules.validate) !== val) {
-							return 'Поле должно совподать с полем ' + rules.validate
+							return 'Поле должно совпадать с полем ' + rules.validate
 						}
 						return undefined
 				  }

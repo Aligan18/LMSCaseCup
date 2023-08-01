@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import classes from './ProfilePage.module.scss'
@@ -13,6 +14,7 @@ import { Button, Header, Htag, Icon, TextBox, TextInput } from 'shared/ui'
 
 export const ProfilePage = ({ styles, data, isColumnNames }: IProfilePageProps) => {
 	const { t } = useTranslation('')
+	const [isEdit, setIsEdit] = useState(false)
 
 	const columnNames: IColumnNames = {
 		student: {
@@ -57,54 +59,69 @@ export const ProfilePage = ({ styles, data, isColumnNames }: IProfilePageProps) 
 			<div className={classes.main}>
 				<div className={classes.wrapper}>
 					<Header
-						title={`${t('lichnyi-kabinet')}`}
+						title={isEdit ? `${t('redaktirovanie')}` : `${t('lichnyi-kabinet')}`}
 						buttons={
 							<Button
+								onClick={() => setIsEdit(!isEdit)}
 								variation="primary"
 								styles={classes.button}
 								format={'small'}
 							>
-								{t('redaktirovat')}
+								{!isEdit ? `${t('redaktirovat')}` : `${t('lichnyi-kabinet')}`}
+
 								<Icon
-									icon={'settings'}
+									icon={!isEdit ? `settings` : `left`}
 									variation={'white'}
 								></Icon>
 							</Button>
 						}
 					/>
 				</div>
-				<div className={classes.card}>
-					<div className={classes.ava}>
-						<Avatar
-							image={data?.student.avatar}
-							size="large"
-						/>
-					</div>
+				{!isEdit ? (
+					<div className={classes.card}>
+						<div className={classes.ava}>
+							<Avatar
+								image={data?.student.avatar}
+								size="large"
+							/>
+						</div>
 
-					<div className={classes.full_name}>
-						<Htag tag={'large'}>{columnNames.surname}</Htag>
-						<Htag tag={'large'}>{columnNames.name}</Htag>
-						<Htag tag={'large'}>{columnNames.patronymic}</Htag>
+						<div className={classes.full_name}>
+							<Htag tag={'large'}>{columnNames.surname}</Htag>
+							<Htag tag={'large'}>{columnNames.name}</Htag>
+							<Htag tag={'large'}>{columnNames.patronymic}</Htag>
+						</div>
+						<div className={classes.contacts}>
+							<Htag tag={'medium'}>{columnNames.student.email}</Htag>
+							<Htag tag={'small'}>{columnNames.student.phone}</Htag>
+						</div>
+						<div className={classes.information}>
+							<Htag tag={'medium'}>
+								{t('pol')} {columnNames.sex}
+							</Htag>
+							<Htag tag={'medium'}>
+								{t('vozrast')} {columnNames.age}
+							</Htag>
+							<Htag tag={'medium'}>
+								{t('strana')} {columnNames.country}
+							</Htag>
+							<Htag tag={'medium'}>
+								{t('universitet')} {columnNames.university}
+							</Htag>
+							<Htag tag={'medium'}>{t('o-sebe')}</Htag>
+							<TextBox
+								size={'medium'}
+								styles={classes.about_box}
+							>
+								{columnNames.about}
+							</TextBox>
+						</div>
 					</div>
-					<div className={classes.contacts}>
-						<Htag tag={'medium'}>{columnNames.student.email}</Htag>
-						<Htag tag={'small'}>{columnNames.student.phone}</Htag>
+				) : (
+					<div className={classes.edit_wrapper}>
+						<CreateProfileForm />
 					</div>
-					<div className={classes.information}>
-						<Htag tag={'medium'}>{t('o-sebe')}</Htag>
-						<TextBox
-							size={'medium'}
-							styles={classes.about_box}
-						>
-							{columnNames.about}
-						</TextBox>
-						<Htag tag={'medium'}>{t('pol')} {columnNames.sex}</Htag>
-						<Htag tag={'medium'}>{t('vozrast')} {columnNames.age}</Htag>
-						<Htag tag={'medium'}>{t('strana')} {columnNames.country}</Htag>
-						<Htag tag={'medium'}>{t('universitet')} {columnNames.university}</Htag>
-					</div>
-				</div>
-				<CreateProfileForm />
+				)}
 			</div>
 		</div>
 	)

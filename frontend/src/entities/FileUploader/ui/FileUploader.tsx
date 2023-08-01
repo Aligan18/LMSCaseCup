@@ -6,7 +6,7 @@ import classes from './FileUploader.module.scss'
 import { classnames as cn } from 'shared/lib'
 import { ErrorText, Htag, Icon, UploadFile } from 'shared/ui'
 
-export const FileUploader = ({ styles, setImage, image, initialImage }: IFileUploaderProps) => {
+export const FileUploader = ({ styles, setImage, image, initialImage, title }: IFileUploaderProps) => {
 	const [error, setImageError] = useState<boolean>(false)
 	const [imageSrc, setImageScr] = useState('')
 	const { t } = useTranslation('course')
@@ -42,7 +42,7 @@ export const FileUploader = ({ styles, setImage, image, initialImage }: IFileUpl
 	return (
 		<div className={cn(classes.FileUploader, [styles])}>
 			<div className={classes.top_block}>
-				<Htag tag={'small'}>{t('oblozhka-kursa')}</Htag>
+				<Htag tag={'small'}>{title}</Htag>
 				<Htag
 					tag={'very-small'}
 					styles={classes.top_block}
@@ -89,4 +89,5 @@ interface IFileUploaderProps {
 	error?: boolean
 	image?: File | undefined | null
 	initialImage?: string
+	title: string
 }

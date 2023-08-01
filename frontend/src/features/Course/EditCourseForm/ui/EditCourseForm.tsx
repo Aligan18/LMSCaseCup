@@ -112,6 +112,7 @@ export const EditCourseForm = ({ styles }: IEditCourseFormProps) => {
 				</div>
 				<div>
 					<FileUploader
+						title={t('oblozhka-kursa')}
 						initialImage={courseData?.image}
 						setImage={setImage}
 						image={image}

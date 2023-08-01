@@ -117,6 +117,7 @@ export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 				</div>
 				<div>
 					<FileUploader
+						title={t('oblozhka-kursa')}
 						setImage={setImage}
 						image={image}
 					/>

@@ -29,15 +29,15 @@ const CreateLessonPage = ({ styles }: ICreateLessonPageProps) => {
 	const error = useSelector(getCreateLessonError)
 	const isLoading = useSelector(getCreateLessonLoading)
 	//const data = useSelector()
-	const { module_id, lesson_id } = useParams<IEDIT_LESSON_Params>()
+	const { module_id, list_module_id } = useParams<IEDIT_LESSON_Params>()
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
-		if (module_id && lesson_id) {
+		if (module_id && list_module_id) {
 			setIsEditor(true)
-			dispatch(getLectureRequest(Number(lesson_id)))
+			dispatch(getLectureRequest(Number(list_module_id)))
 		}
-	}, [module_id, lesson_id])
+	}, [module_id, list_module_id])
 
 	return (
 		<div className={cn(classes.CreateLessonPage, [styles])}>

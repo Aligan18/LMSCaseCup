@@ -211,7 +211,7 @@ export const EditModuleList = ({
 										</Link>
 										<Link
 											to={setParamsInPath<IEDIT_LESSON_Params>(ERoutePath.EDIT_LESSON, {
-												lesson_id: String(data.lecture_id?.id),
+												list_module_id: String(data.id),
 												module_id: String(module.id),
 											})}
 										>
