@@ -49,6 +49,10 @@ export const CreateTaskForm = ({ styles }: ICreateTaskFormProps) => {
 				required: true,
 			},
 		},
+		{
+			type: 'file-input',
+			key: 'file',
+		},
 	]
 
 	return (

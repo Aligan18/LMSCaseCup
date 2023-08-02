@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react'
 import { Controller, DefaultValues, FieldValues, UseFormReset } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 
 import { rulesConstructor } from '../../lib/rulesConstructor/rulesConstructor'
 import { IConbineFormConstructor } from '../../types/FormConstructor'
 import classes from './RenderFormItem.module.scss'
 
-import { CheckBox, Input, SelectOption, TextInput, UploadFile } from 'shared/ui'
+import { CheckBox, Htag, Input, SelectOption, TextInput, UploadFile } from 'shared/ui'
 
 export function RenderFormItem<T>({ formItem, control, register, getValues, watch, reset }: IRenderFormProps<T>) {
 	const [file, setFile] = useState<string>()
 	const rules = rulesConstructor(formItem.rules, watch)
+	const { t } = useTranslation('')
 
 	useEffect(() => {
 		const defaultValue: Record<any, string | number | boolean | undefined> = {}
@@ -87,6 +89,7 @@ export function RenderFormItem<T>({ formItem, control, register, getValues, watc
 							},
 						})}
 					/>
+					<Htag tag={'very-small'}> {t('ili-peretashite-fail-1')}</Htag>
 					<div className={classes.file_name}>{file && file}</div>
 				</div>
 			)

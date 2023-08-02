@@ -22,9 +22,15 @@
 	max-width: 600px;
 }
 .indicator {
-	height: 150px;
-	width: 150px;
+	height: 10px;
+	width: 10px;
 }
+
+.circle{
+	height: 50px;
+	width: 50px;
+}
+
 .indicator_block {
 	display: grid;
 	justify-content: end;
