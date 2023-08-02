@@ -4,12 +4,7 @@ import classes from './CircleForIcon.module.scss'
 
 import { classnames as cn } from 'shared/lib'
 
-export const CircleForIcon = ({
-	styles,
-	children,
-	variation = 'primary',
-	format = 'medium',
-}: ICircleForIconProps) => {
+export const CircleForIcon = ({ styles, children, variation = 'primary', format = 'medium' }: ICircleForIconProps) => {
 	return (
 		<div
 			className={cn(classes.CircleForIcon, [styles, classes.right_block], {
@@ -27,8 +22,7 @@ export const CircleForIcon = ({
 	)
 }
 
-interface ICircleForIconProps
-	extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+interface ICircleForIconProps extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	styles?: string
 	children: ReactNode
 	variation: 'red' | 'inverted-secondary' | 'primary' | 'gray' | 'white'

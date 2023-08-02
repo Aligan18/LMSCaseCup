@@ -34,6 +34,7 @@ export const AboutTicket = ({ styles }: IAboutTicketProps) => {
 							{data.completed ? (
 								<CircleForIcon
 									variation="primary"
+									format="small"
 									styles={classes.indicator}
 								>
 									<Icon
@@ -45,7 +46,9 @@ export const AboutTicket = ({ styles }: IAboutTicketProps) => {
 							) : (
 								<CircleForIcon
 									variation="red"
-									styles={classes.indicator}
+									styles={classes.circle}
+									format="medium"
+
 								>
 									<Icon
 										icon={'close'}

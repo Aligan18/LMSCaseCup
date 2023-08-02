@@ -19,22 +19,16 @@ export const CreateTaskAnswerForm = ({ styles }: ICreateTaskAnswerFormProps) => 
 
 	const data: ITaskFormConstructor[] = [
 		{
-			type: 'input',
-			title: `${t('nazvanie-zadaniya')}`,
-			description: `${t('do-0')}` + 200 + `${t('simvolov-0')}`,
-			key: 'title',
+			type: 'text-input',
+			title: `${t('otvet-0')}`,
+			key: 'description',
 			rules: {
-				required: true,
-				maxLength: 200,
+				required: false,
 			},
 		},
 		{
-			type: 'text-input',
-			title: `${t('zadanie')}`,
-			key: 'description',
-			rules: {
-				required: true,
-			},
+			type: 'file-input',
+			key: 'file',
 		},
 	]
 

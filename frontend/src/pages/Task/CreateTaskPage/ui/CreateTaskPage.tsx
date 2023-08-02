@@ -18,10 +18,6 @@ export const CreateTaskPage = ({ styles }: ICreateTaskPageProps) => {
 				<Header title={`${t('sozdanie-zadaniya')}`} />
 				<div className={classes.wrapper}>
 					<CreateTaskForm />
-					<div className={classes.upload}>
-						<UploadFile />
-						<Htag tag={'very-small'}> {t('ili-peretashite-fail-0')}</Htag>
-					</div>
 				</div>
 			</div>
 		</div>
