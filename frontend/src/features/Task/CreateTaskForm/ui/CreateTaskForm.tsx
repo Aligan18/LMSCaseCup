@@ -1,19 +1,32 @@
 import { SubmitHandler } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { useNavigate, useParams } from 'react-router-dom'
 
+import { createTaskRequest } from '../services/createTaskRequest'
 import classes from './CreateTaskForm.module.scss'
+
+import { ICREATE_TASK_Params } from 'app/providers/AppRouters'
 
 import { ICreateTaskData, ITaskFormConstructor } from 'entities/Task/types/Task.types'
 
-import { classnames as cn } from 'shared/lib'
-import { FormConstructor } from 'shared/ui'
+import { classnames as cn, useAppDispatch } from 'shared/lib'
+import { FormConstructor, Htag, UploadFile } from 'shared/ui'
 
 export const CreateTaskForm = ({ styles }: ICreateTaskFormProps) => {
 	const { t } = useTranslation('course')
-
+	const { course_id, module_id } = useParams<ICREATE_TASK_Params>()
+	const dispatch = useAppDispatch()
+	const navigate = useNavigate()
 	const onSubmit: SubmitHandler<ICreateTaskData> = (formData: ICreateTaskData, event) => {
 		event?.preventDefault()
-
+		course_id &&
+			module_id &&
+			dispatch(
+				createTaskRequest({
+					formData: formData,
+					props: { course_id: Number(course_id), module_id: Number(module_id), navigate },
+				}),
+			)
 		console.log(formData)
 	}
 
@@ -47,6 +60,10 @@ export const CreateTaskForm = ({ styles }: ICreateTaskFormProps) => {
 					button={`${t('sokhranit')}`}
 					styles={classes.form}
 				/>
+			</div>
+			<div className={classes.upload}>
+				<UploadFile />
+				<Htag tag={'very-small'}> {t('ili-peretashite-fail-0')}</Htag>
 			</div>
 		</div>
 	)

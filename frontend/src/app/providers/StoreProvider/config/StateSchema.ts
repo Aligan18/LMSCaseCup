@@ -26,6 +26,7 @@ import { IListGradeSchema } from 'entities/Grade/models/types/ListGradeSchema.ty
 import { IGetLecturesSchema } from 'entities/Lecture'
 import { ICreateLessonAboutData } from 'entities/Lesson/types'
 import { IAllModuleDataSchema } from 'entities/Module/ModuleData'
+import { IRetrieveTaskSchema } from 'entities/Task/TaskData'
 import { IRetrieveTicketSchema } from 'entities/Ticket/AboutTicket'
 import { IListTicketStudentSchema } from 'entities/Ticket/TicketStudentData'
 import { ICustomUserSchema } from 'entities/Users/CustomUser'
@@ -60,6 +61,7 @@ export interface IStateSchema {
 	createTicketAnswer?: ICreateTicketAnswerSchema
 	listAllStudentInCourse?: IListStudentsInGroupSchema
 	updateStudentForm?: IUpdateStudentDataSchema
+	retrieveTaskData?: IRetrieveTaskSchema
 }
 
 export interface IThunkExtraArg {
