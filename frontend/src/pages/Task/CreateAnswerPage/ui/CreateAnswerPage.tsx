@@ -36,6 +36,8 @@ export const CreateAnswerPage = ({ styles }: ICreateAnswerPageProps) => {
 						<UploadFile />
 						<Htag tag={'very-small'}> {t('ili-peretashite-fail-0')}</Htag>
 					</div>
+
+					
 					<Htag tag={'small'}>{t('kommentarii-k-zadaniyu')}</Htag>
 					<Htag tag={'very-small'}>{t('do-300-simvolov')}</Htag>
 
