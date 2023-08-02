@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from file_tasks.serializers import CreateFileTasksSerializers
 from lectures.serializers import AboutLecturesSerializers, LecturesSerializers
 from list_modules.models import ListModules, Modules
 
@@ -21,6 +22,7 @@ class ListModulesSerializers(serializers.ModelSerializer):
 
 class AboutListModulesSerializers(serializers.ModelSerializer):
     lecture_id =AboutLecturesSerializers()
+    file_task_id = CreateFileTasksSerializers()
 
     class Meta:
         model = ListModules

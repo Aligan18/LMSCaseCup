@@ -1,1 +1,1 @@
-export {} from './services/createListModuleRequest'
+export { createListModuleRequest } from './services/createListModuleRequest'

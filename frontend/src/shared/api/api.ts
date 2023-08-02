@@ -68,6 +68,10 @@ export const API = {
 		rud: '/list_modules/rud/',
 		create: '/list_modules/create/',
 	},
+	file_tasks: {
+		create: '/file_tasks/create/',
+		retrieve: '/file_tasks/id/',
+	},
 }
 
 export type IAPI = typeof API
