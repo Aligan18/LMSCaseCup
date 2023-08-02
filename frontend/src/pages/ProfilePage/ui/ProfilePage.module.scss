@@ -23,7 +23,6 @@
 }
 
 .card {
-	width: 50%;
 	display: grid;
 	grid-template-columns: 200px 1fr;
 	gap: 26px;
@@ -51,9 +50,7 @@
 	grid-area: contacts;
 }
 .information {
-	display: grid;
 	grid-area: information;
-	gap: 10px;
 }
 .about_box {
 	background: var(--light-gray-color);

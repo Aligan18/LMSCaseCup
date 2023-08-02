@@ -1,3 +1,5 @@
+import { ICustomUser } from '../../types/CustomUser.type'
+
 import { IToken } from 'entities/Authorization/types'
 import { IStudentData } from 'entities/Users/Student/types/Student/Student.type'
 
@@ -7,4 +9,5 @@ export interface ICustomUserSchema {
 	token: IToken
 	userType: IUserType | null
 	userInfo: IStudentData
+	customUserInfo: ICustomUser | null
 }

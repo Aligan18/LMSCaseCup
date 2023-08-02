@@ -53,7 +53,6 @@ export const Navbar = ({ styles }: INavbarProps) => {
 							<Icon
 								variation={'primary'}
 								icon={'tool'}
-								size={'small'}
 							/>
 						</Button>
 					</Link>

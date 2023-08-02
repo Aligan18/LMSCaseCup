@@ -148,6 +148,15 @@ class IsTeacher(permissions.BasePermission):
             if bool(request.user.type == "3"):
                 return True
 
+
+class IsOwner(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if bool(request.user and request.user.is_authenticated):
+            print('REQUEST',request.user)
+            print('REQUEST2', obj.id)
+            if bool(obj.id == request.user.id):
+                return True
+
 # class IsStudentHaveCourse(permissions.BasePermission):
 #     def has_permission(self, request, view):
 #         if bool(request.user and request.user.type == "4"):

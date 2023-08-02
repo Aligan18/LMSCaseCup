@@ -9,6 +9,9 @@ export const API = {
 		},
 	},
 	accounts: { activate: process.env.REACT_APP_API_URL + '/accounts/activate/' },
+	custom_user: {
+		update: process.env.REACT_APP_API_URL + '/auth/users/me/',
+	},
 	lectures: {
 		additions: {
 			create: '/lectures-additions/create/',
@@ -26,6 +29,7 @@ export const API = {
 		rud: '/admins/rud/',
 	},
 	students: {
+		rud: '/students/rud/',
 		id: '/students/id/',
 	},
 	course_students: {

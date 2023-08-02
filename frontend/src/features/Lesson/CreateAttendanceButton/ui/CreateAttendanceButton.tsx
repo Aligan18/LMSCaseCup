@@ -11,7 +11,7 @@ import { useLastAttendance } from 'entities/Grade'
 import { getUserInfo } from 'entities/Users/CustomUser'
 
 import { classnames as cn, setParamsInPath, useAppDispatch } from 'shared/lib'
-import { Button } from 'shared/ui'
+import { Button, Icon } from 'shared/ui'
 
 export const CreateAttendanceButton = ({ styles }: ICreateAttendanceButtonProps) => {
 	const dispatch = useAppDispatch()
@@ -58,7 +58,19 @@ export const CreateAttendanceButton = ({ styles }: ICreateAttendanceButtonProps)
 
 	return (
 		<div className={cn(classes.CreateAttendanceButton, [styles])}>
-			<Button onClick={handleClick}>{nextAndPrevious?.next ? 'Следующий' : 'Завершить модуль'} </Button>
+			<Button onClick={handleClick}>
+				{nextAndPrevious?.next ? (
+					<>
+						Следующий
+						<Icon
+							icon="right"
+							variation="white"
+						/>
+					</>
+				) : (
+					'Завершить модуль'
+				)}
+			</Button>
 		</div>
 	)
 }

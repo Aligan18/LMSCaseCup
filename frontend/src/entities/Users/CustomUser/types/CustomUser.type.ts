@@ -1,7 +1,5 @@
 export interface ICustomUser {
-	avatar: string | null
 	email: string
-	phone: string | null
 	is_active: boolean | string
 	type: ICustomUserType
 	is_staff: boolean

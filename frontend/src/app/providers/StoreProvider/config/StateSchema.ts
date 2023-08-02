@@ -17,6 +17,7 @@ import { ICreateLessonSchema } from 'features/Lesson/CreateLessonButton'
 import { ILessonContentScheme } from 'features/Lesson/CreateLessonContentForm'
 import { ICreateModuleSchema } from 'features/Module/CreateModuleForm'
 import { IEditModuleSchema } from 'features/Module/EditModuleList'
+import { IUpdateStudentDataSchema } from 'features/Profile/CreateProfileForm'
 import { ICreateTicketAnswerSchema } from 'features/Ticket/CreateTicketAnswerForm'
 import { ICreateTicketSchema } from 'features/Ticket/CreateTicketForm/'
 
@@ -58,6 +59,7 @@ export interface IStateSchema {
 	retrieveTicketData?: IRetrieveTicketSchema
 	createTicketAnswer?: ICreateTicketAnswerSchema
 	listAllStudentInCourse?: IListStudentsInGroupSchema
+	updateStudentForm?: IUpdateStudentDataSchema
 }
 
 export interface IThunkExtraArg {

@@ -29,6 +29,8 @@ export interface IStudentData {
 	patronymic: string | null
 	about: string | null
 	university: string | null
+	avatar: string | null
+	phone: string | null
 }
 
 export interface IColumnNames extends Record<keyof IStudentAboutData, string | IAboutCustomUser> {

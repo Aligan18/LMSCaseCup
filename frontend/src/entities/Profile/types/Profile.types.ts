@@ -1,14 +1,14 @@
 import { IFormConstructorData } from 'shared/ui'
 
 export interface ICreateProfileData {
-	avatar: File
+	avatar: File | null
 	surname: string
 	name: string
 	patronymic: string
-	phone: string
+	phone: string | null
 	about: string
 	sex: string
-	age: number
+	age: number | string | null
 	country: string
 	university: string
 }

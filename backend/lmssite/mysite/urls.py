@@ -14,7 +14,7 @@ from comments.views import CommentsViewCreate, CommentsViewList, \
     CommentsViewRetrieveUpdateDestroy
 from course.views import CourseViewCreate, CourseViewList, CourseViewRetrieve, \
     CourseViewDestroy, CourseViewUpdate, CourseStudentsListViewRetrieve
-from custom_user.views import ActivateUser
+from custom_user.views import ActivateUser, CustomUserViewUpdate
 from file_tasks.views import FileTasksViewCreate, FileTasksViewList, FileTasksViewRetrieve, \
     FileTasksViewRetrieveUpdateDestroy, FileTasksGradeViewCreate, FileTasksGradeViewList, FileTasksGradeViewRetrieve, \
     FileTasksGradeViewRetrieveUpdateDestroy, FileTasksAnswerViewCreate, FileTasksAnswerViewList, \
@@ -54,6 +54,9 @@ urlpatterns = [
 
     path('api/v1/admins/list/', AdminsViewList.as_view(), name='admins-list'),
     path('api/v1/admins/rud/<int:pk>', AdminsRetrieveUpdateDestroyView.as_view(), name='admins-rud'),
+
+    path('api/v1/custom_user/update/<int:pk>', CustomUserViewUpdate.as_view()),
+
 
     path('api/v1/categories/create/', CategoriesViewCreate.as_view(), name='categories-create'),
     path('api/v1/categories/list/', CategoriesViewList.as_view(), name='categories-list'),

@@ -5,7 +5,13 @@
 	grid-template-areas: 'full_lesson all_lesson ';
 }
 
+.backButton {
+	max-width: 200px;
+}
+
 .full_lesson {
+	display: grid;
+	gap: 30px;
 	grid-area: full_lesson;
 }
 .all_lesson {

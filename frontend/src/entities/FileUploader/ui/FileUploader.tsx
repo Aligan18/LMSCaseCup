@@ -88,6 +88,6 @@ interface IFileUploaderProps {
 	setImage?: Dispatch<SetStateAction<File | undefined | null>>
 	error?: boolean
 	image?: File | undefined | null
-	initialImage?: string
+	initialImage?: string | null
 	title: string
 }

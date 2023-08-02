@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { access } from 'fs'
 
+import { ICustomUser } from '../../types/CustomUser.type'
 import { ICustomUserSchema, IUserType } from '../types/CustomUserSchema'
 
 import { IToken } from 'entities/Authorization/types'
@@ -20,8 +21,11 @@ const initialState: ICustomUserSchema = {
 		student: null,
 		surname: '',
 		university: null,
+		avatar: null,
+		phone: null,
 	},
 	userType: null,
+	customUserInfo: null,
 }
 
 export const CustomUserSlice = createSlice({
@@ -35,6 +39,9 @@ export const CustomUserSlice = createSlice({
 		userType: (state: ICustomUserSchema, { payload }: PayloadAction<IUserType>) => {
 			state.userType = payload
 		},
+		set_customUserInfo: (state: ICustomUserSchema, { payload }: PayloadAction<ICustomUser>) => {
+			state.customUserInfo = payload
+		},
 		userInfo: (state: ICustomUserSchema, { payload }: PayloadAction<IStudentData>) => {
 			state.userInfo.about = payload.about
 			state.userInfo.age = payload.age
@@ -45,6 +52,8 @@ export const CustomUserSlice = createSlice({
 			state.userInfo.student = payload.student
 			state.userInfo.surname = payload.surname
 			state.userInfo.university = payload.university
+			state.userInfo.phone = payload.phone
+			state.userInfo.avatar = payload.avatar
 		},
 		signOut: (state: ICustomUserSchema, { payload }: PayloadAction<void>) => {
 			state.token.access = ''
@@ -59,6 +68,8 @@ export const CustomUserSlice = createSlice({
 			state.userInfo.student = null
 			state.userInfo.surname = ''
 			state.userInfo.university = null
+			state.userInfo.phone = null
+			state.userInfo.avatar = null
 
 			localStorage.removeItem(TOKEN_LOCALSTORAGE_KEY)
 		},
