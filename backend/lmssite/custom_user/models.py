@@ -21,14 +21,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=False, blank=True)
     is_staff = models.BooleanField(default=False, blank=True)
     is_superuser = models.BooleanField(default=False,  blank=True)
-    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
-    phone = models.CharField(max_length=30, null=True, blank=True, unique=True)
+
 
 
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = [ 'type' ,  'is_active' , 'is_staff' ,'avatar' , 'phone']
+    REQUIRED_FIELDS = [ 'type' ,  'is_active' , 'is_staff']
 
     class Meta:
         verbose_name = 'user'

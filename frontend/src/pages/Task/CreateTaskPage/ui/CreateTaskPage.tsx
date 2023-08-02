@@ -15,33 +15,13 @@ export const CreateTaskPage = ({ styles }: ICreateTaskPageProps) => {
 		<div className={cn(classes.CreateTaskPage, [styles])}>
 			<BackButton />
 			<div className={classes.main}>
-				<Header
-					title={`${t('sozdanie-zadaniya')}`}
-					buttons={
-						<Button
-							variation="primary"
-							styles={classes.button}
-							format={'small'}
-						>
-							{`${t('otpravit-zadanie')}`}
-							<Icon
-								icon={'done'}
-								variation={'white'}
-							></Icon>
-						</Button>
-					}
-				/>
+				<Header title={`${t('sozdanie-zadaniya')}`} />
 				<div className={classes.wrapper}>
 					<CreateTaskForm />
-					<Htag tag={'small'}>{t('opisanie-zadaniya')}</Htag>
 					<div className={classes.upload}>
 						<UploadFile />
 						<Htag tag={'very-small'}> {t('ili-peretashite-fail-0')}</Htag>
 					</div>
-					<Htag tag={'small'}>{t('kommentarii-k-zadaniyu')}</Htag>
-					<Htag tag={'very-small'}>{t('do-300-simvolov')}</Htag>
-
-					<TextInput styles={classes.your_message}>{t('kommentarii-0')}</TextInput>
 				</div>
 			</div>
 		</div>

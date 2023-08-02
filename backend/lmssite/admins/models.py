@@ -13,6 +13,8 @@ class Admins(models.Model):
     name = models.CharField(max_length=40, blank=True)
     surname = models.CharField(max_length=40, blank=True)
     patronymic = models.CharField(max_length=40, blank=True)
+    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
+    phone = models.CharField(max_length=30, null=True, blank=True, unique=True)
 
     def __str__(self):
         return self.admin_type

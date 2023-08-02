@@ -223,6 +223,8 @@ DOMAIN = 'localhost:3000'
 DJOSER = {
     'USER_CREATE_PASSWORD_RETYPE': True,
     'SEND_ACTIVATION_EMAIL': True,
+    'SEND_CONFIRMATION_EMAIL':False,
+    'USERNAME_CHANGED_EMAIL_CONFIRMATION' : False,
     'SET_PASSWORD_RETYPE': True,
     'TOKEN_MODEL': None,  # We use only JWT
     'ACTIVATION_URL': 'activation/{uid}/{token}',

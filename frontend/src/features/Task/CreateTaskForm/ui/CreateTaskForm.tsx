@@ -21,7 +21,7 @@ export const CreateTaskForm = ({ styles }: ICreateTaskFormProps) => {
 		{
 			type: 'input',
 			title: `${t('nazvanie-zadaniya')}`,
-			description: `${t('do')}` + 200 + `${t('simvolov')}`,
+			description: `${t('do-0')}` + 200 + `${t('simvolov-0')}`,
 			key: 'title',
 			rules: {
 				required: true,
@@ -36,11 +36,6 @@ export const CreateTaskForm = ({ styles }: ICreateTaskFormProps) => {
 				required: true,
 			},
 		},
-		{
-			title: `${t('fail')}`,
-			type: 'file-input',
-			key: 'file',
-		},
 	]
 
 	return (
@@ -49,7 +44,7 @@ export const CreateTaskForm = ({ styles }: ICreateTaskFormProps) => {
 				<FormConstructor<ICreateTaskData>
 					onSubmit={onSubmit}
 					data={data}
-					button={`${t('sokhranit-0')}`}
+					button={`${t('sokhranit')}`}
 					styles={classes.form}
 				/>
 			</div>

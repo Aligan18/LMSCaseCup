@@ -38,5 +38,7 @@
   "sozdanie-zadaniya": "Create a task",
   "nazvanie-zadaniya": "Job name",
   "zadanie": "Exercise",
-  "fail": "File"
+  "fail": "File",
+  "do-0": "Before ",
+  "simvolov-0": " symbols"
 }

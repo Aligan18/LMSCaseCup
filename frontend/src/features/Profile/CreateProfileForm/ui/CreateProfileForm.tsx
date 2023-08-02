@@ -1,23 +1,46 @@
 import { useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 
+import { getUpdateStudentError } from '../models/selectors/getUpdateStudentError'
+import { getUpdateStudentLoading } from '../models/selectors/getUpdateStudentLoading'
+import { updateStudentDataReducer } from '../models/slice/updateStudentDataSlice'
+import { UpdateStudentDataRequest } from '../services/UpdateStudentDataRequest'
 import classes from './CreateProfileForm.module.scss'
 
 import { FileUploader } from 'entities/FileUploader'
 import { IProfileFormConstructor } from 'entities/Profile/types'
 import { ICreateProfileData } from 'entities/Profile/types/Profile.types'
+import { getCustomUserInfo, getUserInfo } from 'entities/Users/CustomUser'
 
-import { classnames as cn } from 'shared/lib'
+import { DynamicModuleLoader, classnames as cn, useAppDispatch } from 'shared/lib'
 import { FormConstructor, Header, Hr } from 'shared/ui'
 
 export const CreateProfileForm = ({ styles }: ICreateProfileFormProps) => {
 	const { t } = useTranslation('')
+
+	const profileInfo = useSelector(getUserInfo)
+	const error = useSelector(getUpdateStudentError)
+	const isLoading = useSelector(getUpdateStudentLoading)
 	const [image, setImage] = useState<File | undefined | null>()
+	const dispatch = useAppDispatch()
+	console.log('profileInfo', profileInfo)
+
 	const onSubmit: SubmitHandler<ICreateProfileData> = (formData: ICreateProfileData, event) => {
 		event?.preventDefault()
+		if (formData.age === '') {
+			formData.age = null
+		}
+		if (image !== undefined) {
+			formData.avatar = image
+		}
+		if (formData.phone === '') {
+			formData.phone = null
+		}
 
-		console.log(formData)
+		profileInfo.student &&
+			dispatch(UpdateStudentDataRequest({ formData: formData, studentId: profileInfo.student }))
 	}
 
 	const data: IProfileFormConstructor[] = [
@@ -30,6 +53,7 @@ export const CreateProfileForm = ({ styles }: ICreateProfileFormProps) => {
 				required: true,
 				maxLength: 40,
 			},
+			defaultValue: profileInfo.surname,
 		},
 		{
 			type: 'input',
@@ -40,6 +64,7 @@ export const CreateProfileForm = ({ styles }: ICreateProfileFormProps) => {
 				required: true,
 				maxLength: 40,
 			},
+			defaultValue: profileInfo.name,
 		},
 		{
 			type: 'input',
@@ -49,6 +74,7 @@ export const CreateProfileForm = ({ styles }: ICreateProfileFormProps) => {
 			rules: {
 				maxLength: 40,
 			},
+			defaultValue: profileInfo.patronymic ? profileInfo.patronymic : '',
 		},
 		{
 			type: 'input',
@@ -59,6 +85,7 @@ export const CreateProfileForm = ({ styles }: ICreateProfileFormProps) => {
 				maxLength: 12,
 				pattern: 'number',
 			},
+			defaultValue: profileInfo?.phone ? profileInfo?.phone : '',
 		},
 		{
 			type: 'text-input',
@@ -67,16 +94,18 @@ export const CreateProfileForm = ({ styles }: ICreateProfileFormProps) => {
 			rules: {
 				required: false,
 			},
+			defaultValue: profileInfo.about ? profileInfo.about : '',
 		},
 		{
 			type: 'selector',
 			options: [
-				{ title: `${t('muzhskoi')}`, value: '1' },
-				{ title: `${t('zhenskii')}`, value: '2' },
+				{ title: `${t('muzhskoi')}`, value: 'Мужской' },
+				{ title: `${t('zhenskii')}`, value: 'Женский' },
 			],
 			title: `${t('pol-0')}`,
 			key: 'sex',
 			rules: {},
+			defaultValue: profileInfo.sex ? profileInfo.sex : '',
 		},
 		{
 			type: 'input',
@@ -86,6 +115,7 @@ export const CreateProfileForm = ({ styles }: ICreateProfileFormProps) => {
 				maxLength: 2,
 				pattern: 'number',
 			},
+			defaultValue: profileInfo.age ? profileInfo.age : '',
 		},
 		{
 			type: 'input',
@@ -95,6 +125,7 @@ export const CreateProfileForm = ({ styles }: ICreateProfileFormProps) => {
 			rules: {
 				maxLength: 80,
 			},
+			defaultValue: profileInfo.country ? profileInfo.country : '',
 		},
 		{
 			type: 'input',
@@ -104,27 +135,36 @@ export const CreateProfileForm = ({ styles }: ICreateProfileFormProps) => {
 			rules: {
 				maxLength: 80,
 			},
+			defaultValue: profileInfo.university ? profileInfo.university : '',
 		},
 	]
 
 	return (
-		<div className={cn(classes.CreateProfileForm, [styles])}>
-			<div className={classes.wrapper}>
-				<FormConstructor<ICreateProfileData>
-					onSubmit={onSubmit}
-					data={data}
-					button={`${t('sokhranit-0')}`}
-					styles={classes.form}
-				/>
+		<DynamicModuleLoader
+			reducer={updateStudentDataReducer}
+			reducerKey="updateStudentForm"
+		>
+			<div className={cn(classes.CreateProfileForm, [styles])}>
+				<div className={classes.wrapper}>
+					<FormConstructor<ICreateProfileData>
+						isLoading={isLoading}
+						serverError={error}
+						onSubmit={onSubmit}
+						data={data}
+						button={`${t('sokhranit-0')}`}
+						styles={classes.form}
+					/>
+				</div>
+				<div>
+					<FileUploader
+						initialImage={profileInfo?.avatar}
+						title="Фото профиля"
+						setImage={setImage}
+						image={image}
+					/>
+				</div>
 			</div>
-			<div>
-				<FileUploader
-					title="Фото профиля"
-					setImage={setImage}
-					image={image}
-				/>
-			</div>
-		</div>
+		</DynamicModuleLoader>
 	)
 }
 

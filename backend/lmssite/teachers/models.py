@@ -21,6 +21,8 @@ class Teachers(models.Model):
     category = models.ForeignKey("categories.Category", on_delete=models.PROTECT, null=True, blank=True)
     courses = models.ManyToManyField("course.Course", through="CourseTeacher")
     resume = models.FileField(upload_to="files/",null=True, blank=True)
+    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
+    phone = models.CharField(max_length=30, null=True, blank=True, unique=True)
 
     def __str__(self):
         return str(self.teacher)

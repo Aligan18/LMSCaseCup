@@ -14,15 +14,11 @@ export const createLessonAdditionRequest = createAsyncThunk<
 	{ rejectValue: string; extra: IThunkExtraArg }
 >('createLessonAdditionRequest', async (addition, { extra, dispatch, rejectWithValue }) => {
 	try {
-		const response = await extra.$axios.post<IAdditionData>(
-			extra.API.lectures.additions.create,
-			addition,
-			{
-				headers: {
-					'Content-Type': 'multipart/form-data',
-				},
+		const response = await extra.$axios.post<IAdditionData>(extra.API.lectures.additions.create, addition, {
+			headers: {
+				'Content-Type': 'multipart/form-data',
 			},
-		)
+		})
 		return response.data
 	} catch (error: any) {
 		return rejectWithValue(serverErrors(error))

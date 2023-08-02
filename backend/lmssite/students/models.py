@@ -10,17 +10,20 @@ class Students(models.Model):
         ("1", "Male"),
         ("2", "Female"),
     ]
-    sex = models.CharField(choices=USER_SEX, max_length=1, null=True)
+    sex = models.CharField( max_length=20, null=True)
     age = models.IntegerField(validators=[MinValueValidator(10), MaxValueValidator(100)], null=True)
-    country = models.CharField(max_length=80, null=True)
+    country = models.CharField(max_length=80, null=True, blank=True)
     student = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='user_student')
     courses = models.ManyToManyField("course.Course", through="CourseStudent")
     name = models.CharField(max_length=40, null=True)
     surname = models.CharField(max_length=40, null=True)
     patronymic = models.CharField(max_length=40, null=True)
     about = models.TextField(blank=True, null=True)
+    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
+    phone = models.CharField(max_length=30, null=True, blank=True, unique=True)
 
-    university = models.CharField(max_length=80, null=True)
+
+    university = models.CharField(max_length=80, null=True, blank=True)
     # favorite = models.ManyToManyField(Course, related_name='student_favorite', blank=True)
 
     def __str__(self):

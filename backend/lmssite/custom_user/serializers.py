@@ -8,3 +8,9 @@ class CreateCustomUserSerializer(UserCreateSerializer):
     class Meta:
         model = User
         fields = ['email', 'avatar','phone', 'id']
+
+
+class CustomUserSerializer(UserCreateSerializer):
+    class Meta:
+        model = User
+        fields = [ 'avatar','phone']
