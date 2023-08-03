@@ -32,30 +32,19 @@ export const AboutTicket = ({ styles }: IAboutTicketProps) => {
 					<div className={classes.grid_block}>
 						<div className={classes.indicator_block}>
 							{data.completed ? (
-								<CircleForIcon
-									variation="primary"
-									format="small"
-									styles={classes.indicator}
+								<Htag
+									tag={'medium'}
+									styles={classes.green}
 								>
-									<Icon
-										icon={'done'}
-										variation={'primary'}
-										styles={classes.indicator}
-									/>
-								</CircleForIcon>
+									Решено
+								</Htag>
 							) : (
-								<CircleForIcon
-									variation="red"
-									styles={classes.circle}
-									format="medium"
-
+								<Htag
+									tag={'medium'}
+									styles={classes.red}
 								>
-									<Icon
-										icon={'close'}
-										variation={'red'}
-										styles={classes.indicator}
-									/>
-								</CircleForIcon>
+									В обработке
+								</Htag>
 							)}
 						</div>
 
