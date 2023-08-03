@@ -32,7 +32,7 @@ class AboutStudentsSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Students
-        fields = ('name', 'surname', 'patronymic', 'student')
+        fields = ('phone','avatar','name', 'surname', 'patronymic', 'student')
 
 
 class CourseStudentSerializers(serializers.ModelSerializer):

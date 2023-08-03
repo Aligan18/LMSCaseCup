@@ -38,7 +38,7 @@ def create_profile(sender, user, request, **kwargs):
             surname=data.get("surname", ""),
             patronymic=data.get("patronymic", ""),
         )
-    elif data.get("type") == "3" and request.user.is_staff:
+    elif data.get("type") == "3" :
         Teachers.objects.create(
             teacher=user,
             name=data.get("name", ""),
