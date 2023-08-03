@@ -67,7 +67,6 @@ export const LessonListItem = ({ styles, data, hasButton = true, disabled, modul
 					<>
 						<div className={classes.left_block}>
 							<TextBox size={'medium'}>{data.file_task_id?.title}</TextBox>
-							<Htag tag={'very-small'}>{data.file_task_id?.description}</Htag>
 						</div>
 						{hasButton && (
 							<>

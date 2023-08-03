@@ -43,10 +43,12 @@ def create_grades(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=FileTasksAnswer)
 def save_user_profile(sender, instance, created, **kwargs):
+    print('INSTANCE',instance)
     if created:
         Grades.objects.create(student=instance.student,
                               attendance=True,
                               grade=None,
+                              module_index= instance.module_index,
                               list_modules=instance.list_modules,
                               module_type="3",
                               course=instance.course

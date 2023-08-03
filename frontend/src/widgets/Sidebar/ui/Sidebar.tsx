@@ -27,14 +27,16 @@ export const Sidebar = ({ styles }: ISidebarProps) => {
 						>
 							{t('moe-obuchenie')}
 						</ListItem>
-						<ListItem
-							hover={'hover_inverted-secondary'}
-							variation={'clear'}
-							left={<Icon icon="book" />}
-							styles={classes.top_button}
-						>
-							Мои курсы
-						</ListItem>
+						<Link to={ERoutePath.MY_COURSES}>
+							<ListItem
+								hover={'hover_inverted-secondary'}
+								variation={'clear'}
+								left={<Icon icon="book" />}
+								styles={classes.top_button}
+							>
+								Мои курсы
+							</ListItem>
+						</Link>
 					</>
 				)
 			case 'admin':

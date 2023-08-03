@@ -53,13 +53,12 @@ def set_order(sender, instance, created, **kwargs):
 def update_date_complete(sender, instance, created, **kwargs):
     if created:
         deadline = ListModules.objects.filter(id=instance.list_modules.id)[0].deadline
-
-        current_date = datetime.datetime.now()
-
-        if not (current_date.timestamp() > deadline.timestamp()):
-            FileTasksAnswer.objects.filter(id=instance.id).update(
-                is_late=True
-            )
+        if deadline is not None:
+            current_date = datetime.datetime.now()
+            if not (current_date.timestamp() > deadline.timestamp()):
+                FileTasksAnswer.objects.filter(id=instance.id).update(
+                    is_late=True
+                )
 
 
 @receiver(post_save, sender=TestGrade)

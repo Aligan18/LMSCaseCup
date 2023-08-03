@@ -13,6 +13,7 @@ class CreateListModulesSerializers(serializers.ModelSerializer):
 
 class ListModulesSerializers(serializers.ModelSerializer):
     lecture_id = LecturesSerializers()
+    file_task_id = CreateFileTasksSerializers()
 
 
     class Meta:

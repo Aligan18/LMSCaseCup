@@ -12,7 +12,7 @@ from mysite.pagination import ListPagination
 
 from students.models import Students, CourseStudent
 from students.serializers import StudentsSerializers, CreateStudentsSerializers, AboutStudentsSerializers, \
-    CourseStudentSerializers
+    CourseStudentSerializers, OnlyCoursesStudentSerializers
 from students.service import Filter
 
 
@@ -32,11 +32,20 @@ class StudentsViewRetrieve(generics.RetrieveAPIView):
     permission_classes = [IsAuthenticated]
 
 
+#  Student свой курсы
+class OnlyCoursesStudentViewRetrieve(generics.RetrieveAPIView):
+    queryset = Students.objects.all()
+    serializer_class = OnlyCoursesStudentSerializers
+    permission_classes = [IsStudentOwner]
+
+
 # Admin ,  Student свой профиль
 class StudentsViewRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Students.objects.all()
     serializer_class = CreateStudentsSerializers
     permission_classes = [IsStudentOwner]
+
+
 
 
 # Admin

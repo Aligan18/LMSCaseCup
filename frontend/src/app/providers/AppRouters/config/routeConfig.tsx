@@ -10,6 +10,7 @@ import { AboutCoursePage } from 'pages/Course/AboutCoursePage'
 import { CoursesPage } from 'pages/Course/CoursesPage'
 import { CreateCoursePage } from 'pages/Course/CreateCoursePage'
 import { EditCoursePage } from 'pages/Course/EditCoursePage'
+import { MyCoursesPage } from 'pages/Course/MyCoursesPage'
 import { HomePage } from 'pages/HomePage'
 import { CreateLessonPage } from 'pages/Lesson/CreateLessonPage'
 import { LessonPage } from 'pages/Lesson/LessonPage'
@@ -31,6 +32,7 @@ export enum ERoutePath {
 	ABOUT_COURSE = '/course/:course_id/about/',
 	LESSON = '/course/:course_id/module/:module_index/list_modules/:list_module_id/',
 
+	MY_COURSES = '/my_courses/',
 	CREATE_COURSE = '/create_course',
 	EDIT_COURSE = '/edit_course/:id',
 
@@ -40,7 +42,7 @@ export enum ERoutePath {
 
 	CREATE_TASK = '/course/:course_id/module/:module_id/create_task',
 	TASK_VIEW_ANSWER = '/task_view_answer/:id',
-	TASK_CREATE_ANSWER = '/task_create_answer/:id',
+	TASK_CREATE_ANSWER = '/course/:course_id/module/:module_index/list_modules/:list_module_id/task_create_answer/',
 
 	TEACHER_ROOM = '/teacher_room',
 
@@ -189,6 +191,10 @@ export const StudentRouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.ABOUT_TICKET,
 		element: <AboutTicketPage />,
+	},
+	{
+		path: ERoutePath.MY_COURSES,
+		element: <MyCoursesPage />,
 	},
 ]
 

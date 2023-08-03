@@ -8,6 +8,7 @@ import { courseStudentReducer } from 'features/CustomUsers/Student'
 import { createLessonAboutReducer } from 'features/Lesson/CreateLessonAboutForm'
 import { createLessonAdditionReducer } from 'features/Lesson/CreateLessonAdditionForm'
 import { lessonContentReducer } from 'features/Lesson/CreateLessonContentForm'
+import { createTaskAnswerReducer } from 'features/Task/CreateTaskAnswerForm/'
 
 import { listCourseDataReducer, retrieveCourseDataReducer } from 'entities/Course/CourseData'
 import { listGradeReducer } from 'entities/Grade'
@@ -30,6 +31,7 @@ export function createReduxStore(initialState?: IStateSchema) {
 		getCourseStudentList: courseStudentReducer,
 		getLecture: getLectureReducer,
 		listGradeData: listGradeReducer,
+		createTaskAnswer: createTaskAnswerReducer,
 	}
 
 	const reducerManager = createReducerManager(rootReducers)

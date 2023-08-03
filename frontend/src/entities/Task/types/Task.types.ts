@@ -21,10 +21,19 @@ export interface ICreateTaskAnswerData {
 	title: string
 	description: string
 	file: File
+	course: number
+	list_modules: number
+	module_index: number
+}
+
+export interface ICreateTaskAnswerForm {
+	title: string
+	description: string
+	file: FileList
 }
 
 interface ICreateTaskAnswerKeys {
-	key: keyof ICreateTaskAnswerData
+	key: keyof ICreateTaskAnswerForm
 }
 
-export interface ITaskFormConstructor extends IFormConstructorData, ICreateTaskAnswerKeys {}
+export interface ITaskAnswerFormConstructor extends IFormConstructorData, ICreateTaskAnswerKeys {}

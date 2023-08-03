@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -7,20 +7,30 @@ import classes from './CourseList.module.scss'
 
 import { ERoutePath, IABOUT_COURSE_Params } from 'app/providers/AppRouters'
 
+import { getCourseStudentData } from 'features/CustomUsers/Student/models/selectors/getCourseStudentData'
+
 import { CourseCard } from 'entities/Course/CourseCard'
 import { getListCourseData, listCourseRequest } from 'entities/Course/CourseData'
-import { IAboutCourseData } from 'entities/Course/types'
+import { retrieveHasAccessCourses } from 'entities/Course/HasAccessCourses'
+import { IAboutCourseData, ICourseData } from 'entities/Course/types'
+import { getUserInfo } from 'entities/Users/CustomUser'
 
 import { classnames as cn, deleteRouteId, setParamsInPath, useAppDispatch } from 'shared/lib'
 import { Button, Icon, List } from 'shared/ui'
 
-export const CourseList = ({ styles }: ICourseListProps) => {
+export const CourseList = ({ styles, onlyHasAccessCourses = false }: ICourseListProps) => {
 	const { t } = useTranslation('course')
 	const data = useSelector(getListCourseData)
+	const { student } = useSelector(getUserInfo)
+
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
-		dispatch(listCourseRequest())
+		if (onlyHasAccessCourses) {
+			student && dispatch(retrieveHasAccessCourses({ studentId: student }))
+		} else {
+			dispatch(listCourseRequest())
+		}
 	}, [])
 
 	// const data = [
@@ -98,5 +108,6 @@ export const CourseList = ({ styles }: ICourseListProps) => {
 }
 
 interface ICourseListProps {
+	onlyHasAccessCourses?: boolean
 	styles?: string
 }

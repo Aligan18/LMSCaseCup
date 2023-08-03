@@ -31,6 +31,7 @@ export const API = {
 	students: {
 		rud: '/students/rud/',
 		id: '/students/id/',
+		only_courses: '/only_courses_student/id/',
 	},
 	course_students: {
 		list: '/course_student/list/',
@@ -71,6 +72,9 @@ export const API = {
 	file_tasks: {
 		create: '/file_tasks/create/',
 		retrieve: '/file_tasks/id/',
+	},
+	file_tasks_answer: {
+		create: '/file_tasks_answer/create/',
 	},
 }
 
