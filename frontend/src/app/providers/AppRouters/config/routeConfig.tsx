@@ -38,10 +38,12 @@ export enum ERoutePath {
 	CREATE_LESSON = '/course/:course_id/module/:module_id/create_lesson',
 	EDIT_LESSON = '/module/:module_id/edit_lesson/:list_module_id',
 
+	CREATE_TASK = '/course/:course_id/module/:module_id/create_task',
+	TASK_VIEW_ANSWER = '/task_view_answer/:id',
+	TASK_CREATE_ANSWER = '/task_create_answer/:id',
+
 	TEACHER_ROOM = '/teacher_room',
-	CREATE_TASK = '/create_task',
-	VIEW_ANSWER = '/view_answer/:id',
-	CREATE_ANSWER = '/create_answer/:id',
+
 	GROUP_LIST = '/course/:course_id/group_list',
 	AUTHORIZATION = '/authorization',
 	ACTIVATION = '/activation/:uid/:token',
@@ -53,6 +55,12 @@ export enum ERoutePath {
 	CREATE_TICKET_ANSWER = '/create_ticket_answer/:id',
 	ALL_TICKETS = '/all_tickets',
 	ABOUT_TICKET = '/about_ticket/:id',
+}
+
+export type ITASK_CREATE_ANSWER_Params = {
+	module_index: string
+	list_module_id: string
+	course_id: string
 }
 
 export type ILESSON_Params = {
@@ -77,6 +85,11 @@ export type IEDIT_LESSON_Params = {
 }
 
 export type ICREATE_LESSON_Params = {
+	course_id: string
+	module_id: string
+}
+
+export type ICREATE_TASK_Params = {
 	course_id: string
 	module_id: string
 }
@@ -115,7 +128,7 @@ export const NotAuthRouteConfig: Array<RouteProps> = [
 	},
 
 	{
-		path: ERoutePath.VIEW_ANSWER,
+		path: ERoutePath.TASK_VIEW_ANSWER,
 		element: <ViewAnswerPage />,
 	},
 	{
@@ -162,11 +175,11 @@ export const StudentRouteConfig: Array<RouteProps> = [
 		element: <CreateTicketPage />,
 	},
 	{
-		path: ERoutePath.VIEW_ANSWER,
+		path: ERoutePath.TASK_VIEW_ANSWER,
 		element: <ViewAnswerPage />,
 	},
 	{
-		path: ERoutePath.CREATE_ANSWER,
+		path: ERoutePath.TASK_CREATE_ANSWER,
 		element: <CreateAnswerPage />,
 	},
 	{
@@ -225,7 +238,7 @@ export const TeacherRouteConfig: Array<RouteProps> = [
 		element: <TeacherRoomPage />,
 	},
 	{
-		path: ERoutePath.VIEW_ANSWER,
+		path: ERoutePath.TASK_VIEW_ANSWER,
 		element: <ViewAnswerPage />,
 	},
 	{
@@ -300,7 +313,7 @@ export const AdminRouteConfig: Array<RouteProps> = [
 		element: <TeacherRoomPage />,
 	},
 	{
-		path: ERoutePath.VIEW_ANSWER,
+		path: ERoutePath.TASK_VIEW_ANSWER,
 		element: <ViewAnswerPage />,
 	},
 	{
@@ -312,7 +325,7 @@ export const AdminRouteConfig: Array<RouteProps> = [
 		element: <GroupListPage />,
 	},
 	{
-		path: ERoutePath.CREATE_ANSWER,
+		path: ERoutePath.TASK_CREATE_ANSWER,
 		element: <CreateAnswerPage />,
 	},
 	{

@@ -23,7 +23,7 @@ import {
 	IEDIT_LESSON_Params,
 	ILAST_ID_Params,
 } from 'app/providers/AppRouters'
-import { ILESSON_Params } from 'app/providers/AppRouters/config/routeConfig'
+import { ICREATE_TASK_Params, ILESSON_Params } from 'app/providers/AppRouters/config/routeConfig'
 
 import { LessonListItem } from 'entities/Lesson/LessonListItem'
 import { ModuleListItem } from 'entities/Module/ModuleListItem'
@@ -242,13 +242,21 @@ export const EditModuleList = ({
 									/>
 								</Button>
 							</Link>
-							<Button format={'small'}>
-								Задание
-								<Icon
-									variation={'secondary'}
-									icon={'plus'}
-								/>
-							</Button>
+							<Link
+								to={setParamsInPath<ICREATE_TASK_Params>(ERoutePath.CREATE_TASK, {
+									course_id: String(module.course),
+									module_id: String(module.id),
+								})}
+							>
+								<Button format={'small'}>
+									Задание
+									<Icon
+										variation={'secondary'}
+										icon={'plus'}
+									/>
+								</Button>
+							</Link>
+
 							<Button format={'small'}>
 								Тест
 								<Icon

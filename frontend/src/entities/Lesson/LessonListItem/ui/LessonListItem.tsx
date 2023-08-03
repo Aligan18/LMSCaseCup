@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router-dom'
 import classes from './LessonListItem.module.scss'
 
 import { ERoutePath, IABOUT_COURSE_Params, ILAST_ID_Params } from 'app/providers/AppRouters'
-import { ILESSON_Params } from 'app/providers/AppRouters/config/routeConfig'
+import { ILESSON_Params, ITASK_CREATE_ANSWER_Params } from 'app/providers/AppRouters/'
 
 import { useStudentHasAccess } from 'features/CustomUsers/Student'
 
@@ -49,6 +49,43 @@ export const LessonListItem = ({ styles, data, hasButton = true, disabled, modul
 								{user === 'student' && access && !disabled && (
 									<Link
 										to={setParamsInPath<ILESSON_Params>(ERoutePath.LESSON, {
+											module_index: String(moduleIndex),
+
+											list_module_id: String(data.id),
+											course_id: String(course_id),
+										})}
+									>
+										<AnimatedButton icon={'right'}>Пререйти</AnimatedButton>
+									</Link>
+								)}
+							</>
+						)}
+					</>
+				)
+			case EListModuleType.FILE_TASK:
+				return (
+					<>
+						<div className={classes.left_block}>
+							<TextBox size={'medium'}>{data.file_task_id?.title}</TextBox>
+							<Htag tag={'very-small'}>{data.file_task_id?.description}</Htag>
+						</div>
+						{hasButton && (
+							<>
+								{(user === 'admin' || user === 'super-admin') && (
+									<Link
+										to={setParamsInPath<ITASK_CREATE_ANSWER_Params>(ERoutePath.TASK_CREATE_ANSWER, {
+											module_index: String(moduleIndex),
+
+											list_module_id: String(data.id),
+											course_id: String(course_id),
+										})}
+									>
+										<AnimatedButton icon={'right'}>Пререйти</AnimatedButton>
+									</Link>
+								)}
+								{user === 'student' && access && !disabled && (
+									<Link
+										to={setParamsInPath<ITASK_CREATE_ANSWER_Params>(ERoutePath.TASK_CREATE_ANSWER, {
 											module_index: String(moduleIndex),
 
 											list_module_id: String(data.id),

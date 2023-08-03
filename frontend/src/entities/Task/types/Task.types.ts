@@ -1,5 +1,10 @@
 import { IFormConstructorData } from 'shared/ui'
 
+export interface ITaskData {
+	title: string
+	description: string
+	file: File
+}
 export interface ICreateTaskData {
 	title: string
 	description: string
