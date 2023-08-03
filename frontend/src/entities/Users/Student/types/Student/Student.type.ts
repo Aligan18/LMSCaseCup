@@ -6,6 +6,8 @@ export interface IStudentAboutData {
 	surname: string
 	patronymic: string
 	grade: number
+	avatar: string | null
+	phone: string | null
 }
 
 export interface IFullStudentData {
@@ -18,6 +20,8 @@ export interface IFullStudentData {
 	patronymic: string | null
 	about: string | null
 	university: string | null
+	avatar: string | null
+	phone: string | null
 }
 export interface IStudentData {
 	sex: string | null
@@ -33,10 +37,12 @@ export interface IStudentData {
 	phone: string | null
 }
 
-export interface IColumnNames extends Record<keyof IStudentAboutData, string | IAboutCustomUser> {
+export interface IColumnNames extends Record<keyof IStudentAboutData, string | IAboutCustomUser | null> {
 	grade: string
 	about?: string
 	sex?: string
+	avatar: string | null
+	phone: string
 	country?: string
 	university?: string
 	age?: number

@@ -20,12 +20,12 @@ class FileTasks(models.Model):
 
 
 class FileTasksAnswer(models.Model):
-    student = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    student = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     data = models.DateTimeField(auto_now=True, blank=True)
     file = models.FileField(upload_to='files/', null=True, blank=True)
-    file_task = models.OneToOneField("FileTasks", on_delete=models.CASCADE, null=True, blank=True)
     course = models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
-    list_modules = models.ForeignKey("list_modules.ListModules", on_delete=models.CASCADE, blank=True)
+    list_modules = models.OneToOneField("list_modules.ListModules", on_delete=models.CASCADE, blank=True)
+    module_index= models.IntegerField()
     is_late = models.BooleanField(default=False)
 
     def __str__(self):

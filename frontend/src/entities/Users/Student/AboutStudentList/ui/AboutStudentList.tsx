@@ -16,11 +16,11 @@ export const AboutStudentList = ({ styles, data, isColumnNames }: IAboutStudentL
 	const columnNames: IColumnNames = {
 		student: {
 			id: 1,
-			avatar: null,
 			email: 'Email',
-			phone: 'Телефон',
 			is_active: 'Статус',
 		},
+		phone: 'Телефон',
+		avatar: null,
 		name: 'Имя',
 		surname: '',
 		patronymic: '',
@@ -33,7 +33,7 @@ export const AboutStudentList = ({ styles, data, isColumnNames }: IAboutStudentL
 				<div></div>
 				<Htag tag={'small'}>{columnNames.student.email}</Htag>
 				<Htag tag={'small'}>{columnNames.surname}</Htag>
-				<Htag tag={'small'}>{columnNames.student.phone}</Htag>
+				<Htag tag={'small'}>{columnNames.phone}</Htag>
 				<Htag tag={'small'}>{columnNames.student.is_active}</Htag>
 				<Htag tag={'small'}>{columnNames.grade}</Htag>
 				<div></div>
@@ -44,12 +44,12 @@ export const AboutStudentList = ({ styles, data, isColumnNames }: IAboutStudentL
 	return (
 		<div className={cn(classes.AboutStudentList, [styles])}>
 			<Avatar
-				image={data?.student.avatar}
+				image={data?.avatar}
 				size="small"
 			/>
 			<Htag tag={'small'}>{data?.student.email}</Htag>
 			<Htag tag={'small'}>{`${data?.surname} ${data?.name} ${data?.patronymic}`}</Htag>
-			<Htag tag={'small'}>{data?.student.phone}</Htag>
+			<Htag tag={'small'}>{data?.phone}</Htag>
 			<Htag tag={'small'}>{data?.student.is_active && t('aktivnyi')}</Htag>
 			{/* <div>
 				{data?.grade && (

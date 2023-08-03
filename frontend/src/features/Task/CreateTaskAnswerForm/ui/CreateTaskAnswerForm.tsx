@@ -1,23 +1,54 @@
+import { useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
+import { getCreateTaskAnswerError } from '../models/selectors/getCreateTaskAnswerError'
+import { getCreateTaskAnswerLoading } from '../models/selectors/getCreateTaskAnswerLoading'
+import { getCreateTaskAnswerSuccess } from '../models/selectors/getCreateTaskAnswerSuccess'
+import { createTaskAnswerRequest } from '../services/createTaskAnswerRequest'
 import classes from './CreateTaskAnswerForm.module.scss'
 
-import { ICreateTaskAnswerData, ITaskFormConstructor } from 'entities/Task/types/Task.types'
+import { ITASK_CREATE_ANSWER_Params } from 'app/providers/AppRouters'
 
-import { classnames as cn } from 'shared/lib'
-import { FormConstructor } from 'shared/ui'
+import {
+	ICreateTaskAnswerData,
+	ICreateTaskAnswerForm,
+	ITaskAnswerFormConstructor,
+	ITaskFormConstructor,
+} from 'entities/Task/types/Task.types'
+
+import { classnames as cn, useAppDispatch } from 'shared/lib'
+import { ErrorText, FormConstructor, Icon } from 'shared/ui'
 
 export const CreateTaskAnswerForm = ({ styles }: ICreateTaskAnswerFormProps) => {
 	const { t } = useTranslation('course')
+	const [error, setError] = useState<null | string>(null)
+	const serverError = useSelector(getCreateTaskAnswerError)
+	const isLoading = useSelector(getCreateTaskAnswerLoading)
+	const successful = useSelector(getCreateTaskAnswerSuccess)
+	const dispatch = useAppDispatch()
+	const { course_id, list_module_id, module_index } = useParams<ITASK_CREATE_ANSWER_Params>()
 
-	const onSubmit: SubmitHandler<ICreateTaskAnswerData> = (formData: ICreateTaskAnswerData, event) => {
+	const onSubmit: SubmitHandler<ICreateTaskAnswerForm> = (formData: ICreateTaskAnswerForm, event) => {
 		event?.preventDefault()
-
-		console.log(formData)
+		const answerData: ICreateTaskAnswerData = {
+			...formData,
+			file: formData.file[0],
+			course: Number(course_id),
+			list_modules: Number(list_module_id),
+			module_index: Number(module_index),
+		}
+		if (answerData.file || answerData.description) {
+			dispatch(createTaskAnswerRequest({ answerData: answerData, props: { courseId: Number(course_id) } }))
+			console.log(answerData)
+		} else {
+			setError('Нужно добавить ответ')
+		}
 	}
 
-	const data: ITaskFormConstructor[] = [
+	const data: ITaskAnswerFormConstructor[] = [
 		{
 			type: 'text-input',
 			title: `${t('otvet-0')}`,
@@ -35,10 +66,22 @@ export const CreateTaskAnswerForm = ({ styles }: ICreateTaskAnswerFormProps) => 
 	return (
 		<div className={cn(classes.CreateTaskAnswerForm, [styles])}>
 			<div className={classes.wrapper}>
-				<FormConstructor<ICreateTaskAnswerData>
+				{error && <ErrorText>{error}</ErrorText>}
+				<FormConstructor<ICreateTaskAnswerForm>
+					serverError={serverError}
+					isLoading={isLoading}
+					successful={successful}
 					onSubmit={onSubmit}
 					data={data}
-					button={`${t('sokhranit')}`}
+					button={
+						<>
+							{t('otpravit-reshenie')}{' '}
+							<Icon
+								icon={'done'}
+								variation={'white'}
+							></Icon>
+						</>
+					}
 					styles={classes.form}
 				/>
 			</div>

@@ -14,18 +14,25 @@ class CreateStudentsSerializers(serializers.ModelSerializer):
 
 
 class StudentsSerializers(serializers.ModelSerializer):
-
-
     class Meta:
         model = Students
         fields = '__all__'
 
 
-class AboutStudentsSerializers(serializers.ModelSerializer):
-    student = CreateCustomUserSerializer()
+class OnlyCoursesStudentSerializers(serializers.ModelSerializer):
+    courses = AboutCourseSerializers(many=True)
+
     class Meta:
         model = Students
-        fields = ('name', 'surname', 'patronymic', 'student')
+        fields = ('student','courses')
+
+
+class AboutStudentsSerializers(serializers.ModelSerializer):
+    student = CreateCustomUserSerializer()
+
+    class Meta:
+        model = Students
+        fields = ('phone','avatar','name', 'surname', 'patronymic', 'student')
 
 
 class CourseStudentSerializers(serializers.ModelSerializer):

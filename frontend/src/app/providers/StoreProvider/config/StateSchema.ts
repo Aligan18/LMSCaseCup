@@ -18,6 +18,7 @@ import { ILessonContentScheme } from 'features/Lesson/CreateLessonContentForm'
 import { ICreateModuleSchema } from 'features/Module/CreateModuleForm'
 import { IEditModuleSchema } from 'features/Module/EditModuleList'
 import { IUpdateStudentDataSchema } from 'features/Profile/CreateProfileForm'
+import { ICreateTaskAnswerSchema } from 'features/Task/CreateTaskAnswerForm'
 import { ICreateTicketAnswerSchema } from 'features/Ticket/CreateTicketAnswerForm'
 import { ICreateTicketSchema } from 'features/Ticket/CreateTicketForm/'
 
@@ -44,6 +45,7 @@ export interface IStateSchema {
 	getCourseStudentList: ICourseStudentSchema
 	getLecture: IGetLecturesSchema
 	listGradeData: IListGradeSchema
+	createTaskAnswer: ICreateTaskAnswerSchema
 
 	//Асинхронные редьюсеры
 	loginForm?: ILoginSchema

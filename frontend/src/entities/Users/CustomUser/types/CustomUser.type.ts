@@ -10,9 +10,8 @@ export interface ICustomUser {
 export type ICustomUserType = '4' | '3' | '2' | '1'
 
 export interface IAboutCustomUser {
-	avatar: string | null
 	email: string
-	phone: string
+
 	is_active: boolean | string
 	id: number
 }

@@ -51,10 +51,7 @@ export const ProfilePage = ({ styles, data }: IProfilePageProps) => {
 				{!isEdit ? (
 					<div className={classes.card}>
 						<div className={classes.ava}>
-							<Avatar
-								image={data?.student.avatar}
-								size="large"
-							/>
+							<Avatar size="large" />
 						</div>
 
 						<div className={classes.full_name}>
