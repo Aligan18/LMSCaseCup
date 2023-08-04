@@ -32,3 +32,18 @@
 	min-height: 137px;
 	width: 600px;
 }
+
+.head {
+	margin-top: 20px;
+}
+.red{
+	color: var(--red-color);
+}
+.datetime{
+	display: flex;
+	gap: 10px;
+	justify-content: flex-end;
+}
+.button{
+	width: 25%;
+}
