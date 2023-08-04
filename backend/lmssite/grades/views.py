@@ -32,7 +32,7 @@ class GradesOneStudentViewList(generics.ListAPIView): # grades с фильтра
     serializer_class = GradesSerializers
     filter_backends = (DjangoFilterBackend,)
     filterset_class = Filter
-    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentOwnerForList]
+    #permission_classes = [IsAdminUser | IsTeacherHasAccessCreate | IsStudentOwnerForList]
 
 
 

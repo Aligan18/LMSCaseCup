@@ -33,14 +33,14 @@ export const AboutTicket = ({ styles }: IAboutTicketProps) => {
 						<div className={classes.indicator_block}>
 							{data.completed ? (
 								<Htag
-									tag={'medium'}
+									tag={'large'}
 									styles={classes.green}
 								>
 									Решено
 								</Htag>
 							) : (
 								<Htag
-									tag={'medium'}
+									tag={'large'}
 									styles={classes.red}
 								>
 									В обработке
