@@ -8,6 +8,8 @@ import classes from './CreateAnswerPage.module.scss'
 import { ITASK_CREATE_ANSWER_Params } from 'app/providers/AppRouters'
 
 import { BackButton } from 'features/BackButton'
+import { DownloadingFileButton } from 'features/DownloadingFileButton'
+import { getAdditionsData } from 'features/Lesson/CreateLessonAdditionForm'
 import { CreateTaskAnswerForm } from 'features/Task/CreateTaskAnswerForm'
 
 import { getTaskData, retrieveTaskReducer, retrieveTaskRequest } from 'entities/Task/TaskData'
@@ -19,6 +21,10 @@ export const CreateAnswerPage = ({ styles }: ICreateAnswerPageProps) => {
 	const { t } = useTranslation('course')
 	const dispatch = useAppDispatch()
 	const taskData = useSelector(getTaskData)
+	const data = {
+		file: [{ file: 'https://www.youtube.com/' }],
+	}
+
 	const { list_module_id } = useParams<ITASK_CREATE_ANSWER_Params>()
 	useEffect(() => {
 		list_module_id && dispatch(retrieveTaskRequest({ list_module_id: Number(list_module_id) }))
@@ -36,6 +42,8 @@ export const CreateAnswerPage = ({ styles }: ICreateAnswerPageProps) => {
 						<Header title={taskData?.file_task_id?.title} />
 						<div className={classes.wrapper}>
 							<Htag tag={'small'}>{taskData?.file_task_id?.description}</Htag>
+							<div className={classes.download}>
+							</div>
 							<Header
 								title={`${t('vash-otvet')}`}
 								styles={classes.head}

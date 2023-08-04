@@ -17,12 +17,20 @@ export const ViewAnswerPage = ({ styles }: IViewAnswerPageProps) => {
 	const { t } = useTranslation('admin')
 	const [rating, setRating] = useState(0)
 
+	const data = [
+		{
+			title: 'Сделать корреляционный анализ',
+			description:
+				'Выполните работу, дедлайн до 01.10.2020. 1. Установите, имеется ли корреляционная связь между x и y; определите коэффициент корреляции r: 2. Определите тесноту корреляционной связи. 3. Составьте уравнение регрессии и найдите ожидаемое значение для y при х=18. Решение: Построим график, отложив вдоль оси абсцисс Х величину интрасклерального давления х , а вдоль оси ординат Y – величину внутриглазного давления y.Тогда каждой паре значений х и у на графике будет соответствовать определѐнная точка. По характеру расположения точек можно предположить существование линейной корреляционной связи между х и у',
+		},
+	]
+
 	return (
 		<div className={cn(classes.ViewAnswerPage, [styles])}>
 			<BackButton />
 			<div className={classes.main}>
 				<Header
-					title={'Задание №1'}
+					title={`${data[0].title}`}
 					buttons={
 						<Button
 							variation="primary"
@@ -38,7 +46,7 @@ export const ViewAnswerPage = ({ styles }: IViewAnswerPageProps) => {
 					}
 				/>
 				<div className={classes.wrapper}>
-					<Htag tag={'small'}>Описание задания</Htag>
+					<Htag tag={'small'}>{data[0].description}</Htag>
 					<div className={classes.download}>
 						<Button
 							variation="primary"
@@ -53,12 +61,12 @@ export const ViewAnswerPage = ({ styles }: IViewAnswerPageProps) => {
 						</Button>
 						<Htag tag={'very-small'}>2.3 {t('mb')}</Htag>
 					</div>
-					<Htag tag={'small'}>{t('kommentarii-studenta')}</Htag>
+					<Header
+						title={`$Ответ студента`}
+						styles={classes.head}
+					/>
 					<div className={classes.message}>
-						<TextBox size={'medium'}>
-							Это 008 помни памятную дату, мы вас разносим словно в цирке сахарную
-							вату
-						</TextBox>
+						<Htag tag={'small'}>{data[0].description}</Htag>
 					</div>
 					<Htag tag={'small'}>{t('ocenka-zadaniya')}</Htag>
 					<div className={classes.stars}>
@@ -70,7 +78,6 @@ export const ViewAnswerPage = ({ styles }: IViewAnswerPageProps) => {
 					</div>
 					<Htag tag={'small'}>{t('kommentarii-k-ocenke')}</Htag>
 					<Htag tag={'very-small'}>До 300 символов</Htag>
-
 
 					<TextInput styles={classes.your_message}>{t('kommentarii')}</TextInput>
 				</div>
