@@ -24,10 +24,16 @@ export const CreateAnswerPage = ({ styles }: ICreateAnswerPageProps) => {
 	const dispatch = useAppDispatch()
 	const { student } = useSelector(getUserInfo)
 	const taskData = useSelector(getTaskData)
+
 	const hasGrade = useSelector(getOneGradeData)
 	const data = {
 		file: [{ file: 'https://www.youtube.com/' }],
 	}
+
+	// const data = {
+	// 	additions: [{ id: '0', title: 'Презентация', file: 'https://www.youtube.com/' }],
+	// }
+
 
 	const { list_module_id } = useParams<ITASK_CREATE_ANSWER_Params>()
 	useEffect(() => {
@@ -48,8 +54,17 @@ export const CreateAnswerPage = ({ styles }: ICreateAnswerPageProps) => {
 					<div className={classes.main}>
 						<Header title={taskData?.file_task_id?.title} />
 						<div className={classes.wrapper}>
+
 							<Htag tag={'small'}>{taskData?.file_task_id?.description}</Htag>
 							<div className={classes.download}></div>
+
+							<div className={classes.message}>
+								<Htag tag={'small'}>{taskData?.file_task_id?.description}</Htag>
+							</div>
+							<div className={classes.download}>
+								{/* <DownloadingFileButton data={data.additions} /> */}
+							</div>
+
 							<Header
 								title={`${t('vash-otvet')}`}
 								styles={classes.head}
