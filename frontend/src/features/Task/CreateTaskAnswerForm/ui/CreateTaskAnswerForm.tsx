@@ -18,6 +18,7 @@ import {
 	ITaskAnswerFormConstructor,
 	ITaskFormConstructor,
 } from 'entities/Task/types/Task.types'
+import { getUserInfo } from 'entities/Users/CustomUser'
 
 import { classnames as cn, useAppDispatch } from 'shared/lib'
 import { ErrorText, FormConstructor, Icon } from 'shared/ui'
@@ -28,6 +29,7 @@ export const CreateTaskAnswerForm = ({ styles }: ICreateTaskAnswerFormProps) => 
 	const serverError = useSelector(getCreateTaskAnswerError)
 	const isLoading = useSelector(getCreateTaskAnswerLoading)
 	const successful = useSelector(getCreateTaskAnswerSuccess)
+	const { student } = useSelector(getUserInfo)
 	const dispatch = useAppDispatch()
 	const { course_id, list_module_id, module_index } = useParams<ITASK_CREATE_ANSWER_Params>()
 
@@ -41,7 +43,17 @@ export const CreateTaskAnswerForm = ({ styles }: ICreateTaskAnswerFormProps) => 
 			module_index: Number(module_index),
 		}
 		if (answerData.file || answerData.description) {
-			dispatch(createTaskAnswerRequest({ answerData: answerData, props: { courseId: Number(course_id) } }))
+			student &&
+				dispatch(
+					createTaskAnswerRequest({
+						answerData: answerData,
+						props: {
+							courseId: Number(course_id),
+							list_module_id: Number(list_module_id),
+							student: student,
+						},
+					}),
+				)
 			console.log(answerData)
 		} else {
 			setError('Нужно добавить ответ')

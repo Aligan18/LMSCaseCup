@@ -8,7 +8,7 @@ import { getUserInfo } from 'entities/Users/CustomUser'
 import Not_Avatar from 'shared/assets/svg/Not_Avatar.svg'
 import { classnames as cn } from 'shared/lib'
 
-export const Avatar = ({ styles, image, size }: IAvatarProps) => {
+export const Avatar = ({ styles, image = undefined, size }: IAvatarProps) => {
 	const info = useSelector(getUserInfo)
 	const [src, setSrc] = useState<string | undefined | null>(image)
 	const classMods = {

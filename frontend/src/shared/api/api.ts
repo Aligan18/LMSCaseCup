@@ -75,6 +75,7 @@ export const API = {
 	},
 	file_tasks_answer: {
 		create: '/file_tasks_answer/create/',
+		list: '/file_tasks_answer/list/',
 	},
 }
 

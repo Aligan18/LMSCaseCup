@@ -72,7 +72,12 @@ export const LessonAdditions = ({ styles }: ILessonAdditionsProps) => {
 				<List
 					variation={'card'}
 					items={additions}
-					renderItem={(addition: IAdditionData) => <DownloadingFileButton data={addition} />}
+					renderItem={(addition: IAdditionData) => (
+						<DownloadingFileButton
+							file={addition.file}
+							title={addition.title}
+						/>
+					)}
 				></List>
 			</div>
 		</div>
