@@ -13,7 +13,13 @@ import { getAdditionsData } from 'features/Lesson/CreateLessonAdditionForm'
 import { CreateTaskAnswerForm } from 'features/Task/CreateTaskAnswerForm'
 
 import { getOneGradeData, oneTaskGradeRequest } from 'entities/Grade'
-import { StudentAnswer, getTaskData, retrieveTaskReducer, retrieveTaskRequest } from 'entities/Task/TaskData'
+import {
+	StudentAnswer,
+	getTaskAnswerRequest,
+	getTaskData,
+	retrieveTaskReducer,
+	retrieveTaskRequest,
+} from 'entities/Task/TaskData'
 import { getUserInfo } from 'entities/Users/CustomUser'
 
 import { DynamicModuleLoader, classnames as cn, useAppDispatch } from 'shared/lib'
@@ -34,14 +40,25 @@ export const CreateAnswerPage = ({ styles }: ICreateAnswerPageProps) => {
 	// 	additions: [{ id: '0', title: 'Презентация', file: 'https://www.youtube.com/' }],
 	// }
 
-
-	const { list_module_id } = useParams<ITASK_CREATE_ANSWER_Params>()
+	const { list_module_id, course_id } = useParams<ITASK_CREATE_ANSWER_Params>()
 	useEffect(() => {
 		list_module_id && dispatch(retrieveTaskRequest({ list_module_id: Number(list_module_id) }))
 		list_module_id &&
 			student &&
 			dispatch(oneTaskGradeRequest({ listModuleId: Number(list_module_id), studentId: student }))
 	}, [])
+
+	useEffect(() => {
+		if (hasGrade && student) {
+			dispatch(
+				getTaskAnswerRequest({
+					listModulesId: Number(list_module_id),
+					studentId: student,
+					courseId: Number(course_id),
+				}),
+			)
+		}
+	}, [hasGrade])
 
 	return (
 		<DynamicModuleLoader
@@ -54,10 +71,6 @@ export const CreateAnswerPage = ({ styles }: ICreateAnswerPageProps) => {
 					<div className={classes.main}>
 						<Header title={taskData?.file_task_id?.title} />
 						<div className={classes.wrapper}>
-
-							<Htag tag={'small'}>{taskData?.file_task_id?.description}</Htag>
-							<div className={classes.download}></div>
-
 							<div className={classes.message}>
 								<Htag tag={'small'}>{taskData?.file_task_id?.description}</Htag>
 							</div>

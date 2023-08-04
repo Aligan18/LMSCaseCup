@@ -110,13 +110,15 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 					{error && <Htag tag={'large'}> {error}</Htag>}
 					{about && (
 						<div className={cn(classes.Lesson, [styles])}>
-							<Header
-								line={false}
-								title={about.title}
-							/>
+							<div>
+								<Header
+									line={false}
+									title={about.title}
+								/>
 
-							{about.video && <YouTubeVideo video_link={about.video} />}
-							{lesson && <LessonContentList data={lesson} />}
+								{about.video && <YouTubeVideo video_link={about.video} />}
+								{lesson && <LessonContentList data={lesson} />}
+							</div>
 							{userType === 'student' && (
 								<div className={classes.navigateButton}>
 									<PreviousButton />

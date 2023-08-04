@@ -28,7 +28,6 @@ class OnlyCoursesStudentSerializers(serializers.ModelSerializer):
 
 
 class AboutStudentsSerializers(serializers.ModelSerializer):
-    student = CreateCustomUserSerializer()
 
     class Meta:
         model = Students
