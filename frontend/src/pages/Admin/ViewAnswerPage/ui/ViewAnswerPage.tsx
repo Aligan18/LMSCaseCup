@@ -46,7 +46,9 @@ export const ViewAnswerPage = ({ styles }: IViewAnswerPageProps) => {
 					}
 				/>
 				<div className={classes.wrapper}>
-					<Htag tag={'small'}>{data[0].description}</Htag>
+					<div className={classes.message}>
+						<Htag tag={'small'}>{data[0].description}</Htag>
+					</div>
 					<div className={classes.download}>
 						<Button
 							variation="primary"

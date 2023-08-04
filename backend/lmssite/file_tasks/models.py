@@ -25,7 +25,7 @@ class FileTasksAnswer(models.Model):
     file = models.FileField(upload_to='files/', null=True, blank=True)
     course = models.ForeignKey("course.Course", on_delete=models.CASCADE, null=True)
     list_modules = models.OneToOneField("list_modules.ListModules", on_delete=models.CASCADE, blank=True)
-    module_index= models.IntegerField()
+    module_index = models.IntegerField()
     is_late = models.BooleanField(default=False)
 
     def __str__(self):
