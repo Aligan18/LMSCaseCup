@@ -6,6 +6,7 @@ import { IRetrieveTaskSchema } from '../type/retrieveTaskSchema.type'
 const initialState: IRetrieveTaskSchema = {
 	isLoading: false,
 	taskData: null,
+	taskAnswerData: null,
 }
 
 export const retrieveTaskSlice = createSlice({

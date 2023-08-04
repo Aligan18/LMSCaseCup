@@ -17,6 +17,15 @@ interface ICreateTaskKeys {
 
 export interface ITaskFormConstructor extends IFormConstructorData, ICreateTaskKeys {}
 
+export interface ITaskAnswer {
+	title: string
+	description: string
+	file: File
+	course: number
+	list_modules: number
+	module_index: number
+}
+
 export interface ICreateTaskAnswerData {
 	title: string
 	description: string

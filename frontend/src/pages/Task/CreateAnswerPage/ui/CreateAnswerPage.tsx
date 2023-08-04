@@ -12,7 +12,9 @@ import { DownloadingFileButton } from 'features/DownloadingFileButton'
 import { getAdditionsData } from 'features/Lesson/CreateLessonAdditionForm'
 import { CreateTaskAnswerForm } from 'features/Task/CreateTaskAnswerForm'
 
-import { getTaskData, retrieveTaskReducer, retrieveTaskRequest } from 'entities/Task/TaskData'
+import { getOneGradeData, oneTaskGradeRequest } from 'entities/Grade'
+import { StudentAnswer, getTaskData, retrieveTaskReducer, retrieveTaskRequest } from 'entities/Task/TaskData'
+import { getUserInfo } from 'entities/Users/CustomUser'
 
 import { DynamicModuleLoader, classnames as cn, useAppDispatch } from 'shared/lib'
 import { Button, Header, Htag, Icon, TextInput, UploadFile } from 'shared/ui'
@@ -20,7 +22,9 @@ import { Button, Header, Htag, Icon, TextInput, UploadFile } from 'shared/ui'
 export const CreateAnswerPage = ({ styles }: ICreateAnswerPageProps) => {
 	const { t } = useTranslation('course')
 	const dispatch = useAppDispatch()
+	const { student } = useSelector(getUserInfo)
 	const taskData = useSelector(getTaskData)
+	const hasGrade = useSelector(getOneGradeData)
 	const data = {
 		file: [{ file: 'https://www.youtube.com/' }],
 	}
@@ -28,6 +32,9 @@ export const CreateAnswerPage = ({ styles }: ICreateAnswerPageProps) => {
 	const { list_module_id } = useParams<ITASK_CREATE_ANSWER_Params>()
 	useEffect(() => {
 		list_module_id && dispatch(retrieveTaskRequest({ list_module_id: Number(list_module_id) }))
+		list_module_id &&
+			student &&
+			dispatch(oneTaskGradeRequest({ listModuleId: Number(list_module_id), studentId: student }))
 	}, [])
 
 	return (
@@ -42,15 +49,20 @@ export const CreateAnswerPage = ({ styles }: ICreateAnswerPageProps) => {
 						<Header title={taskData?.file_task_id?.title} />
 						<div className={classes.wrapper}>
 							<Htag tag={'small'}>{taskData?.file_task_id?.description}</Htag>
-							<div className={classes.download}>
-							</div>
+							<div className={classes.download}></div>
 							<Header
 								title={`${t('vash-otvet')}`}
 								styles={classes.head}
 							/>
-							<div className={classes.form}>
-								<CreateTaskAnswerForm />
-							</div>
+							{hasGrade ? (
+								<div className={classes.form}>
+									<StudentAnswer />
+								</div>
+							) : (
+								<div className={classes.form}>
+									<CreateTaskAnswerForm />
+								</div>
+							)}
 						</div>
 					</div>
 				</div>

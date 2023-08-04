@@ -4,17 +4,17 @@ import { IAdditionData } from 'entities/Lesson/types'
 
 import { Button, Icon } from 'shared/ui'
 
-export const DownloadingFileButton = ({ styles, data }: IDownloadingFileButtonProps) => {
+export const DownloadingFileButton = ({ styles, file, title }: IDownloadingFileButtonProps) => {
 	return (
 		<a
 			className={classes.link}
-			href={data.file}
+			href={file}
 		>
 			<Button
 				format={'small'}
 				styles={[styles, classes.button].join(' ')}
 			>
-				{data.title}
+				{title}
 				<Icon
 					variation={'secondary'}
 					icon={'file'}
@@ -26,5 +26,6 @@ export const DownloadingFileButton = ({ styles, data }: IDownloadingFileButtonPr
 
 interface IDownloadingFileButtonProps {
 	styles?: string
-	data: IAdditionData
+	file: string
+	title: string
 }
