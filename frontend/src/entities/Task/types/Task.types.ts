@@ -20,7 +20,7 @@ export interface ITaskFormConstructor extends IFormConstructorData, ICreateTaskK
 export interface ITaskAnswer {
 	title: string
 	description: string
-	file: File
+	file: string
 	course: number
 	list_modules: number
 	module_index: number

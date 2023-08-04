@@ -96,7 +96,7 @@ class FileTasksAnswerViewList(generics.ListAPIView):  # фильтрация п�
     serializer_class = AboutFileTasksAnswerSerializers
     filter_backends = (DjangoFilterBackend,)
     filterset_class = Filter
-    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate| IsStudentHasAccessCreate]
     pagination_class = ListPagination
 
 

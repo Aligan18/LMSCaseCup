@@ -42,6 +42,6 @@ export const Avatar = ({ styles, image = undefined, size }: IAvatarProps) => {
 
 interface IAvatarProps {
 	styles?: string
-	image?: string | null
+	image?: string | null | undefined
 	size: 'small' | 'medium' | 'large'
 }

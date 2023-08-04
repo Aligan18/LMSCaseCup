@@ -24,6 +24,7 @@ class IsStudentHasAccessCreate(permissions.BasePermission):
                     student = Students.objects.filter(student=student_id)
                     course_id = request.query_params.get('course')
                     if course_id is None:
+                        print("Требуется /?course=<id>",  course_id)
                         print("Требуется /?course=<id>")
                         return False
                     student_has_access = student[0].courses.all().filter(id=course_id).exists()

@@ -82,7 +82,6 @@ export const CreateTaskAnswerForm = ({ styles }: ICreateTaskAnswerFormProps) => 
 				<FormConstructor<ICreateTaskAnswerForm>
 					serverError={serverError}
 					isLoading={isLoading}
-					successful={successful}
 					onSubmit={onSubmit}
 					data={data}
 					button={

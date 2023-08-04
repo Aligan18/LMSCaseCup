@@ -1,6 +1,7 @@
 .Lesson {
 	display: grid;
 	gap: 20px;
+	grid-template-rows: 1fr auto;
 }
 .video_wrapper {
 	min-height: 574px;
@@ -13,6 +14,7 @@
 	border: none;
 }
 .navigateButton {
+	height: min-content;
 	width: 100%;
 	display: flex;
 	align-items: center;

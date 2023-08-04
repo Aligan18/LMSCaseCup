@@ -53,7 +53,7 @@ class AboutFileTasksSerializers(serializers.ModelSerializer):
 
 
 class AboutFileTasksAnswerSerializers(serializers.ModelSerializer):
-    student = AboutStudentsSerializers(read_only=True)
+
 
     class Meta:
         model = FileTasksAnswer
