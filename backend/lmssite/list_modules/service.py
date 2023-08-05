@@ -9,9 +9,11 @@ class CharFilterInFilter(filters.BaseInFilter, filters.CharFilter):
 
 class Filter(filters.FilterSet):
     course = CharFilterInFilter(field_name='course')
+    module_type = CharFilterInFilter(field_name='module_type')
+
     class Meta:
         model = ListModules
-        fields = ['course']
+        fields = ['course', 'module_type']
 
 class FilterForModules(filters.FilterSet):
     course = CharFilterInFilter(field_name='course')
