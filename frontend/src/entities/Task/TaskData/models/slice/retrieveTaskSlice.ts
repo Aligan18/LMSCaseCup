@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+import { getAllTaskOfCourse } from '../../services/getAllTaskOfCourse'
 import { getTaskAnswerRequest } from '../../services/getTaskAnswerRequest'
 import { retrieveTaskRequest } from '../../services/retrieveTaskRequest'
 import { IRetrieveTaskSchema } from '../type/retrieveTaskSchema.type'
@@ -8,6 +9,7 @@ const initialState: IRetrieveTaskSchema = {
 	isLoading: false,
 	taskData: null,
 	taskAnswerData: null,
+	allTaskData: null,
 }
 
 export const retrieveTaskSlice = createSlice({
@@ -38,6 +40,19 @@ export const retrieveTaskSlice = createSlice({
 				state.isLoading = false
 			})
 			.addCase(getTaskAnswerRequest.rejected, (state: IRetrieveTaskSchema, action) => {
+				state.error = action.payload
+				state.isLoading = false
+			})
+
+			.addCase(getAllTaskOfCourse.pending, (state: IRetrieveTaskSchema, action) => {
+				state.error = undefined
+				state.isLoading = true
+			})
+			.addCase(getAllTaskOfCourse.fulfilled, (state: IRetrieveTaskSchema, action) => {
+				state.allTaskData = action.payload
+				state.isLoading = false
+			})
+			.addCase(getAllTaskOfCourse.rejected, (state: IRetrieveTaskSchema, action) => {
 				state.error = action.payload
 				state.isLoading = false
 			})

@@ -3,7 +3,7 @@ import { IFormConstructorData } from 'shared/ui'
 export interface ITaskData {
 	title: string
 	description: string
-	file: File
+	file: string
 }
 export interface ICreateTaskData {
 	title: string
@@ -24,6 +24,8 @@ export interface ITaskAnswer {
 	course: number
 	list_modules: number
 	module_index: number
+	is_late: boolean
+	data: string
 }
 
 export interface ICreateTaskAnswerData {

@@ -16,3 +16,12 @@
 	height: 50px;
 	border: 1px solid var(--primary-color);
 }
+.card_wrapper {
+	position: relative;
+}
+
+.edit_button {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}

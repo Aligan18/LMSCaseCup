@@ -1,3 +1,5 @@
+import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory'
+
 export { retrieveTaskReducer } from './models/slice/retrieveTaskSlice'
 export { IRetrieveTaskSchema } from './models/type/retrieveTaskSchema.type'
 export { getTaskData } from './models/selectors/getTaskData'
@@ -5,3 +7,5 @@ export { retrieveTaskRequest } from './services/retrieveTaskRequest'
 export { StudentAnswer } from './ui/StudentAnswer/StudentAnswer'
 export { getTaskAnswerData } from './models/selectors/getTaskAnswerData'
 export { getTaskAnswerRequest } from './services/getTaskAnswerRequest'
+export { getAllTaskOfCourse } from './services/getAllTaskOfCourse'
+export { getAllTaskData } from './models/selectors/getAllTaskData'

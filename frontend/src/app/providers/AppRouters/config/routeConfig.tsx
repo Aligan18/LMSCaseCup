@@ -17,8 +17,10 @@ import { LessonPage } from 'pages/Lesson/LessonPage'
 import { CreateModulePage } from 'pages/Module/CreateModulePage'
 import { NotFoundPage } from 'pages/NotFoundPage'
 import { ProfilePage } from 'pages/ProfilePage'
+import { AllTaskOfCoursePage } from 'pages/Task/AllTaskOfCoursePage'
 import { CreateAnswerPage } from 'pages/Task/CreateAnswerPage'
 import { CreateTaskPage } from 'pages/Task/CreateTaskPage'
+import { TaskAnswersPage } from 'pages/Task/TaskAnswersPage'
 import { AboutTicketPage } from 'pages/Ticket/AboutTicketPage'
 import { AllTicketsPage } from 'pages/Ticket/AllTicketsPage'
 import { CreateTicketAnswerPage } from 'pages/Ticket/CreateTicketAnswerPage'
@@ -41,8 +43,10 @@ export enum ERoutePath {
 	EDIT_LESSON = '/module/:module_id/edit_lesson/:list_module_id',
 
 	CREATE_TASK = '/course/:course_id/module/:module_id/create_task',
-	TASK_VIEW_ANSWER = '/task_view_answer/:id',
+	TASK_VIEW_ANSWER = '/course/:course_id/list_modules/:list_module_id/student/:student_id/task_view_answer',
 	TASK_CREATE_ANSWER = '/course/:course_id/module/:module_index/list_modules/:list_module_id/task_create_answer/',
+	ALL_TASK_OF_COURSE = '/course/:course_id/all_task/',
+	TASK_ANSWERS = '/course/:course_id/list_module/:list_module_id/task_answers',
 
 	TEACHER_ROOM = '/teacher_room',
 
@@ -59,8 +63,23 @@ export enum ERoutePath {
 	ABOUT_TICKET = '/about_ticket/:id',
 }
 
+export type ITASK_ANSWERS_Params = {
+	list_module_id: string
+	course_id: string
+}
+
+export type IALL_TASK_Params = {
+	course_id: string
+}
+
 export type ITASK_CREATE_ANSWER_Params = {
 	module_index: string
+	list_module_id: string
+	course_id: string
+}
+
+export type ITASK_VIEW_ANSWER_Params = {
+	student_id: string
 	list_module_id: string
 	course_id: string
 }
@@ -267,6 +286,14 @@ export const TeacherRouteConfig: Array<RouteProps> = [
 		path: ERoutePath.CREATE_TASK,
 		element: <CreateTaskPage />,
 	},
+	{
+		path: ERoutePath.ALL_TASK_OF_COURSE,
+		element: <AllTaskOfCoursePage />,
+	},
+	{
+		path: ERoutePath.TASK_ANSWERS,
+		element: <TaskAnswersPage />,
+	},
 ]
 
 export const AdminRouteConfig: Array<RouteProps> = [
@@ -361,5 +388,13 @@ export const AdminRouteConfig: Array<RouteProps> = [
 	{
 		path: ERoutePath.CREATE_TASK,
 		element: <CreateTaskPage />,
+	},
+	{
+		path: ERoutePath.ALL_TASK_OF_COURSE,
+		element: <AllTaskOfCoursePage />,
+	},
+	{
+		path: ERoutePath.TASK_ANSWERS,
+		element: <TaskAnswersPage />,
 	},
 ]

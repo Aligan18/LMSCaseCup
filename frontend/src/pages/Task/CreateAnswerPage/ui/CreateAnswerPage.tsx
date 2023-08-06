@@ -13,6 +13,7 @@ import { getAdditionsData } from 'features/Lesson/CreateLessonAdditionForm'
 import { CreateTaskAnswerForm } from 'features/Task/CreateTaskAnswerForm'
 
 import { getOneGradeData, oneTaskGradeRequest } from 'entities/Grade'
+import { AboutTask } from 'entities/Task/AboutTask'
 import {
 	StudentAnswer,
 	getTaskAnswerRequest,
@@ -29,16 +30,8 @@ export const CreateAnswerPage = ({ styles }: ICreateAnswerPageProps) => {
 	const { t } = useTranslation('course')
 	const dispatch = useAppDispatch()
 	const { student } = useSelector(getUserInfo)
-	const taskData = useSelector(getTaskData)
 
 	const hasGrade = useSelector(getOneGradeData)
-	const data = {
-		file: [{ file: 'https://www.youtube.com/' }],
-	}
-
-	// const data = {
-	// 	additions: [{ id: '0', title: 'Презентация', file: 'https://www.youtube.com/' }],
-	// }
 
 	const { list_module_id, course_id } = useParams<ITASK_CREATE_ANSWER_Params>()
 	useEffect(() => {
@@ -65,36 +58,25 @@ export const CreateAnswerPage = ({ styles }: ICreateAnswerPageProps) => {
 			reducer={retrieveTaskReducer}
 			reducerKey="retrieveTaskData"
 		>
-			{taskData?.file_task_id && (
-				<div className={cn(classes.CreateAnswerPage, [styles])}>
-					<BackButton />
-					<div className={classes.main}>
-						<Header title={taskData?.file_task_id?.title} />
-						<div className={classes.wrapper}>
-							<div className={classes.message}>
-								<Htag tag={'small'}>{taskData?.file_task_id?.description}</Htag>
-							</div>
-							<div className={classes.download}>
-								{/* <DownloadingFileButton data={data.additions} /> */}
-							</div>
-
-							<Header
-								title={`${t('vash-otvet')}`}
-								styles={classes.head}
-							/>
-							{hasGrade ? (
-								<div className={classes.form}>
-									<StudentAnswer />
-								</div>
-							) : (
-								<div className={classes.form}>
-									<CreateTaskAnswerForm />
-								</div>
-							)}
+			<div className={cn(classes.CreateAnswerPage, [styles])}>
+				<BackButton />
+				<div className={classes.main}>
+					<AboutTask />
+					<Header
+						title={`${t('vash-otvet')}`}
+						styles={classes.head}
+					/>
+					{hasGrade ? (
+						<div className={classes.form}>
+							<StudentAnswer />
 						</div>
-					</div>
+					) : (
+						<div className={classes.form}>
+							<CreateTaskAnswerForm />
+						</div>
+					)}
 				</div>
-			)}
+			</div>
 		</DynamicModuleLoader>
 	)
 }
