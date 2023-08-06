@@ -9,7 +9,8 @@ from rest_framework.permissions import IsAdminUser
 from custom_user.permissions import IsStudent, IsTeacherHasAccessCreate, IsTeacherHasAccess, IsStudentOwner, \
     IsStudentOwnerForList, IsStudentHasAccessCreate
 from grades.models import Grades
-from grades.serializers import GradesSerializers, CreateGradesSerializers, AboutGradesSerializers, ChangeGradesForTask
+from grades.serializers import GradesSerializers, CreateGradesSerializers, AboutGradesSerializers, ChangeGradesForTask, \
+    GradesWithStudentInfoSerializers
 from grades.service import Filter, FilterOnlyCourse
 from mysite.pagination import ListPagination
 
@@ -43,6 +44,17 @@ class GradesViewList(generics.ListAPIView): # grades с фильтрацией �
     serializer_class = AboutGradesSerializers
     filter_backends = (DjangoFilterBackend,)
     filterset_class = FilterOnlyCourse
+    permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
+    pagination_class = ListPagination
+
+
+# нужно передавать /?course=<id>
+# Admin , Teacher имеющий доступ
+class GradesWithStudentInfoViewList(generics.ListAPIView): # grades с фильтрацией по course  , для просмотра  всех оценок студентов
+    queryset = Grades.objects.all()
+    serializer_class = GradesWithStudentInfoSerializers
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = Filter
     permission_classes = [IsAdminUser | IsTeacherHasAccessCreate]
     pagination_class = ListPagination
 

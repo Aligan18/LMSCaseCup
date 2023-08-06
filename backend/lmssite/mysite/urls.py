@@ -20,7 +20,7 @@ from file_tasks.views import FileTasksViewCreate, FileTasksViewList, FileTasksVi
     FileTasksGradeViewRetrieveUpdateDestroy, FileTasksAnswerViewCreate, FileTasksAnswerViewList, \
     FileTasksAnswerViewRetrieve, FileTasksAnswerViewRetrieveUpdateDestroy
 from grades.views import GradesViewList, GradesOneStudentViewList, GradesViewRetrieve, GradesViewDestroy, \
-    AttendanceForLecturesViewCreate, ChangeGradesForTaskViewUpdate
+    AttendanceForLecturesViewCreate, ChangeGradesForTaskViewUpdate, GradesWithStudentInfoViewList
 from lectures.views import LecturesViewCreate, LecturesViewList, LecturesViewRetrieve, \
     LecturesViewRetrieveUpdateDestroy, AdditionsViewCreate, LessonContentViewCreate
 from list_modules.views import ListModulesViewCreate, ListModulesViewList, ListModulesViewRetrieve, \
@@ -108,6 +108,8 @@ urlpatterns = [
     path('api/v1/grades/id/<int:pk>', GradesViewRetrieve.as_view(), name="grades-id"),
     path('api/v1/grades/update/<int:pk>', ChangeGradesForTaskViewUpdate.as_view(), name="grades-update"),
     path('api/v1/grades/delete/<int:pk>', GradesViewDestroy.as_view(), name="grades-delete"),
+    path('api/v1/grades_with_student_info/list/', GradesWithStudentInfoViewList.as_view()),
+
 
     path('api/v1/lectures-additions/create/', AdditionsViewCreate.as_view()),
     path('api/v1/lectures-lesson/create/', LessonContentViewCreate.as_view()),

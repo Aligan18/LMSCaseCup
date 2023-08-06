@@ -5,4 +5,5 @@ export interface IListGradeSchema {
 	error?: string
 	gradeList: IGradeData[]
 	oneTaskGrade: IGradeData | null
+	gradeWithStudentInfo: IGradeData[] | null
 }

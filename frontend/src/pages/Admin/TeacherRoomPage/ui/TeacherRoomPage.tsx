@@ -6,7 +6,11 @@ import { Link } from 'react-router-dom'
 import classes from './TeacherRoomPage.module.scss'
 
 import { ERoutePath, IABOUT_COURSE_Params } from 'app/providers/AppRouters'
-import { IGROUP_LIST_Params } from 'app/providers/AppRouters/config/routeConfig'
+import {
+	IALL_TASK_Params,
+	IGROUP_LIST_Params,
+	ITASK_VIEW_ANSWER_Params,
+} from 'app/providers/AppRouters/config/routeConfig'
 
 import { CourseCard } from 'entities/Course/CourseCard'
 import { getListCourseData, listCourseRequest } from 'entities/Course/CourseData'
@@ -79,60 +83,67 @@ export const TeacherRoomPage = ({ styles }: ITeacherRoomPageProps) => {
 						items={data}
 						variation={'card'}
 						renderItem={(info: IAboutCourseData) => (
-							<CourseCard
-								key={info.id}
-								data={info}
-								price_view={false}
-								buttons={
-									<>
-										<Link
-											to={setParamsInPath<IABOUT_COURSE_Params>(ERoutePath.ABOUT_COURSE, {
-												course_id: String(info.id),
-											})}
-										>
-											<Button
-												variation="clear"
-												styles={classes.button}
-												format={'small'}
+							<div className={classes.card_wrapper}>
+								<Link
+									className={classes.edit_button}
+									to={deleteRouteId(ERoutePath.EDIT_COURSE) + info.id}
+								>
+									<CircleForIcon
+										fill={'primary'}
+										variation={'primary'}
+										styles={classes.circle}
+									>
+										<Icon
+											variation={'white'}
+											icon={'edit'}
+										/>
+									</CircleForIcon>
+								</Link>
+
+								<CourseCard
+									key={info.id}
+									data={info}
+									price_view={false}
+									buttons={
+										<>
+											<Link
+												to={setParamsInPath<IGROUP_LIST_Params>(ERoutePath.GROUP_LIST, {
+													course_id: String(info.id),
+												})}
 											>
-												{t('prosmotr')}
-												<Icon
-													variation={'primary'}
-													icon={'link'}
-												/>
-											</Button>
-										</Link>
-										<Link
-											to={setParamsInPath<IGROUP_LIST_Params>(ERoutePath.GROUP_LIST, {
-												course_id: String(info.id),
-											})}
-										>
-											<Button
-												variation="clear"
-												styles={classes.button}
-												format={'small'}
+												<Button
+													variation="clear"
+													styles={classes.button}
+													format={'small'}
+												>
+													{t('gruppy')}
+													<Icon
+														variation={'primary'}
+														icon={'link'}
+													/>
+												</Button>
+											</Link>
+											<Link
+												to={setParamsInPath<IALL_TASK_Params>(ERoutePath.ALL_TASK_OF_COURSE, {
+													course_id: String(info.id),
+												})}
 											>
-												{t('gruppy')}
-												<Icon
-													variation={'primary'}
-													icon={'link'}
-												/>
-											</Button>
-										</Link>
-										<Link to={deleteRouteId(ERoutePath.EDIT_COURSE) + info.id}>
-											<CircleForIcon
-												variation={'primary'}
-												styles={classes.circle}
-											>
-												<Icon
-													variation={'primary'}
-													icon={'edit'}
-												/>
-											</CircleForIcon>
-										</Link>
-									</>
-								}
-							/>
+												<Button
+													variation="clear"
+													styles={classes.button}
+													format={'small'}
+												>
+													Задания
+													<Icon
+														variation={'primary'}
+														icon={'link'}
+													/>
+												</Button>
+											</Link>
+										</>
+									}
+								/>
+							</div>
 						)}
 					/>
 				)}

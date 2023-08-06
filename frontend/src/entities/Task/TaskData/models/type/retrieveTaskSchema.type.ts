@@ -6,4 +6,5 @@ export interface IRetrieveTaskSchema {
 	error?: string
 	taskData: IListModuleTaskData | null
 	taskAnswerData: ITaskAnswer | null
+	allTaskData: IListModuleTaskData[] | null
 }

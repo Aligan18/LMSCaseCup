@@ -79,25 +79,6 @@ export const CourseList = ({ styles, onlyHasAccessCourses = false }: ICourseList
 						<CourseCard
 							key={info.id}
 							data={info}
-							buttons={
-								<Link
-									to={setParamsInPath<IABOUT_COURSE_Params>(ERoutePath.ABOUT_COURSE, {
-										course_id: String(info.id),
-									})}
-								>
-									<Button
-										variation="clear"
-										styles={classes.button}
-										format={'small'}
-									>
-										{t('podrobnee-0')}
-										<Icon
-											variation={'primary'}
-											icon={'link'}
-										/>
-									</Button>
-								</Link>
-							}
 						/>
 					)}
 					variation={'card'}

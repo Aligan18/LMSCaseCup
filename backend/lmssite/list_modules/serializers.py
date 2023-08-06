@@ -30,6 +30,16 @@ class AboutListModulesSerializers(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class OnlyTaskListModulesSerializers(serializers.ModelSerializer):
+    file_task_id = CreateFileTasksSerializers()
+
+    class Meta:
+        model = ListModules
+        fields = '__all__'
+
+
+
+
 class CreateModulesSerializers(serializers.ModelSerializer):
     class Meta:
         model = Modules

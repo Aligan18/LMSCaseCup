@@ -12,6 +12,4 @@ interface ICreateLessonContentKeys {
 	key: keyof ICreateLessonContentData
 }
 
-export interface ILessonContentFormConstructor
-	extends IFormConstructorData,
-		ICreateLessonContentKeys {}
+export interface ILessonContentFormConstructor extends IFormConstructorData, ICreateLessonContentKeys {}

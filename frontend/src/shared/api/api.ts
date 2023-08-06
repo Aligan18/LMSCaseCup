@@ -41,7 +41,9 @@ export const API = {
 		create: '/attendance/create/',
 	},
 	grades: {
+		with_student_info: '/grades_with_student_info/list/',
 		grades_student: '/grades_student/list/',
+		update: '/grades/update/',
 	},
 
 	course: {
@@ -68,6 +70,7 @@ export const API = {
 		retrieve: '/list_modules/id/',
 		rud: '/list_modules/rud/',
 		create: '/list_modules/create/',
+		list: '/list_modules/list/',
 	},
 	file_tasks: {
 		create: '/file_tasks/create/',

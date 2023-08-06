@@ -16,11 +16,12 @@ export const Avatar = ({ styles, image = undefined, size }: IAvatarProps) => {
 		[classes.medium]: size === 'medium',
 		[classes.large]: size === 'large',
 	}
+	console.log('SRC', src)
 	useEffect(() => {
 		if (image === undefined && info.avatar) {
 			setSrc(info.avatar)
 		}
-	}, [])
+	}, [info.avatar])
 
 	return (
 		<>

@@ -10,7 +10,7 @@ from custom_user.permissions import IsTeacherHasAccess, IsStudentHasAccess, IsTe
     IsStudentHasAccessCreate
 from list_modules.models import ListModules, Modules
 from list_modules.serializers import ListModulesSerializers, CreateListModulesSerializers, AboutListModulesSerializers, \
-    CreateModulesSerializers, ModulesSerializers
+    CreateModulesSerializers, ModulesSerializers, OnlyTaskListModulesSerializers
 
 from list_modules.service import Filter, FilterForModules
 from mysite.pagination import ListPagination
@@ -37,7 +37,7 @@ class ListModulesViewList(generics.ListAPIView):  # все модули курс
 # Admin , Teacher с доступом к курсу, Student которые проходят этот курс
 class OnlyTasksListModulesViewList(generics.ListAPIView): #только задания
     queryset = ListModules.objects.all()
-    serializer_class = AboutListModulesSerializers
+    serializer_class = OnlyTaskListModulesSerializers
 
     def get_queryset(self):
         queryset = ListModules.objects.all()
