@@ -5,9 +5,10 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "webpack serve --env port=3000",
-		"move_locales": "npx shx mkdir -p locales/en locales/ru && npx shx mv ./locales ../backend/lmssite/frontend/build/static && npx shx cp -r ./public/locales/* ../backend/lmssite/frontend/build/static/locales/",
+		"move_locales": "npx shx mkdir -p locales/en locales/ru  && npx shx mv ./locales ../backend/lmssite/frontend/build/static && npx shx cp -r ./public/locales/* ../backend/lmssite/frontend/build/static/locales/",
 		"build:export": "webpack --env mode=production --output-path ../backend/lmssite/frontend/build && npm run move_locales ",
-		"build:azure": "webpack --env mode=production",
+		"move_locales_build": "npx shx mkdir -p ./build/static/locales/en ./build/static/locales/ru  && npx shx cp -r ./public/locales/* ./build/static/locales/",
+		"build:azure": "webpack --env mode=production && npm run move_locales_build",
 		"build:prod": "webpack --env mode=production",
 		"build:dev": "webpack --env mode=development ",
 		"eslint:fix": "npx eslint '**/*.{ts,tsx}'--fix",
