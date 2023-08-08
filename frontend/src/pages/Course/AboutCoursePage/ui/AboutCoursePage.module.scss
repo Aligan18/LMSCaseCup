@@ -17,6 +17,8 @@
 }
 
 .module_list {
+	display: grid;
+	gap: 25px;
 	grid-area: module_list;
 }
 

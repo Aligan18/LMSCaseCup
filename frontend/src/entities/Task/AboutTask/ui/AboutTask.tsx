@@ -23,12 +23,14 @@ export const AboutTask = ({ styles }: IAboutTaskProps) => {
 						<div className={classes.message}>
 							<Htag tag={'small'}>{taskData?.file_task_id?.description}</Htag>
 						</div>
-						<div className={classes.download}>
-							<DownloadingFileButton
-								file={taskData?.file_task_id?.file}
-								title={'Задание'}
-							/>
-						</div>
+						{taskData?.file_task_id?.file && (
+							<div className={classes.download}>
+								<DownloadingFileButton
+									file={taskData?.file_task_id?.file}
+									title={'Задание'}
+								/>
+							</div>
+						)}
 					</div>
 				</div>
 			)}

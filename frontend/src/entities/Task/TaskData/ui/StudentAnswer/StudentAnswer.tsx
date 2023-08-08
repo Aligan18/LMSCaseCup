@@ -32,19 +32,13 @@ export const StudentAnswer = ({ styles }: IStudentAnswerProps) => {
 					<div className={classes.message}>
 						<Htag tag={'small'}>{studentAnswer.description}</Htag>
 					</div>
-					<div className={classes.download}>
-						<Button
-							variation="primary"
+					{studentAnswer.file && (
+						<DownloadingFileButton
 							styles={classes.button}
-							format={'small'}
-						>
-							{t('skachat')}
-							<Icon
-								icon={'file'}
-								variation={'white'}
-							></Icon>
-						</Button>
-					</div>
+							file={studentAnswer.file}
+							title={'Ваш ответ'}
+						/>
+					)}
 				</>
 			)}
 		</>

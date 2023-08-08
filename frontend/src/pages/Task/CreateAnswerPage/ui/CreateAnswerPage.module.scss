@@ -27,4 +27,20 @@
 	background: var(--light-gray-color);
 	padding: 12px;
 	border-radius: 5px;
+	display: grid;
+	gap: 10px;
+}
+
+.grade_wrapper {
+	display: flex;
+	gap: 15px;
+	justify-content: flex-start;
+	align-items: center;
+}
+.answer {
+	width: 100%;
+	display: grid;
+	gap: 20px;
+}
+.comment_wrapper {
 }
