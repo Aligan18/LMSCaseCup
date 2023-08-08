@@ -13,6 +13,7 @@ import { getAdditionsData } from 'features/Lesson/CreateLessonAdditionForm'
 import { CreateTaskAnswerForm } from 'features/Task/CreateTaskAnswerForm'
 
 import { getOneGradeData, oneTaskGradeRequest } from 'entities/Grade'
+import { StarsGroup } from 'entities/StarsGroup'
 import { AboutTask } from 'entities/Task/AboutTask'
 import {
 	StudentAnswer,
@@ -24,7 +25,7 @@ import {
 import { getUserInfo } from 'entities/Users/CustomUser'
 
 import { DynamicModuleLoader, classnames as cn, useAppDispatch } from 'shared/lib'
-import { Button, Header, Htag, Icon, TextInput, UploadFile } from 'shared/ui'
+import { Button, Header, Htag, Icon, TextBox, TextInput, UploadFile } from 'shared/ui'
 
 export const CreateAnswerPage = ({ styles }: ICreateAnswerPageProps) => {
 	const { t } = useTranslation('course')
@@ -67,8 +68,27 @@ export const CreateAnswerPage = ({ styles }: ICreateAnswerPageProps) => {
 						styles={classes.head}
 					/>
 					{hasGrade ? (
-						<div className={classes.form}>
+						<div className={classes.answer}>
 							<StudentAnswer />
+							{hasGrade.grade && (
+								<>
+									<div className={classes.grade_wrapper}>
+										Оценка:
+										<StarsGroup
+											rating={hasGrade.grade}
+											changeable={false}
+										/>
+									</div>
+									{hasGrade.teacher_comment && (
+										<div className={classes.comment_wrapper}>
+											<div className={classes.message}>
+												Комментарий учителя :
+												<Htag tag={'small'}>{hasGrade.teacher_comment}</Htag>
+											</div>
+										</div>
+									)}
+								</>
+							)}
 						</div>
 					) : (
 						<div className={classes.form}>
