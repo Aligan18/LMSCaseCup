@@ -1,16 +1,16 @@
 export const API = {
 	auth: {
 		jwt: {
-			create: process.env.REACT_APP_API_URL + '/auth/jwt/create/',
+			create: '/auth/jwt/create/',
 		},
 		users: {
-			create: process.env.REACT_APP_API_URL + '/auth/users/',
-			me: process.env.REACT_APP_API_URL + '/auth/users/me/',
+			create: '/auth/users/',
+			me: '/auth/users/me/',
 		},
 	},
-	accounts: { activate: process.env.REACT_APP_API_URL + '/accounts/activate/' },
+	accounts: { activate: '/accounts/activate/' },
 	custom_user: {
-		update: process.env.REACT_APP_API_URL + '/auth/users/me/',
+		update: '/auth/users/me/',
 	},
 	lectures: {
 		additions: {

@@ -45,12 +45,12 @@ from .views import index
 
 urlpatterns = [
 
-    path('', index, name='index'),
-    path('admin/', admin.site.urls),
-    path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.jwt')),
-    path('auth/', include('djoser.social.urls')),  ####для гугл?
-    path('accounts/activate/<uid>/<token>', ActivateUser.as_view({'get': 'activation'}), name='activation'),
+    # path('', index, name='index'),
+    path('api/v1/admin/', admin.site.urls),
+    path('api/v1/auth/', include('djoser.urls')),
+    path('api/v1/auth/', include('djoser.urls.jwt')),
+    path('api/v1/auth/', include('djoser.social.urls')),  ####для гугл?
+    path('api/v1/accounts/activate/<uid>/<token>', ActivateUser.as_view({'get': 'activation'}), name='activation'),
 
     path('api/v1/admins/list/', AdminsViewList.as_view(), name='admins-list'),
     path('api/v1/admins/rud/<int:pk>', AdminsRetrieveUpdateDestroyView.as_view(), name='admins-rud'),

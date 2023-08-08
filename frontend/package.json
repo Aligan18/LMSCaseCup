@@ -7,6 +7,7 @@
 		"start": "webpack serve --env port=3000",
 		"move_locales": "npx shx mkdir -p locales/en locales/ru && npx shx mv ./locales ../backend/lmssite/frontend/build/static && npx shx cp -r ./public/locales/* ../backend/lmssite/frontend/build/static/locales/",
 		"build:export": "webpack --env mode=production --output-path ../backend/lmssite/frontend/build && npm run move_locales ",
+		"build:azure": "webpack --env mode=production",
 		"build:prod": "webpack --env mode=production",
 		"build:dev": "webpack --env mode=development ",
 		"eslint:fix": "npx eslint '**/*.{ts,tsx}'--fix",
