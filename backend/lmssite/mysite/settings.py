@@ -231,7 +231,7 @@ DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': 'lmscasecup/reset_password/{uid}/{token}',
     ##'SERIALIZERS': {'user_create': 'custom_user.serializers.CreateCustomUserSerializer'},
     'SOCIAL_AUTH_TOKEN_STRATEGY': 'djoser.social.token.jwt.TokenStrategy',
-    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['https://lmscasecup.onrender.com/google'],
+    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['https://lms-case-cup.vercel.app/courses'],
     # 'SERIALIZERS': {
     #     'user_create': 'accounts.serializers.UserCreateSerializer',
     #     'user': 'accounts.serializers.UserCreateSerializer',
@@ -239,6 +239,10 @@ DJOSER = {
     #     'user_delete': 'djoser.serializers.UserDeleteSerializer',
     # },
 }
+
+
+SESSION_COOKIE_SECURE = False
+
 SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
 # Google
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv("DJANGO_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
