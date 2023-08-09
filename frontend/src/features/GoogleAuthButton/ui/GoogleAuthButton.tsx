@@ -9,7 +9,7 @@ export const GoogleAuthButton = ({ styles }: IGoogleAuthButtonProps) => {
 	const continueWithGoogle = async () => {
 		try {
 			const res = await axios.get(
-				`${process.env.REACT_APP_API_PROD}/auth/o/google-oauth2/?redirect_uri=${process.env.REACT_APP_API_PROD}/google`,
+				`${process.env.REACT_APP_API_PROD}/api/v1/auth/o/google-oauth2/?redirect_uri=${process.env.REACT_APP_API_PROD}/google`,
 			)
 
 			window.location.replace(res.data.authorization_url)
