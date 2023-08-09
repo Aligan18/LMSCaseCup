@@ -23,7 +23,7 @@ export function buildPlugins({ paths, isDev }: IBuildOptions): webpack.WebpackPl
 		}),
 		new ReactRefreshWebpackPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
-		new Dotenv(),
+		new Dotenv({ systemvars: true }),
 	]
 
 	isDev &&
