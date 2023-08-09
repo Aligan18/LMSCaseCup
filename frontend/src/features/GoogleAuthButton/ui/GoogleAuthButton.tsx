@@ -6,14 +6,10 @@ import { classnames as cn } from 'shared/lib'
 import { Button } from 'shared/ui'
 
 export const GoogleAuthButton = ({ styles }: IGoogleAuthButtonProps) => {
-	console.log(
-		`${process.env.REACT_APP_API_URL}/auth/o/google-oauth2/?redirect_uri=${process.env.REACT_APP_API_URL}/google`,
-	)
-
 	const continueWithGoogle = async () => {
 		try {
 			const res = await axios.get(
-				`${process.env.REACT_APP_API_URL}/auth/o/google-oauth2/?redirect_uri=${process.env.REACT_APP_API_URL}/google`,
+				`${process.env.REACT_APP_API_PROD}/auth/o/google-oauth2/?redirect_uri=${process.env.REACT_APP_API_PROD}/google`,
 			)
 
 			window.location.replace(res.data.authorization_url)
