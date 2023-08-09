@@ -7,6 +7,9 @@ export const API = {
 			create: '/auth/users/',
 			me: '/auth/users/me/',
 		},
+		google: {
+			auth: '/auth/o/google-oauth2/',
+		},
 	},
 	accounts: { activate: '/accounts/activate/' },
 	custom_user: {
