@@ -219,7 +219,7 @@ SIMPLE_JWT = {
     ),
 }
 
-DOMAIN = 'localhost:3000'
+DOMAIN = 'https://lms-case-cup.vercel.app'
 DJOSER = {
     'USER_CREATE_PASSWORD_RETYPE': True,
     'SEND_ACTIVATION_EMAIL': True,
@@ -231,7 +231,7 @@ DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': 'lmscasecup/reset_password/{uid}/{token}',
     ##'SERIALIZERS': {'user_create': 'custom_user.serializers.CreateCustomUserSerializer'},
     'SOCIAL_AUTH_TOKEN_STRATEGY': 'djoser.social.token.jwt.TokenStrategy',
-    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['http://localhost:8000/google'],
+    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['https://lmscasecup.onrender.com/google'],
     # 'SERIALIZERS': {
     #     'user_create': 'accounts.serializers.UserCreateSerializer',
     #     'user': 'accounts.serializers.UserCreateSerializer',
