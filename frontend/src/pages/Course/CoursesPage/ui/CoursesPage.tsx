@@ -17,15 +17,17 @@ const CoursesPage = ({ styles }: ICoursesPageProps) => {
 	const [state, setState] = useState<string | null>(null)
 	const [code, setCode] = useState<string | null>(null)
 	const dispatch = useAppDispatch()
-	console.log(searchParams.get('state'))
 
 	useEffect(() => {
 		setState(searchParams.get('state'))
 		setCode(searchParams.get('code'))
+	}, [])
+
+	useEffect(() => {
 		if (state && code) {
 			dispatch(loginByGoogle({ code, state }))
 		}
-	}, [])
+	}, [state, code])
 
 	return (
 		<div className={cn(classes.CoursesPage, [styles])}>
