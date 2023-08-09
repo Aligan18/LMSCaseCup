@@ -6,10 +6,6 @@ import classes from './HomePage.module.scss'
 
 import { ERoutePath } from 'app/providers/AppRouters'
 
-import { GoogleAuthButton } from 'features/GoogleAuthButton'
-
-import { FileUploader } from 'entities/FileUploader/ui/FileUploader'
-import { Grade } from 'entities/Grade/ui/Grade'
 import { getUserInfo, getUserToken, getUserType } from 'entities/Users/CustomUser'
 
 import Cloud from 'shared/assets/png/C1.png'
