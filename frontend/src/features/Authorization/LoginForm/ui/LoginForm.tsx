@@ -15,7 +15,7 @@ import { ICreateLoginData, ILoginFormConstructor } from 'entities/Authorization/
 
 import { DynamicModuleLoader, useAppDispatch } from 'shared/lib'
 import { classnames as cn } from 'shared/lib'
-import { FormConstructor, Htag } from 'shared/ui'
+import { FormConstructor, Hr, Htag } from 'shared/ui'
 
 export const LoginForm = ({ styles }: ILoginFormProps) => {
 	const dispatch = useAppDispatch()
@@ -82,6 +82,12 @@ export const LoginForm = ({ styles }: ILoginFormProps) => {
 
 						<GoogleAuthButton />
 					</div>
+					<Hr />
+					<Htag tag={'very-small'}>Tестовые аккаунты :</Htag>
+					<Htag tag={'very-small'}>admin@gmail.com </Htag>
+					<Htag tag={'very-small'}>student@gmail.com </Htag>
+
+					<Htag tag={'very-small'}>пароль : testtest@ </Htag>
 				</div>
 			</div>
 		</DynamicModuleLoader>

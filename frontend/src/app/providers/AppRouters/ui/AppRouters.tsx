@@ -25,7 +25,7 @@ export const AppRouters = () => {
 
 	useLayoutEffect(() => {
 		dispatch(loginByToken())
-	}, [])
+	}, [user])
 
 	const renderRoute = (routes: Array<RouteProps>, redirect: ERoutePath | undefined = ERoutePath.HOME) => {
 		return (
