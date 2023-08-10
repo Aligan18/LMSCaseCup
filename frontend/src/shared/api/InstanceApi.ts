@@ -10,7 +10,7 @@ const token: IToken = JSON.parse(String(localStorage.getItem(TOKEN_LOCALSTORAGE_
 // const token = user?.token.access
 
 export let $api: AxiosInstance
-
+axios.defaults.withCredentials = true
 if (token?.access) {
 	$api = axios.create({
 		baseURL: host_url,
