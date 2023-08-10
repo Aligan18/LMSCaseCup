@@ -71,7 +71,7 @@ export const CustomUserSlice = createSlice({
 			state.userInfo.phone = null
 			state.userInfo.avatar = null
 
-			localStorage.removeItem(TOKEN_LOCALSTORAGE_KEY)
+			localStorage.remcdoveItem(TOKEN_LOCALSTORAGE_KEY)
 		},
 	},
 })
