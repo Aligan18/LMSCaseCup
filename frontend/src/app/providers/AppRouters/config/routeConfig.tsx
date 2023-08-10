@@ -361,10 +361,7 @@ export const AdminRouteConfig: Array<RouteProps> = [
 		path: ERoutePath.TASK_CREATE_ANSWER,
 		element: <CreateAnswerPage />,
 	},
-	{
-		path: ERoutePath.AUTHORIZATION,
-		element: <AuthorizationPage />,
-	},
+
 	{
 		path: ERoutePath.ACTIVATION,
 		element: <ActivationPage />,
