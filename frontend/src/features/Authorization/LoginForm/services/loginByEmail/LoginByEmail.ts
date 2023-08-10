@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
+import { ERoutePath } from 'app/providers/AppRouters'
 import { IThunkExtraArg } from 'app/providers/StoreProvider'
 
 import { getCourseStudentRequest } from 'features/CustomUsers/Student'
@@ -23,51 +24,51 @@ export const loginByEmail = createAsyncThunk<void, ICreateLoginData, { rejectVal
 			}
 			localStorage.setItem(TOKEN_LOCALSTORAGE_KEY, JSON.stringify(token.data))
 
-			const customUser = await extra.$axios.get<ICustomUser>(extra.API.auth.users.me, {
-				headers: { Authorization: `Bearer ${token?.data.access}` },
-			})
-			if (!customUser.data) {
-				throw new Error()
-			}
-			let userInfo
-			switch (customUser.data.type) {
-				case '2': {
-					const adminInfo = await extra.$axios.get(extra.API.admin.rud + customUser.data.id, {
-						headers: { Authorization: `Bearer ${token?.data.access}` },
-					})
-					userInfo = adminInfo.data
-					break
-				}
-				case '3': {
-					const teacherInfo = await extra.$axios.get(extra.API.teachers.id + customUser.data.id, {
-						headers: { Authorization: `Bearer ${token?.data.access}` },
-					})
-					userInfo = teacherInfo.data
-					break
-				}
-				case '4': {
-					const studentInfo = await extra.$axios.get<IStudentData>(
-						extra.API.students.id + customUser.data.id,
-						{
-							headers: { Authorization: `Bearer ${token?.data.access}` },
-						},
-					)
-					dispatch(getCourseStudentRequest({ studentId: customUser.data.id }))
+			document.location.reload()
 
-					userInfo = studentInfo.data
-					break
-				}
-			}
+			// const customUser = await extra.$axios.get<ICustomUser>(extra.API.auth.users.me, {
+			// 	headers: { Authorization: `Bearer ${token?.data.access}` },
+			// })
+			// if (!customUser.data) {
+			// 	throw new Error()
+			// }
+			// let userInfo
+			// switch (customUser.data.type) {
+			// 	case '2': {
+			// 		const adminInfo = await extra.$axios.get(extra.API.admin.rud + customUser.data.id, {
+			// 			headers: { Authorization: `Bearer ${token?.data.access}` },
+			// 		})
+			// 		userInfo = adminInfo.data
+			// 		break
+			// 	}
+			// 	case '3': {
+			// 		const teacherInfo = await extra.$axios.get(extra.API.teachers.id + customUser.data.id, {
+			// 			headers: { Authorization: `Bearer ${token?.data.access}` },
+			// 		})
+			// 		userInfo = teacherInfo.data
+			// 		break
+			// 	}
+			// 	case '4': {
+			// 		const studentInfo = await extra.$axios.get<IStudentData>(
+			// 			extra.API.students.id + customUser.data.id,
+			// 			{
+			// 				headers: { Authorization: `Bearer ${token?.data.access}` },
+			// 			},
+			// 		)
+			// 		dispatch(getCourseStudentRequest({ studentId: customUser.data.id }))
 
-			if (!userInfo) {
-				throw new Error()
-			}
+			// 		userInfo = studentInfo.data
+			// 		break
+			// 	}
+			// }
 
-			dispatch(customUserSliceActions.setToken(token.data))
-			dispatch(customUserSliceActions.userType(getUserType(customUser.data.type)))
-			dispatch(customUserSliceActions.userInfo(userInfo))
+			// if (!userInfo) {
+			// 	throw new Error()
+			// }
 
-			navigate && navigate(-1)
+			// dispatch(customUserSliceActions.setToken(token.data))
+			// dispatch(customUserSliceActions.userType(getUserType(customUser.data.type)))
+			// dispatch(customUserSliceActions.userInfo(userInfo))
 		} catch (error: any) {
 			return rejectWithValue(serverErrors(error))
 		}
