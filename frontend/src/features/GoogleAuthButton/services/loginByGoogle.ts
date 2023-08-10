@@ -8,9 +8,10 @@ export const loginByGoogle = createAsyncThunk<
 	{ rejectValue: string; extra: IThunkExtraArg }
 >('loginByGoogle', async ({ state, code }, { extra, rejectWithValue, dispatch }) => {
 	try {
-		const response = await extra.$axios.post(extra.API.auth.google.auth, {
-			headers: { 'content-type': 'application/x-www-form-urlencoded' },
-			data: 'state=' + state + '&code=' + code,
+		const response = await extra.$axios.post(extra.API.auth.google.auth + '?state=' + state + '&code=' + code, {
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+			},
 		})
 		console.log('DATA', response.data)
 	} catch (error: any) {
