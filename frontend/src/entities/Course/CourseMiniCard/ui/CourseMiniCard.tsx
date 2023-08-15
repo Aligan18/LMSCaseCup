@@ -13,8 +13,11 @@ export const CourseMiniCard = ({ styles, data }: ICourseMiniCardProps) => {
 	const { t } = useTranslation('course')
 	return (
 		<div className={cn(classes.mini_card, [styles])}>
-			<div className={classes.image}>
-				<img />
+			<div className={classes.image_wrapper}>
+				<img
+					className={classes.image}
+					src={data.image}
+				/>
 			</div>
 
 			<div className={classes.tegs}>

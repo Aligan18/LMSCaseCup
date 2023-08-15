@@ -21,8 +21,10 @@ const HomePage = () => {
 	const handleClick = () => {
 		if (userType === 'not-auth') {
 			navigate(ERoutePath.AUTHORIZATION)
-		} else {
-			navigate(ERoutePath.COURSES)
+		} else if (userType === 'student') {
+			navigate(ERoutePath.MY_COURSES)
+		} else if (userType === 'admin' || userType === 'super-admin') {
+			navigate(ERoutePath.TEACHER_ROOM)
 		}
 	}
 	return (

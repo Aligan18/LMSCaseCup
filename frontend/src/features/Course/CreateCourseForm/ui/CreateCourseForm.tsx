@@ -53,7 +53,7 @@ export const CreateCourseForm = ({ styles }: ICreateCourseFormProps) => {
 			key: 'description',
 			rules: {
 				required: true,
-				maxLength: 120,
+				maxLength: 110,
 			},
 		},
 		// {

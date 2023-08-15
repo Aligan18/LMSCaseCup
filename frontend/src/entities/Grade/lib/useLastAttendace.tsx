@@ -9,8 +9,10 @@ import { useListModuleFindId } from 'features/Lesson/CreateAttendanceButton'
 import { getAllModuleData } from 'entities/Module/ModuleData'
 import { IListModule } from 'entities/Module/types'
 import { IListModuleLectureData } from 'entities/Module/types/ListModule.types'
+import { getUserType } from 'entities/Users/CustomUser'
 
 export const useLastAttendance = (module_index: number): IOutput => {
+	const userType = useSelector(getUserType)
 	const grades = useSelector(getListGradeData)
 	const modules = useSelector(getAllModuleData)
 	const grade = grades[grades.length - 1]
@@ -31,20 +33,24 @@ export const useLastAttendance = (module_index: number): IOutput => {
 			' lastModuleIndex ',
 			lastModuleIndex,
 		)
-		if (module_index < lastModuleIndex) {
-			return false
-		} else if (module_index === lastModuleIndex) {
-			if (lastAttendance) {
-				if (lastAttendance?.list_modules?.order >= data.order) {
-					return false
-				} else {
-					return true
-				}
-			} else if (lastAttendance === null) {
-				console.log('isDisabled 2')
+		if (userType !== 'admin' && userType !== 'super-admin') {
+			if (module_index < lastModuleIndex) {
+				return false
+			} else if (module_index === lastModuleIndex) {
+				if (lastAttendance) {
+					if (lastAttendance?.list_modules?.order >= data.order) {
+						return false
+					} else {
+						return true
+					}
+				} else if (lastAttendance === null) {
+					console.log('isDisabled 2')
 
-				if (modules[lastModuleIndex]?.list_modules[0]?.id === data.id) {
-					return false
+					if (modules[lastModuleIndex]?.list_modules[0]?.id === data.id) {
+						return false
+					} else {
+						return true
+					}
 				} else {
 					return true
 				}
@@ -52,7 +58,7 @@ export const useLastAttendance = (module_index: number): IOutput => {
 				return true
 			}
 		} else {
-			return true
+			return false
 		}
 	}
 

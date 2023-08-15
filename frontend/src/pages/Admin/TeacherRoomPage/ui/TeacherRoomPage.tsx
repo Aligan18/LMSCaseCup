@@ -63,7 +63,7 @@ export const TeacherRoomPage = ({ styles }: ITeacherRoomPageProps) => {
 			<div className={classes.course_card}>
 				<div className={classes.title}>
 					<Header
-						title={'Курсы'}
+						title={'Админ панель'}
 						line={false}
 						buttons={
 							<Link to={ERoutePath.CREATE_COURSE}>

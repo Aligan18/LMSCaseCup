@@ -18,13 +18,10 @@ export const RetrieveCourseDataSlice = createSlice({
 				state.error = undefined
 				state.isLoading = true
 			})
-			.addCase(
-				retrieveCourseRequest.fulfilled,
-				(state: IRetrieveCourseDataSchema, action) => {
-					state.course_data = action.payload
-					state.isLoading = false
-				},
-			)
+			.addCase(retrieveCourseRequest.fulfilled, (state: IRetrieveCourseDataSchema, action) => {
+				state.course_data = action.payload
+				state.isLoading = false
+			})
 			.addCase(retrieveCourseRequest.rejected, (state: IRetrieveCourseDataSchema, action) => {
 				state.error = action.payload
 				state.isLoading = false

@@ -30,7 +30,10 @@ export function FormConstructor<T extends FieldValues>({
 	} = useForm<T>({ mode: 'onChange' })
 
 	return (
-		<form className={cn(classes.FormConstructor, [styles])}>
+		<form
+			onSubmit={(e) => e.preventDefault()}
+			className={cn(classes.FormConstructor, [styles])}
+		>
 			{isLoading && <LoadingDiv />}
 			<List
 				styles={classes.list}

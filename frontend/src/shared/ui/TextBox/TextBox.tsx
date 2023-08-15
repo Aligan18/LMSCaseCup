@@ -19,8 +19,7 @@ export const TextBox = ({ styles, size = 'medium', children, ...props }: ITextBo
 	)
 }
 
-interface ITextBoxProps
-	extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement> {
+interface ITextBoxProps extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement> {
 	styles?: string
 	size: 'large' | 'medium' | 'small'
 	children: string | number | string[] | number[] | undefined

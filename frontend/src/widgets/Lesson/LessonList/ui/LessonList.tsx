@@ -19,7 +19,10 @@ export const LessonList = ({ styles }: ILessonListProps) => {
 	return (
 		<div className={cn(classes.LessonList, [styles])}>
 			<Htag tag={'medium'}>Программа курса</Htag>
-			<ModuleProgram styles={classes.module} />
+			<ModuleProgram
+				mini={true}
+				styles={classes.module}
+			/>
 		</div>
 	)
 }

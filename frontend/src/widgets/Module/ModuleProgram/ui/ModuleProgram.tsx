@@ -16,7 +16,7 @@ import { getUserInfo } from 'entities/Users/CustomUser'
 import { classnames as cn, useAppDispatch } from 'shared/lib'
 import { Htag, List } from 'shared/ui'
 
-export const ModuleProgram = ({ styles }: IModuleProgramProps) => {
+export const ModuleProgram = ({ styles, mini = false }: IModuleProgramProps) => {
 	// const data: IModuleData[] = [
 	// 	{
 	// 		id: 1,
@@ -126,6 +126,7 @@ export const ModuleProgram = ({ styles }: IModuleProgramProps) => {
 				items={module_data}
 				renderItem={(module: IModuleData, index) => (
 					<ModuleList
+						mini={mini}
 						module_index={index}
 						key={module.id}
 						module={module}
@@ -139,4 +140,5 @@ export const ModuleProgram = ({ styles }: IModuleProgramProps) => {
 
 interface IModuleProgramProps {
 	styles?: string
+	mini?: boolean
 }
