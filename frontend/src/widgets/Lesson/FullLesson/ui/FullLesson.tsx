@@ -93,9 +93,6 @@ export const FullLesson = ({ styles }: IFullLessonProps) => {
 	const userInfo = useSelector(getUserInfo)
 	const moduleList = useSelector(getLessonAboutModuleList)
 	const { lastAttendance, isDisabled, lastModuleIndex } = useLastAttendance(Number(module_index))
-	console.log('lastAttendance', lastAttendance)
-	console.log('moduleList', moduleList)
-	console.log('isDisabled', moduleList && !isDisabled(moduleList, lastAttendance, lastModuleIndex))
 
 	const dispatch = useAppDispatch()
 	useEffect(() => {

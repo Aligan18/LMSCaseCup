@@ -10,7 +10,7 @@ import { IListModule, IModuleData } from 'entities/Module/types'
 import { classnames as cn } from 'shared/lib'
 import { AccordionWrapper, List } from 'shared/ui'
 
-export const ModuleList = ({ styles, module, module_index }: IModuleListProps) => {
+export const ModuleList = ({ styles, module, module_index, mini = false }: IModuleListProps) => {
 	const { isDisabled, lastAttendance, lastModuleIndex } = useLastAttendance(module_index)
 	return (
 		<div
@@ -18,7 +18,12 @@ export const ModuleList = ({ styles, module, module_index }: IModuleListProps) =
 			key={module.id}
 		>
 			<AccordionWrapper
-				main={<ModuleListItem data={module} />}
+				main={
+					<ModuleListItem
+						mini={mini}
+						data={module}
+					/>
+				}
 				renderItems={
 					<List
 						styles={classes.lesson_list}
@@ -43,4 +48,5 @@ interface IModuleListProps extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivE
 	styles?: string
 	module: IModuleData
 	module_index: number
+	mini?: boolean
 }

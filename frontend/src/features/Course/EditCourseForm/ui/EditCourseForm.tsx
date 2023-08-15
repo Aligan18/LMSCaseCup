@@ -56,7 +56,7 @@ export const EditCourseForm = ({ styles }: IEditCourseFormProps) => {
 			key: 'description',
 			rules: {
 				required: true,
-				maxLength: 120,
+				maxLength: 110,
 			},
 			defaultValue: courseData?.description,
 		},
