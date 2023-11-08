@@ -102,7 +102,9 @@
       ~~~
       npm install // для клиента 
       ~~~
-      pip install -r requirements. txt // для сервера 
+      ~~~
+      pip install -r requirements. txt // для сервера
+      ~~~
 
 7. Запустите npm start в каталоге клиента и запустите python manage.py runserver в каталоге сервера
       ~~~
