@@ -64,50 +64,50 @@
 
 <summary><h2>:dizzy: Функционал</h2></summary>
 
-  - Support Standard Markdown / CommonMark and GFM(GitHub Flavored Markdown);
-- Full-featured: Real-time Preview, Image (cross-domain) upload, Preformatted text/Code blocks/Tables insert, Code fold, Search replace, Read only, Themes, Multi-languages, L18n, HTML entities, Code syntax highlighting...;
-- Markdown Extras : Support ToC (Table of Contents), Emoji, Task lists, @Links...;
-- Compatible with all major browsers (IE8+), compatible Zepto.js and iPad;
-- Support identification, interpretation, fliter of the HTML tags;
-- Support TeX (LaTeX expressions, Based on KaTeX), Flowchart and Sequence Diagram of Markdown extended syntax;
-- Support AMD/CMD (Require.js & Sea.js) Module Loader, and Custom/define editor plugins;
+- Запись на курсы с дальнейшим отслеживанием прогресса прохождения 
+- Удобное добавление и редактирование курсов с помощью Drag and Drop 
+- Использовалась  i18next для интернационализации , переключение между английским, русским, и казахским языками.
+- Возможность переключаться между темной и светлой темами 
+- Авторизация с подтверждением электронной почты
+- Редактирование профиля студента
+
 
 <h2></h2>
 <summary><h2>🛠️ Установка</h2></summary>
 
 
 
-1. Fork the project. Click on the fork icon in the top right to get started
+1. Сделайте Fork проекта. Нажмите на значок Fork в правом верхнем углу, чтобы начать.
 
-2. Clone the project, you can use the following command:
+2. Клонировать проект можно с помощью следующей команды:
   
       ~~~
-      git clone https://github.com/<your-github-username>/Whisper
+      git clone https://github.com/Aligan18/LMSCaseCup.git
       ~~~
 
-3. Navigate to the project directory
+3. Перейдите в каталог проекта
 
       ~~~
-      cd Whisper
+      LMSCaseCup
       ~~~
 
-4. Navigate to the respective client and server directory
+4. Перейдите в соответствующий каталог клиента и сервера.
       ~~~
       cd client
       ~~~
       ~~~
       cd server
       ~~~
-5. Install dependencies with npm install
+5. Установите зависимости с помощью npm install
       ~~~
-      npm install
+      npm install // для клиента 
       ~~~
-6. Use .env_sample to configure the .env file for both client and server. For the server .env mongodb url use the localhost to test
+      pip install -r requirements. txt // для сервера 
 
-7. Run npm start in the client directory and npm run dev:docker in the server directory, this uses docker for the server part
+7. Запустите npm start в каталоге клиента и запустите python manage.py runserver в каталоге сервера
       ~~~
       npm start
       ~~~
       ~~~
-      npm run dev:docker
+      python manage.py runserver  
       ~~~
