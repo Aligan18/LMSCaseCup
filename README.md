@@ -52,11 +52,13 @@
 </table> 
 
 <h2></h2>
-<details><summary><h2>✨ Screenshots</h2></summary>
-| ![Main page](/pictures/1.jpg "Main page") | | :--: | | *Main page* |
-...
-| ![Swagger](/pictures/5.jpg "Swagger") | | *Swagger* |
-</details>
+<details><summary><h3>✨ Screenshots</h3></summary>
+| ![Главная страница](/pictures/Главная.jpg "Главная страница") | | :--: | | *Главная страница* |
+| ![Курсы](/pictures/Курсы.jpg "Курсы") | | :--: | | *Курсы* |
+| ![Страница редактирования ](/pictures/Редактирование.jpg "Страница редактирования") | | :--: | | *Страница редактирования* |
+| ![Темная тема](/pictures/Темная_тема.jpg "Темная тема") | | :--: | | *Темная тема* |
+| ![Светлая тема](/pictures/Светлая_тема.jpg "Светлая тема") | | :--: | | *Светлая тема* |
+
 
 <h2></h2>
 
