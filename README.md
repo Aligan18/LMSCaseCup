@@ -52,7 +52,7 @@
 </table> 
 
 <h2></h2>
-<details><summary>✨ Screenshots</summary>
+<details><summary><strong>✨ Screenshots</strong></summary>
 | ![Главная страница](/pictures/Главная.jpg "Главная страница") | | :--: | | *Главная страница* |
 | ![Курсы](/pictures/Курсы.jpg "Курсы") | | :--: | | *Курсы* |
 | ![Страница редактирования ](/pictures/Редактирование.jpg "Страница редактирования") | | :--: | | *Страница редактирования* |
