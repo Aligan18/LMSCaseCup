@@ -1,4 +1,4 @@
-<summary><h1>LMSCaseCup</h1></summary>
+<summary><h1>🎓 LMSCaseCup</h1></summary>
 <h2></h2>
 
 
